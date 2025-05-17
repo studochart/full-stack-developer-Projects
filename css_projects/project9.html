@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Advanced - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Selector Examples */
+        .selector-example {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        /* Type Selector */
+        .type-selector p {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+        
+        /* Class Selector */
+        .class-selector .highlight {
+            background-color: #e1bee7;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        /* ID Selector */
+        #unique-element {
+            border: 2px dashed #9c27b0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        /* Attribute Selectors */
+        .attribute-selector a[href^="https"] {
+            color: #9c27b0;
+            text-decoration: none;
+            border-bottom: 1px dotted #9c27b0;
+        }
+        
+        .attribute-selector input[type="text"] {
+            border: 2px solid #9c27b0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        
+        .attribute-selector img[alt] {
+            border: 2px solid #9c27b0;
+        }
+        
+        .attribute-selector a[href$=".pdf"] {
+            background-color: #e1bee7;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .attribute-selector a[href*="example"] {
+            font-weight: bold;
+        }
+        
+        /* Descendant Selector */
+        .descendant-selector article p {
+            border-left: 3px solid #9c27b0;
+            padding-left: 10px;
+        }
+        
+        /* Child Selector */
+        .child-selector ul > li {
+            color: #9c27b0;
+        }
+        
+        /* Adjacent Sibling Selector */
+        .adjacent-sibling-selector h3 + p {
+            font-weight: bold;
+            color: #9c27b0;
+        }
+        
+        /* General Sibling Selector */
+        .general-sibling-selector h3 ~ p {
+            background-color: #f9f0ff;
+            padding: 5px;
+        }
+        
+        /* Pseudo-classes */
+        .pseudo-classes a:hover {
+            color: #9c27b0;
+            text-decoration: underline;
+        }
+        
+        .pseudo-classes li:first-child {
+            font-weight: bold;
+            color: #9c27b0;
+        }
+        
+        .pseudo-classes li:last-child {
+            font-style: italic;
+            color: #9c27b0;
+        }
+        
+        .pseudo-classes li:nth-child(odd) {
+            background-color: #f9f0ff;
+        }
+        
+        .pseudo-classes p:first-of-type {
+            border-bottom: 2px solid #9c27b0;
+            padding-bottom: 5px;
+        }
+        
+        /* Pseudo-elements */
+        .pseudo-elements p::first-letter {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #9c27b0;
+        }
+        
+        .pseudo-elements p::first-line {
+            font-weight: bold;
+        }
+        
+        .pseudo-elements p::selection {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .pseudo-elements li::before {
+            content: "→ ";
+            color: #9c27b0;
+        }
+        
+        .pseudo-elements li::after {
+            content: " ✓";
+            color: #9c27b0;
+        }
+        
+        /* Combinators */
+        .combinators .group1 > p {
+            border-left: 3px solid #9c27b0;
+            padding-left: 10px;
+        }
+        
+        .combinators .group2 h4 + p {
+            font-weight: bold;
+            color: #9c27b0;
+        }
+        
+        .combinators .group3 h4 ~ p {
+            background-color: #f9f0ff;
+            padding: 5px;
+        }
+        
+        /* Specificity Examples */
+        #specificity {
+            color: red;
+        }
+        
+        .specificity-class {
+            color: blue;
+        }
+        
+        .specificity-example p {
+            color: green;
+        }
+        
+        /* ID wins over class and element selectors */
+        #specificity-test {
+            color: #9c27b0;
+        }
+        
+        /* Multiple Selectors */
+        .multiple-selectors h3, 
+        .multiple-selectors h4, 
+        .multiple-selectors h5 {
+            color: #5592f5;
+            border-bottom: 1px solid #e1bee7;
+            padding-bottom: 5px;
+        }
+        
+        /* Not Selector */
+        .not-selector p:not(.exclude) {
+            background-color: #f9f0ff;
+            padding: 5px;
+        }
+        
+        /* Has Selector (Note: Limited browser support) */
+        /* .has-selector div:has(> p) {
+            border: 2px solid #9c27b0;
+            padding: 10px;
+        } */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Selectors Advanced</h1>
+        <p>Learn advanced CSS selectors for precise targeting of elements</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Advanced CSS Selectors</h2>
+        <p>CSS selectors allow you to target specific HTML elements for styling. While basic selectors like type, class, and ID are commonly used, advanced selectors provide more precise control and can help reduce the amount of HTML markup needed.</p>
+        <p>In this project, we'll explore various advanced CSS selectors and how they can be used to create more efficient and maintainable stylesheets.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Basic Selectors Review</h2>
+        
+        <div class="code">
+            /* Type Selector */
+            p { color: blue; }
+            
+            /* Class Selector */
+            .highlight { background-color: yellow; }
+            
+            /* ID Selector */
+            #unique-element { border: 1px solid black; }
+        </div>
+        
+        <div class="example">
+            <h3>Basic Selectors Example</h3>
+            <div class="selector-example type-selector">
+                <h4>Type Selector</h4>
+                <p>This paragraph is styled using a type selector.</p>
+                <p>This paragraph is also styled the same way.</p>
+            </div>
+            
+            <div class="selector-example class-selector">
+                <h4>Class Selector</h4>
+                <p>This is a normal paragraph.</p>
+                <p>This paragraph has a <span class="highlight">highlighted</span> word using a class selector.</p>
+            </div>
+            
+            <div class="selector-example">
+                <h4>ID Selector</h4>
+                <p>This is a normal paragraph.</p>
+                <p id="unique-element">This paragraph has a unique ID and is styled differently.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Attribute Selectors</h2>
+        <p>Attribute selectors target elements based on their attributes and attribute values.</p>
+        
+        <div class="code">
+            /* Elements with the specified attribute */
+            [attr] { ... }
+            
+            /* Elements with attr matching exact value */
+            [attr="value"] { ... }
+            
+            /* Elements with attr starting with value */
+            [attr^="value"] { ... }
+            
+            /* Elements with attr ending with value */
+            [attr$="value"] { ... }
+            
+            /* Elements with attr containing value */
+            [attr*="value"] { ... }
+        </div>
+        
+        <div class="example">
+            <h3>Attribute Selectors Example</h3>
+            <div class="selector-example attribute-selector">
+                <p>Links with URLs starting with "https": <a href="https://example.com">Secure Link</a></p>
+                <p>Input with type="text": <input type="text" placeholder="Type here..."></p>
+                <p>Link to a PDF file: <a href="document.pdf">Download PDF</a></p>
+                <p>Link containing "example": <a href="https://example.org">Example.org</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Selectors Advanced Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn advanced CSS selectors.</p>
+    </footer>
+</body>
+</html>
+

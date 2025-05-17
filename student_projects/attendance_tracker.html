@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Tracker - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f5ff;
+            color: #5592f5;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .attendance-present {
+            color: #09cc09;
+            font-weight: bold;
+        }
+        
+        .attendance-absent {
+            color: #ff3333;
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .stat-box {
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-box h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Attendance Tracker</h1>
+        <p>Track and manage student attendance easily</p>
+    </header>
+
+    <div class="container">
+        <h2>Add Student</h2>
+        <div class="form-group">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" placeholder="Enter student name">
+        </div>
+        <div class="form-group">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" placeholder="Enter student ID">
+        </div>
+        <button id="addStudentBtn">Add Student</button>
+    </div>
+
+    <div class="container">
+        <h2>Mark Attendance</h2>
+        <div class="form-group">
+            <label for="attendanceDate">Date:</label>
+            <input type="date" id="attendanceDate">
+        </div>
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceTableBody">
+                <!-- Student rows will be added here -->
+            </tbody>
+        </table>
+        <button id="saveAttendanceBtn">Save Attendance</button>
+    </div>
+
+    <div class="container">
+        <h2>Attendance Records</h2>
+        <div class="form-group">
+            <label for="filterDate">Filter by Date:</label>
+            <input type="date" id="filterDate">
+            <button id="filterBtn">Filter</button>
+            <button id="clearFilterBtn">Clear Filter</button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Total Students</h3>
+                <div id="totalStudents" class="stat-value">0</div>
+            </div>
+            <div class="stat-box">
+                <h3>Present Today</h3>
+                <div id="presentToday" class="stat-value">0</div>
+            </div>
+            <div class="stat-box">
+                <h3>Absent Today</h3>
+                <div id="absentToday" class="stat-value">0</div>
+            </div>
+        </div>
+        
+        <table id="recordsTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="recordsTableBody">
+                <!-- Records will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Student Attendance Tracker. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help track student attendance.</p>
+    </footer>
+
+    <script>
+        // Initialize data from localStorage or create empty arrays
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let attendanceRecords = JSON.parse(localStorage.getItem('attendanceRecords')) || [];
+        
+        // DOM Elements
+        const studentNameInput = document.getElementById('studentName');
+        const studentIdInput = document.getElementById('studentId');
+        const addStudentBtn = document.getElementById('addStudentBtn');
+        const attendanceDateInput = document.getElementById('attendanceDate');
+        const attendanceTableBody = document.getElementById('attendanceTableBody');
+        const saveAttendanceBtn = document.getElementById('saveAttendanceBtn');
+        const filterDateInput = document.getElementById('filterDate');
+        const filterBtn = document.getElementById('filterBtn');
+        const clearFilterBtn = document.getElementById('clearFilterBtn');
+        const recordsTableBody = document.getElementById('recordsTableBody');
+        const totalStudentsEl = document.getElementById('totalStudents');
+        const presentTodayEl = document.getElementById('presentToday');
+        const absentTodayEl = document.getElementById('absentToday');
+        
+        // Set today's date as default
+        const today = new Date().toISOString().split('T')[0];
+        attendanceDateInput.value = today;
+        filterDateInput.value = today;
+        
+        // Add Student
+        addStudentBtn.addEventListener('click', function() {
+            const name = studentNameInput.value.trim();
+            const id = studentIdInput.value.trim();
+            
+            if (name && id) {
+                // Check if student ID already exists
+                if (students.some(student => student.id === id)) {
+                    alert('Student ID already exists!');
+                    return;
+                }
+                
+                students.push({ id, name });
+                localStorage.setItem('students', JSON.stringify(students));
+                
+                studentNameInput.value = '';
+                studentIdInput.value = '';
+                
+                alert('Student added successfully!');
+                updateAttendanceTable();
+                updateStats();
+            } else {
+                alert('Please enter both name and ID!');
+            }
+        });
+        
+        // Update Attendance Table
+        function updateAttendanceTable() {
+            attendanceTableBody.innerHTML = '';
+            
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>
+                        <select class="attendance-status" data-student-id="${student.id}">
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="remove-student" data-student-id="${student.id}">Remove</button>
+                    </td>
+                `;
+                
+                attendanceTableBody.appendChild(row);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-student').forEach(button => {
+                button.addEventListener('click', function() {
+                    const studentId = this.getAttribute('data-student-id');
+                    removeStudent(studentId);
+                });
+            });
+        }
+        
+        // Remove Student
+        function removeStudent(studentId) {
+            if (confirm('Are you sure you want to remove this student?')) {
+                students = students.filter(student => student.id !== studentId);
+                localStorage.setItem('students', JSON.stringify(students));
+                
+                // Also remove attendance records for this student
+                attendanceRecords = attendanceRecords.filter(record => record.studentId !== studentId);
+                localStorage.setItem('attendanceRecords', JSON.stringify(attendanceRecords));
+                
+                updateAttendanceTable();
+                updateRecordsTable();
+                updateStats();
+            }
+        }
+        
+        // Save Attendance
+        saveAttendanceBtn.addEventListener('click', function() {
+            const date = attendanceDateInput.value;
+            
+            if (!date) {
+                alert('Please select a date!');
+                return;
+            }
+            
+            // Remove existing records for this date
+            attendanceRecords = attendanceRecords.filter(record => record.date !== date);
+            
+            // Add new records
+            document.querySelectorAll('.attendance-status').forEach(select => {
+                const studentId = select.getAttribute('data-student-id');
+                const status = select.value;
+                const student = students.find(s => s.id === studentId);
+                
+                attendanceRecords.push({
+                    date,
+                    studentId,
+                    studentName: student.name,
+                    status
+                });
+            });
+            
+            localStorage.setItem('attendanceRecords', JSON.stringify(attendanceRecords));
+            alert('Attendance saved successfully!');
+            updateRecordsTable();
+            updateStats();
+        });
+        
+        // Filter Records
+        filterBtn.addEventListener('click', function() {
+            updateRecordsTable();
+        });
+        
+        // Clear Filter
+        clearFilterBtn.addEventListener('click', function() {
+            filterDateInput.value = today;
+            updateRecordsTable();
+        });
+        
+        // Update Records Table
+        function updateRecordsTable() {
+            recordsTableBody.innerHTML = '';
+            
+            let filteredRecords = [...attendanceRecords];
+            const filterDate = filterDateInput.value;
+            
+            if (filterDate) {
+                filteredRecords = filteredRecords.filter(record => record.date === filterDate);
+            }
+            
+            // Sort by date (newest first) and then by student name
+            filteredRecords.sort((a, b) => {
+                if (a.date !== b.date) {
+                    return new Date(b.date) - new Date(a.date);
+                }
+                return a.studentName.localeCompare(b.studentName);
+            });
+            
+            filteredRecords.forEach(record => {
+                const row = document.createElement('tr');
+                
+                const statusClass = record.status === 'present' ? 'attendance-present' : 'attendance-absent';
+                
+                row.innerHTML = `
+                    <td>${formatDate(record.date)}</td>
+                    <td>${record.studentId}</td>
+                    <td>${record.studentName}</td>
+                    <td class="${statusClass}">${record.status.toUpperCase()}</td>
+                `;
+                
+                recordsTableBody.appendChild(row);
+            });
+        }
+        
+        // Update Statistics
+        function updateStats() {
+            totalStudentsEl.textContent = students.length;
+            
+            const todayRecords = attendanceRecords.filter(record => record.date === today);
+            const presentToday = todayRecords.filter(record => record.status === 'present').length;
+            const absentToday = todayRecords.filter(record => record.status === 'absent').length;
+            
+            presentTodayEl.textContent = presentToday;
+            absentTodayEl.textContent = absentToday;
+        }
+        
+        // Format date for display
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+        
+        // Initialize the app
+        updateAttendanceTable();
+        updateRecordsTable();
+        updateStats();
+    </script>
+</body>
+</html>

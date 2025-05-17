@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Canvas Styles */
+        .canvas-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        canvas {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: crosshair;
+            touch-action: none; /* Prevents scrolling on touch devices */
+        }
+        
+        .canvas-controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        .control-label {
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .control-button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .control-button:hover {
+            background-color: #09cc09;
+        }
+        
+        .control-button.active {
+            background-color: #6a1b9a;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        
+        .color-picker {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .size-slider {
+            width: 100px;
+        }
+        
+        .animation-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Animation Canvas */
+        .animation-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #9c27b0;
+            color: white;
+            border-color: #9c27b0;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Canvas Drawing</h1>
+        <p>Learn to draw and animate graphics with the HTML5 Canvas API</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>The HTML5 Canvas API provides a powerful way to draw graphics, create animations, and build interactive visual applications directly in the browser. It allows you to draw shapes, text, images, and create complex animations using JavaScript.</p>
+        <p>In this project, we'll explore the Canvas API by creating a drawing application and simple animations.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Canvas Drawing App</h2>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="drawing">Drawing App</div>
+            <div class="tab" data-tab="animation">Animation Demo</div>
+        </div>
+        
+        <div class="tab-content active" id="drawing-tab">
+            <div class="canvas-container">
+                <canvas id="drawingCanvas" width="800" height="500"></canvas>
+            </div>
+            
+            <div class="canvas-controls">
+                <div class="control-group">
+                    <span class="control-label">Tool:</span>
+                    <button class="control-button active" id="brushTool">Brush</button>
+                    <button class="control-button" id="lineTool">Line</button>
+                    <button class="control-button" id="rectangleTool">Rectangle</button>
+                    <button class="control-button" id="circleTool">Circle</button>
+                </div>
+                
+                <div class="control-group">
+                    <span class="control-label">Color:</span>
+                    <input type="color" id="colorPicker" class="color-picker" value="#9c27b0">
+                </div>
+                
+                <div class="control-group">
+                    <span class="control-label">Size:</span>
+                    <input type="range" id="sizeSlider" class="size-slider" min="1" max="50" value="5">
+                    <span id="sizeValue">5px</span>
+                </div>
+                
+                <button class="control-button" id="clearCanvas">Clear Canvas</button>
+                <button class="control-button" id="saveCanvas">Save Image</button>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="animation-tab">
+            <div class="animation-container">
+                <canvas id="animationCanvas" width="800" height="500"></canvas>
+            </div>
+            
+            <div class="animation-controls">
+                <button class="control-button" id="startAnimation">Start Animation</button>
+                <button class="control-button" id="stopAnimation">Stop Animation</button>
+                <div class="control-group">
+                    <span class="control-label">Animation:</span>
+                    <button class="control-button active" id="bouncingBalls">Bouncing Balls</button>
+                    <button class="control-button" id="particleEffect">Particle Effect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>How It Works</h2>
+        <p>The Canvas Drawing App is built using the following components:</p>
+        <ul>
+            <li><strong>HTML5 Canvas:</strong> The canvas element provides a drawing surface that can be manipulated with JavaScript.</li>
+            <li><strong>Canvas Context:</strong> The 2D context of the canvas is used to draw shapes, lines, and text.</li>
+            <li><strong>Event Handling:</strong> Mouse and touch events are used to capture user input for drawing.</li>
+            <li><strong>Animation Loop:</strong> The <code>requestAnimationFrame</code> method is used to create smooth animations.</li>
+        </ul>
+        <p>The app includes the following features:</p>
+        <ul>
+            <li>Multiple drawing tools (brush, line, rectangle, circle)</li>
+            <li>Color and size selection</li>
+            <li>Canvas clearing and image saving</li>
+            <li>Different animation examples</li>
+            <li>Responsive design that works on both desktop and mobile devices</li>
+        </ul>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - Canvas Drawing Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn the HTML5 Canvas API.</p>
+    </footer>
+    
+    <script>
+        // Drawing App
+        class DrawingApp {
+            constructor() {
+                // Canvas elements
+                this.canvas = document.getElementById('drawingCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                
+                // Control elements
+                this.brushTool = document.getElementById('brushTool');
+                this.lineTool = document.getElementById('lineTool');
+                this.rectangleTool = document.getElementById('rectangleTool');
+                this.circleTool = document.getElementById('circleTool');
+                this.colorPicker = document.getElementById('colorPicker');
+                this.sizeSlider = document.getElementById('sizeSlider');
+                this.sizeValue = document.getElementById('sizeValue');
+                this.clearButton = document.getElementById('clearCanvas');
+                this.saveButton = document.getElementById('saveCanvas');
+                
+                // Drawing state
+                this.isDrawing = false;
+                this.lastX = 0;
+                this.lastY = 0;
+                this.tool = 'brush';
+                this.color = this.colorPicker.value;
+                this.size = parseInt(this.sizeSlider.value);
+                
+                // Initialize the app
+                this.setupCanvas();
+                this.setupEventListeners();
+            }
+            
+            setupCanvas() {
+                // Set initial canvas styles
+                this.ctx.lineCap = 'round';
+                this.ctx.lineJoin = 'round';
+                this.ctx.strokeStyle = this.color;
+                this.ctx.lineWidth = this.size;
+                
+                // Make canvas responsive
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+            
+            resizeCanvas() {
+                // Get the current drawing
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCanvas.width = this.canvas.width;
+                tempCanvas.height = this.canvas.height;
+                tempCtx.drawImage(this.canvas, 0, 0);
+                
+                // Resize canvas to fit container
+                const container = this.canvas.parentElement;
+                const maxWidth = container.clientWidth;
+                
+                if (this.canvas.width > maxWidth) {
+                    const ratio = this.canvas.height / this.canvas.width;
+                    this.canvas.width = maxWidth;
+                    this.canvas.height = maxWidth * ratio;
+                }
+                
+                // Restore the drawing
+                this.ctx.drawImage(tempCanvas, 0, 0, this.canvas.width, this.canvas.height);
+                
+                // Reset context styles (they get reset on resize)
+                this.ctx.lineCap = 'round';
+                this.ctx.lineJoin = 'round';
+                this.ctx.strokeStyle = this.color;
+                this.ctx.lineWidth = this.size;
+            }
+            
+            setupEventListeners() {
+                // Drawing events
+                this.canvas.addEventListener('mousedown', e => this.startDrawing(e));
+                this.canvas.addEventListener('mousemove', e => this.draw(e));
+                this.canvas.addEventListener('mouseup', () => this.stopDrawing());
+                this.canvas.addEventListener('mouseout', () => this.stopDrawing());
+                
+                // Touch events for mobile
+                this.canvas.addEventListener('touchstart', e => {
+                    e.preventDefault();
+                    this.startDrawing(e.touches[0]);
+                });
+                this.canvas.addEventListener('touchmove', e => {
+                    e.preventDefault();
+                    this.draw(e.touches[0]);
+                });
+                this.canvas.addEventListener('touchend', () => this.stopDrawing());
+                
+                // Tool selection
+                this.brushTool.addEventListener('click', () => this.setTool('brush'));
+                this.lineTool.addEventListener('click', () => this.setTool('line'));
+                this.rectangleTool.addEventListener('click', () => this.setTool('rectangle'));
+                this.circleTool.addEventListener('click', () => this.setTool('circle'));
+                
+                // Color and size controls
+                this.colorPicker.addEventListener('input', () => {
+                    this.color = this.colorPicker.value;
+                    this.ctx.strokeStyle = this.color;
+                    this.ctx.fillStyle = this.color;
+                });
+                
+                this.sizeSlider.addEventListener('input', () => {
+                    this.size = parseInt(this.sizeSlider.value);
+                    this.sizeValue.textContent = `${this.size}px`;
+                    this.ctx.lineWidth = this.size;
+                });
+                
+                // Clear and save buttons
+                this.clearButton.addEventListener('click', () => this.clearCanvas());
+                this.saveButton.addEventListener('click', () => this.saveImage());
+                
+                // Tab switching
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                        
+                        tab.classList.add('active');
+                        document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+                    });
+                });
+            }
+            
+            setTool(tool) {
+                this.tool = tool;
+                
+                // Update active button
+                document.querySelectorAll('.control-button').forEach(button => {
+                    if (button.id === `${tool}Tool`) {
+                        button.classList.add('active');
+                    } else if (['brushTool', 'lineTool', 'rectangleTool', 'circleTool'].includes(button.id)) {
+                        button.classList.remove('active');
+                    }
+                });
+            }
+            
+            startDrawing(e) {
+                this.isDrawing = true;
+                
+                // Get canvas-relative coordinates
+                const rect = this.canvas.getBoundingClientRect();
+                this.lastX = e.clientX - rect.left;
+                this.lastY = e.clientY - rect.top;
+                
+                // For shape tools, save a copy of the canvas
+                if (this.tool !== 'brush') {
+                    this.imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                }
+            }
+            
+            draw(e) {
+                if (!this.isDrawing) return;
+                
+                // Get canvas-relative coordinates
+                const rect = this.canvas.getBoundingClientRect();
+                const currentX = e.clientX - rect.left;
+                const currentY = e.clientY - rect.top;
+                
+                switch (this.tool) {
+                    case 'brush':
+                        this.drawBrush(currentX, currentY);
+                        break;
+                    case 'line':
+                        this.drawLine(currentX, currentY);
+                        break;
+                    case 'rectangle':
+                        this.drawRectangle(currentX, currentY);
+                        break;
+                    case 'circle':
+                        this.drawCircle(currentX, currentY);
+                        break;
+                }
+                
+                // Update last position
+                if (this.tool === 'brush') {
+                    this.lastX = currentX;
+                    this.lastY = currentY;
+                }
+            }
+            
+            drawBrush(x, y) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.lastX, this.lastY);
+                this.ctx.lineTo(x, y);
+                this.ctx.stroke();
+            }
+            
+            drawLine(x, y) {
+                // Restore the canvas to its state before drawing
+                this.ctx.putImageData(this.imageData, 0, 0);
+                
+                // Draw the line
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.lastX, this.lastY);
+                this.ctx.lineTo(x, y);
+                this.ctx.stroke();
+            }
+            
+            drawRectangle(x, y) {
+                // Restore the canvas to its state before drawing
+                this.ctx.putImageData(this.imageData, 0, 0);
+                
+                // Calculate width and height
+                const width = x - this.lastX;
+                const height = y - this.lastY;
+                
+                // Draw the rectangle
+                this.ctx.beginPath();
+                this.ctx.rect(this.lastX, this.lastY, width, height);
+                this.ctx.stroke();
+            }
+            
+            drawCircle(x, y) {
+                // Restore the canvas to its state before drawing
+                this.ctx.putImageData(this.imageData, 0, 0);
+                
+                // Calculate radius
+                const radius = Math.sqrt(Math.pow(x - this.lastX, 2) + Math.pow(y - this.lastY, 2));
+                
+                // Draw the circle
+                this.ctx.beginPath();
+                this.ctx.arc(this.lastX, this.lastY, radius, 0, Math.PI * 2);
+                this.ctx.stroke();
+            }
+            
+            stopDrawing() {
+                this.isDrawing = false;
+            }
+            
+            clearCanvas() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+            
+            saveImage() {
+                // Create a temporary link
+                const link = document.createElement('a');
+                link.download = 'canvas-drawing.png';
+                link.href = this.canvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+        
+        // Animation App
+        class AnimationApp {
+            constructor() {
+                // Canvas elements
+                this.canvas = document.getElementById('animationCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                
+                // Control elements
+                this.startButton = document.getElementById('startAnimation');
+                this.stopButton = document.getElementById('stopAnimation');
+                this.bouncingBallsButton = document.getElementById('bouncingBalls');
+                this.particleEffectButton = document.getElementById('particleEffect');
+                
+                // Animation state
+                this.animationId = null;
+                this.animationType = 'bouncingBalls';
+                this.balls = [];
+                this.particles = [];
+                
+                // Initialize the app
+                this.setupCanvas();
+                this.setupEventListeners();
+                this.createBalls();
+            }
+            
+            setupCanvas() {
+                // Make canvas responsive
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+            
+            resizeCanvas() {
+                // Resize canvas to fit container
+                const container = this.canvas.parentElement;
+                const maxWidth = container.clientWidth;
+                
+                if (this.canvas.width > maxWidth) {
+                    const ratio = this.canvas.height / this.canvas.width;
+                    this.canvas.width = maxWidth;
+                    this.canvas.height = maxWidth * ratio;
+                }
+                
+                // Recreate balls when canvas is resized
+                this.createBalls();
+            }
+            
+            setupEventListeners() {
+                // Animation controls
+                this.startButton.addEventListener('click', () => this.startAnimation());
+                this.stopButton.addEventListener('click', () => this.stopAnimation());
+                
+                // Animation type selection
+                this.bouncingBallsButton.addEventListener('click', () => this.setAnimationType('bouncingBalls'));
+                this.particleEffectButton.addEventListener('click', () => this.setAnimationType('particleEffect'));
+                
+                // Create particles on click
+                this.canvas.addEventListener('click', e => {
+                    if (this.animationType === 'particleEffect') {
+                        const rect = this.canvas.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        this.createParticles(x, y);
+                    }
+                });
+            }
+            
+            setAnimationType(type) {
+                this.animationType = type;
+                
+                // Update active button
+                document.querySelectorAll('.animation-controls .control-button').forEach(button => {
+                    if (button.id === type) {
+                        button.classList.add('active');
+                    } else if (['bouncingBalls', 'particleEffect'].includes(button.id)) {
+                        button.classList.remove('active');
+                    }
+                });
+                
+                // Clear canvas
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Reset animation
+                if (type === 'bouncingBalls') {
+                    this.createBalls();
+                } else {
+                    this.balls = [];
+                    this.particles = [];
+                }
+            }
+            
+            createBalls() {
+                this.balls = [];
+                
+                // Create 20 balls with random properties
+                for (let i = 0; i < 20; i++) {
+                    const radius = Math.random() * 20 + 10;
+                    const ball = {
+                        x: Math.random() * (this.canvas.width - radius * 2) + radius,
+                        y: Math.random() * (this.canvas.height - radius * 2) + radius,
+                        radius: radius,
+                        dx: (Math.random() - 0.5) * 4,
+                        dy: (Math.random() - 0.5) * 4,
+                        color: `hsl(${Math.random() * 360}, 70%, 50%)`
+                    };
+                    
+                    this.balls.push(ball);
+                }
+            }
+            
+            createParticles(x, y) {
+                // Create 50 particles at the click position
+                for (let i = 0; i < 50; i++) {
+                    const particle = {
+                        x: x,
+                        y: y,
+                        radius: Math.random() * 5 + 2,
+                        dx: (Math.random() - 0.5) * 6,
+                        dy: (Math.random() - 0.5) * 6,
+                        color: `hsl(${Math.random() * 360}, 70%, 50%)`,
+                        alpha: 1,
+                        life: 100
+                    };
+                    
+                    this.particles.push(particle);
+                }
+            }
+            
+            startAnimation() {
+                if (this.animationId) return;
+                
+                const animate = () => {
+                    this.animationId = requestAnimationFrame(animate);
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                    
+                    if (this.animationType === 'bouncingBalls') {
+                        this.updateBalls();
+                    } else {
+                        this.updateParticles();
+                    }
+                };
+                
+                animate();
+            }
+            
+            stopAnimation() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                }
+            }
+            
+            updateBalls() {
+                this.balls.forEach(ball => {
+                    // Move the ball
+                    ball.x += ball.dx;
+                    ball.y += ball.dy;
+                    
+                    // Bounce off walls
+                    if (ball.x + ball.radius > this.canvas.width || ball.x - ball.radius < 0) {
+                        ball.dx = -ball.dx;
+                    }
+                    
+                    if (ball.y + ball.radius > this.canvas.height || ball.y - ball.radius < 0) {
+                        ball.dy = -ball.dy;
+                    }
+                    
+                    // Draw the ball
+                    this.ctx.beginPath();
+                    this.ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = ball.color;
+                    this.ctx.fill();
+                    this.ctx.closePath();
+                });
+            }
+            
+            updateParticles() {
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    const particle = this.particles[i];
+                    
+                    // Move the particle
+                    particle.x += particle.dx;
+                    particle.y += particle.dy;
+                    
+                    // Reduce life and alpha
+                    particle.life--;
+                    particle.alpha = particle.life / 100;
+                    
+                    // Remove dead particles
+                    if (particle.life <= 0) {
+                        this.particles.splice(i, 1);
+                        continue;
+                    }
+                    
+                    // Draw the particle
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = particle.color.replace(')', `, ${particle.alpha})`).replace('hsl', 'hsla');
+                    this.ctx.fill();
+                    this.ctx.closePath();
+                }
+            }
+        }
+        
+        // Initialize apps when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawingApp = new DrawingApp();
+            const animationApp = new AnimationApp();
+        });
+    </script>
+</body>
+</html>
+

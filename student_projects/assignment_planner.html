@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Planner - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-row label {
+            min-width: 120px;
+        }
+        
+        .form-row input, .form-row select, .form-row textarea {
+            flex: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f5ff;
+            color: #5592f5;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .priority-high {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .priority-medium {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        
+        .priority-low {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .status-completed {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .status-in-progress {
+            color: #2196f3;
+            font-weight: bold;
+        }
+        
+        .status-not-started {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .due-soon {
+            background-color: #fff8e1;
+        }
+        
+        .overdue {
+            background-color: #ffebee;
+        }
+        
+        .completed {
+            background-color: #e8f5e9;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-card {
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .dashboard-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #091330;
+        }
+        
+        .dashboard-label {
+            color: #5592f5;
+            font-weight: bold;
+        }
+        
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #5592f5;
+            color: white;
+            border-color: #5592f5;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin: 20px 0;
+        }
+        
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .calendar-header-cell {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f0f5ff;
+            color: #5592f5;
+            border-radius: 4px;
+        }
+        
+        .calendar-cell {
+            min-height: 100px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+        
+        .calendar-cell.today {
+            background-color: #e3f2fd;
+            border: 2px solid #5592f5;
+        }
+        
+        .calendar-cell.other-month {
+            opacity: 0.5;
+        }
+        
+        .calendar-date {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .calendar-event {
+            font-size: 12px;
+            padding: 2px 5px;
+            margin-bottom: 2px;
+            border-radius: 2px;
+            background-color: #e3f2fd;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .calendar-event.high {
+            background-color: #ffebee;
+        }
+        
+        .calendar-event.medium {
+            background-color: #fff8e1;
+        }
+        
+        .calendar-event.low {
+            background-color: #e8f5e9;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5592f5;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar {
+                font-size: 14px;
+            }
+            
+            .calendar-cell {
+                min-height: 80px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Assignment Planner</h1>
+        <p>Organize and track your assignments and projects</p>
+    </header>
+
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="dashboard">Dashboard</div>
+                <div class="tab" data-tab="assignments">Assignments</div>
+                <div class="tab" data-tab="calendar">Calendar</div>
+                <div class="tab" data-tab="add">Add Assignment</div>
+            </div>
+            
+            <div class="tab-content active" id="dashboard-tab">
+                <h2>Assignment Dashboard</h2>
+                
+                <div class="dashboard">
+                    <div class="dashboard-card">
+                        <div class="dashboard-label">Total Assignments</div>
+                        <div class="dashboard-value" id="totalAssignments">0</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="dashboard-label">Completed</div>
+                        <div class="dashboard-value" id="completedAssignments">0</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="dashboard-label">In Progress</div>
+                        <div class="dashboard-value" id="inProgressAssignments">0</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="dashboard-label">Not Started</div>
+                        <div class="dashboard-value" id="notStartedAssignments">0</div>
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <h3>Upcoming Deadlines</h3>
+                    <table id="upcomingTable">
+                        <thead>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Course</th>
+                                <th>Due Date</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="upcomingTableBody">
+                            <!-- Upcoming assignments will be listed here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="assignments-tab">
+                <h2>All Assignments</h2>
+                
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="courseFilter">Filter by Course:</label>
+                        <select id="courseFilter">
+                            <option value="">All Courses</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="statusFilter">Filter by Status:</label>
+                        <select id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="priorityFilter">Filter by Priority:</label>
+                        <select id="priorityFilter">
+                            <option value="">All Priorities</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table id="assignmentsTable">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Course</th>
+                            <th>Due Date</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assignmentsTableBody">
+                        <!-- Assignments will be listed here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="calendar-tab">
+                <h2>Assignment Calendar</h2>
+                
+                <div class="calendar-nav">
+                    <button id="prevMonthBtn">← Previous Month</button>
+                    <div class="calendar-title" id="calendarTitle">Month Year</div>
+                    <button id="nextMonthBtn">Next Month →</button>
+                </div>
+                
+                <div class="calendar-header">
+                    <div class="calendar-header-cell">Sun</div>
+                    <div class="calendar-header-cell">Mon</div>
+                    <div class="calendar-header-cell">Tue</div>
+                    <div class="calendar-header-cell">Wed</div>
+                    <div class="calendar-header-cell">Thu</div>
+                    <div class="calendar-header-cell">Fri</div>
+                    <div class="calendar-header-cell">Sat</div>
+                </div>
+                
+                <div class="calendar" id="calendar">
+                    <!-- Calendar cells will be generated here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="add-tab">
+                <h2>Add New Assignment</h2>
+                
+                <form id="assignmentForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="assignmentTitle">Assignment Title:</label>
+                            <input type="text" id="assignmentTitle" required placeholder="Enter assignment title">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="courseName">Course:</label>
+                            <input type="text" id="courseName" required placeholder="Enter course name">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="dueDate">Due Date:</label>
+                            <input type="date" id="dueDate" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="priority">Priority:</label>
+                            <select id="priority" required>
+                                <option value="High">High</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="status">Status:</label>
+                            <select id="status" required>
+                                <option value="Not Started" selected>Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="estimatedTime">Estimated Time (hours):</label>
+                            <input type="number" id="estimatedTime" min="0" step="0.5" value="1">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="description">Description:</label>
+                            <textarea id="description" placeholder="Enter assignment details, requirements, etc."></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="saveAssignmentBtn">Save Assignment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Assignment Planner. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students organize and track their assignments.</p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Dashboard elements
+        const totalAssignmentsEl = document.getElementById('totalAssignments');
+        const completedAssignmentsEl = document.getElementById('completedAssignments');
+        const inProgressAssignmentsEl = document.getElementById('inProgressAssignments');
+        const notStartedAssignmentsEl = document.getElementById('notStartedAssignments');
+        const upcomingTableBody = document.getElementById('upcomingTableBody');
+        
+        // Assignments tab elements
+        const courseFilter = document.getElementById('courseFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const priorityFilter = document.getElementById('priorityFilter');
+        const assignmentsTableBody = document.getElementById('assignmentsTableBody');
+        
+        // Calendar elements
+        const calendarTitle = document.getElementById('calendarTitle');
+        const prevMonthBtn = document.getElementById('prevMonthBtn');
+        const nextMonthBtn = document.getElementById('nextMonthBtn');
+        const calendar = document.getElementById('calendar');
+        
+        // Add assignment form elements
+        const assignmentForm = document.getElementById('assignmentForm');
+        const assignmentTitleInput = document.getElementById('assignmentTitle');
+        const courseNameInput = document.getElementById('courseName');
+        const dueDateInput = document.getElementById('dueDate');
+        const priorityInput = document.getElementById('priority');
+        const statusInput = document.getElementById('status');
+        const estimatedTimeInput = document.getElementById('estimatedTime');
+        const descriptionInput = document.getElementById('description');
+        
+        // State variables
+        let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Refresh data when switching tabs
+                if (tabId === 'dashboard') {
+                    updateDashboard();
+                } else if (tabId === 'assignments') {
+                    updateAssignmentsTable();
+                    updateCourseFilter();
+                } else if (tabId === 'calendar') {
+                    renderCalendar();
+                }
+            });
+        });
+        
+        // Add assignment form submission
+        assignmentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const assignment = {
+                id: Date.now().toString(),
+                title: assignmentTitleInput.value.trim(),
+                course: courseNameInput.value.trim(),
+                dueDate: dueDateInput.value,
+                priority: priorityInput.value,
+                status: statusInput.value,
+                estimatedTime: parseFloat(estimatedTimeInput.value) || 0,
+                description: descriptionInput.value.trim(),
+                createdAt: new Date().toISOString()
+            };
+            
+            assignments.push(assignment);
+            saveAssignments();
+            
+            // Reset form
+            assignmentForm.reset();
+            
+            // Set today's date as default
+            dueDateInput.value = new Date().toISOString().split('T')[0];
+            
+            alert('Assignment added successfully!');
+            
+            // Switch to assignments tab
+            tabs[1].click();
+        });
+        
+        // Filter change events
+        courseFilter.addEventListener('change', updateAssignmentsTable);
+        statusFilter.addEventListener('change', updateAssignmentsTable);
+        priorityFilter.addEventListener('change', updateAssignmentsTable);
+        
+        // Calendar navigation
+        prevMonthBtn.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        });
+        
+        nextMonthBtn.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        });
+        
+        // Save assignments to localStorage
+        function saveAssignments() {
+            localStorage.setItem('assignments', JSON.stringify(assignments));
+            updateDashboard();
+            updateAssignmentsTable();
+            updateCourseFilter();
+            renderCalendar();
+        }
+        
+        // Update dashboard
+        function updateDashboard() {
+            // Update counts
+            totalAssignmentsEl.textContent = assignments.length;
+            completedAssignmentsEl.textContent = assignments.filter(a => a.status === 'Completed').length;
+            inProgressAssignmentsEl.textContent = assignments.filter(a => a.status === 'In Progress').length;
+            notStartedAssignmentsEl.textContent = assignments.filter(a => a.status === 'Not Started').length;
+            
+            // Update upcoming assignments table
+            upcomingTableBody.innerHTML = '';
+            
+            // Get non-completed assignments
+            const nonCompletedAssignments = assignments.filter(a => a.status !== 'Completed');
+            
+            // Sort by due date (ascending)
+            nonCompletedAssignments.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+            
+            // Take only the next 5 assignments
+            const upcomingAssignments = nonCompletedAssignments.slice(0, 5);
+            
+            if (upcomingAssignments.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="5">No upcoming assignments</td>';
+                upcomingTableBody.appendChild(row);
+            } else {
+                upcomingAssignments.forEach(assignment => {
+                    const row = document.createElement('tr');
+                    
+                    // Check if assignment is due soon (within 3 days) or overdue
+                    const dueDate = new Date(assignment.dueDate);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    const timeDiff = dueDate.getTime() - today.getTime();
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                    
+                    if (daysDiff < 0) {
+                        row.classList.add('overdue');
+                    } else if (daysDiff <= 3) {
+                        row.classList.add('due-soon');
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${assignment.title}</td>
+                        <td>${assignment.course}</td>
+                        <td>${formatDate(assignment.dueDate)}</td>
+                        <td class="priority-${assignment.priority.toLowerCase()}">${assignment.priority}</td>
+                        <td class="status-${assignment.status.toLowerCase().replace(' ', '-')}">${assignment.status}</td>
+                    `;
+                    
+                    upcomingTableBody.appendChild(row);
+                });
+            }
+        }
+        
+        // Update assignments table
+        function updateAssignmentsTable() {
+            assignmentsTableBody.innerHTML = '';
+            
+            // Apply filters
+            let filteredAssignments = [...assignments];
+            
+            const courseFilterValue = courseFilter.value;
+            const statusFilterValue = statusFilter.value;
+            const priorityFilterValue = priorityFilter.value;
+            
+            if (courseFilterValue) {
+                filteredAssignments = filteredAssignments.filter(a => a.course === courseFilterValue);
+            }
+            
+            if (statusFilterValue) {
+                filteredAssignments = filteredAssignments.filter(a => a.status === statusFilterValue);
+            }
+            
+            if (priorityFilterValue) {
+                filteredAssignments = filteredAssignments.filter(a => a.priority === priorityFilterValue);
+            }
+            
+            // Sort by due date (ascending)
+            filteredAssignments.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+            
+            if (filteredAssignments.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="6">No assignments found</td>';
+                assignmentsTableBody.appendChild(row);
+            } else {
+                filteredAssignments.forEach(assignment => {
+                    const row = document.createElement('tr');
+                    
+                    // Add appropriate class based on status
+                    if (assignment.status === 'Completed') {
+                        row.classList.add('completed');
+                    } else {
+                        // Check if assignment is due soon or overdue
+                        const dueDate = new Date(assignment.dueDate);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        const timeDiff = dueDate.getTime() - today.getTime();
+                        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                        
+                        if (daysDiff < 0) {
+                            row.classList.add('overdue');
+                        } else if (daysDiff <= 3) {
+                            row.classList.add('due-soon');
+                        }
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${assignment.title}</td>
+                        <td>${assignment.course}</td>
+                        <td>${formatDate(assignment.dueDate)}</td>
+                        <td class="priority-${assignment.priority.toLowerCase()}">${assignment.priority}</td>
+                        <td class="status-${assignment.status.toLowerCase().replace(' ', '-')}">${assignment.status}</td>
+                        <td>
+                            <button class="edit-btn" data-id="${assignment.id}">Edit</button>
+                            <button class="delete-btn" data-id="${assignment.id}">Delete</button>
+                        </td>
+                    `;
+                    
+                    assignmentsTableBody.appendChild(row);
+                });
+                
+                // Add event listeners to buttons
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        editAssignment(id);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        deleteAssignment(id);
+                    });
+                });
+            }
+        }
+        
+        // Update course filter dropdown
+        function updateCourseFilter() {
+            // Get unique courses
+            const courses = [...new Set(assignments.map(a => a.course))];
+            
+            // Sort alphabetically
+            courses.sort();
+            
+            // Clear current options (except the first one)
+            while (courseFilter.options.length > 1) {
+                courseFilter.remove(1);
+            }
+            
+            // Add course options
+            courses.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course;
+                option.textContent = course;
+                courseFilter.appendChild(option);
+            });
+        }
+        
+        // Render calendar
+        function renderCalendar() {
+            // Update calendar title
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Clear calendar
+            calendar.innerHTML = '';
+            
+            // Get first day of month and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Get last day of previous month
+            const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+            
+            // Get today's date
+            const today = new Date();
+            const currentDate = today.getDate();
+            const currentMonthIndex = today.getMonth();
+            const currentYearValue = today.getFullYear();
+            
+            // Create calendar cells
+            let date = 1;
+            let nextMonthDate = 1;
+            
+            // Create 6 rows (max possible for a month)
+            for (let i = 0; i < 6; i++) {
+                // Break if we've already filled the month
+                if (date > daysInMonth) break;
+                
+                // Create 7 cells for each day of the week
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'calendar-cell';
+                    
+                    // Fill in previous month's days
+                    if (i === 0 && j < firstDay) {
+                        const prevMonthDay = daysInPrevMonth - (firstDay - j - 1);
+                        cell.innerHTML = `<div class="calendar-date">${prevMonthDay}</div>`;
+                        cell.classList.add('other-month');
+                    }
+                    // Fill in next month's days
+                    else if (date > daysInMonth) {
+                        cell.innerHTML = `<div class="calendar-date">${nextMonthDate}</div>`;
+                        cell.classList.add('other-month');
+                        nextMonthDate++;
+                    }
+                    // Fill in current month's days
+                    else {
+                        cell.innerHTML = `<div class="calendar-date">${date}</div>`;
+                        
+                        // Highlight today
+                        if (date === currentDate && currentMonth === currentMonthIndex && currentYear === currentYearValue) {
+                            cell.classList.add('today');
+                        }
+                        
+                        // Add assignments for this date
+                        const cellDate = new Date(currentYear, currentMonth, date).toISOString().split('T')[0];
+                        const dayAssignments = assignments.filter(a => a.dueDate === cellDate);
+                        
+                        dayAssignments.forEach(assignment => {
+                            const event = document.createElement('div');
+                            event.className = `calendar-event ${assignment.priority.toLowerCase()}`;
+                            event.textContent = assignment.title;
+                            event.title = `${assignment.title} - ${assignment.course} (${assignment.status})`;
+                            cell.appendChild(event);
+                        });
+                        
+                        date++;
+                    }
+                    
+                    calendar.appendChild(cell);
+                }
+            }
+        }
+        
+        // Edit assignment
+        function editAssignment(id) {
+            const assignment = assignments.find(a => a.id === id);
+            if (!assignment) return;
+            
+            // Fill form with assignment data
+            assignmentTitleInput.value = assignment.title;
+            courseNameInput.value = assignment.course;
+            dueDateInput.value = assignment.dueDate;
+            priorityInput.value = assignment.priority;
+            statusInput.value = assignment.status;
+            estimatedTimeInput.value = assignment.estimatedTime;
+            descriptionInput.value = assignment.description || '';
+            
+            // Remove the assignment from the array
+            assignments = assignments.filter(a => a.id !== id);
+            
+            // Switch to add tab
+            tabs[3].click();
+        }
+        
+        // Delete assignment
+        function deleteAssignment(id) {
+            if (confirm('Are you sure you want to delete this assignment?')) {
+                assignments = assignments.filter(a => a.id !== id);
+                saveAssignments();
+            }
+        }
+        
+        // Format date for display
+        function formatDate(dateString) {
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+        
+        // Set today's date as default for new assignments
+        dueDateInput.value = new Date().toISOString().split('T')[0];
+        
+        // Initialize
+        updateDashboard();
+        updateAssignmentsTable();
+        updateCourseFilter();
+        renderCalendar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Media Queries - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Media Query Examples */
+        
+        /* Responsive Layout Example */
+        .responsive-layout {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar {
+            background-color: #e1bee7;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .main-content {
+            background-color: #f9f0ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Responsive Navigation Example */
+        .nav-container {
+            background-color: #9c27b0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-menu li {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .nav-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #7b1fa2;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background-color: #9c27b0;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+        }
+        
+        /* Responsive Typography Example */
+        .responsive-typography h1 {
+            font-size: 3rem;
+            color: #5592f5;
+        }
+        
+        .responsive-typography p {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-typography h1 {
+                font-size: 2.5rem;
+            }
+            
+            .responsive-typography p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .responsive-typography h1 {
+                font-size: 2rem;
+            }
+            
+            .responsive-typography p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Responsive Images Example */
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+        }
+        
+        /* Responsive Cards Example */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Orientation Example */
+        .orientation-demo {
+            background-color: #e1bee7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        @media (orientation: landscape) {
+            .orientation-content:after {
+                content: "You are viewing in landscape mode";
+                font-weight: bold;
+                color: #6a1b9a;
+            }
+        }
+        
+        @media (orientation: portrait) {
+            .orientation-content:after {
+                content: "You are viewing in portrait mode";
+                font-weight: bold;
+                color: #6a1b9a;
+            }
+        }
+        
+        /* Print Media Example */
+        @media print {
+            body {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                background-color: white;
+                color: black;
+            }
+            
+            header, footer, .back-link, .nav-container, .menu-toggle {
+                display: none;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                color: black;
+            }
+            
+            .code {
+                border: 1px solid #ddd;
+                background-color: white;
+            }
+            
+            .example {
+                border-left: 1px solid #5592f5;
+                background-color: white;
+            }
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
+            
+            a:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <script>
+        // Simple JavaScript for the responsive navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CSS Media Queries</h1>
+        <p>Create responsive designs with media queries for different devices</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Media Queries</h2>
+        <p>Media queries allow you to apply different CSS styles based on various device characteristics such as screen width, height, orientation, and more. They are a fundamental component of responsive web design.</p>
+        <p>With media queries, you can create websites that adapt to different screen sizes and provide an optimal viewing experience across a wide range of devices, from desktop computers to mobile phones.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Basic Media Query Syntax</h2>
+        <p>The basic syntax for a media query includes a media type and one or more expressions that check for specific conditions:</p>
+        
+        <div class="code">
+            @media [media-type] and ([media-feature]) {
+                /* CSS rules to apply when conditions are met */
+            }
+            
+            /* Examples */
+            @media screen and (max-width: 768px) {
+                /* Styles for screens 768px wide or less */
+            }
+            
+            @media screen and (min-width: 769px) and (max-width: 1024px) {
+                /* Styles for screens between 769px and 1024px */
+            }
+            
+            @media (orientation: landscape) {
+                /* Styles for landscape orientation */
+            }
+            
+            @media print {
+                /* Styles for print */
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Responsive Layout Example</h3>
+            <p>Resize your browser window to see how this layout changes:</p>
+            
+            <div class="responsive-layout">
+                <div class="sidebar">
+                    <h3>Sidebar</h3>
+                    <p>This sidebar will move above the main content on smaller screens.</p>
+                </div>
+                <div class="main-content">
+                    <h3>Main Content</h3>
+                    <p>This is the main content area. On larger screens, it appears next to the sidebar. On smaller screens, it appears below the sidebar.</p>
+                    <p>Try resizing your browser window to see the layout change when the screen width is less than 768px.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Media Queries Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS media queries.</p>
+    </footer>
+</body>
+</html>
+

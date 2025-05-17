@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Preprocessors - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Preprocessor Examples */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .css-column, .preprocessor-column {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .css-column {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .preprocessor-column {
+            background-color: #f9f0ff;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .column-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .css-column .column-title {
+            color: #1976d2;
+        }
+        
+        .preprocessor-column .column-title {
+            color: #6a1b9a;
+        }
+        
+        /* Feature Examples */
+        .feature-example {
+            margin-bottom: 30px;
+        }
+        
+        /* Demo Components */
+        .demo-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .demo-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .demo-button:hover {
+            background-color: #09cc09;
+        }
+        
+        .demo-button.secondary {
+            background-color: #2196f3;
+        }
+        
+        .demo-button.secondary:hover {
+            background-color: #1976d2;
+        }
+        
+        .demo-button.tertiary {
+            background-color: #4caf50;
+        }
+        
+        .demo-button.tertiary:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Preprocessors</h1>
+        <p>Introduction to CSS preprocessors like SASS with variables and nesting</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to CSS Preprocessors</h2>
+        <p>CSS preprocessors are scripting languages that extend the default capabilities of CSS. They enable features like variables, nesting, mixins, inheritance, and more, which make CSS code more maintainable and easier to write.</p>
+        <p>Popular CSS preprocessors include:</p>
+        <ul>
+            <li><strong>Sass/SCSS</strong> - The most mature and widely used preprocessor</li>
+            <li><strong>Less</strong> - A JavaScript-based preprocessor</li>
+            <li><strong>Stylus</strong> - A flexible preprocessor with a minimalist syntax</li>
+        </ul>
+        <p>In this project, we'll focus primarily on Sass/SCSS, which is the most widely adopted preprocessor.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Variables in Preprocessors</h2>
+        <p>Variables allow you to store values that you want to reuse throughout your stylesheet. This makes it easier to maintain consistent colors, spacing, and other values.</p>
+        
+        <div class="feature-example">
+            <div class="comparison">
+                <div class="css-column">
+                    <div class="column-title">CSS</div>
+                    <div class="code">
+                        /* CSS Variables (Custom Properties) */
+                        :root {
+                          --primary-color: #9c27b0;
+                          --secondary-color: #2196f3;
+                          --spacing: 20px;
+                        }
+                        
+                        .button {
+                          background-color: var(--primary-color);
+                          padding: var(--spacing);
+                        }
+                        
+                        .header {
+                          color: var(--primary-color);
+                          margin-bottom: var(--spacing);
+                        }
+                    </div>
+                </div>
+                
+                <div class="preprocessor-column">
+                    <div class="column-title">SCSS</div>
+                    <div class="code">
+                        /* SCSS Variables */
+                        $primary-color: #9c27b0;
+                        $secondary-color: #2196f3;
+                        $spacing: 20px;
+                        
+                        .button {
+                          background-color: $primary-color;
+                          padding: $spacing;
+                        }
+                        
+                        .header {
+                          color: $primary-color;
+                          margin-bottom: $spacing;
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Nesting in Preprocessors</h2>
+        <p>Nesting allows you to write CSS selectors that follow the same visual hierarchy as your HTML. This makes your code more readable and reduces repetition.</p>
+        
+        <div class="feature-example">
+            <div class="comparison">
+                <div class="css-column">
+                    <div class="column-title">CSS</div>
+                    <div class="code">
+                        /* CSS */
+                        .nav {
+                          background-color: #333;
+                        }
+                        
+                        .nav ul {
+                          list-style: none;
+                          margin: 0;
+                          padding: 0;
+                        }
+                        
+                        .nav li {
+                          display: inline-block;
+                        }
+                        
+                        .nav a {
+                          color: white;
+                          text-decoration: none;
+                        }
+                        
+                        .nav a:hover {
+                          color: #9c27b0;
+                        }
+                    </div>
+                </div>
+                
+                <div class="preprocessor-column">
+                    <div class="column-title">SCSS</div>
+                    <div class="code">
+                        /* SCSS with Nesting */
+                        .nav {
+                          background-color: #333;
+                          
+                          ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                          }
+                          
+                          li {
+                            display: inline-block;
+                          }
+                          
+                          a {
+                            color: white;
+                            text-decoration: none;
+                            
+                            &:hover {
+                              color: #9c27b0;
+                            }
+                          }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Mixins in Preprocessors</h2>
+        <p>Mixins are reusable blocks of CSS declarations that can be included in other rules. They can also accept parameters, making them even more flexible.</p>
+        
+        <div class="feature-example">
+            <div class="comparison">
+                <div class="css-column">
+                    <div class="column-title">CSS</div>
+                    <div class="code">
+                        /* CSS */
+                        .button-primary {
+                          background-color: #9c27b0;
+                          color: white;
+                          padding: 10px 20px;
+                          border-radius: 4px;
+                          transition: background-color 0.3s;
+                        }
+                        
+                        .button-secondary {
+                          background-color: #2196f3;
+                          color: white;
+                          padding: 10px 20px;
+                          border-radius: 4px;
+                          transition: background-color 0.3s;
+                        }
+                    </div>
+                </div>
+                
+                <div class="preprocessor-column">
+                    <div class="column-title">SCSS</div>
+                    <div class="code">
+                        /* SCSS with Mixins */
+                        @mixin button($bg-color) {
+                          background-color: $bg-color;
+                          color: white;
+                          padding: 10px 20px;
+                          border-radius: 4px;
+                          transition: background-color 0.3s;
+                        }
+                        
+                        .button-primary {
+                          @include button(#9c27b0);
+                        }
+                        
+                        .button-secondary {
+                          @include button(#2196f3);
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Preprocessors Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS preprocessors.</p>
+    </footer>
+</body>
+</html>
+

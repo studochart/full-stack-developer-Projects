@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Functions</h1>
+        <p>Learn how to create and use functions, parameters, and return values</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Functions</h2>
+        <p>Functions are one of the fundamental building blocks in JavaScript. A function is a reusable block of code designed to perform a particular task. Functions help organize code, make it reusable, and easier to maintain.</p>
+        <p>In this project, we'll explore different ways to define and use functions in JavaScript, including function parameters, return values, and various function types.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Function Declaration</h2>
+        <p>A function declaration defines a named function. Function declarations are hoisted, which means they can be called before they are defined in the code.</p>
+        
+        <div class="code">
+            // Function Declaration
+            function greet() {
+                console.log("Hello, world!");
+            }
+            
+            // Calling the function
+            greet();  // Outputs: "Hello, world!"
+        </div>
+        
+        <div class="example">
+            <h3>Function Declaration Example</h3>
+            <div class="interactive">
+                <button id="callFunctionButton">Call Function</button>
+                <div id="functionResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Function Parameters</h2>
+        <p>Functions can take parameters, which are values you can pass to the function when you call it.</p>
+        
+        <div class="code">
+            // Function with parameters
+            function greet(name) {
+                console.log("Hello, " + name + "!");
+            }
+            
+            // Calling the function with an argument
+            greet("John");  // Outputs: "Hello, John!"
+            
+            // Function with multiple parameters
+            function add(a, b) {
+                return a + b;
+            }
+            
+            // Calling the function with multiple arguments
+            let sum = add(5, 3);  // sum = 8
+        </div>
+        
+        <h3>Default Parameters</h3>
+        <div class="code">
+            // Function with default parameters
+            function greet(name = "Guest") {
+                console.log("Hello, " + name + "!");
+            }
+            
+            greet();  // Outputs: "Hello, Guest!"
+            greet("John");  // Outputs: "Hello, John!"
+        </div>
+        
+        <h3>Rest Parameters</h3>
+        <div class="code">
+            // Function with rest parameter
+            function sum(...numbers) {
+                let total = 0;
+                for (let number of numbers) {
+                    total += number;
+                }
+                return total;
+            }
+            
+            console.log(sum(1, 2, 3, 4, 5));  // Outputs: 15
+        </div>
+        
+        <div class="example">
+            <h3>Function Parameters Example</h3>
+            <div class="interactive">
+                <input type="text" id="nameInput" placeholder="Enter your name">
+                <button id="greetButton">Greet</button>
+                <div id="greetResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Return Values</h2>
+        <p>Functions can return values using the <code>return</code> statement. When a function returns a value, it can be assigned to a variable or used in an expression.</p>
+        
+        <div class="code">
+            // Function that returns a value
+            function add(a, b) {
+                return a + b;
+            }
+            
+            // Using the returned value
+            let sum = add(5, 3);  // sum = 8
+            console.log(sum);  // Outputs: 8
+            
+            // Function with conditional return
+            function getGrade(score) {
+                if (score >= 90) {
+                    return "A";
+                } else if (score >= 80) {
+                    return "B";
+                } else if (score >= 70) {
+                    return "C";
+                } else if (score >= 60) {
+                    return "D";
+                } else {
+                    return "F";
+                }
+            }
+            
+            let grade = getGrade(85);  // grade = "B"
+        </div>
+        
+        <div class="example">
+            <h3>Return Values Example</h3>
+            <div class="interactive">
+                <input type="number" id="num1Input" placeholder="Number 1" value="5">
+                <input type="number" id="num2Input" placeholder="Number 2" value="3">
+                <select id="operationSelect">
+                    <option value="add">Add</option>
+                    <option value="subtract">Subtract</option>
+                    <option value="multiply">Multiply</option>
+                    <option value="divide">Divide</option>
+                </select>
+                <button id="calculateButton">Calculate</button>
+                <div id="calculateResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Function Expressions</h2>
+        <p>A function expression defines a function as part of a larger expression, typically a variable assignment. Function expressions are not hoisted, so they cannot be used before they are defined.</p>
+        
+        <div class="code">
+            // Function Expression
+            const greet = function() {
+                console.log("Hello, world!");
+            };
+            
+            // Calling the function
+            greet();  // Outputs: "Hello, world!"
+            
+            // Function Expression with parameters
+            const add = function(a, b) {
+                return a + b;
+            };
+            
+            let sum = add(5, 3);  // sum = 8
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Arrow Functions</h2>
+        <p>Arrow functions provide a shorter syntax for writing function expressions. They are anonymous functions with a special syntax that uses an "arrow" (<code>=></code>) to separate the parameters from the function body.</p>
+        
+        <div class="code">
+            // Arrow Function
+            const greet = () => {
+                console.log("Hello, world!");
+            };
+            
+            // Arrow Function with parameters
+            const add = (a, b) => {
+                return a + b;
+            };
+            
+            // Shorter syntax for single-expression functions
+            const add = (a, b) => a + b;
+            
+            // Arrow Function with a single parameter
+            const square = x => x * x;
+        </div>
+        
+        <div class="example">
+            <h3>Arrow Functions Example</h3>
+            <div class="interactive">
+                <input type="number" id="numberInput" placeholder="Enter a number" value="5">
+                <button id="squareButton">Square</button>
+                <button id="cubeButton">Cube</button>
+                <div id="powerResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Callback Functions</h2>
+        <p>A callback function is a function passed as an argument to another function, which is then invoked inside the outer function. Callbacks are commonly used in asynchronous operations, event handlers, and array methods.</p>
+        
+        <div class="code">
+            // Function that takes a callback
+            function doSomethingAsync(callback) {
+                setTimeout(() => {
+                    const result = "Operation completed";
+                    callback(result);
+                }, 1000);
+            }
+            
+            // Using the function with a callback
+            doSomethingAsync(function(result) {
+                console.log(result);  // Outputs: "Operation completed" after 1 second
+            });
+            
+            // Using array methods with callbacks
+            const numbers = [1, 2, 3, 4, 5];
+            
+            // map() with a callback
+            const doubled = numbers.map(function(num) {
+                return num * 2;
+            });
+            
+            // Or with an arrow function
+            const doubled = numbers.map(num => num * 2);
+            // doubled = [2, 4, 6, 8, 10]
+        </div>
+        
+        <div class="example">
+            <h3>Callback Functions Example</h3>
+            <div class="interactive">
+                <input type="text" id="messageInput" placeholder="Enter a message" value="Hello, world!">
+                <button id="processButton">Process with Callback</button>
+                <div id="callbackResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - JavaScript Functions Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript functions.</p>
+    </footer>
+    
+    <script>
+        // Function Declaration Example
+        function displayMessage() {
+            return "Function called successfully!";
+        }
+        
+        document.getElementById('callFunctionButton').addEventListener('click', function() {
+            const result = displayMessage();
+            document.getElementById('functionResult').textContent = result;
+        });
+        
+        // Function Parameters Example
+        function greet(name = "Guest") {
+            return `Hello, ${name}!`;
+        }
+        
+        document.getElementById('greetButton').addEventListener('click', function() {
+            const name = document.getElementById('nameInput').value.trim();
+            const greeting = greet(name || undefined); // Pass undefined to use default parameter
+            document.getElementById('greetResult').textContent = greeting;
+        });
+        
+        // Return Values Example
+        function calculate(a, b, operation) {
+            switch(operation) {
+                case 'add':
+                    return a + b;
+                case 'subtract':
+                    return a - b;
+                case 'multiply':
+                    return a * b;
+                case 'divide':
+                    if (b === 0) {
+                        return "Cannot divide by zero";
+                    }
+                    return a / b;
+                default:
+                    return "Invalid operation";
+            }
+        }
+        
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('num1Input').value);
+            const num2 = parseFloat(document.getElementById('num2Input').value);
+            const operation = document.getElementById('operationSelect').value;
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calculateResult').textContent = "Please enter valid numbers";
+                return;
+            }
+            
+            const result = calculate(num1, num2, operation);
+            document.getElementById('calculateResult').textContent = `Result: ${result}`;
+        });
+        
+        // Arrow Functions Example
+        const square = x => x * x;
+        const cube = x => x * x * x;
+        
+        document.getElementById('squareButton').addEventListener('click', function() {
+            const number = parseFloat(document.getElementById('numberInput').value);
+            
+            if (isNaN(number)) {
+                document.getElementById('powerResult').textContent = "Please enter a valid number";
+                return;
+            }
+            
+            const result = square(number);
+            document.getElementById('powerResult').textContent = `${number}² = ${result}`;
+        });
+        
+        document.getElementById('cubeButton').addEventListener('click', function() {
+            const number = parseFloat(document.getElementById('numberInput').value);
+            
+            if (isNaN(number)) {
+                document.getElementById('powerResult').textContent = "Please enter a valid number";
+                return;
+            }
+            
+            const result = cube(number);
+            document.getElementById('powerResult').textContent = `${number}³ = ${result}`;
+        });
+        
+        // Callback Functions Example
+        function processWithCallback(message, callback) {
+            // Simulate an asynchronous operation
+            setTimeout(() => {
+                // Process the message (convert to uppercase)
+                const processedMessage = message.toUpperCase();
+                // Call the callback with the processed message
+                callback(processedMessage);
+            }, 1500);
+            
+            return "Processing...";
+        }
+        
+        document.getElementById('processButton').addEventListener('click', function() {
+            const message = document.getElementById('messageInput').value;
+            
+            if (!message) {
+                document.getElementById('callbackResult').textContent = "Please enter a message";
+                return;
+            }
+            
+            // Display "Processing..." message
+            document.getElementById('callbackResult').textContent = processWithCallback(message, function(result) {
+                // This is the callback function that will be called after processing
+                document.getElementById('callbackResult').textContent = `Processed result: ${result}`;
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays and Objects - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .student-card {
+            background-color: #f9f0ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #9c27b0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Arrays and Objects in JavaScript</h1>
+        <p>Work with complex data structures like arrays and objects in JavaScript</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Arrays and Objects</h2>
+        <p>Arrays and objects are complex data structures in JavaScript that allow you to store and organize multiple values. They are essential for working with collections of data and representing real-world entities in your code.</p>
+        <p>In this project, we'll explore how to create, access, and manipulate arrays and objects, as well as common methods and operations for working with these data structures.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Arrays</h2>
+        <p>An array is an ordered collection of values. Each value in an array is called an element, and each element has a numeric position called its index. Arrays in JavaScript are zero-indexed, which means the first element is at index 0.</p>
+        
+        <h3>Creating Arrays</h3>
+        <div class="code">
+            // Array literal notation
+            const fruits = ["Apple", "Banana", "Orange"];
+            
+            // Using the Array constructor
+            const numbers = new Array(1, 2, 3, 4, 5);
+            
+            // Empty array
+            const emptyArray = [];
+            
+            // Array with mixed data types
+            const mixedArray = [1, "Hello", true, null, { name: "John" }];
+        </div>
+        
+        <h3>Accessing Array Elements</h3>
+        <div class="code">
+            const fruits = ["Apple", "Banana", "Orange"];
+            
+            // Accessing by index
+            console.log(fruits[0]);  // "Apple"
+            console.log(fruits[1]);  // "Banana"
+            console.log(fruits[2]);  // "Orange"
+            
+            // Length property
+            console.log(fruits.length);  // 3
+            
+            // Accessing the last element
+            console.log(fruits[fruits.length - 1]);  // "Orange"
+        </div>
+        
+        <h3>Modifying Arrays</h3>
+        <div class="code">
+            const fruits = ["Apple", "Banana", "Orange"];
+            
+            // Changing an element
+            fruits[1] = "Mango";
+            console.log(fruits);  // ["Apple", "Mango", "Orange"]
+            
+            // Adding elements
+            fruits.push("Grape");  // Add to the end
+            console.log(fruits);  // ["Apple", "Mango", "Orange", "Grape"]
+            
+            fruits.unshift("Strawberry");  // Add to the beginning
+            console.log(fruits);  // ["Strawberry", "Apple", "Mango", "Orange", "Grape"]
+            
+            // Removing elements
+            fruits.pop();  // Remove from the end
+            console.log(fruits);  // ["Strawberry", "Apple", "Mango", "Orange"]
+            
+            fruits.shift();  // Remove from the beginning
+            console.log(fruits);  // ["Apple", "Mango", "Orange"]
+            
+            // Splice - remove or replace elements
+            fruits.splice(1, 1);  // Remove 1 element at index 1
+            console.log(fruits);  // ["Apple", "Orange"]
+            
+            fruits.splice(1, 0, "Kiwi", "Banana");  // Add elements at index 1
+            console.log(fruits);  // ["Apple", "Kiwi", "Banana", "Orange"]
+        </div>
+        
+        <div class="example">
+            <h3>Array Methods Example</h3>
+            <div class="interactive">
+                <h4>Shopping List</h4>
+                <div class="form-group">
+                    <input type="text" id="itemInput" placeholder="Enter an item">
+                    <button id="addItemButton">Add Item</button>
+                </div>
+                <div class="form-group">
+                    <button id="removeFirstButton">Remove First</button>
+                    <button id="removeLastButton">Remove Last</button>
+                    <button id="sortButton">Sort Items</button>
+                    <button id="clearButton">Clear All</button>
+                </div>
+                <h4>Your Shopping List:</h4>
+                <div id="shoppingList" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Array Methods</h2>
+        <p>JavaScript arrays have many built-in methods that make it easier to work with them.</p>
+        
+        <h3>Iteration Methods</h3>
+        <div class="code">
+            const numbers = [1, 2, 3, 4, 5];
+            
+            // forEach - executes a function for each element
+            numbers.forEach(function(number) {
+                console.log(number);
+            });
+            
+            // map - creates a new array with the results of calling a function on every element
+            const doubled = numbers.map(function(number) {
+                return number * 2;
+            });
+            console.log(doubled);  // [2, 4, 6, 8, 10]
+            
+            // filter - creates a new array with elements that pass the test
+            const evenNumbers = numbers.filter(function(number) {
+                return number % 2 === 0;
+            });
+            console.log(evenNumbers);  // [2, 4]
+            
+            // reduce - reduces the array to a single value
+            const sum = numbers.reduce(function(total, number) {
+                return total + number;
+            }, 0);
+            console.log(sum);  // 15
+            
+            // find - returns the first element that passes the test
+            const found = numbers.find(function(number) {
+                return number > 3;
+            });
+            console.log(found);  // 4
+            
+            // some - tests if at least one element passes the test
+            const hasEven = numbers.some(function(number) {
+                return number % 2 === 0;
+            });
+            console.log(hasEven);  // true
+            
+            // every - tests if all elements pass the test
+            const allPositive = numbers.every(function(number) {
+                return number > 0;
+            });
+            console.log(allPositive);  // true
+        </div>
+        
+        <h3>Other Useful Array Methods</h3>
+        <div class="code">
+            const fruits = ["Apple", "Banana", "Orange", "Mango"];
+            
+            // join - joins all elements into a string
+            console.log(fruits.join(", "));  // "Apple, Banana, Orange, Mango"
+            
+            // slice - returns a shallow copy of a portion of an array
+            console.log(fruits.slice(1, 3));  // ["Banana", "Orange"]
+            
+            // concat - merges two or more arrays
+            const moreFruits = ["Kiwi", "Grape"];
+            console.log(fruits.concat(moreFruits));  // ["Apple", "Banana", "Orange", "Mango", "Kiwi", "Grape"]
+            
+            // indexOf - returns the first index at which a given element can be found
+            console.log(fruits.indexOf("Orange"));  // 2
+            
+            // includes - determines whether an array includes a certain element
+            console.log(fruits.includes("Mango"));  // true
+            
+            // sort - sorts the elements of an array
+            console.log(fruits.sort());  // ["Apple", "Banana", "Mango", "Orange"]
+            
+            // reverse - reverses the order of the elements
+            console.log(fruits.reverse());  // ["Orange", "Mango", "Banana", "Apple"]
+        </div>
+        
+        <div class="example">
+            <h3>Array Iteration Example</h3>
+            <div class="interactive">
+                <h4>Number Operations</h4>
+                <div class="form-group">
+                    <textarea id="numbersInput" rows="3" placeholder="Enter numbers separated by commas (e.g., 1, 2, 3, 4, 5)">5, 10, 15, 20, 25</textarea>
+                </div>
+                <div class="form-group">
+                    <button id="mapButton">Map (Double)</button>
+                    <button id="filterButton">Filter (Even)</button>
+                    <button id="reduceButton">Reduce (Sum)</button>
+                    <button id="findButton">Find (> 15)</button>
+                </div>
+                <h4>Result:</h4>
+                <div id="arrayMethodResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Objects</h2>
+        <p>Objects in JavaScript are collections of key-value pairs. They allow you to store related data and functionality together.</p>
+        
+        <h3>Creating Objects</h3>
+        <div class="code">
+            // Object literal notation
+            const person = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 30,
+                email: "john.doe@example.com"
+            };
+            
+            // Using the Object constructor
+            const car = new Object();
+            car.make = "Toyota";
+            car.model = "Camry";
+            car.year = 2020;
+            
+            // Empty object
+            const emptyObject = {};
+        </div>
+        
+        <h3>Accessing Object Properties</h3>
+        <div class="code">
+            const person = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 30
+            };
+            
+            // Dot notation
+            console.log(person.firstName);  // "John"
+            console.log(person.age);  // 30
+            
+            // Bracket notation
+            console.log(person["lastName"]);  // "Doe"
+            
+            // Using variables with bracket notation
+            const propertyName = "age";
+            console.log(person[propertyName]);  // 30
+        </div>
+        
+        <h3>Modifying Objects</h3>
+        <div class="code">
+            const person = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 30
+            };
+            
+            // Adding properties
+            person.email = "john.doe@example.com";
+            person["phone"] = "555-1234";
+            
+            // Modifying properties
+            person.age = 31;
+            
+            // Deleting properties
+            delete person.phone;
+            
+            console.log(person);
+            // {
+            //   firstName: "John",
+            //   lastName: "Doe",
+            //   age: 31,
+            //   email: "john.doe@example.com"
+            // }
+        </div>
+        
+        <div class="example">
+            <h3>Object Manipulation Example</h3>
+            <div class="interactive">
+                <h4>Student Information</h4>
+                <div class="form-group">
+                    <label for="nameInput">Name:</label>
+                    <input type="text" id="nameInput" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="ageInput">Age:</label>
+                    <input type="number" id="ageInput" placeholder="Enter age">
+                </div>
+                <div class="form-group">
+                    <label for="gradeInput">Grade:</label>
+                    <input type="text" id="gradeInput" placeholder="Enter grade (A, B, C, etc.)">
+                </div>
+                <div class="form-group">
+                    <label for="subjectInput">Favorite Subject:</label>
+                    <input type="text" id="subjectInput" placeholder="Enter favorite subject">
+                </div>
+                <button id="createStudentButton">Create Student Object</button>
+                <button id="updateStudentButton" disabled>Update Student</button>
+                <h4>Student Object:</h4>
+                <div id="studentObject" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - Arrays and Objects Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript arrays and objects.</p>
+    </footer>
+    
+    <script>
+        // Shopping List Example
+        const shoppingList = [];
+        
+        function updateShoppingList() {
+            const listElement = document.getElementById('shoppingList');
+            
+            if (shoppingList.length === 0) {
+                listElement.textContent = "Your shopping list is empty.";
+                return;
+            }
+            
+            listElement.textContent = shoppingList.join('\n');
+        }
+        
+        document.getElementById('addItemButton').addEventListener('click', function() {
+            const itemInput = document.getElementById('itemInput');
+            const item = itemInput.value.trim();
+            
+            if (item) {
+                shoppingList.push(item);
+                itemInput.value = '';
+                updateShoppingList();
+            }
+        });
+        
+        document.getElementById('removeFirstButton').addEventListener('click', function() {
+            if (shoppingList.length > 0) {
+                shoppingList.shift();
+                updateShoppingList();
+            }
+        });
+        
+        document.getElementById('removeLastButton').addEventListener('click', function() {
+            if (shoppingList.length > 0) {
+                shoppingList.pop();
+                updateShoppingList();
+            }
+        });
+        
+        document.getElementById('sortButton').addEventListener('click', function() {
+            shoppingList.sort();
+            updateShoppingList();
+        });
+        
+        document.getElementById('clearButton').addEventListener('click', function() {
+            shoppingList.length = 0;
+            updateShoppingList();
+        });
+        
+        updateShoppingList();
+        
+        // Array Methods Example
+        document.getElementById('mapButton').addEventListener('click', function() {
+            const numbersInput = document.getElementById('numbersInput').value;
+            const numbersArray = numbersInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            
+            if (numbersArray.length === 0) {
+                document.getElementById('arrayMethodResult').textContent = "Please enter valid numbers.";
+                return;
+            }
+            
+            const doubled = numbersArray.map(num => num * 2);
+            document.getElementById('arrayMethodResult').textContent = `Original: [${numbersArray.join(', ')}]\nDoubled: [${doubled.join(', ')}]`;
+        });
+        
+        document.getElementById('filterButton').addEventListener('click', function() {
+            const numbersInput = document.getElementById('numbersInput').value;
+            const numbersArray = numbersInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            
+            if (numbersArray.length === 0) {
+                document.getElementById('arrayMethodResult').textContent = "Please enter valid numbers.";
+                return;
+            }
+            
+            const evenNumbers = numbersArray.filter(num => num % 2 === 0);
+            document.getElementById('arrayMethodResult').textContent = `Original: [${numbersArray.join(', ')}]\nEven Numbers: [${evenNumbers.join(', ')}]`;
+        });
+        
+        document.getElementById('reduceButton').addEventListener('click', function() {
+            const numbersInput = document.getElementById('numbersInput').value;
+            const numbersArray = numbersInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            
+            if (numbersArray.length === 0) {
+                document.getElementById('arrayMethodResult').textContent = "Please enter valid numbers.";
+                return;
+            }
+            
+            const sum = numbersArray.reduce((total, num) => total + num, 0);
+            document.getElementById('arrayMethodResult').textContent = `Original: [${numbersArray.join(', ')}]\nSum: ${sum}`;
+        });
+        
+        document.getElementById('findButton').addEventListener('click', function() {
+            const numbersInput = document.getElementById('numbersInput').value;
+            const numbersArray = numbersInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            
+            if (numbersArray.length === 0) {
+                document.getElementById('arrayMethodResult').textContent = "Please enter valid numbers.";
+                return;
+            }
+            
+            const found = numbersArray.find(num => num > 15);
+            document.getElementById('arrayMethodResult').textContent = `Original: [${numbersArray.join(', ')}]\nFirst number > 15: ${found !== undefined ? found : 'None found'}`;
+        });
+        
+        // Student Object Example
+        let student = null;
+        
+        document.getElementById('createStudentButton').addEventListener('click', function() {
+            const name = document.getElementById('nameInput').value.trim();
+            const age = parseInt(document.getElementById('ageInput').value);
+            const grade = document.getElementById('gradeInput').value.trim();
+            const subject = document.getElementById('subjectInput').value.trim();
+            
+            if (!name || isNaN(age) || !grade || !subject) {
+                document.getElementById('studentObject').textContent = "Please fill in all fields with valid values.";
+                return;
+            }
+            
+            student = {
+                name: name,
+                age: age,
+                grade: grade,
+                favoriteSubject: subject,
+                isActive: true,
+                enrollmentDate: new Date().toLocaleDateString()
+            };
+            
+            document.getElementById('studentObject').textContent = JSON.stringify(student, null, 2);
+            document.getElementById('updateStudentButton').disabled = false;
+        });
+        
+        document.getElementById('updateStudentButton').addEventListener('click', function() {
+            if (!student) {
+                return;
+            }
+            
+            // Update student properties
+            const name = document.getElementById('nameInput').value.trim();
+            const age = parseInt(document.getElementById('ageInput').value);
+            const grade = document.getElementById('gradeInput').value.trim();
+            const subject = document.getElementById('subjectInput').value.trim();
+            
+            if (name) student.name = name;
+            if (!isNaN(age)) student.age = age;
+            if (grade) student.grade = grade;
+            if (subject) student.favoriteSubject = subject;
+            
+            // Add a new property
+            student.lastUpdated = new Date().toLocaleDateString();
+            
+            document.getElementById('studentObject').textContent = JSON.stringify(student, null, 2);
+        });
+    </script>
+</body>
+</html>
+

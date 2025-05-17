@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Chart Styles */
+        .chart-container {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6a1b9a;
+        }
+        
+        .chart {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        
+        /* Bar Chart */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            padding-top: 20px;
+        }
+        
+        .bar {
+            width: 40px;
+            background-color: #9c27b0;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Line Chart */
+        .line-chart {
+            position: relative;
+            height: 250px;
+            padding: 20px 40px 30px;
+        }
+        
+        .line-chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .axis {
+            stroke: #ccc;
+            stroke-width: 1;
+        }
+        
+        .data-line {
+            fill: none;
+            stroke: #9c27b0;
+            stroke-width: 2;
+        }
+        
+        .data-point {
+            fill: #9c27b0;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        /* Pie Chart */
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .pie-slice {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 50%, 100% 50%, 100% 0, 50% 0);
+            transform-origin: center;
+        }
+        
+        .pie-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 10px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        
+        .legend-label {
+            font-size: 14px;
+        }
+        
+        /* Data Controls */
+        .data-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        
+        .control-button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .control-button:hover {
+            background-color: #09cc09;
+        }
+        
+        /* Custom Data Input */
+        .custom-data-form {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+        }
+        
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        
+        .form-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .add-data-button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .add-data-button:hover {
+            background-color: #09cc09;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Data Visualization</h1>
+        <p>Create interactive charts and graphs to visualize data</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>Data visualization is the graphical representation of information and data. It helps users understand complex data by presenting it in visual formats like charts, graphs, and maps.</p>
+        <p>In this project, we'll explore how to create interactive data visualizations using JavaScript. We'll implement several types of charts from scratch, including bar charts, line charts, and pie charts.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Bar Chart</h2>
+        <div class="chart-container">
+            <h3 class="chart-title">Monthly Sales Data</h3>
+            
+            <div class="data-controls">
+                <button class="control-button" id="randomizeBarData">Randomize Data</button>
+                <button class="control-button" id="sortBarData">Sort Data</button>
+            </div>
+            
+            <div class="chart">
+                <div class="bar-chart" id="barChart">
+                    <!-- Bars will be added here dynamically -->
+                </div>
+            </div>
+            
+            <div class="custom-data-form">
+                <h4>Add Custom Data</h4>
+                <div class="form-row">
+                    <input type="text" class="form-input" id="barLabel" placeholder="Label (e.g., Month)">
+                    <input type="number" class="form-input" id="barValue" placeholder="Value (e.g., 75)">
+                    <button class="add-data-button" id="addBarData">Add Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Line Chart</h2>
+        <div class="chart-container">
+            <h3 class="chart-title">Temperature Trends</h3>
+            
+            <div class="data-controls">
+                <button class="control-button" id="randomizeLineData">Randomize Data</button>
+                <button class="control-button" id="smoothLineData">Toggle Smooth Line</button>
+            </div>
+            
+            <div class="chart">
+                <div class="line-chart" id="lineChart">
+                    <svg class="line-chart-svg" id="lineChartSvg">
+                        <!-- Line chart will be drawn here -->
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Pie Chart</h2>
+        <div class="chart-container">
+            <h3 class="chart-title">Budget Allocation</h3>
+            
+            <div class="data-controls">
+                <button class="control-button" id="randomizePieData">Randomize Data</button>
+            </div>
+            
+            <div class="chart">
+                <div class="pie-chart" id="pieChart">
+                    <!-- Pie slices will be added here dynamically -->
+                </div>
+                
+                <div class="pie-legend" id="pieLegend">
+                    <!-- Legend items will be added here dynamically -->
+                </div>
+            </div>
+            
+            <div class="custom-data-form">
+                <h4>Add Custom Category</h4>
+                <div class="form-row">
+                    <input type="text" class="form-input" id="pieLabel" placeholder="Category (e.g., Housing)">
+                    <input type="number" class="form-input" id="pieValue" placeholder="Value (e.g., 30)">
+                    <input type="color" class="form-input" id="pieColor" value="#9c27b0">
+                    <button class="add-data-button" id="addPieData">Add Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>How It Works</h2>
+        <p>These data visualizations are created using the following techniques:</p>
+        <ul>
+            <li><strong>DOM Manipulation:</strong> JavaScript is used to create and modify HTML elements to represent data visually.</li>
+            <li><strong>SVG Graphics:</strong> Scalable Vector Graphics (SVG) are used for the line chart to create smooth, scalable visualizations.</li>
+            <li><strong>CSS Styling:</strong> CSS is used to style the charts and create visual effects.</li>
+            <li><strong>Event Handling:</strong> JavaScript event listeners are used to make the charts interactive.</li>
+            <li><strong>Data Processing:</strong> JavaScript functions are used to process and transform data for visualization.</li>
+        </ul>
+        <p>The charts include the following features:</p>
+        <ul>
+            <li>Dynamic data updates and animations</li>
+            <li>Interactive controls for manipulating the data</li>
+            <li>Custom data input for adding new data points</li>
+            <li>Responsive design that adapts to different screen sizes</li>
+        </ul>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - Data Visualization Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript data visualization.</p>
+    </footer>
+    
+    <script>
+        // Bar Chart
+        class BarChart {
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                this.data = [
+                    { label: 'Jan', value: 65 },
+                    { label: 'Feb', value: 42 },
+                    { label: 'Mar', value: 78 },
+                    { label: 'Apr', value: 53 },
+                    { label: 'May', value: 90 },
+                    { label: 'Jun', value: 36 }
+                ];
+                this.maxValue = 100;
+                this.render();
+                
+                // Set up event listeners
+                document.getElementById('randomizeBarData').addEventListener('click', () => this.randomizeData());
+                document.getElementById('sortBarData').addEventListener('click', () => this.sortData());
+                document.getElementById('addBarData').addEventListener('click', () => this.addCustomData());
+            }
+            
+            render() {
+                this.container.innerHTML = '';
+                
+                this.data.forEach(item => {
+                    const barHeight = (item.value / this.maxValue) * 100;
+                    
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = `${barHeight}%`;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'bar-label';
+                    label.textContent = item.label;
+                    
+                    const value = document.createElement('div');
+                    value.className = 'bar-value';
+                    value.textContent = item.value;
+                    
+                    bar.appendChild(label);
+                    bar.appendChild(value);
+                    this.container.appendChild(bar);
+                });
+            }
+            
+            randomizeData() {
+                this.data = this.data.map(item => ({
+                    label: item.label,
+                    value: Math.floor(Math.random() * 100) + 1
+                }));
+                this.render();
+            }
+            
+            sortData() {
+                this.data.sort((a, b) => a.value - b.value);
+                this.render();
+            }
+            
+            addCustomData() {
+                const labelInput = document.getElementById('barLabel');
+                const valueInput = document.getElementById('barValue');
+                
+                const label = labelInput.value.trim();
+                const value = parseInt(valueInput.value);
+                
+                if (label && !isNaN(value) && value > 0) {
+                    this.data.push({ label, value });
+                    this.render();
+                    
+                    // Clear inputs
+                    labelInput.value = '';
+                    valueInput.value = '';
+                } else {
+                    alert('Please enter a valid label and a positive number value.');
+                }
+            }
+        }
+        
+        // Line Chart
+        class LineChart {
+            constructor(containerId, svgId) {
+                this.container = document.getElementById(containerId);
+                this.svg = document.getElementById(svgId);
+                this.data = [
+                    { label: 'Mon', value: 20 },
+                    { label: 'Tue', value: 35 },
+                    { label: 'Wed', value: 28 },
+                    { label: 'Thu', value: 42 },
+                    { label: 'Fri', value: 38 },
+                    { label: 'Sat', value: 30 },
+                    { label: 'Sun', value: 25 }
+                ];
+                this.maxValue = 50;
+                this.smooth = false;
+                this.render();
+                
+                // Set up event listeners
+                document.getElementById('randomizeLineData').addEventListener('click', () => this.randomizeData());
+                document.getElementById('smoothLineData').addEventListener('click', () => this.toggleSmooth());
+                
+                // Make the chart responsive
+                window.addEventListener('resize', () => this.render());
+            }
+            
+            render() {
+                this.svg.innerHTML = '';
+                
+                const width = this.svg.clientWidth;
+                const height = this.svg.clientHeight;
+                const padding = 40;
+                
+                // Draw axes
+                const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                xAxis.setAttribute('class', 'axis');
+                xAxis.setAttribute('x1', padding);
+                xAxis.setAttribute('y1', height - padding);
+                xAxis.setAttribute('x2', width - padding);
+                xAxis.setAttribute('y2', height - padding);
+                this.svg.appendChild(xAxis);
+                
+                const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                yAxis.setAttribute('class', 'axis');
+                yAxis.setAttribute('x1', padding);
+                yAxis.setAttribute('y1', padding);
+                yAxis.setAttribute('x2', padding);
+                yAxis.setAttribute('y2', height - padding);
+                this.svg.appendChild(yAxis);
+                
+                // Calculate points
+                const points = this.data.map((item, index) => {
+                    const x = padding + (index * (width - 2 * padding) / (this.data.length - 1));
+                    const y = height - padding - ((item.value / this.maxValue) * (height - 2 * padding));
+                    return { x, y, label: item.label, value: item.value };
+                });
+                
+                // Draw line
+                let pathData;
+                
+                if (this.smooth) {
+                    // Create a smooth curve using cubic bezier curves
+                    pathData = `M ${points[0].x} ${points[0].y}`;
+                    
+                    for (let i = 0; i < points.length - 1; i++) {
+                        const x1 = points[i].x;
+                        const y1 = points[i].y;
+                        const x2 = points[i + 1].x;
+                        const y2 = points[i + 1].y;
+                        
+                        const controlX1 = x1 + (x2 - x1) / 3;
+                        const controlY1 = y1;
+                        const controlX2 = x2 - (x2 - x1) / 3;
+                        const controlY2 = y2;
+                        
+                        pathData += ` C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${x2} ${y2}`;
+                    }
+                } else {
+                    // Create a straight line
+                    pathData = `M ${points[0].x} ${points[0].y}`;
+                    
+                    for (let i = 1; i < points.length; i++) {
+                        pathData += ` L ${points[i].x} ${points[i].y}`;
+                    }
+                }
+                
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('class', 'data-line');
+                path.setAttribute('d', pathData);
+                this.svg.appendChild(path);
+                
+                // Draw points
+                points.forEach(point => {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('class', 'data-point');
+                    circle.setAttribute('cx', point.x);
+                    circle.setAttribute('cy', point.y);
+                    circle.setAttribute('r', 5);
+                    
+                    // Add tooltip on hover
+                    circle.addEventListener('mouseover', () => {
+                        const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        tooltip.setAttribute('x', point.x);
+                        tooltip.setAttribute('y', point.y - 15);
+                        tooltip.setAttribute('text-anchor', 'middle');
+                        tooltip.setAttribute('fill', '#333');
+                        tooltip.textContent = `${point.label}: ${point.value}`;
+                        tooltip.setAttribute('id', 'tooltip');
+                        this.svg.appendChild(tooltip);
+                    });
+                    
+                    circle.addEventListener('mouseout', () => {
+                        const tooltip = document.getElementById('tooltip');
+                        if (tooltip) tooltip.remove();
+                    });
+                    
+                    this.svg.appendChild(circle);
+                });
+                
+                // Draw labels
+                points.forEach(point => {
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', point.x);
+                    label.setAttribute('y', height - padding + 20);
+                    label.setAttribute('text-anchor', 'middle');
+                    label.setAttribute('fill', '#666');
+                    label.setAttribute('font-size', '12px');
+                    label.textContent = point.label;
+                    this.svg.appendChild(label);
+                });
+            }
+            
+            randomizeData() {
+                this.data = this.data.map(item => ({
+                    label: item.label,
+                    value: Math.floor(Math.random() * this.maxValue)
+                }));
+                this.render();
+            }
+            
+            toggleSmooth() {
+                this.smooth = !this.smooth;
+                this.render();
+            }
+        }
+        
+        // Pie Chart
+        class PieChart {
+            constructor(chartId, legendId) {
+                this.chart = document.getElementById(chartId);
+                this.legend = document.getElementById(legendId);
+                this.data = [
+                    { label: 'Housing', value: 35, color: '#9c27b0' },
+                    { label: 'Food', value: 25, color: '#2196f3' },
+                    { label: 'Transport', value: 15, color: '#4caf50' },
+                    { label: 'Entertainment', value: 10, color: '#ff9800' },
+                    { label: 'Savings', value: 15, color: '#f44336' }
+                ];
+                this.render();
+                
+                // Set up event listeners
+                document.getElementById('randomizePieData').addEventListener('click', () => this.randomizeData());
+                document.getElementById('addPieData').addEventListener('click', () => this.addCustomData());
+            }
+            
+            render() {
+                this.chart.innerHTML = '';
+                this.legend.innerHTML = '';
+                
+                // Calculate total
+                const total = this.data.reduce((sum, item) => sum + item.value, 0);
+                
+                // Create pie slices
+                let startAngle = 0;
+                
+                this.data.forEach(item => {
+                    const percentage = item.value / total;
+                    const degrees = percentage * 360;
+                    const endAngle = startAngle + degrees;
+                    
+                    // Create slice
+                    const slice = document.createElement('div');
+                    slice.className = 'pie-slice';
+                    slice.style.backgroundColor = item.color;
+                    slice.style.transform = `rotate(${startAngle}deg)`;
+                    
+                    // Create and append clip path
+                    const clipPath = `polygon(50% 50%, 100% 50%, ${this.calculateCoordinates(startAngle, endAngle)}, 50% 50%)`;
+                    slice.style.clipPath = clipPath;
+                    
+                    // Add tooltip on hover
+                    slice.title = `${item.label}: ${item.value} (${Math.round(percentage * 100)}%)`;
+                    
+                    this.chart.appendChild(slice);
+                    
+                    // Create legend item
+                    const legendItem = document.createElement('div');
+                    legendItem.className = 'legend-item';
+                    
+                    const colorBox = document.createElement('div');
+                    colorBox.className = 'legend-color';
+                    colorBox.style.backgroundColor = item.color;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'legend-label';
+                    label.textContent = `${item.label}: ${Math.round(percentage * 100)}%`;
+                    
+                    legendItem.appendChild(colorBox);
+                    legendItem.appendChild(label);
+                    this.legend.appendChild(legendItem);
+                    
+                    startAngle = endAngle;
+                });
+            }
+            
+            calculateCoordinates(startAngle, endAngle) {
+                // This is a simplified approach - for a more accurate pie chart,
+                // you would need to calculate the exact coordinates for the clip path
+                if (endAngle - startAngle >= 180) {
+                    return '100% 100%, 0% 100%, 0% 0%';
+                } else if (endAngle - startAngle >= 90) {
+                    return '100% 100%, 0% 100%';
+                } else {
+                    return '100% 100%';
+                }
+            }
+            
+            randomizeData() {
+                // Keep the labels and colors, but randomize the values
+                this.data = this.data.map(item => ({
+                    ...item,
+                    value: Math.floor(Math.random() * 50) + 5
+                }));
+                this.render();
+            }
+            
+            addCustomData() {
+                const labelInput = document.getElementById('pieLabel');
+                const valueInput = document.getElementById('pieValue');
+                const colorInput = document.getElementById('pieColor');
+                
+                const label = labelInput.value.trim();
+                const value = parseInt(valueInput.value);
+                const color = colorInput.value;
+                
+                if (label && !isNaN(value) && value > 0) {
+                    this.data.push({ label, value, color });
+                    this.render();
+                    
+                    // Clear inputs
+                    labelInput.value = '';
+                    valueInput.value = '';
+                } else {
+                    alert('Please enter a valid label and a positive number value.');
+                }
+            }
+        }
+        
+        // Initialize charts when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const barChart = new BarChart('barChart');
+            const lineChart = new LineChart('lineChart', 'lineChartSvg');
+            const pieChart = new PieChart('pieChart', 'pieLegend');
+        });
+    </script>
+</body>
+</html>
+

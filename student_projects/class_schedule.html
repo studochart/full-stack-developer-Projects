@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Schedule Organizer - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-row label {
+            min-width: 120px;
+        }
+        
+        .form-row input, .form-row select {
+            flex: 1;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(7, 1fr);
+            gap: 2px;
+            margin: 20px 0;
+        }
+        
+        .schedule-header {
+            background-color: #f0f5ff;
+            color: #5592f5;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .time-slot {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .schedule-cell {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            min-height: 80px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .schedule-cell:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .schedule-cell.has-class {
+            background-color: #e3f2fd;
+            border: 1px solid #5592f5;
+        }
+        
+        .class-item {
+            background-color: #5592f5;
+            color: white;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .class-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .class-details {
+            font-size: 12px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: #5592f5;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #5592f5;
+            color: white;
+            border-color: #5592f5;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .class-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .class-list-item {
+            background-color: #f0f5ff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .class-info {
+            flex: 1;
+        }
+        
+        .class-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .color-picker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .color-option.selected {
+            border-color: #333;
+        }
+        
+        .day-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .day-checkbox {
+            display: none;
+        }
+        
+        .day-label {
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .day-checkbox:checked + .day-label {
+            background-color: #5592f5;
+            color: white;
+        }
+        
+        .print-btn {
+            margin-bottom: 20px;
+        }
+        
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .schedule-container, .schedule-container * {
+                visibility: visible;
+            }
+            
+            .schedule-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            
+            button, .modal {
+                display: none !important;
+            }
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 80px repeat(7, 1fr);
+                font-size: 14px;
+            }
+            
+            .schedule-cell {
+                padding: 5px;
+                min-height: 60px;
+            }
+            
+            .class-item {
+                padding: 5px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Class Schedule Organizer</h1>
+        <p>Organize your weekly class schedule efficiently</p>
+    </header>
+
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="schedule">Schedule</div>
+                <div class="tab" data-tab="classes">My Classes</div>
+                <div class="tab" data-tab="add">Add Class</div>
+            </div>
+            
+            <div class="tab-content active" id="schedule-tab">
+                <h2>Weekly Schedule</h2>
+                <button id="printScheduleBtn" class="print-btn">Print Schedule</button>
+                
+                <div class="schedule-container">
+                    <div class="schedule-grid" id="scheduleGrid">
+                        <div class="schedule-header">Time</div>
+                        <div class="schedule-header">Monday</div>
+                        <div class="schedule-header">Tuesday</div>
+                        <div class="schedule-header">Wednesday</div>
+                        <div class="schedule-header">Thursday</div>
+                        <div class="schedule-header">Friday</div>
+                        <div class="schedule-header">Saturday</div>
+                        <div class="schedule-header">Sunday</div>
+                        
+                        <!-- Time slots and schedule cells will be generated here -->
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Click on any cell to add a class to that time slot</li>
+                        <li>Click on a class to edit or remove it</li>
+                        <li>Use the "Print Schedule" button to print your schedule</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="classes-tab">
+                <h2>My Classes</h2>
+                <div id="classList" class="class-list">
+                    <!-- Classes will be listed here -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="add-tab">
+                <h2>Add New Class</h2>
+                
+                <form id="classForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="className">Class Name:</label>
+                            <input type="text" id="className" required placeholder="e.g., Mathematics 101">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="instructor">Instructor:</label>
+                            <input type="text" id="instructor" placeholder="e.g., Prof. Smith">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="location">Location:</label>
+                            <input type="text" id="location" placeholder="e.g., Room 302, Building A">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Days:</label>
+                            <div class="day-selector">
+                                <input type="checkbox" id="monday" class="day-checkbox" value="Monday">
+                                <label for="monday" class="day-label">Mon</label>
+                                
+                                <input type="checkbox" id="tuesday" class="day-checkbox" value="Tuesday">
+                                <label for="tuesday" class="day-label">Tue</label>
+                                
+                                <input type="checkbox" id="wednesday" class="day-checkbox" value="Wednesday">
+                                <label for="wednesday" class="day-label">Wed</label>
+                                
+                                <input type="checkbox" id="thursday" class="day-checkbox" value="Thursday">
+                                <label for="thursday" class="day-label">Thu</label>
+                                
+                                <input type="checkbox" id="friday" class="day-checkbox" value="Friday">
+                                <label for="friday" class="day-label">Fri</label>
+                                
+                                <input type="checkbox" id="saturday" class="day-checkbox" value="Saturday">
+                                <label for="saturday" class="day-label">Sat</label>
+                                
+                                <input type="checkbox" id="sunday" class="day-checkbox" value="Sunday">
+                                <label for="sunday" class="day-label">Sun</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="startTime">Start Time:</label>
+                            <input type="time" id="startTime" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="endTime">End Time:</label>
+                            <input type="time" id="endTime" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Color:</label>
+                            <div class="color-picker" id="colorPicker">
+                                <div class="color-option selected" style="background-color: #5592f5;" data-color="#5592f5"></div>
+                                <div class="color-option" style="background-color: #4caf50;" data-color="#4caf50"></div>
+                                <div class="color-option" style="background-color: #f44336;" data-color="#f44336"></div>
+                                <div class="color-option" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                                <div class="color-option" style="background-color: #9c27b0;" data-color="#9c27b0"></div>
+                                <div class="color-option" style="background-color: #00bcd4;" data-color="#00bcd4"></div>
+                                <div class="color-option" style="background-color: #795548;" data-color="#795548"></div>
+                                <div class="color-option" style="background-color: #607d8b;" data-color="#607d8b"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="notes">Notes:</label>
+                            <textarea id="notes" placeholder="Additional information about the class"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="saveClassBtn">Save Class</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Class Modal -->
+    <div class="modal" id="classModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Add Class</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            
+            <div id="modalContent">
+                <!-- Modal content will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Class Schedule Organizer. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students organize their class schedules.</p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const scheduleGrid = document.getElementById('scheduleGrid');
+        const classList = document.getElementById('classList');
+        const classForm = document.getElementById('classForm');
+        const classNameInput = document.getElementById('className');
+        const instructorInput = document.getElementById('instructor');
+        const locationInput = document.getElementById('location');
+        const dayCheckboxes = document.querySelectorAll('.day-checkbox');
+        const startTimeInput = document.getElementById('startTime');
+        const endTimeInput = document.getElementById('endTime');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const notesInput = document.getElementById('notes');
+        const printScheduleBtn = document.getElementById('printScheduleBtn');
+        const classModal = document.getElementById('classModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        
+        // State variables
+        let classes = JSON.parse(localStorage.getItem('schedule-classes')) || [];
+        let selectedColor = '#5592f5';
+        let editingClassId = null;
+        let selectedCell = null;
+        
+        // Time slots (30-minute intervals from 8:00 AM to 10:00 PM)
+        const timeSlots = [];
+        for (let hour = 8; hour <= 22; hour++) {
+            const hourStr = hour < 10 ? `0${hour}` : `${hour}`;
+            timeSlots.push(`${hourStr}:00`);
+            if (hour < 22) {
+                timeSlots.push(`${hourStr}:30`);
+            }
+        }
+        
+        // Days of the week
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Refresh data when switching tabs
+                if (tabId === 'schedule') {
+                    renderSchedule();
+                } else if (tabId === 'classes') {
+                    renderClassList();
+                }
+            });
+        });
+        
+        // Color picker
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                colorOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedColor = option.getAttribute('data-color');
+            });
+        });
+        
+        // Class form submission
+        classForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get selected days
+            const selectedDays = [];
+            dayCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedDays.push(checkbox.value);
+                }
+            });
+            
+            if (selectedDays.length === 0) {
+                alert('Please select at least one day.');
+                return;
+            }
+            
+            // Validate time
+            const startTime = startTimeInput.value;
+            const endTime = endTimeInput.value;
+            
+            if (startTime >= endTime) {
+                alert('End time must be after start time.');
+                return;
+            }
+            
+            const classData = {
+                id: editingClassId || Date.now().toString(),
+                name: classNameInput.value.trim(),
+                instructor: instructorInput.value.trim(),
+                location: locationInput.value.trim(),
+                days: selectedDays,
+                startTime,
+                endTime,
+                color: selectedColor,
+                notes: notesInput.value.trim()
+            };
+            
+            if (editingClassId) {
+                // Update existing class
+                classes = classes.filter(c => c.id !== editingClassId);
+                editingClassId = null;
+            }
+            
+            classes.push(classData);
+            saveClasses();
+            
+            // Reset form
+            classForm.reset();
+            colorOptions[0].click(); // Reset color selection
+            
+            alert('Class saved successfully!');
+            
+            // Switch to schedule tab
+            tabs[0].click();
+        });
+        
+        // Print schedule
+        printScheduleBtn.addEventListener('click', () => {
+            window.print();
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            classModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === classModal) {
+                classModal.style.display = 'none';
+            }
+        });
+        
+        // Save classes to localStorage
+        function saveClasses() {
+            localStorage.setItem('schedule-classes', JSON.stringify(classes));
+            renderSchedule();
+            renderClassList();
+        }
+        
+        // Generate schedule grid
+        function generateScheduleGrid() {
+            // Clear existing grid (except headers)
+            while (scheduleGrid.children.length > 8) {
+                scheduleGrid.removeChild(scheduleGrid.lastChild);
+            }
+            
+            // Add time slots and empty cells
+            timeSlots.forEach(timeSlot => {
+                // Add time slot
+                const timeSlotElement = document.createElement('div');
+                timeSlotElement.className = 'time-slot';
+                timeSlotElement.textContent = formatTime(timeSlot);
+                scheduleGrid.appendChild(timeSlotElement);
+                
+                // Add empty cells for each day
+                days.forEach(day => {
+                    const cell = document.createElement('div');
+                    cell.className = 'schedule-cell';
+                    cell.setAttribute('data-day', day);
+                    cell.setAttribute('data-time', timeSlot);
+                    
+                    // Add click event to add class
+                    cell.addEventListener('click', () => {
+                        selectedCell = { day, time: timeSlot };
+                        showAddClassModal(day, timeSlot);
+                    });
+                    
+                    scheduleGrid.appendChild(cell);
+                });
+            });
+        }
+        
+        // Render schedule with classes
+        function renderSchedule() {
+            // Generate empty grid if not already generated
+            if (scheduleGrid.children.length <= 8) {
+                generateScheduleGrid();
+            }
+            
+            // Clear existing classes from grid
+            const cells = document.querySelectorAll('.schedule-cell');
+            cells.forEach(cell => {
+                cell.innerHTML = '';
+                cell.classList.remove('has-class');
+            });
+            
+            // Add classes to grid
+            classes.forEach(classItem => {
+                classItem.days.forEach(day => {
+                    // Find cells that fall within the class time
+                    const startTime = classItem.startTime;
+                    const endTime = classItem.endTime;
+                    
+                    // Find the first cell for this class
+                    const startCell = findCellForTime(day, startTime);
+                    if (!startCell) return;
+                    
+                    // Add class to cell
+                    startCell.classList.add('has-class');
+                    
+                    const classElement = document.createElement('div');
+                    classElement.className = 'class-item';
+                    classElement.style.backgroundColor = classItem.color;
+                    
+                    classElement.innerHTML = `
+                        <div class="class-title">${classItem.name}</div>
+                        <div class="class-details">
+                            ${formatTime(startTime)} - ${formatTime(endTime)}<br>
+                            ${classItem.location || ''}
+                        </div>
+                    `;
+                    
+                    // Add click event to edit class
+                    classElement.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent cell click
+                        showEditClassModal(classItem);
+                    });
+                    
+                    startCell.appendChild(classElement);
+                });
+            });
+        }
+        
+        // Find cell for a specific day and time
+        function findCellForTime(day, time) {
+            return document.querySelector(`.schedule-cell[data-day="${day}"][data-time="${time}"]`);
+        }
+        
+        // Render class list
+        function renderClassList() {
+            classList.innerHTML = '';
+            
+            if (classes.length === 0) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.className = 'example';
+                emptyMessage.innerHTML = '<p>You haven\'t added any classes yet. Go to the "Add Class" tab to add your first class.</p>';
+                classList.appendChild(emptyMessage);
+                return;
+            }
+            
+            // Sort classes by name
+            const sortedClasses = [...classes].sort((a, b) => a.name.localeCompare(b.name));
+            
+            sortedClasses.forEach(classItem => {
+                const listItem = document.createElement('div');
+                listItem.className = 'class-list-item';
+                
+                const daysList = classItem.days.join(', ');
+                
+                listItem.innerHTML = `
+                    <div class="class-info">
+                        <h3 style="color: ${classItem.color};">${classItem.name}</h3>
+                        <div>${daysList} • ${formatTime(classItem.startTime)} - ${formatTime(classItem.endTime)}</div>
+                        <div>${classItem.location || ''} ${classItem.instructor ? '• ' + classItem.instructor : ''}</div>
+                    </div>
+                    <div class="class-actions">
+                        <button class="edit-class-btn" data-id="${classItem.id}">Edit</button>
+                        <button class="delete-class-btn" data-id="${classItem.id}">Delete</button>
+                    </div>
+                `;
+                
+                classList.appendChild(listItem);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.edit-class-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const classItem = classes.find(c => c.id === id);
+                    if (classItem) {
+                        editClass(classItem);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-class-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    deleteClass(id);
+                });
+            });
+        }
+        
+        // Show modal to add class at specific time
+        function showAddClassModal(day, time) {
+            modalTitle.textContent = `Add Class on ${day} at ${formatTime(time)}`;
+            
+            // Convert time to hours and minutes
+            const [hours, minutes] = time.split(':').map(Number);
+            
+            // Calculate end time (1 hour later)
+            let endHours = hours;
+            let endMinutes = minutes + 60;
+            
+            if (endMinutes >= 60) {
+                endHours += Math.floor(endMinutes / 60);
+                endMinutes %= 60;
+            }
+            
+            const endTime = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+            
+            modalContent.innerHTML = `
+                <form id="modalClassForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="modalClassName">Class Name:</label>
+                            <input type="text" id="modalClassName" required placeholder="e.g., Mathematics 101">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalInstructor">Instructor:</label>
+                            <input type="text" id="modalInstructor" placeholder="e.g., Prof. Smith">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalLocation">Location:</label>
+                            <input type="text" id="modalLocation" placeholder="e.g., Room 302, Building A">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalStartTime">Start Time:</label>
+                            <input type="time" id="modalStartTime" required value="${time}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEndTime">End Time:</label>
+                            <input type="time" id="modalEndTime" required value="${endTime}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Color:</label>
+                            <div class="color-picker" id="modalColorPicker">
+                                <div class="color-option selected" style="background-color: #5592f5;" data-color="#5592f5"></div>
+                                <div class="color-option" style="background-color: #4caf50;" data-color="#4caf50"></div>
+                                <div class="color-option" style="background-color: #f44336;" data-color="#f44336"></div>
+                                <div class="color-option" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                                <div class="color-option" style="background-color: #9c27b0;" data-color="#9c27b0"></div>
+                                <div class="color-option" style="background-color: #00bcd4;" data-color="#00bcd4"></div>
+                                <div class="color-option" style="background-color: #795548;" data-color="#795548"></div>
+                                <div class="color-option" style="background-color: #607d8b;" data-color="#607d8b"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalNotes">Notes:</label>
+                            <textarea id="modalNotes" placeholder="Additional information about the class"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="modalSaveBtn">Add Class</button>
+                </form>
+            `;
+            
+            // Show modal
+            classModal.style.display = 'flex';
+            
+            // Add event listeners
+            const modalClassForm = document.getElementById('modalClassForm');
+            const modalColorOptions = document.querySelectorAll('#modalColorPicker .color-option');
+            
+            let modalSelectedColor = '#5592f5';
+            
+            modalColorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    modalColorOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    modalSelectedColor = option.getAttribute('data-color');
+                });
+            });
+            
+            modalClassForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const className = document.getElementById('modalClassName').value.trim();
+                const instructor = document.getElementById('modalInstructor').value.trim();
+                const location = document.getElementById('modalLocation').value.trim();
+                const startTime = document.getElementById('modalStartTime').value;
+                const endTime = document.getElementById('modalEndTime').value;
+                const notes = document.getElementById('modalNotes').value.trim();
+                
+                if (startTime >= endTime) {
+                    alert('End time must be after start time.');
+                    return;
+                }
+                
+                const classData = {
+                    id: Date.now().toString(),
+                    name: className,
+                    instructor,
+                    location,
+                    days: [day],
+                    startTime,
+                    endTime,
+                    color: modalSelectedColor,
+                    notes
+                };
+                
+                classes.push(classData);
+                saveClasses();
+                
+                classModal.style.display = 'none';
+            });
+        }
+        
+        // Show modal to edit class
+        function showEditClassModal(classItem) {
+            modalTitle.textContent = `Edit Class: ${classItem.name}`;
+            
+            modalContent.innerHTML = `
+                <form id="modalEditForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="modalEditName">Class Name:</label>
+                            <input type="text" id="modalEditName" required placeholder="e.g., Mathematics 101" value="${classItem.name}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEditInstructor">Instructor:</label>
+                            <input type="text" id="modalEditInstructor" placeholder="e.g., Prof. Smith" value="${classItem.instructor || ''}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEditLocation">Location:</label>
+                            <input type="text" id="modalEditLocation" placeholder="e.g., Room 302, Building A" value="${classItem.location || ''}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Days:</label>
+                            <div class="day-selector" id="modalEditDays">
+                                <input type="checkbox" id="modalMonday" class="day-checkbox" value="Monday" ${classItem.days.includes('Monday') ? 'checked' : ''}>
+                                <label for="modalMonday" class="day-label">Mon</label>
+                                
+                                <input type="checkbox" id="modalTuesday" class="day-checkbox" value="Tuesday" ${classItem.days.includes('Tuesday') ? 'checked' : ''}>
+                                <label for="modalTuesday" class="day-label">Tue</label>
+                                
+                                <input type="checkbox" id="modalWednesday" class="day-checkbox" value="Wednesday" ${classItem.days.includes('Wednesday') ? 'checked' : ''}>
+                                <label for="modalWednesday" class="day-label">Wed</label>
+                                
+                                <input type="checkbox" id="modalThursday" class="day-checkbox" value="Thursday" ${classItem.days.includes('Thursday') ? 'checked' : ''}>
+                                <label for="modalThursday" class="day-label">Thu</label>
+                                
+                                <input type="checkbox" id="modalFriday" class="day-checkbox" value="Friday" ${classItem.days.includes('Friday') ? 'checked' : ''}>
+                                <label for="modalFriday" class="day-label">Fri</label>
+                                
+                                <input type="checkbox" id="modalSaturday" class="day-checkbox" value="Saturday" ${classItem.days.includes('Saturday') ? 'checked' : ''}>
+                                <label for="modalSaturday" class="day-label">Sat</label>
+                                
+                                <input type="checkbox" id="modalSunday" class="day-checkbox" value="Sunday" ${classItem.days.includes('Sunday') ? 'checked' : ''}>
+                                <label for="modalSunday" class="day-label">Sun</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEditStart">Start Time:</label>
+                            <input type="time" id="modalEditStart" required value="${classItem.startTime}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEditEnd">End Time:</label>
+                            <input type="time" id="modalEditEnd" required value="${classItem.endTime}">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>Color:</label>
+                            <div class="color-picker" id="modalEditColor">
+                                <div class="color-option ${classItem.color === '#5592f5' ? 'selected' : ''}" style="background-color: #5592f5;" data-color="#5592f5"></div>
+                                <div class="color-option ${classItem.color === '#4caf50' ? 'selected' : ''}" style="background-color: #4caf50;" data-color="#4caf50"></div>
+                                <div class="color-option ${classItem.color === '#f44336' ? 'selected' : ''}" style="background-color: #f44336;" data-color="#f44336"></div>
+                                <div class="color-option ${classItem.color === '#ff9800' ? 'selected' : ''}" style="background-color: #ff9800;" data-color="#ff9800"></div>
+                                <div class="color-option ${classItem.color === '#9c27b0' ? 'selected' : ''}" style="background-color: #9c27b0;" data-color="#9c27b0"></div>
+                                <div class="color-option ${classItem.color === '#00bcd4' ? 'selected' : ''}" style="background-color: #00bcd4;" data-color="#00bcd4"></div>
+                                <div class="color-option ${classItem.color === '#795548' ? 'selected' : ''}" style="background-color: #795548;" data-color="#795548"></div>
+                                <div class="color-option ${classItem.color === '#607d8b' ? 'selected' : ''}" style="background-color: #607d8b;" data-color="#607d8b"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="modalEditNotes">Notes:</label>
+                            <textarea id="modalEditNotes" placeholder="Additional information about the class">${classItem.notes || ''}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="submit" id="modalUpdateBtn">Update Class</button>
+                        <button type="button" id="modalDeleteBtn" style="background-color: #f44336;">Delete Class</button>
+                    </div>
+                </form>
+            `;
+            
+            // Show modal
+            classModal.style.display = 'flex';
+            
+            // Add event listeners
+            const modalEditForm = document.getElementById('modalEditForm');
+            const modalEditColorOptions = document.querySelectorAll('#modalEditColor .color-option');
+            const modalDeleteBtn = document.getElementById('modalDeleteBtn');
+            
+            let modalEditSelectedColor = classItem.color;
+            
+            modalEditColorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    modalEditColorOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    modalEditSelectedColor = option.getAttribute('data-color');
+                });
+            });
+            
+            modalEditForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('modalEditName').value.trim();
+                const instructor = document.getElementById('modalEditInstructor').value.trim();
+                const location = document.getElementById('modalEditLocation').value.trim();
+                const startTime = document.getElementById('modalEditStart').value;
+                const endTime = document.getElementById('modalEditEnd').value;
+                const notes = document.getElementById('modalEditNotes').value.trim();
+                
+                // Get selected days
+                const selectedDays = [];
+                const modalDayCheckboxes = document.querySelectorAll('#modalEditDays .day-checkbox');
+                modalDayCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedDays.push(checkbox.value);
+                    }
+                });
+                
+                if (selectedDays.length === 0) {
+                    alert('Please select at least one day.');
+                    return;
+                }
+                
+                if (startTime >= endTime) {
+                    alert('End time must be after start time.');
+                    return;
+                }
+                
+                // Update class
+                const updatedClass = {
+                    ...classItem,
+                    name,
+                    instructor,
+                    location,
+                    days: selectedDays,
+                    startTime,
+                    endTime,
+                    color: modalEditSelectedColor,
+                    notes
+                };
+                
+                classes = classes.filter(c => c.id !== classItem.id);
+                classes.push(updatedClass);
+                saveClasses();
+                
+                classModal.style.display = 'none';
+            });
+            
+            modalDeleteBtn.addEventListener('click', () => {
+                if (confirm(`Are you sure you want to delete "${classItem.name}"?`)) {
+                    deleteClass(classItem.id);
+                    classModal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Edit class
+        function editClass(classItem) {
+            // Fill form with class data
+            classNameInput.value = classItem.name;
+            instructorInput.value = classItem.instructor || '';
+            locationInput.value = classItem.location || '';
+            startTimeInput.value = classItem.startTime;
+            endTimeInput.value = classItem.endTime;
+            notesInput.value = classItem.notes || '';
+            
+            // Set selected days
+            dayCheckboxes.forEach(checkbox => {
+                checkbox.checked = classItem.days.includes(checkbox.value);
+            });
+            
+            // Set selected color
+            colorOptions.forEach(option => {
+                const color = option.getAttribute('data-color');
+                if (color === classItem.color) {
+                    option.click();
+                }
+            });
+            
+            // Set editing class ID
+            editingClassId = classItem.id;
+            
+            // Switch to add tab
+            tabs[2].click();
+        }
+        
+        // Delete class
+        function deleteClass(id) {
+            if (confirm('Are you sure you want to delete this class?')) {
+                classes = classes.filter(c => c.id !== id);
+                saveClasses();
+            }
+        }
+        
+        // Format time for display
+        function formatTime(timeString) {
+            const [hours, minutes] = timeString.split(':').map(Number);
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+        }
+        
+        // Initialize
+        generateScheduleGrid();
+        renderSchedule();
+        renderClassList();
+    </script>
+</body>
+</html>

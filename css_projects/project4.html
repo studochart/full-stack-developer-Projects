@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Typography - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Typography Examples */
+        .font-family-example {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .font-family-card {
+            padding: 15px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .serif { font-family: Georgia, Times, 'Times New Roman', serif; }
+        .sans-serif { font-family: Arial, Helvetica, sans-serif; }
+        .monospace { font-family: 'Courier New', Courier, monospace; }
+        .cursive { font-family: 'Comic Sans MS', cursive; }
+        .fantasy { font-family: Impact, fantasy; }
+        
+        .font-size-example p {
+            margin: 10px 0;
+        }
+        
+        .px-16 { font-size: 16px; }
+        .px-20 { font-size: 20px; }
+        .px-24 { font-size: 24px; }
+        .em-1 { font-size: 1em; }
+        .em-1-5 { font-size: 1.5em; }
+        .em-2 { font-size: 2em; }
+        .rem-1 { font-size: 1rem; }
+        .rem-1-5 { font-size: 1.5rem; }
+        .rem-2 { font-size: 2rem; }
+        .percent-100 { font-size: 100%; }
+        .percent-150 { font-size: 150%; }
+        .percent-200 { font-size: 200%; }
+        
+        .font-weight-example span {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .weight-100 { font-weight: 100; }
+        .weight-300 { font-weight: 300; }
+        .weight-400 { font-weight: 400; }
+        .weight-500 { font-weight: 500; }
+        .weight-700 { font-weight: 700; }
+        .weight-900 { font-weight: 900; }
+        
+        .font-style-example span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .style-normal { font-style: normal; }
+        .style-italic { font-style: italic; }
+        .style-oblique { font-style: oblique; }
+        
+        .text-decoration-example span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .decoration-none { text-decoration: none; }
+        .decoration-underline { text-decoration: underline; }
+        .decoration-overline { text-decoration: overline; }
+        .decoration-line-through { text-decoration: line-through; }
+        .decoration-wavy { text-decoration: underline wavy #9c27b0; }
+        .decoration-dotted { text-decoration: underline dotted #9c27b0; }
+        .decoration-dashed { text-decoration: underline dashed #9c27b0; }
+        
+        .text-transform-example span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .transform-none { text-transform: none; }
+        .transform-uppercase { text-transform: uppercase; }
+        .transform-lowercase { text-transform: lowercase; }
+        .transform-capitalize { text-transform: capitalize; }
+        
+        .text-align-example p {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .align-left { text-align: left; }
+        .align-center { text-align: center; }
+        .align-right { text-align: right; }
+        .align-justify { text-align: justify; }
+        
+        .line-height-example p {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .line-height-1 { line-height: 1; }
+        .line-height-1-5 { line-height: 1.5; }
+        .line-height-2 { line-height: 2; }
+        
+        .letter-spacing-example span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .letter-spacing-normal { letter-spacing: normal; }
+        .letter-spacing-2px { letter-spacing: 2px; }
+        .letter-spacing-4px { letter-spacing: 4px; }
+        
+        .word-spacing-example span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .word-spacing-normal { word-spacing: normal; }
+        .word-spacing-5px { word-spacing: 5px; }
+        .word-spacing-10px { word-spacing: 10px; }
+        
+        .text-shadow-example span {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .shadow-basic { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .shadow-purple { text-shadow: 2px 2px 4px rgba(156,39,176,0.5); }
+        .shadow-glow { text-shadow: 0 0 10px rgba(156,39,176,0.8); }
+        .shadow-multiple { text-shadow: 1px 1px 2px #9c27b0, 0 0 1em #3f51b5, 0 0 0.2em #2196f3; }
+        
+        .white-space-example p {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .white-space-normal { white-space: normal; }
+        .white-space-nowrap { white-space: nowrap; }
+        .white-space-pre { white-space: pre; }
+        .white-space-pre-line { white-space: pre-line; }
+        .white-space-pre-wrap { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Typography</h1>
+        <p>Master text styling with CSS typography properties</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to CSS Typography</h2>
+        <p>Typography is the art and technique of arranging type to make written language legible, readable, and appealing when displayed. CSS provides a wide range of properties to control the appearance of text on web pages.</p>
+        <p>In this project, we'll explore the various CSS properties that control text styling, including font families, sizes, weights, spacing, and more.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Font Family</h2>
+        <p>The <code>font-family</code> property specifies the font for an element. You can specify multiple fonts as a "fallback" system.</p>
+        
+        <div class="code">
+            font-family: 'Primary Font', 'Fallback Font', generic-family;
+        </div>
+        
+        <p>Common generic font families include:</p>
+        <ul>
+            <li><strong>serif</strong> - Fonts with small lines at the ends of characters</li>
+            <li><strong>sans-serif</strong> - Fonts without lines at the ends of characters</li>
+            <li><strong>monospace</strong> - Fonts where all characters have the same width</li>
+            <li><strong>cursive</strong> - Fonts that mimic handwriting</li>
+            <li><strong>fantasy</strong> - Decorative fonts</li>
+        </ul>
+        
+        <div class="example">
+            <h3>Font Family Examples</h3>
+            <div class="font-family-example">
+                <div class="font-family-card">
+                    <h4>Serif</h4>
+                    <p class="serif">This text is displayed in a serif font. Serif fonts have small lines at the ends of characters.</p>
+                </div>
+                <div class="font-family-card">
+                    <h4>Sans-serif</h4>
+                    <p class="sans-serif">This text is displayed in a sans-serif font. Sans-serif fonts have clean lines without serifs.</p>
+                </div>
+                <div class="font-family-card">
+                    <h4>Monospace</h4>
+                    <p class="monospace">This text is displayed in a monospace font. All characters have the same width.</p>
+                </div>
+                <div class="font-family-card">
+                    <h4>Cursive</h4>
+                    <p class="cursive">This text is displayed in a cursive font. Cursive fonts mimic handwriting.</p>
+                </div>
+                <div class="font-family-card">
+                    <h4>Fantasy</h4>
+                    <p class="fantasy">This text is displayed in a fantasy font. Fantasy fonts are decorative.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Font Size</h2>
+        <p>The <code>font-size</code> property sets the size of the text. There are several units you can use:</p>
+        
+        <div class="code">
+            /* Absolute units */
+            font-size: 16px;
+            font-size: 12pt;
+            
+            /* Relative units */
+            font-size: 1em;      /* Relative to parent element */
+            font-size: 1rem;     /* Relative to root element */
+            font-size: 100%;     /* Relative to parent element */
+            font-size: 2vw;      /* Relative to viewport width */
+        </div>
+        
+        <div class="example">
+            <h3>Font Size Examples</h3>
+            <div class="font-size-example">
+                <h4>Pixels (px)</h4>
+                <p class="px-16">This text is 16px (default size in most browsers)</p>
+                <p class="px-20">This text is 20px</p>
+                <p class="px-24">This text is 24px</p>
+                
+                <h4>Em Units (relative to parent)</h4>
+                <p class="em-1">This text is 1em (same as parent)</p>
+                <p class="em-1-5">This text is 1.5em</p>
+                <p class="em-2">This text is 2em</p>
+                
+                <h4>Rem Units (relative to root)</h4>
+                <p class="rem-1">This text is 1rem</p>
+                <p class="rem-1-5">This text is 1.5rem</p>
+                <p class="rem-2">This text is 2rem</p>
+                
+                <h4>Percentage</h4>
+                <p class="percent-100">This text is 100%</p>
+                <p class="percent-150">This text is 150%</p>
+                <p class="percent-200">This text is 200%</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Typography Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS typography.</p>
+    </footer>
+</body>
+</html>
+

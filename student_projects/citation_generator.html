@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citation Generator - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-row label {
+            min-width: 120px;
+        }
+        
+        .form-row input, .form-row select, .form-row textarea {
+            flex: 1;
+        }
+        
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #5592f5;
+            color: white;
+            border-color: #5592f5;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .citation-result {
+            background-color: #f0f5ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .citation-text {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #09cc09;
+        }
+        
+        .citation-format {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .author-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .author-inputs {
+            display: flex;
+            flex: 1;
+            gap: 10px;
+        }
+        
+        .remove-author-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .saved-citations {
+            margin-top: 20px;
+        }
+        
+        .saved-citation-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .saved-citation-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .saved-citation-text {
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        
+        .saved-citation-format {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .saved-citation-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #5592f5;
+            margin-left: 5px;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .form-row label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+            
+            .author-inputs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Citation Generator</h1>
+        <p>Create accurate citations for your research papers and essays</p>
+    </header>
+
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="book">Book</div>
+                <div class="tab" data-tab="website">Website</div>
+                <div class="tab" data-tab="journal">Journal Article</div>
+                <div class="tab" data-tab="newspaper">Newspaper</div>
+                <div class="tab" data-tab="saved">Saved Citations</div>
+            </div>
+            
+            <div class="tab-content active" id="book-tab">
+                <h2>Book Citation</h2>
+                
+                <form id="bookForm">
+                    <div class="form-group">
+                        <div id="bookAuthors">
+                            <div class="author-row">
+                                <div class="author-inputs">
+                                    <input type="text" class="author-first" placeholder="First Name" required>
+                                    <input type="text" class="author-middle" placeholder="Middle Initial">
+                                    <input type="text" class="author-last" placeholder="Last Name" required>
+                                </div>
+                                <button type="button" class="remove-author-btn" style="visibility: hidden;">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addBookAuthorBtn">+ Add Another Author</button>
+                        
+                        <div class="form-row">
+                            <label for="bookTitle">Book Title:</label>
+                            <input type="text" id="bookTitle" placeholder="Enter the full title of the book" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="bookEdition">Edition:</label>
+                            <input type="text" id="bookEdition" placeholder="e.g., 2nd (leave blank if it's the first edition)">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="bookPublisher">Publisher:</label>
+                            <input type="text" id="bookPublisher" placeholder="Publishing company" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="bookYear">Year Published:</label>
+                            <input type="number" id="bookYear" placeholder="YYYY" min="1000" max="2099" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="bookCity">City of Publication:</label>
+                            <input type="text" id="bookCity" placeholder="e.g., New York" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="bookState">State/Country:</label>
+                            <input type="text" id="bookState" placeholder="e.g., NY or USA (for non-US cities)">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="bookCitationStyle">Citation Style:</label>
+                        <select id="bookCitationStyle">
+                            <option value="mla">MLA (9th edition)</option>
+                            <option value="apa">APA (7th edition)</option>
+                            <option value="chicago">Chicago (17th edition)</option>
+                            <option value="harvard">Harvard</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="generateBookCitationBtn">Generate Citation</button>
+                </form>
+                
+                <div id="bookCitationResult" class="citation-result" style="display: none;">
+                    <button class="copy-btn" id="copyBookCitationBtn">Copy</button>
+                    <div class="citation-text" id="bookCitationText"></div>
+                    <div class="citation-format" id="bookCitationFormat"></div>
+                    <button id="saveBookCitationBtn">Save Citation</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="website-tab">
+                <h2>Website Citation</h2>
+                
+                <form id="websiteForm">
+                    <div class="form-group">
+                        <div id="websiteAuthors">
+                            <div class="author-row">
+                                <div class="author-inputs">
+                                    <input type="text" class="author-first" placeholder="First Name">
+                                    <input type="text" class="author-middle" placeholder="Middle Initial">
+                                    <input type="text" class="author-last" placeholder="Last Name">
+                                </div>
+                                <button type="button" class="remove-author-btn" style="visibility: hidden;">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addWebsiteAuthorBtn">+ Add Another Author</button>
+                        <div class="example">
+                            <p>Note: If no author is available, leave the author fields blank.</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websiteTitle">Page Title:</label>
+                            <input type="text" id="websiteTitle" placeholder="Title of the specific page" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websiteSiteName">Website Name:</label>
+                            <input type="text" id="websiteSiteName" placeholder="Name of the overall website" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websiteURL">URL:</label>
+                            <input type="url" id="websiteURL" placeholder="https://www.example.com/page" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websitePublisher">Publisher:</label>
+                            <input type="text" id="websitePublisher" placeholder="Organization responsible for the site (if known)">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websitePublishedDate">Date Published:</label>
+                            <input type="date" id="websitePublishedDate">
+                            <div class="tooltip">?
+                                <span class="tooltiptext">Leave blank if no publication date is available</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="websiteAccessDate">Date Accessed:</label>
+                            <input type="date" id="websiteAccessDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="websiteCitationStyle">Citation Style:</label>
+                        <select id="websiteCitationStyle">
+                            <option value="mla">MLA (9th edition)</option>
+                            <option value="apa">APA (7th edition)</option>
+                            <option value="chicago">Chicago (17th edition)</option>
+                            <option value="harvard">Harvard</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="generateWebsiteCitationBtn">Generate Citation</button>
+                </form>
+                
+                <div id="websiteCitationResult" class="citation-result" style="display: none;">
+                    <button class="copy-btn" id="copyWebsiteCitationBtn">Copy</button>
+                    <div class="citation-text" id="websiteCitationText"></div>
+                    <div class="citation-format" id="websiteCitationFormat"></div>
+                    <button id="saveWebsiteCitationBtn">Save Citation</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="journal-tab">
+                <h2>Journal Article Citation</h2>
+                
+                <form id="journalForm">
+                    <div class="form-group">
+                        <div id="journalAuthors">
+                            <div class="author-row">
+                                <div class="author-inputs">
+                                    <input type="text" class="author-first" placeholder="First Name" required>
+                                    <input type="text" class="author-middle" placeholder="Middle Initial">
+                                    <input type="text" class="author-last" placeholder="Last Name" required>
+                                </div>
+                                <button type="button" class="remove-author-btn" style="visibility: hidden;">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addJournalAuthorBtn">+ Add Another Author</button>
+                        
+                        <div class="form-row">
+                            <label for="journalArticleTitle">Article Title:</label>
+                            <input type="text" id="journalArticleTitle" placeholder="Title of the article" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalTitle">Journal Name:</label>
+                            <input type="text" id="journalTitle" placeholder="Name of the journal" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalVolume">Volume:</label>
+                            <input type="text" id="journalVolume" placeholder="e.g., 42">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalIssue">Issue:</label>
+                            <input type="text" id="journalIssue" placeholder="e.g., 3">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalYear">Year Published:</label>
+                            <input type="number" id="journalYear" placeholder="YYYY" min="1000" max="2099" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalPages">Pages:</label>
+                            <input type="text" id="journalPages" placeholder="e.g., 123-145" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="journalDOI">DOI:</label>
+                            <input type="text" id="journalDOI" placeholder="e.g., 10.1000/xyz123">
+                            <div class="tooltip">?
+                                <span class="tooltiptext">Digital Object Identifier (if available)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="journalCitationStyle">Citation Style:</label>
+                        <select id="journalCitationStyle">
+                            <option value="mla">MLA (9th edition)</option>
+                            <option value="apa">APA (7th edition)</option>
+                            <option value="chicago">Chicago (17th edition)</option>
+                            <option value="harvard">Harvard</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="generateJournalCitationBtn">Generate Citation</button>
+                </form>
+                
+                <div id="journalCitationResult" class="citation-result" style="display: none;">
+                    <button class="copy-btn" id="copyJournalCitationBtn">Copy</button>
+                    <div class="citation-text" id="journalCitationText"></div>
+                    <div class="citation-format" id="journalCitationFormat"></div>
+                    <button id="saveJournalCitationBtn">Save Citation</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="newspaper-tab">
+                <h2>Newspaper Article Citation</h2>
+                
+                <form id="newspaperForm">
+                    <div class="form-group">
+                        <div id="newspaperAuthors">
+                            <div class="author-row">
+                                <div class="author-inputs">
+                                    <input type="text" class="author-first" placeholder="First Name" required>
+                                    <input type="text" class="author-middle" placeholder="Middle Initial">
+                                    <input type="text" class="author-last" placeholder="Last Name" required>
+                                </div>
+                                <button type="button" class="remove-author-btn" style="visibility: hidden;">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addNewspaperAuthorBtn">+ Add Another Author</button>
+                        
+                        <div class="form-row">
+                            <label for="newspaperArticleTitle">Article Title:</label>
+                            <input type="text" id="newspaperArticleTitle" placeholder="Title of the article" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="newspaperName">Newspaper Name:</label>
+                            <input type="text" id="newspaperName" placeholder="Name of the newspaper" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="newspaperPublishedDate">Date Published:</label>
+                            <input type="date" id="newspaperPublishedDate" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="newspaperPages">Page Number(s):</label>
+                            <input type="text" id="newspaperPages" placeholder="e.g., A1 or 12-13">
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="newspaperURL">URL:</label>
+                            <input type="url" id="newspaperURL" placeholder="https://www.example.com/article">
+                            <div class="tooltip">?
+                                <span class="tooltiptext">Include for online newspaper articles</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="newspaperAccessDate">Date Accessed:</label>
+                            <input type="date" id="newspaperAccessDate">
+                            <div class="tooltip">?
+                                <span class="tooltiptext">Required for online newspaper articles</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="newspaperCitationStyle">Citation Style:</label>
+                        <select id="newspaperCitationStyle">
+                            <option value="mla">MLA (9th edition)</option>
+                            <option value="apa">APA (7th edition)</option>
+                            <option value="chicago">Chicago (17th edition)</option>
+                            <option value="harvard">Harvard</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" id="generateNewspaperCitationBtn">Generate Citation</button>
+                </form>
+                
+                <div id="newspaperCitationResult" class="citation-result" style="display: none;">
+                    <button class="copy-btn" id="copyNewspaperCitationBtn">Copy</button>
+                    <div class="citation-text" id="newspaperCitationText"></div>
+                    <div class="citation-format" id="newspaperCitationFormat"></div>
+                    <button id="saveNewspaperCitationBtn">Save Citation</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="saved-tab">
+                <h2>Saved Citations</h2>
+                
+                <div id="savedCitationsContainer" class="saved-citations">
+                    <!-- Saved citations will be listed here -->
+                </div>
+                
+                <div class="example" id="noSavedCitations">
+                    <p>You haven't saved any citations yet. Generate a citation and click "Save Citation" to add it to your list.</p>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <button id="exportCitationsBtn">Export Citations</button>
+                    <button id="clearCitationsBtn">Clear All Citations</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Citation Generator. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students create accurate citations for their research.</p>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Book tab elements
+        const bookForm = document.getElementById('bookForm');
+        const bookAuthors = document.getElementById('bookAuthors');
+        const addBookAuthorBtn = document.getElementById('addBookAuthorBtn');
+        const bookTitle = document.getElementById('bookTitle');
+        const bookEdition = document.getElementById('bookEdition');
+        const bookPublisher = document.getElementById('bookPublisher');
+        const bookYear = document.getElementById('bookYear');
+        const bookCity = document.getElementById('bookCity');
+        const bookState = document.getElementById('bookState');
+        const bookCitationStyle = document.getElementById('bookCitationStyle');
+        const bookCitationResult = document.getElementById('bookCitationResult');
+        const bookCitationText = document.getElementById('bookCitationText');
+        const bookCitationFormat = document.getElementById('bookCitationFormat');
+        const copyBookCitationBtn = document.getElementById('copyBookCitationBtn');
+        const saveBookCitationBtn = document.getElementById('saveBookCitationBtn');
+        
+        // Website tab elements
+        const websiteForm = document.getElementById('websiteForm');
+        const websiteAuthors = document.getElementById('websiteAuthors');
+        const addWebsiteAuthorBtn = document.getElementById('addWebsiteAuthorBtn');
+        const websiteTitle = document.getElementById('websiteTitle');
+        const websiteSiteName = document.getElementById('websiteSiteName');
+        const websiteURL = document.getElementById('websiteURL');
+        const websitePublisher = document.getElementById('websitePublisher');
+        const websitePublishedDate = document.getElementById('websitePublishedDate');
+        const websiteAccessDate = document.getElementById('websiteAccessDate');
+        const websiteCitationStyle = document.getElementById('websiteCitationStyle');
+        const websiteCitationResult = document.getElementById('websiteCitationResult');
+        const websiteCitationText = document.getElementById('websiteCitationText');
+        const websiteCitationFormat = document.getElementById('websiteCitationFormat');
+        const copyWebsiteCitationBtn = document.getElementById('copyWebsiteCitationBtn');
+        const saveWebsiteCitationBtn = document.getElementById('saveWebsiteCitationBtn');
+        
+        // Journal tab elements
+        const journalForm = document.getElementById('journalForm');
+        const journalAuthors = document.getElementById('journalAuthors');
+        const addJournalAuthorBtn = document.getElementById('addJournalAuthorBtn');
+        const journalArticleTitle = document.getElementById('journalArticleTitle');
+        const journalTitle = document.getElementById('journalTitle');
+        const journalVolume = document.getElementById('journalVolume');
+        const journalIssue = document.getElementById('journalIssue');
+        const journalYear = document.getElementById('journalYear');
+        const journalPages = document.getElementById('journalPages');
+        const journalDOI = document.getElementById('journalDOI');
+        const journalCitationStyle = document.getElementById('journalCitationStyle');
+        const journalCitationResult = document.getElementById('journalCitationResult');
+        const journalCitationText = document.getElementById('journalCitationText');
+        const journalCitationFormat = document.getElementById('journalCitationFormat');
+        const copyJournalCitationBtn = document.getElementById('copyJournalCitationBtn');
+        const saveJournalCitationBtn = document.getElementById('saveJournalCitationBtn');
+        
+        // Newspaper tab elements
+        const newspaperForm = document.getElementById('newspaperForm');
+        const newspaperAuthors = document.getElementById('newspaperAuthors');
+        const addNewspaperAuthorBtn = document.getElementById('addNewspaperAuthorBtn');
+        const newspaperArticleTitle = document.getElementById('newspaperArticleTitle');
+        const newspaperName = document.getElementById('newspaperName');
+        const newspaperPublishedDate = document.getElementById('newspaperPublishedDate');
+        const newspaperPages = document.getElementById('newspaperPages');
+        const newspaperURL = document.getElementById('newspaperURL');
+        const newspaperAccessDate = document.getElementById('newspaperAccessDate');
+        const newspaperCitationStyle = document.getElementById('newspaperCitationStyle');
+        const newspaperCitationResult = document.getElementById('newspaperCitationResult');
+        const newspaperCitationText = document.getElementById('newspaperCitationText');
+        const newspaperCitationFormat = document.getElementById('newspaperCitationFormat');
+        const copyNewspaperCitationBtn = document.getElementById('copyNewspaperCitationBtn');
+        const saveNewspaperCitationBtn = document.getElementById('saveNewspaperCitationBtn');
+        
+        // Saved citations tab elements
+        const savedCitationsContainer = document.getElementById('savedCitationsContainer');
+        const noSavedCitations = document.getElementById('noSavedCitations');
+        const exportCitationsBtn = document.getElementById('exportCitationsBtn');
+        const clearCitationsBtn = document.getElementById('clearCitationsBtn');
+        
+        // State variables
+        let savedCitations = JSON.parse(localStorage.getItem('saved-citations')) || [];
+        
+        // Set today's date as default for date fields
+        const today = new Date().toISOString().split('T')[0];
+        websiteAccessDate.value = today;
+        newspaperPublishedDate.value = today;
+        
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Refresh saved citations when switching to saved tab
+                if (tabId === 'saved') {
+                    renderSavedCitations();
+                }
+            });
+        });
+        
+        // Add author buttons
+        addBookAuthorBtn.addEventListener('click', () => addAuthorRow(bookAuthors));
+        addWebsiteAuthorBtn.addEventListener('click', () => addAuthorRow(websiteAuthors));
+        addJournalAuthorBtn.addEventListener('click', () => addAuthorRow(journalAuthors));
+        addNewspaperAuthorBtn.addEventListener('click', () => addAuthorRow(newspaperAuthors));
+        
+        // Form submissions
+        bookForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            generateBookCitation();
+        });
+        
+        websiteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            generateWebsiteCitation();
+        });
+        
+        journalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            generateJournalCitation();
+        });
+        
+        newspaperForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            generateNewspaperCitation();
+        });
+        
+        // Copy citation buttons
+        copyBookCitationBtn.addEventListener('click', () => copyCitation(bookCitationText));
+        copyWebsiteCitationBtn.addEventListener('click', () => copyCitation(websiteCitationText));
+        copyJournalCitationBtn.addEventListener('click', () => copyCitation(journalCitationText));
+        copyNewspaperCitationBtn.addEventListener('click', () => copyCitation(newspaperCitationText));
+        
+        // Save citation buttons
+        saveBookCitationBtn.addEventListener('click', () => saveCitation('book'));
+        saveWebsiteCitationBtn.addEventListener('click', () => saveCitation('website'));
+        saveJournalCitationBtn.addEventListener('click', () => saveCitation('journal'));
+        saveNewspaperCitationBtn.addEventListener('click', () => saveCitation('newspaper'));
+        
+        // Export and clear citations buttons
+        exportCitationsBtn.addEventListener('click', exportCitations);
+        clearCitationsBtn.addEventListener('click', clearCitations);
+        
+        // Add author row
+        function addAuthorRow(container) {
+            const authorRow = document.createElement('div');
+            authorRow.className = 'author-row';
+            
+            authorRow.innerHTML = `
+                <div class="author-inputs">
+                    <input type="text" class="author-first" placeholder="First Name" required>
+                    <input type="text" class="author-middle" placeholder="Middle Initial">
+                    <input type="text" class="author-last" placeholder="Last Name" required>
+                </div>
+                <button type="button" class="remove-author-btn">Remove</button>
+            `;
+            
+            container.appendChild(authorRow);
+            
+            // Make all remove buttons visible
+            const removeButtons = container.querySelectorAll('.remove-author-btn');
+            removeButtons.forEach(btn => {
+                btn.style.visibility = 'visible';
+                btn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                    
+                    // If only one author remains, hide its remove button
+                    if (container.querySelectorAll('.author-row').length === 1) {
+                        container.querySelector('.remove-author-btn').style.visibility = 'hidden';
+                    }
+                });
+            });
+        }
+        
+        // Get authors from container
+        function getAuthors(container) {
+            const authors = [];
+            const authorRows = container.querySelectorAll('.author-row');
+            
+            authorRows.forEach(row => {
+                const firstName = row.querySelector('.author-first').value.trim();
+                const middleName = row.querySelector('.author-middle').value.trim();
+                const lastName = row.querySelector('.author-last').value.trim();
+                
+                if (firstName || lastName) {
+                    authors.push({
+                        firstName,
+                        middleName,
+                        lastName
+                    });
+                }
+            });
+            
+            return authors;
+        }
+        
+        // Format authors based on citation style
+        function formatAuthors(authors, style) {
+            if (authors.length === 0) return '';
+            
+            if (style === 'mla') {
+                if (authors.length === 1) {
+                    const author = authors[0];
+                    return `${author.lastName}, ${author.firstName}${author.middleName ? ' ' + author.middleName : ''}`;
+                } else if (authors.length === 2) {
+                    const author1 = authors[0];
+                    const author2 = authors[1];
+                    return `${author1.lastName}, ${author1.firstName}${author1.middleName ? ' ' + author1.middleName : ''}, and ${author2.firstName}${author2.middleName ? ' ' + author2.middleName : ''} ${author2.lastName}`;
+                } else {
+                    const firstAuthor = authors[0];
+                    return `${firstAuthor.lastName}, ${firstAuthor.firstName}${firstAuthor.middleName ? ' ' + firstAuthor.middleName : ''}, et al`;
+                }
+            } else if (style === 'apa') {
+                if (authors.length === 1) {
+                    const author = authors[0];
+                    return `${author.lastName}, ${author.firstName.charAt(0)}.${author.middleName ? ' ' + author.middleName + '.' : ''}`;
+                } else if (authors.length === 2) {
+                    const author1 = authors[0];
+                    const author2 = authors[1];
+                    return `${author1.lastName}, ${author1.firstName.charAt(0)}.${author1.middleName ? ' ' + author1.middleName + '.' : ''}, & ${author2.lastName}, ${author2.firstName.charAt(0)}.${author2.middleName ? ' ' + author2.middleName + '.' : ''}`;
+                } else if (authors.length <= 20) {
+                    return authors.map((author, index) => {
+                        if (index === authors.length - 1) {
+                            return `& ${author.lastName}, ${author.firstName.charAt(0)}.${author.middleName ? ' ' + author.middleName + '.' : ''}`;
+                        }
+                        return `${author.lastName}, ${author.firstName.charAt(0)}.${author.middleName ? ' ' + author.middleName + '.' : ''},`;
+                    }).join(' ');
+                } else {
+                    const first19 = authors.slice(0, 19).map(author => 
+                        `${author.lastName}, ${author.firstName.charAt(0)}.${author.middleName ? ' ' + author.middleName + '.' : ''},`
+                    ).join(' ');
+                    const lastAuthor = authors[authors.length - 1];
+                    return `${first19} ... & ${lastAuthor.lastName}, ${lastAuthor.firstName.charAt(0)}.${lastAuthor.middleName ? ' ' + lastAuthor.middleName + '.' : ''}`;
+                }
+            } else if (style === 'chicago') {
+                if (authors.length === 1) {
+                    const author = authors[0];
+                    return `${author.lastName}, ${author.firstName}${author.middleName ? ' ' + author.middleName : ''}`;
+                } else if (authors.length <= 3) {
+                    const formattedAuthors = authors.map((author, index) => {
+                        if (index === 0) {
+                            return `${author.lastName}, ${author.firstName}${author.middleName ? ' ' + author.middleName : ''}`;
+                        }
+                        return `${author.firstName}${author.middleName ? ' ' + author.middleName : ''} ${author.lastName}`;
+                    });
+                    
+                    if (authors.length === 2) {
+                        return `${formattedAuthors[0]} and ${formattedAuthors[1]}`;
+                    } else {
+                        return `${formattedAuthors[0]}, ${formattedAuthors[1]}, and ${formattedAuthors[2]}`;
+                    }
+                } else {
+                    const firstAuthor = authors[0];
+                    return `${firstAuthor.lastName}, ${firstAuthor.firstName}${firstAuthor.middleName ? ' ' + firstAuthor.middleName : ''}, et al.`;
+                }
+            } else if (style === 'harvard') {
+                if (authors.length === 1) {
+                    const author = authors[0];
+                    return `${author.lastName}, ${author.firstName.charAt(0)}.${author.middleName ? author.middleName.charAt(0) + '.' : ''}`;
+                } else if (authors.length === 2) {
+                    const author1 = authors[0];
+                    const author2 = authors[1];
+                    return `${author1.lastName}, ${author1.firstName.charAt(0)}.${author1.middleName ? author1.middleName.charAt(0) + '.' : ''} and ${author2.lastName}, ${author2.firstName.charAt(0)}.${author2.middleName ? author2.middleName.charAt(0) + '.' : ''}`;
+                } else if (authors.length === 3) {
+                    const author1 = authors[0];
+                    const author2 = authors[1];
+                    const author3 = authors[2];
+                    return `${author1.lastName}, ${author1.firstName.charAt(0)}.${author1.middleName ? author1.middleName.charAt(0) + '.' : ''}, ${author2.lastName}, ${author2.firstName.charAt(0)}.${author2.middleName ? author2.middleName.charAt(0) + '.' : ''} and ${author3.lastName}, ${author3.firstName.charAt(0)}.${author3.middleName ? author3.middleName.charAt(0) + '.' : ''}`;
+                } else {
+                    const firstAuthor = authors[0];
+                    return `${firstAuthor.lastName}, ${firstAuthor.firstName.charAt(0)}.${firstAuthor.middleName ? firstAuthor.middleName.charAt(0) + '.' : ''} et al.`;
+                }
+            }
+            
+            return '';
+        }
+        
+        // Format date based on citation style
+        function formatDate(dateString, style) {
+            if (!dateString) return '';
+            
+            const date = new Date(dateString);
+            const day = date.getDate();
+            const month = date.getMonth();
+            const year = date.getFullYear();
+            
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            
+            const shortMonths = [
+                'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.',
+                'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'
+            ];
+            
+            if (style === 'mla') {
+                return `${day} ${months[month]} ${year}`;
+            } else if (style === 'apa') {
+                return `(${year}, ${months[month]} ${day})`;
+            } else if (style === 'chicago') {
+                return `${months[month]} ${day}, ${year}`;
+            } else if (style === 'harvard') {
+                return `(${year})`;
+            }
+            
+            return dateString;
+        }
+        
+        // Generate book citation
+        function generateBookCitation() {
+            const authors = getAuthors(bookAuthors);
+            const title = bookTitle.value.trim();
+            const edition = bookEdition.value.trim();
+            const publisher = bookPublisher.value.trim();
+            const year = bookYear.value.trim();
+            const city = bookCity.value.trim();
+            const state = bookState.value.trim();
+            const style = bookCitationStyle.value;
+            
+            let citation = '';
+            let format = '';
+            
+            if (style === 'mla') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `<i>${title}</i>`;
+                
+                if (edition) {
+                    citation += `, ${edition} ed.`;
+                }
+                
+                citation += `, ${publisher}`;
+                
+                if (city) {
+                    citation += `, ${city}`;
+                    
+                    if (state) {
+                        citation += `, ${state}`;
+                    }
+                }
+                
+                citation += `, ${year}.`;
+                
+                format = 'MLA 9th Edition';
+            } else if (style === 'apa') {
+                citation = `${formatAuthors(authors, style)} `;
+                citation += `(${year}). `;
+                citation += `<i>${title}</i>`;
+                
+                if (edition) {
+                    citation += ` (${edition} ed.)`;
+                }
+                
+                if (city) {
+                    citation += `. ${city}`;
+                    
+                    if (state) {
+                        citation += `, ${state}`;
+                    }
+                    
+                    citation += ': ';
+                }
+                
+                citation += `${publisher}.`;
+                
+                format = 'APA 7th Edition';
+            } else if (style === 'chicago') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `<i>${title}</i>`;
+                
+                if (edition) {
+                    citation += `, ${edition} ed.`;
+                }
+                
+                citation += `. ${city}`;
+                
+                if (state) {
+                    citation += `, ${state}`;
+                }
+                
+                citation += `: ${publisher}, ${year}.`;
+                
+                format = 'Chicago 17th Edition';
+            } else if (style === 'harvard') {
+                citation = `${formatAuthors(authors, style)} `;
+                citation += `${year}. `;
+                citation += `<i>${title}</i>`;
+                
+                if (edition) {
+                    citation += `, ${edition} ed.`;
+                }
+                
+                citation += `, ${publisher}`;
+                
+                if (city) {
+                    citation += `, ${city}`;
+                    
+                    if (state) {
+                        citation += `, ${state}`;
+                    }
+                }
+                
+                citation += `.`;
+                
+                format = 'Harvard Style';
+            }
+            
+            bookCitationText.innerHTML = citation;
+            bookCitationFormat.textContent = format;
+            bookCitationResult.style.display = 'block';
+        }
+        
+        // Generate website citation
+        function generateWebsiteCitation() {
+            const authors = getAuthors(websiteAuthors);
+            const title = websiteTitle.value.trim();
+            const siteName = websiteSiteName.value.trim();
+            const url = websiteURL.value.trim();
+            const publisher = websitePublisher.value.trim();
+            const publishedDate = websitePublishedDate.value;
+            const accessDate = websiteAccessDate.value;
+            const style = websiteCitationStyle.value;
+            
+            let citation = '';
+            let format = '';
+            
+            if (style === 'mla') {
+                if (authors.length > 0) {
+                    citation = `${formatAuthors(authors, style)}. `;
+                }
+                
+                citation += `"${title}." `;
+                citation += `<i>${siteName}</i>`;
+                
+                if (publisher) {
+                    citation += `, ${publisher}`;
+                }
+                
+                if (publishedDate) {
+                    citation += `, ${formatDate(publishedDate, style)}`;
+                }
+                
+                citation += `, ${formatDate(accessDate, style)}`;
+                citation += `, ${url}.`;
+                
+                format = 'MLA 9th Edition';
+            } else if (style === 'apa') {
+                if (authors.length > 0) {
+                    citation = `${formatAuthors(authors, style)} `;
+                }
+                
+                if (publishedDate) {
+                    citation += `${formatDate(publishedDate, style)}. `;
+                } else {
+                    citation += `(n.d.). `;
+                }
+                
+                citation += `${title}. `;
+                citation += `<i>${siteName}</i>`;
+                
+                if (publisher) {
+                    citation += `. ${publisher}`;
+                }
+                
+                citation += `. ${url}`;
+                
+                format = 'APA 7th Edition';
+            } else if (style === 'chicago') {
+                if (authors.length > 0) {
+                    citation = `${formatAuthors(authors, style)}. `;
+                }
+                
+                citation += `"${title}." `;
+                citation += `<i>${siteName}</i>`;
+                
+                if (publisher) {
+                    citation += `. ${publisher}`;
+                }
+                
+                if (publishedDate) {
+                    citation += `, ${formatDate(publishedDate, style)}`;
+                }
+                
+                citation += `. Accessed ${formatDate(accessDate, style)}. ${url}.`;
+                
+                format = 'Chicago 17th Edition';
+            } else if (style === 'harvard') {
+                if (authors.length > 0) {
+                    citation = `${formatAuthors(authors, style)} `;
+                } else {
+                    citation = `${siteName} `;
+                }
+                
+                if (publishedDate) {
+                    citation += `${formatDate(publishedDate, style)}. `;
+                } else {
+                    citation += `(n.d.). `;
+                }
+                
+                citation += `<i>${title}</i> [Online]. `;
+                citation += `Available at: ${url} `;
+                citation += `(Accessed: ${formatDate(accessDate, 'mla')}).`;
+                
+                format = 'Harvard Style';
+            }
+            
+            websiteCitationText.innerHTML = citation;
+            websiteCitationFormat.textContent = format;
+            websiteCitationResult.style.display = 'block';
+        }
+        
+        // Generate journal citation
+        function generateJournalCitation() {
+            const authors = getAuthors(journalAuthors);
+            const articleTitle = journalArticleTitle.value.trim();
+            const journalName = journalTitle.value.trim();
+            const volume = journalVolume.value.trim();
+            const issue = journalIssue.value.trim();
+            const year = journalYear.value.trim();
+            const pages = journalPages.value.trim();
+            const doi = journalDOI.value.trim();
+            const style = journalCitationStyle.value;
+            
+            let citation = '';
+            let format = '';
+            
+            if (style === 'mla') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `"${articleTitle}." `;
+                citation += `<i>${journalName}</i>`;
+                
+                if (volume) {
+                    citation += `, vol. ${volume}`;
+                    
+                    if (issue) {
+                        citation += `, no. ${issue}`;
+                    }
+                }
+                
+                citation += `, ${year}, pp. ${pages}`;
+                
+                if (doi) {
+                    citation += `, doi:${doi}`;
+                }
+                
+                citation += `.`;
+                
+                format = 'MLA 9th Edition';
+            } else if (style === 'apa') {
+                citation = `${formatAuthors(authors, style)} `;
+                citation += `(${year}). `;
+                citation += `${articleTitle}. `;
+                citation += `<i>${journalName}</i>`;
+                
+                if (volume) {
+                    citation += `, ${volume}`;
+                    
+                    if (issue) {
+                        citation += `(${issue})`;
+                    }
+                }
+                
+                citation += `, ${pages}`;
+                
+                if (doi) {
+                    citation += `. https://doi.org/${doi}`;
+                }
+                
+                format = 'APA 7th Edition';
+            } else if (style === 'chicago') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `"${articleTitle}." `;
+                citation += `<i>${journalName}</i> `;
+                
+                if (volume) {
+                    citation += `${volume}`;
+                    
+                    if (issue) {
+                        citation += `, no. ${issue}`;
+                    }
+                }
+                
+                citation += ` (${year}): ${pages}`;
+                
+                if (doi) {
+                    citation += `. doi:${doi}`;
+                }
+                
+                citation += `.`;
+                
+                format = 'Chicago 17th Edition';
+            } else if (style === 'harvard') {
+                citation = `${formatAuthors(authors, style)} `;
+                citation += `${year}. `;
+                citation += `'${articleTitle}', `;
+                citation += `<i>${journalName}</i>`;
+                
+                if (volume) {
+                    citation += `, ${volume}`;
+                    
+                    if (issue) {
+                        citation += `(${issue})`;
+                    }
+                }
+                
+                citation += `, pp. ${pages}`;
+                
+                if (doi) {
+                    citation += `. doi:${doi}`;
+                }
+                
+                citation += `.`;
+                
+                format = 'Harvard Style';
+            }
+            
+            journalCitationText.innerHTML = citation;
+            journalCitationFormat.textContent = format;
+            journalCitationResult.style.display = 'block';
+        }
+        
+        // Generate newspaper citation
+        function generateNewspaperCitation() {
+            const authors = getAuthors(newspaperAuthors);
+            const articleTitle = newspaperArticleTitle.value.trim();
+            const newspaper = newspaperName.value.trim();
+            const publishedDate = newspaperPublishedDate.value;
+            const pages = newspaperPages.value.trim();
+            const url = newspaperURL.value.trim();
+            const accessDate = newspaperAccessDate.value;
+            const style = newspaperCitationStyle.value;
+            
+            let citation = '';
+            let format = '';
+            
+            if (style === 'mla') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `"${articleTitle}." `;
+                citation += `<i>${newspaper}</i>`;
+                citation += `, ${formatDate(publishedDate, style)}`;
+                
+                if (pages) {
+                    citation += `, p. ${pages}`;
+                }
+                
+                if (url) {
+                    citation += `, ${url}`;
+                    
+                    if (accessDate) {
+                        citation += `. Accessed ${formatDate(accessDate, style)}`;
+                    }
+                }
+                
+                citation += `.`;
+                
+                format = 'MLA 9th Edition';
+            } else if (style === 'apa') {
+                citation = `${formatAuthors(authors, style)} `;
+                
+                const date = new Date(publishedDate);
+                citation += `(${date.getFullYear()}, ${date.toLocaleString('en-US', { month: 'long' })} ${date.getDate()}). `;
+                
+                citation += `${articleTitle}. `;
+                citation += `<i>${newspaper}</i>`;
+                
+                if (pages) {
+                    citation += `, p. ${pages}`;
+                }
+                
+                if (url) {
+                    citation += `. ${url}`;
+                }
+                
+                format = 'APA 7th Edition';
+            } else if (style === 'chicago') {
+                citation = `${formatAuthors(authors, style)}. `;
+                citation += `"${articleTitle}." `;
+                citation += `<i>${newspaper}</i>`;
+                citation += `, ${formatDate(publishedDate, style)}`;
+                
+                if (pages) {
+                    citation += `, ${pages}`;
+                }
+                
+                if (url) {
+                    citation += `. ${url}`;
+                    
+                    if (accessDate) {
+                        citation += `. Accessed ${formatDate(accessDate, style)}`;
+                    }
+                }
+                
+                citation += `.`;
+                
+                format = 'Chicago 17th Edition';
+            } else if (style === 'harvard') {
+                citation = `${formatAuthors(authors, style)} `;
+                
+                const date = new Date(publishedDate);
+                citation += `${date.getFullYear()}. `;
+                
+                citation += `'${articleTitle}', `;
+                citation += `<i>${newspaper}</i>`;
+                
+                citation += `, ${date.getDate()} ${date.toLocaleString('en-US', { month: 'long' })}`;
+                
+                if (pages) {
+                    citation += `, p. ${pages}`;
+                }
+                
+                if (url) {
+                    citation += `. Available at: ${url}`;
+                    
+                    if (accessDate) {
+                        citation += ` (Accessed: ${formatDate(accessDate, 'mla')})`;
+                    }
+                }
+                
+                citation += `.`;
+                
+                format = 'Harvard Style';
+            }
+            
+            newspaperCitationText.innerHTML = citation;
+            newspaperCitationFormat.textContent = format;
+            newspaperCitationResult.style.display = 'block';
+        }
+        
+        // Copy citation to clipboard
+        function copyCitation(element) {
+            const text = element.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Citation copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy citation: ', err);
+            });
+        }
+        
+        // Save citation
+        function saveCitation(type) {
+            let citation = '';
+            let format = '';
+            let title = '';
+            
+            if (type === 'book') {
+                citation = bookCitationText.innerHTML;
+                format = bookCitationFormat.textContent;
+                title = bookTitle.value.trim();
+            } else if (type === 'website') {
+                citation = websiteCitationText.innerHTML;
+                format = websiteCitationFormat.textContent;
+                title = websiteTitle.value.trim();
+            } else if (type === 'journal') {
+                citation = journalCitationText.innerHTML;
+                format = journalCitationFormat.textContent;
+                title = journalArticleTitle.value.trim();
+            } else if (type === 'newspaper') {
+                citation = newspaperCitationText.innerHTML;
+                format = newspaperCitationFormat.textContent;
+                title = newspaperArticleTitle.value.trim();
+            }
+            
+            const savedCitation = {
+                id: Date.now().toString(),
+                type,
+                title,
+                citation,
+                format,
+                date: new Date().toISOString()
+            };
+            
+            savedCitations.push(savedCitation);
+            localStorage.setItem('saved-citations', JSON.stringify(savedCitations));
+            
+            alert('Citation saved successfully!');
+        }
+        
+        // Render saved citations
+        function renderSavedCitations() {
+            savedCitationsContainer.innerHTML = '';
+            
+            if (savedCitations.length === 0) {
+                noSavedCitations.style.display = 'block';
+                return;
+            }
+            
+            noSavedCitations.style.display = 'none';
+            
+            savedCitations.forEach(citation => {
+                const citationItem = document.createElement('div');
+                citationItem.className = 'saved-citation-item';
+                
+                citationItem.innerHTML = `
+                    <div class="saved-citation-title">${citation.title}</div>
+                    <div class="saved-citation-text">${citation.citation}</div>
+                    <div class="saved-citation-format">${citation.format}</div>
+                    <div class="saved-citation-actions">
+                        <button class="copy-saved-btn" data-id="${citation.id}">Copy</button>
+                        <button class="delete-saved-btn" data-id="${citation.id}">Delete</button>
+                    </div>
+                `;
+                
+                savedCitationsContainer.appendChild(citationItem);
+            });
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.copy-saved-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const citation = savedCitations.find(c => c.id === id);
+                    
+                    if (citation) {
+                        const text = citation.citation.replace(/<\/?[^>]+(>|$)/g, ''); // Remove HTML tags
+                        navigator.clipboard.writeText(text).then(() => {
+                            alert('Citation copied to clipboard!');
+                        }).catch(err => {
+                            console.error('Failed to copy citation: ', err);
+                        });
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-saved-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    
+                    if (confirm('Are you sure you want to delete this citation?')) {
+                        savedCitations = savedCitations.filter(c => c.id !== id);
+                        localStorage.setItem('saved-citations', JSON.stringify(savedCitations));
+                        renderSavedCitations();
+                    }
+                });
+            });
+        }
+        
+        // Export citations
+        function exportCitations() {
+            if (savedCitations.length === 0) {
+                alert('No citations to export.');
+                return;
+            }
+            
+            let exportText = 'StudoChart Citations Export\n\n';
+            
+            savedCitations.forEach(citation => {
+                exportText += `${citation.title}\n`;
+                exportText += `${citation.citation.replace(/<\/?[^>]+(>|$)/g, '')}\n`; // Remove HTML tags
+                exportText += `${citation.format}\n\n`;
+            });
+            
+            const blob = new Blob([exportText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'citations.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Clear all citations
+        function clearCitations() {
+            if (savedCitations.length === 0) {
+                alert('No citations to clear.');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to delete all saved citations? This action cannot be undone.')) {
+                savedCitations = [];
+                localStorage.setItem('saved-citations', JSON.stringify(savedCitations));
+                renderSavedCitations();
+            }
+        }
+    </script>
+</body>
+</html>

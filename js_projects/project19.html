@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        /* Chat App Styles */
+        .chat-app {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            height: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-profile {
+            padding: 20px;
+            background-color: #9c27b0;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #9c27b0;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .profile-status {
+            font-size: 12px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .search-bar {
+            padding: 10px;
+            background-color: #e0e0e0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .contacts-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .contact {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .contact:hover {
+            background-color: #e8e8e8;
+        }
+
+        .contact.active {
+            background-color: #f9f0ff;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .contact-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #9c27b0;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            font-weight: bold;
+            margin: 0 0 5px;
+        }
+
+        .contact-last-message {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .contact-time {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: #091330;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #9c27b0;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .chat-header-info {
+            flex: 1;
+        }
+
+        .chat-header-name {
+            font-weight: bold;
+            margin: 0 0 5px;
+        }
+
+        .chat-header-status {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+        }
+
+        .message.sent {
+            align-self: flex-end;
+            align-items: flex-end;
+            margin-left: auto;
+        }
+
+        .message.received {
+            align-self: flex-start;
+            align-items: flex-start;
+            margin-right: auto;
+        }
+
+        .message-content {
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 5px;
+        }
+
+        .message.sent .message-content {
+            background-color: #9c27b0;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.received .message-content {
+            background-color: #e0e0e0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .chat-input {
+            padding: 15px;
+            background-color: #f9f0ff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .send-button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .send-button:hover {
+            background-color: #09cc09;
+        }
+
+        .empty-chat {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .empty-chat-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #9c27b0;
+        }
+
+        @media (max-width: 768px) {
+            .chat-app {
+                flex-direction: column;
+                height: 700px;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chat Application</h1>
+        <p>Create a chat interface with JavaScript</p>
+    </header>
+
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>In this project, we'll build a chat application interface that simulates a messaging platform. The app will allow users to view contacts, select conversations, and send messages.</p>
+        <p>This project demonstrates how to create a responsive user interface, manage application state, and handle user interactions using JavaScript.</p>
+    </div>
+
+    <div class="container">
+        <h2>Chat Application</h2>
+        <div class="chat-app" id="chatApp">
+            <div class="sidebar">
+                <div class="user-profile">
+                    <div class="profile-avatar">JS</div>
+                    <div class="profile-info">
+                        <p class="profile-name">John Smith</p>
+                        <p class="profile-status">Online</p>
+                    </div>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search contacts..." id="searchInput">
+                </div>
+
+                <div class="contacts-list" id="contactsList">
+                    <!-- Contacts will be added dynamically -->
+                </div>
+            </div>
+
+            <div class="chat-main" id="chatMain">
+                <!-- Chat content will be added dynamically -->
+                <div class="empty-chat" id="emptyChat">
+                    <div class="empty-chat-icon">💬</div>
+                    <h3>Select a contact to start chatting</h3>
+                    <p>Your messages will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>How It Works</h2>
+        <p>The Chat Application is built using the following components:</p>
+        <ul>
+            <li><strong>User Interface:</strong> HTML and CSS create a responsive chat interface with a sidebar for contacts and a main area for messages.</li>
+            <li><strong>Contact Management:</strong> JavaScript code manages the list of contacts and allows users to search and select conversations.</li>
+            <li><strong>Message Handling:</strong> The app simulates sending and receiving messages, with appropriate styling for each message type.</li>
+            <li><strong>Local Storage:</strong> Messages and contacts are stored locally to persist the chat history.</li>
+        </ul>
+        <p>The app includes the following features:</p>
+        <ul>
+            <li>Contact list with search functionality</li>
+            <li>Message history for each contact</li>
+            <li>Ability to send new messages</li>
+            <li>Responsive design that works on both desktop and mobile devices</li>
+            <li>Simulated typing indicators and message timestamps</li>
+            <li>Persistent chat history using local storage</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Chat Application Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript application development.</p>
+    </footer>
+
+    <script>
+        // Chat Application
+        class ChatApp {
+            constructor() {
+                // DOM elements
+                this.contactsList = document.getElementById('contactsList');
+                this.chatMain = document.getElementById('chatMain');
+                this.emptyChat = document.getElementById('emptyChat');
+                this.searchInput = document.getElementById('searchInput');
+
+                // App state
+                this.contacts = [
+                    {
+                        id: 1,
+                        name: 'Alice Johnson',
+                        avatar: 'AJ',
+                        status: 'Online',
+                        lastMessage: 'Hey, how are you doing?',
+                        lastMessageTime: '10:30 AM',
+                        messages: [
+                            { content: 'Hi there!', time: '10:15 AM', type: 'received' },
+                            { content: 'Hey, how are you doing?', time: '10:30 AM', type: 'sent' }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: 'Bob Smith',
+                        avatar: 'BS',
+                        status: 'Offline',
+                        lastMessage: 'See you tomorrow!',
+                        lastMessageTime: 'Yesterday',
+                        messages: [
+                            { content: 'Are we still meeting tomorrow?', time: 'Yesterday', type: 'received' },
+                            { content: 'Yes, at 2 PM.', time: 'Yesterday', type: 'sent' },
+                            { content: 'Great, see you then!', time: 'Yesterday', type: 'received' },
+                            { content: 'See you tomorrow!', time: 'Yesterday', type: 'sent' }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: 'Carol White',
+                        avatar: 'CW',
+                        status: 'Online',
+                        lastMessage: 'Thanks for the help!',
+                        lastMessageTime: '2 days ago',
+                        messages: [
+                            { content: 'Can you help me with the JavaScript project?', time: '2 days ago', type: 'received' },
+                            { content: 'Sure, what do you need help with?', time: '2 days ago', type: 'sent' },
+                            { content: 'I\'m having trouble with the event listeners.', time: '2 days ago', type: 'received' },
+                            { content: 'Let me show you an example...', time: '2 days ago', type: 'sent' },
+                            { content: 'Thanks for the help!', time: '2 days ago', type: 'received' }
+                        ]
+                    },
+                    {
+                        id: 4,
+                        name: 'David Brown',
+                        avatar: 'DB',
+                        status: 'Away',
+                        lastMessage: 'I\'ll check and get back to you.',
+                        lastMessageTime: '1 week ago',
+                        messages: [
+                            { content: 'Have you seen the new JavaScript framework?', time: '1 week ago', type: 'received' },
+                            { content: 'No, which one?', time: '1 week ago', type: 'sent' },
+                            { content: 'It\'s called Vue.js, it\'s pretty cool!', time: '1 week ago', type: 'received' },
+                            { content: 'I\'ll check and get back to you.', time: '1 week ago', type: 'sent' }
+                        ]
+                    }
+                ];
+
+                this.activeContact = null;
+
+                // Initialize the app
+                this.init();
+            }
+
+            init() {
+                // Render contacts
+                this.renderContacts();
+
+                // Set up event listeners
+                this.setupEventListeners();
+
+                // Load data from local storage
+                this.loadFromLocalStorage();
+            }
+
+            renderContacts() {
+                this.contactsList.innerHTML = this.contacts.map(contact => `
+                    <div class="contact ${this.activeContact && this.activeContact.id === contact.id ? 'active' : ''}" data-id="${contact.id}">
+                        <div class="contact-avatar">${contact.avatar}</div>
+                        <div class="contact-info">
+                            <h3 class="contact-name">${contact.name}</h3>
+                            <p class="contact-last-message">${contact.lastMessage}</p>
+                        </div>
+                        <div class="contact-time">${contact.lastMessageTime}</div>
+                    </div>
+                `).join('');
+
+                // Add event listeners to contacts
+                document.querySelectorAll('.contact').forEach(contactEl => {
+                    contactEl.addEventListener('click', () => {
+                        const contactId = parseInt(contactEl.dataset.id);
+                        this.selectContact(contactId);
+                    });
+                });
+            }
+
+            setupEventListeners() {
+                // Search input
+                this.searchInput.addEventListener('input', () => {
+                    this.filterContacts();
+                });
+            }
+
+            filterContacts() {
+                const searchTerm = this.searchInput.value.toLowerCase();
+
+                document.querySelectorAll('.contact').forEach(contactEl => {
+                    const contactName = contactEl.querySelector('.contact-name').textContent.toLowerCase();
+
+                    if (contactName.includes(searchTerm)) {
+                        contactEl.style.display = 'flex';
+                    } else {
+                        contactEl.style.display = 'none';
+                    }
+                });
+            }
+
+            selectContact(contactId) {
+                // Find the contact
+                this.activeContact = this.contacts.find(contact => contact.id === contactId);
+
+                // Update active contact in the list
+                document.querySelectorAll('.contact').forEach(contactEl => {
+                    if (parseInt(contactEl.dataset.id) === contactId) {
+                        contactEl.classList.add('active');
+                    } else {
+                        contactEl.classList.remove('active');
+                    }
+                });
+
+                // Render chat
+                this.renderChat();
+            }
+
+            renderChat() {
+                // Hide empty chat message
+                if (this.emptyChat) {
+                    this.emptyChat.style.display = 'none';
+                }
+
+                // Create chat header and messages container
+                this.chatMain.innerHTML = `
+                    <div class="chat-header">
+                        <div class="chat-header-avatar">${this.activeContact.avatar}</div>
+                        <div class="chat-header-info">
+                            <h3 class="chat-header-name">${this.activeContact.name}</h3>
+                            <p class="chat-header-status">${this.activeContact.status}</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages" style="display: flex; flex-direction: column;">
+                        ${this.activeContact.messages.map(message => `
+                            <div class="message ${message.type}">
+                                <div class="message-content">${message.content}</div>
+                                <div class="message-time">${message.time}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="chat-input">
+                        <input type="text" class="message-input" placeholder="Type a message..." id="messageInput">
+                        <button class="send-button" id="sendButton">➤</button>
+                    </div>
+                `;
+
+                // Scroll to bottom of messages
+                const chatMessages = document.getElementById('chatMessages');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Add event listeners for sending messages
+                const messageInput = document.getElementById('messageInput');
+                const sendButton = document.getElementById('sendButton');
+
+                const sendMessage = () => {
+                    const content = messageInput.value.trim();
+
+                    if (content) {
+                        // Get current time
+                        const now = new Date();
+                        const hours = now.getHours();
+                        const minutes = now.getMinutes();
+                        const ampm = hours >= 12 ? 'PM' : 'AM';
+                        const formattedHours = hours % 12 || 12;
+                        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+                        const time = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+                        // Add message to active contact
+                        const newMessage = {
+                            content: content,
+                            time: time,
+                            type: 'sent'
+                        };
+
+                        this.activeContact.messages.push(newMessage);
+                        this.activeContact.lastMessage = content;
+                        this.activeContact.lastMessageTime = time;
+
+                        // Update UI
+                        this.renderChat();
+                        this.renderContacts();
+
+                        // Save to local storage
+                        this.saveToLocalStorage();
+
+                        // Simulate reply after a delay
+                        setTimeout(() => {
+                            this.simulateReply();
+                        }, 1000 + Math.random() * 2000);
+                    }
+                };
+
+                sendButton.addEventListener('click', sendMessage);
+
+                messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            simulateReply() {
+                if (!this.activeContact) return;
+
+                const replies = [
+                    'That sounds great!',
+                    'I see what you mean.',
+                    'Interesting point!',
+                    'Let me think about that.',
+                    'I agree with you.',
+                    'Could you explain more?',
+                    'Thanks for sharing!',
+                    'Ill get back to you on that.',
+                    'Good idea!',
+                    'Im not sure I understand.'
+                ];
+
+                // Get random reply
+                const replyContent = replies[Math.floor(Math.random() * replies.length)];
+
+                // Get current time
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const formattedHours = hours % 12 || 12;
+                const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+                const time = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+                // Add message to active contact
+                const newMessage = {
+                    content: replyContent,
+                    time: time,
+                    type: 'received'
+                };
+
+                this.activeContact.messages.push(newMessage);
+                this.activeContact.lastMessage = replyContent;
+                this.activeContact.lastMessageTime = time;
+
+                // Update UI
+                this.renderChat();
+                this.renderContacts();
+
+                // Save to local storage
+                this.saveToLocalStorage();
+            }
+
+            saveToLocalStorage() {
+                localStorage.setItem('chatAppContacts', JSON.stringify(this.contacts));
+            }
+
+            loadFromLocalStorage() {
+                const savedContacts = localStorage.getItem('chatAppContacts');
+
+                if (savedContacts) {
+                    this.contacts = JSON.parse(savedContacts);
+                    this.renderContacts();
+                }
+            }
+        }
+
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatApp = new ChatApp();
+            // Automatically select the first contact after a short delay
+            setTimeout(() => {
+                chatApp.selectContact(1); // Select Alice Johnson
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics - StudoChart</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        h1, h2, h3 {
+            color: #5592f5;
+        }
+        
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+        
+        a {
+            color: #9c27b0;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+            text-decoration: none;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .example-result {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        /* Example-specific styles */
+        #selector-example .box {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        #selector-example .class-example {
+            background-color: #e1bee7;
+        }
+        
+        #selector-example #id-example {
+            background-color: #bbdefb;
+        }
+        
+        #selector-example p {
+            background-color: #c8e6c9;
+        }
+        
+        #selector-example div > span {
+            background-color: #ffecb3;
+            padding: 2px 5px;
+        }
+        
+        #properties-example .text-color {
+            color: #e91e63;
+        }
+        
+        #properties-example .bg-color {
+            background-color: #f3e5f5;
+            padding: 10px;
+        }
+        
+        #properties-example .font-example {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        #properties-example .border-example {
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        #properties-example .margin-example {
+            margin: 20px;
+            background-color: #e1bee7;
+            padding: 10px;
+        }
+        
+        #properties-example .padding-example {
+            padding: 20px;
+            background-color: #e1bee7;
+            border: 1px dashed #9c27b0;
+        }
+        
+        /* Specificity examples */
+        #specificity-example p {
+            color: black; /* Less specific */
+        }
+        
+        #specificity-example .text {
+            color: blue; /* More specific than element selector */
+        }
+        
+        #specificity-example #unique {
+            color: red; /* Most specific */
+        }
+        
+        /* Inheritance example */
+        #inheritance-example {
+            color: purple;
+            font-family: Georgia, serif;
+        }
+        
+        #inheritance-example .not-inherited {
+            border: 2px solid purple;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Basics</h1>
+            <p>Learn the fundamentals of Cascading Style Sheets</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#syntax">CSS Syntax</a></li>
+                <li><a href="#selectors">CSS Selectors</a></li>
+                <li><a href="#properties">CSS Properties</a></li>
+                <li><a href="#specificity">Specificity</a></li>
+                <li><a href="#inheritance">Inheritance</a></li>
+                <li><a href="#adding-css">Adding CSS to HTML</a></li>
+                <li><a href="#practice">Practice Exercise</a></li>
+            </ul>
+        </nav>
+        
+        <section id="introduction">
+            <h2>Introduction to CSS</h2>
+            <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+            
+            <p>CSS is one of the core languages of the web and is standardized by the W3C (World Wide Web Consortium).</p>
+            
+            <h3>Why CSS is Important:</h3>
+            <ul>
+                <li>Separates content (HTML) from presentation (CSS)</li>
+                <li>Allows consistent styling across multiple pages</li>
+                <li>Enables responsive design for different devices</li>
+                <li>Improves accessibility and user experience</li>
+                <li>Reduces code duplication and maintenance</li>
+            </ul>
+        </section>
+        
+        <section id="syntax">
+            <h2>CSS Syntax</h2>
+            <p>CSS consists of a selector and a declaration block:</p>
+            
+            <pre>
+selector {
+    property: value;
+    property: value;
+    /* More property-value pairs */
+}
+            </pre>
+            
+            <ul>
+                <li><strong>Selector:</strong> Points to the HTML element you want to style</li>
+                <li><strong>Declaration Block:</strong> Contains one or more declarations separated by semicolons</li>
+                <li><strong>Property:</strong> The style attribute you want to change</li>
+                <li><strong>Value:</strong> The value for the property</li>
+            </ul>
+            
+            <div class="example-box">
+                <h4>Example:</h4>
+                <pre>
+p {
+    color: blue;
+    font-size: 16px;
+    margin: 10px;
+}
+                </pre>
+                <p>This CSS rule sets the text color to blue, font size to 16 pixels, and margin to 10 pixels for all paragraph elements.</p>
+            </div>
+        </section>
+        
+        <section id="selectors">
+            <h2>CSS Selectors</h2>
+            <p>Selectors are patterns used to select the HTML elements you want to style. Here are the most common types:</p>
+            
+            <table>
+                <tr>
+                    <th>Selector</th>
+                    <th>Example</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Element Selector</td>
+                    <td><code>p { }</code></td>
+                    <td>Selects all &lt;p&gt; elements</td>
+                </tr>
+                <tr>
+                    <td>Class Selector</td>
+                    <td><code>.intro { }</code></td>
+                    <td>Selects all elements with class="intro"</td>
+                </tr>
+                <tr>
+                    <td>ID Selector</td>
+                    <td><code>#header { }</code></td>
+                    <td>Selects the element with id="header"</td>
+                </tr>
+                <tr>
+                    <td>Universal Selector</td>
+                    <td><code>* { }</code></td>
+                    <td>Selects all elements</td>
+                </tr>
+                <tr>
+                    <td>Grouping Selector</td>
+                    <td><code>h1, h2, p { }</code></td>
+                    <td>Selects all h1, h2, and p elements</td>
+                </tr>
+                <tr>
+                    <td>Descendant Selector</td>
+                    <td><code>div p { }</code></td>
+                    <td>Selects all &lt;p&gt; elements inside &lt;div&gt; elements</td>
+                </tr>
+                <tr>
+                    <td>Child Selector</td>
+                    <td><code>div > p { }</code></td>
+                    <td>Selects all &lt;p&gt; elements that are direct children of a &lt;div&gt; element</td>
+                </tr>
+            </table>
+            
+            <div id="selector-example" class="example-box">
+                <h4>Selector Examples:</h4>
+                
+                <div class="box class-example">This div has a class of "class-example"</div>
+                <div class="box" id="id-example">This div has an ID of "id-example"</div>
+                <p>This is a paragraph element</p>
+                <div>This is a div containing <span>a span element</span> as a direct child</div>
+                
+                <h4>CSS Used:</h4>
+                <pre>
+#selector-example .class-example {
+    background-color: #e1bee7;
+}
+
+#selector-example #id-example {
+    background-color: #bbdefb;
+}
+
+#selector-example p {
+    background-color: #c8e6c9;
+}
+
+#selector-example div > span {
+    background-color: #ffecb3;
+    padding: 2px 5px;
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="properties">
+            <h2>CSS Properties</h2>
+            <p>CSS has hundreds of properties that control different aspects of an element's appearance. Here are some common categories:</p>
+            
+            <h3>Text Properties</h3>
+            <ul>
+                <li><code>color</code>: Sets the color of text</li>
+                <li><code>font-family</code>: Specifies the font</li>
+                <li><code>font-size</code>: Sets the size of the font</li>
+                <li><code>font-weight</code>: Sets how thick or thin characters are displayed</li>
+                <li><code>text-align</code>: Sets the horizontal alignment of text</li>
+                <li><code>text-decoration</code>: Adds decoration to text (underline, overline, etc.)</li>
+            </ul>
+            
+            <h3>Box Properties</h3>
+            <ul>
+                <li><code>width</code>, <code>height</code>: Sets the width and height of an element</li>
+                <li><code>margin</code>: Sets the margin area on all four sides of an element</li>
+                <li><code>padding</code>: Sets the padding area on all four sides of an element</li>
+                <li><code>border</code>: Sets the border on all four sides of an element</li>
+                <li><code>background-color</code>: Sets the background color of an element</li>
+            </ul>
+            
+            <div id="properties-example" class="example-box">
+                <h4>Property Examples:</h4>
+                
+                <p class="text-color">This text has a custom color.</p>
+                <p class="bg-color">This paragraph has a background color.</p>
+                <p class="font-example">This text has custom font properties.</p>
+                <div class="border-example">This element has a border.</div>
+                <div class="margin-example">This element has a margin.</div>
+                <div class="padding-example">This element has padding.</div>
+                
+                <h4>CSS Used:</h4>
+                <pre>
+#properties-example .text-color {
+    color: #e91e63;
+}
+
+#properties-example .bg-color {
+    background-color: #f3e5f5;
+    padding: 10px;
+}
+
+#properties-example .font-example {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#properties-example .border-example {
+    border: 2px solid #9c27b0;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#properties-example .margin-example {
+    margin: 20px;
+    background-color: #e1bee7;
+    padding: 10px;
+}
+
+#properties-example .padding-example {
+    padding: 20px;
+    background-color: #e1bee7;
+    border: 1px dashed #9c27b0;
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="specificity">
+            <h2>CSS Specificity</h2>
+            <p>Specificity determines which CSS rule is applied when multiple rules target the same element. The more specific selector wins.</p>
+            
+            <h3>Specificity Hierarchy (from lowest to highest):</h3>
+            <ol>
+                <li>Element selectors (<code>p</code>, <code>div</code>, etc.)</li>
+                <li>Class selectors (<code>.example</code>), attribute selectors (<code>[type="text"]</code>), and pseudo-classes (<code>:hover</code>)</li>
+                <li>ID selectors (<code>#example</code>)</li>
+                <li>Inline styles (<code>style="color: red;"</code>)</li>
+                <li><code>!important</code> declaration (overrides all other styles)</li>
+            </ol>
+            
+            <div id="specificity-example" class="example-box">
+                <h4>Specificity Example:</h4>
+                
+                <p class="text" id="unique">This paragraph has multiple styles targeting it.</p>
+                
+                <h4>CSS Used:</h4>
+                <pre>
+#specificity-example p {
+    color: black; /* Less specific */
+}
+
+#specificity-example .text {
+    color: blue; /* More specific than element selector */
+}
+
+#specificity-example #unique {
+    color: red; /* Most specific */
+}
+                </pre>
+                
+                <p>The text is red because the ID selector has the highest specificity among these three selectors.</p>
+            </div>
+        </section>
+        
+        <section id="inheritance">
+            <h2>CSS Inheritance</h2>
+            <p>Some CSS properties are inherited from parent elements to their children, while others are not.</p>
+            
+            <h3>Properties that are typically inherited:</h3>
+            <ul>
+                <li>Text properties (<code>color</code>, <code>font-family</code>, <code>font-size</code>, etc.)</li>
+                <li>Line height</li>
+                <li>List styles</li>
+                <li>Text alignment</li>
+            </ul>
+            
+            <h3>Properties that are typically not inherited:</h3>
+            <ul>
+                <li>Width, height</li>
+                <li>Margin, padding</li>
+                <li>Border</li>
+                <li>Background</li>
+                <li>Position</li>
+            </ul>
+            
+            <div id="inheritance-example" class="example-box">
+                <h4>Inheritance Example:</h4>
+                
+                <p>This paragraph inherits the purple color and Georgia font from its parent.</p>
+                
+                <div class="not-inherited">
+                    <p>This paragraph also inherits the text styles, but the border, margin, and padding on its parent div are not inherited.</p>
+                </div>
+                
+                <h4>CSS Used:</h4>
+                <pre>
+#inheritance-example {
+    color: purple;
+    font-family: Georgia, serif;
+}
+
+#inheritance-example .not-inherited {
+    border: 2px solid purple;
+    margin: 10px;
+    padding: 10px;
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="adding-css">
+            <h2>Adding CSS to HTML</h2>
+            <p>There are three ways to add CSS to an HTML document:</p>
+            
+            <h3>1. Inline CSS</h3>
+            <p>Using the <code>style</code> attribute directly on HTML elements:</p>
+            <pre>&lt;p style="color: blue; font-size: 16px;"&gt;This is a paragraph with inline styles.&lt;/p&gt;</pre>
+            
+            <h3>2. Internal CSS</h3>
+            <p>Using a <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section:</p>
+            <pre>
+&lt;head&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+            font-size: 16px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+            </pre>
+            
+            <h3>3. External CSS</h3>
+            <p>Using a separate CSS file linked with the <code>&lt;link&gt;</code> element:</p>
+            <pre>
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+            </pre>
+            
+            <p>And in the styles.css file:</p>
+            <pre>
+p {
+    color: blue;
+    font-size: 16px;
+}
+            </pre>
+            
+            <h3>Best Practice:</h3>
+            <p>External CSS is generally the best approach because it:</p>
+            <ul>
+                <li>Separates HTML and CSS</li>
+                <li>Makes maintenance easier</li>
+                <li>Allows the same CSS file to be used across multiple HTML pages</li>
+                <li>Takes advantage of browser caching</li>
+            </ul>
+        </section>
+        
+        <section id="practice">
+            <h2>Practice Exercise</h2>
+            <p>Try creating a simple HTML file with the following elements and style them using CSS:</p>
+            
+            <ol>
+                <li>A heading with a custom color and font</li>
+                <li>A paragraph with a different color and font size</li>
+                <li>A div with a border, background color, and padding</li>
+                <li>A list with custom bullet points or numbers</li>
+                <li>A link that changes color when hovered over</li>
+            </ol>
+            
+            <p>You can use any of the three methods to add CSS (inline, internal, or external), but external CSS is recommended for practice.</p>
+        </section>
+        
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+</body>
+</html>
+

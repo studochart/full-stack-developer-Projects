@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        /* Specific styles for API examples */
+        .user-card {
+            background-color: #f9f0ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .user-info h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .user-info p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .post-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .post-card h4 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        .post-card p {
+            margin-bottom: 0;
+        }
+        
+        .comment-card {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        
+        .comment-card h5 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #5592f5;
+        }
+        
+        .comment-card p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #d32f2f;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .weather-card {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .weather-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .weather-temp {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .weather-desc {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .weather-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .weather-detail {
+            text-align: center;
+        }
+        
+        .weather-detail-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .weather-detail-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f0ff;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .todo-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .todo-form input {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fetch API in JavaScript</h1>
+        <p>Make HTTP requests and work with external data using the Fetch API</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to the Fetch API</h2>
+        <p>The Fetch API provides a modern interface for making HTTP requests to servers. It's a more powerful and flexible replacement for XMLHttpRequest (XHR), and it's built into modern browsers.</p>
+        <p>In this project, we'll explore how to use the Fetch API to retrieve data from external APIs, handle responses, and work with JSON data.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Basic Fetch Request</h2>
+        <p>The Fetch API uses the <code>fetch()</code> method to make HTTP requests. This method returns a Promise that resolves to the Response object representing the response to the request.</p>
+        
+        <div class="code">
+            // Basic fetch request
+            fetch('https://api.example.com/data')
+              .then(response => {
+                // Check if the response is successful
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON in the response
+              })
+              .then(data => {
+                // Work with the JSON data
+                console.log(data);
+              })
+              .catch(error => {
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error);
+              });
+        </div>
+        
+        <div class="example">
+            <h3>Basic Fetch Example</h3>
+            <div class="interactive">
+                <h3>Fetch Random User Data</h3>
+                <button id="fetchUserButton">Fetch Random User</button>
+                <div id="userResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Fetch Options</h2>
+        <p>The <code>fetch()</code> method accepts a second parameter, an options object that allows you to customize the request.</p>
+        
+        <div class="code">
+            // Fetch with options
+            fetch('https://api.example.com/data', {
+              method: 'POST', // HTTP method (GET, POST, PUT, DELETE, etc.)
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer token123'
+              },
+              body: JSON.stringify({
+                name: 'John',
+                age: 30
+              })
+            })
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Error:', error));
+        </div>
+        
+        <div class="example">
+            <h3>Fetch with Options Example</h3>
+            <div class="interactive">
+                <h3>Create a New Post</h3>
+                <div class="form-group">
+                    <label for="postTitle">Title:</label>
+                    <input type="text" id="postTitle" placeholder="Enter post title" value="New Post Title">
+                </div>
+                <div class="form-group">
+                    <label for="postBody">Body:</label>
+                    <textarea id="postBody" rows="4" placeholder="Enter post content">This is the content of my new post.</textarea>
+                </div>
+                <button id="createPostButton">Create Post</button>
+                <div id="postResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Handling Different Response Types</h2>
+        <p>The Response object provides several methods to handle different types of response data:</p>
+        
+        <div class="code">
+            // JSON data
+            fetch('https://api.example.com/data')
+              .then(response => response.json())
+              .then(data => console.log(data));
+            
+            // Text data
+            fetch('https://api.example.com/text')
+              .then(response => response.text())
+              .then(text => console.log(text));
+            
+            // Blob data (for images, files, etc.)
+            fetch('https://api.example.com/image.jpg')
+              .then(response => response.blob())
+              .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl;
+                document.body.appendChild(imgElement);
+              });
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Practical Examples</h2>
+        
+        <div class="example">
+            <h3>Fetching and Displaying Posts</h3>
+            <div class="interactive">
+                <h3>Blog Posts</h3>
+                <button id="fetchPostsButton">Fetch Posts</button>
+                <div id="postsContainer" class="result"></div>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>Todo List with API</h3>
+            <div class="interactive">
+                <h3>Todo List</h3>
+                <div class="todo-form">
+                    <input type="text" id="todoInput" placeholder="Add a new todo">
+                    <button id="addTodoButton">Add</button>
+                </div>
+                <div id="todoList" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - Fetch API Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn the JavaScript Fetch API.</p>
+    </footer>
+    
+    <script>
+        // Basic Fetch Example
+        document.getElementById('fetchUserButton').addEventListener('click', function() {
+            const userResult = document.getElementById('userResult');
+            userResult.innerHTML = '<div class="loading">Loading user data...</div>';
+            
+            fetch('https://randomuser.me/api/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const user = data.results[0];
+                    
+                    const userCard = `
+                        <div class="user-card">
+                            <img src="${user.picture.medium}" alt="User Avatar" class="user-avatar">
+                            <div class="user-info">
+                                <h4>${user.name.first} ${user.name.last}</h4>
+                                <p>${user.email}</p>
+                                <p>${user.location.city}, ${user.location.country}</p>
+                            </div>
+                        </div>
+                        <pre>${JSON.stringify(user, null, 2)}</pre>
+                    `;
+                    
+                    userResult.innerHTML = userCard;
+                })
+                .catch(error => {
+                    userResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                });
+        });
+        
+        // Fetch with Options Example
+        document.getElementById('createPostButton').addEventListener('click', function() {
+            const postTitle = document.getElementById('postTitle').value.trim();
+            const postBody = document.getElementById('postBody').value.trim();
+            const postResult = document.getElementById('postResult');
+            
+            if (!postTitle || !postBody) {
+                postResult.innerHTML = '<div class="error">Please enter both title and body for the post.</div>';
+                return;
+            }
+            
+            postResult.innerHTML = '<div class="loading">Creating post...</div>';
+            
+            // Using JSONPlaceholder API for demonstration
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: postTitle,
+                    body: postBody,
+                    userId: 1
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const postCard = `
+                        <div class="post-card">
+                            <h4>${data.title}</h4>
+                            <p>${data.body}</p>
+                            <p><small>Post ID: ${data.id}, User ID: ${data.userId}</small></p>
+                        </div>
+                        <p>Note: This is a demo post created with JSONPlaceholder API. It's not actually saved on their server.</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                    
+                    postResult.innerHTML = postCard;
+                })
+                .catch(error => {
+                    postResult.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                });
+        });
+        
+        // Fetching and Displaying Posts Example
+        document.getElementById('fetchPostsButton').addEventListener('click', function() {
+            const postsContainer = document.getElementById('postsContainer');
+            postsContainer.innerHTML = '<div class="loading">Loading posts...</div>';
+            
+            fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(posts => {
+                    if (posts.length === 0) {
+                        postsContainer.innerHTML = '<div class="error">No posts found.</div>';
+                        return;
+                    }
+                    
+                    let postsHTML = '';
+                    
+                    posts.forEach(post => {
+                        postsHTML += `
+                            <div class="post-card">
+                                <h4>${post.title}</h4>
+                                <p>${post.body}</p>
+                                <button class="fetch-comments-button" data-post-id="${post.id}">Show Comments</button>
+                                <div class="comments-container" id="comments-${post.id}"></div>
+                            </div>
+                        `;
+                    });
+                    
+                    postsContainer.innerHTML = postsHTML;
+                    
+                    // Add event listeners to the "Show Comments" buttons
+                    document.querySelectorAll('.fetch-comments-button').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const postId = this.getAttribute('data-post-id');
+                            const commentsContainer = document.getElementById(`comments-${postId}`);
+                            
+                            if (commentsContainer.innerHTML.trim() !== '') {
+                                commentsContainer.innerHTML = '';
+                                this.textContent = 'Show Comments';
+                                return;
+                            }
+                            
+                            commentsContainer.innerHTML = '<div class="loading">Loading comments...</div>';
+                            this.textContent = 'Hide Comments';
+                            
+                            fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(comments => {
+                                    if (comments.length === 0) {
+                                        commentsContainer.innerHTML = '<div class="error">No comments found.</div>';
+                                        return;
+                                    }
+                                    
+                                    let commentsHTML = '<h5>Comments:</h5>';
+                                    
+                                    comments.forEach(comment => {
+                                        commentsHTML += `
+                                            <div class="comment-card">
+                                                <h5>${comment.name} (${comment.email})</h5>
+                                                <p>${comment.body}</p>
+                                            </div>
+                                        `;
+                                    });
+                                    
+                                    commentsContainer.innerHTML = commentsHTML;
+                                })
+                                .catch(error => {
+                                    commentsContainer.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                                });
+                        });
+                    });
+                })
+                .catch(error => {
+                    postsContainer.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                });
+        });
+        
+        // Todo List with API Example
+        function loadTodos() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = '<div class="loading">Loading todos...</div>';
+            
+            fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(todos => {
+                    if (todos.length === 0) {
+                        todoList.innerHTML = '<div class="error">No todos found.</div>';
+                        return;
+                    }
+                    
+                    let todosHTML = '';
+                    
+                    todos.forEach(todo => {
+                        todosHTML += `
+                            <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                                <input type="checkbox" ${todo.completed ? 'checked' : ''} data-id="${todo.id}">
+                                <span>${todo.title}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    todoList.innerHTML = todosHTML;
+                    
+                    // Add event listeners to checkboxes
+                    todoList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                        checkbox.addEventListener('change', function() {
+                            const todoId = this.getAttribute('data-id');
+                            const completed = this.checked;
+                            const todoItem = this.parentElement;
+                            
+                            // Update UI immediately for better UX
+                            if (completed) {
+                                todoItem.classList.add('completed');
+                            } else {
+                                todoItem.classList.remove('completed');
+                            }
+                            
+                            // Send update to server
+                            fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    completed: completed
+                                })
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                        // Revert UI change if server update fails
+                                        this.checked = !completed;
+                                        if (!completed) {
+                                            todoItem.classList.add('completed');
+                                        } else {
+                                            todoItem.classList.remove('completed');
+                                        }
+                                    }
+                                    return response.json();
+                                })
+                                .catch(error => {
+                                    console.error('Error updating todo:', error);
+                                    // Revert UI change if server update fails
+                                    this.checked = !completed;
+                                    if (!completed) {
+                                        todoItem.classList.add('completed');
+                                    } else {
+                                        todoItem.classList.remove('completed');
+                                    }
+                                });
+                        });
+                    });
+                })
+                .catch(error => {
+                    todoList.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                });
+        }
+        
+        // Add new todo
+        document.getElementById('addTodoButton').addEventListener('click', function() {
+            const todoInput = document.getElementById('todoInput');
+            const todoText = todoInput.value.trim();
+            
+            if (!todoText) {
+                return;
+            }
+            
+            fetch('https://jsonplaceholder.typicode.com/todos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: todoText,
+                    completed: false,
+                    userId: 1
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(newTodo => {
+                    // Add the new todo to the UI
+                    const todoList = document.getElementById('todoList');
+                    const todoItem = document.createElement('div');
+                    todoItem.className = 'todo-item';
+                    todoItem.innerHTML = `
+                        <input type="checkbox" data-id="${newTodo.id}">
+                        <span>${newTodo.title}</span>
+                    `;
+                    todoList.prepend(todoItem);
+                    
+                    // Clear the input
+                    todoInput.value = '';
+                    
+                    // Add event listener to the new checkbox
+                    const checkbox = todoItem.querySelector('input[type="checkbox"]');
+                    checkbox.addEventListener('change', function() {
+                        const completed = this.checked;
+                        
+                        if (completed) {
+                            todoItem.classList.add('completed');
+                        } else {
+                            todoItem.classList.remove('completed');
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error adding todo:', error);
+                });
+        });
+        
+        // Load todos when the page loads
+        loadTodos();
+    </script>
+</body>
+</html>
+

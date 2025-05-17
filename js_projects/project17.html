@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        /* Quiz App Styles */
+        .quiz-app {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #9c27b0;
+        }
+
+        .quiz-progress {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #9c27b0;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-question {
+            background-color: #f9f0ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .option.selected {
+            background-color: #e1bee7;
+            border-color: #9c27b0;
+        }
+
+        .option.correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .option.incorrect {
+            background-color: #ffcdd2;
+            border-color: #f44336;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .quiz-button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .quiz-button:hover {
+            background-color: #09cc09;
+        }
+
+        .quiz-button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .quiz-button.secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .quiz-button.secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f0ff;
+            border-radius: 8px;
+        }
+
+        .result-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .result-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #9c27b0;
+            margin-bottom: 20px;
+        }
+
+        .result-message {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .feedback.correct {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .quiz-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background-color: #f9f0ff;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #9c27b0;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quiz-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quiz App</h1>
+        <p>Create an interactive quiz application with JavaScript</p>
+    </header>
+
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>In this project, we'll build an interactive quiz application that tests users' knowledge on various topics. The app will present questions with multiple-choice answers, track scores, and provide feedback on user performance.</p>
+        <p>This project demonstrates how to manage application state, handle user interactions, and create a dynamic user interface using JavaScript.</p>
+    </div>
+
+    <div class="container">
+        <h2>Quiz App</h2>
+        <div class="quiz-app" id="quizApp">
+            <!-- Quiz content will be dynamically generated here -->
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>How It Works</h2>
+        <p>The Quiz App is built using the following components:</p>
+        <ul>
+            <li><strong>Question Bank:</strong> A collection of questions and answers organized by category.</li>
+            <li><strong>Quiz Engine:</strong> JavaScript code that manages the quiz flow, tracks scores, and provides feedback.</li>
+            <li><strong>User Interface:</strong> HTML and CSS that create an interactive and responsive quiz experience.</li>
+            <li><strong>Local Storage:</strong> Browser storage that saves user progress and high scores.</li>
+        </ul>
+        <p>The app includes the following features:</p>
+        <ul>
+            <li>Multiple quiz categories to choose from</li>
+            <li>Randomized questions and answer options</li>
+            <li>Score tracking and progress indication</li>
+            <li>Immediate feedback on answers</li>
+            <li>Timer for each question</li>
+            <li>Results summary with performance statistics</li>
+            <li>Option to retry the quiz or choose a different category</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - Quiz App Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript application development.</p>
+    </footer>
+
+    <script>
+        // Quiz App
+        class QuizApp {
+            constructor() {
+                this.quizContainer = document.getElementById('quizApp');
+                this.currentView = 'categories'; // 'categories', 'quiz', 'result'
+                this.selectedCategory = null;
+                this.questions = [];
+                this.currentQuestionIndex = 0;
+                this.score = 0;
+                this.selectedOption = null;
+                this.timer = null;
+                this.timeLeft = 0;
+                this.quizCategories = [
+                    {
+                        id: 'javascript',
+                        title: 'JavaScript',
+                        icon: '📜',
+                        description: 'Test your knowledge of JavaScript fundamentals',
+                        questions: [
+                            {
+                                question: 'Which of the following is NOT a JavaScript data type?',
+                                options: ['String', 'Boolean', 'Float', 'Object'],
+                                answer: 2
+                            },
+                            {
+                                question: 'What will the following code return: typeof []?',
+                                options: ['array', 'object', 'undefined', 'null'],
+                                answer: 1
+                            },
+                            {
+                                question: 'Which method is used to add an element to the end of an array?',
+                                options: ['push()', 'pop()', 'unshift()', 'shift()'],
+                                answer: 0
+                            },
+                            {
+                                question: 'What is the correct way to write a JavaScript array?',
+                                options: ['var colors = "red", "green", "blue"', 'var colors = ["red", "green", "blue"]', 'var colors = (1:"red", 2:"green", 3:"blue")', 'var colors = 1=("red"), 2=("green"), 3=("blue")'],
+                                answer: 1
+                            },
+                            {
+                                question: 'Which operator is used to assign a value to a variable?',
+                                options: ['*', '-', '=', 'x'],
+                                answer: 2
+                            }
+                        ]
+                    },
+                    {
+                        id: 'html',
+                        title: 'HTML',
+                        icon: '🌐',
+                        description: 'Test your knowledge of HTML elements and structure',
+                        questions: [
+                            {
+                                question: 'What does HTML stand for?',
+                                options: ['Hyper Text Markup Language', 'High Tech Modern Language', 'Hyper Transfer Markup Language', 'Home Tool Markup Language'],
+                                answer: 0
+                            },
+                            {
+                                question: 'Which HTML tag is used to define an internal style sheet?',
+                                options: ['<css>', '<script>', '<style>', '<link>'],
+                                answer: 2
+                            },
+                            {
+                                question: 'Which HTML attribute is used to define inline styles?',
+                                options: ['class', 'styles', 'style', 'font'],
+                                answer: 2
+                            },
+                            {
+                                question: 'Which HTML element is used to specify a header for a document or section?',
+                                options: ['<head>', '<header>', '<top>', '<section>'],
+                                answer: 1
+                            },
+                            {
+                                question: 'Which HTML element is used to create a form?',
+                                options: ['<input>', '<form>', '<section>', '<fieldset>'],
+                                answer: 1
+                            }
+                        ]
+                    },
+                    {
+                        id: 'css',
+                        title: 'CSS',
+                        icon: '🎨',
+                        description: 'Test your knowledge of CSS styling and layout',
+                        questions: [
+                            {
+                                question: 'What does CSS stand for?',
+                                options: ['Creative Style Sheets', 'Cascading Style Sheets', 'Computer Style Sheets', 'Colorful Style Sheets'],
+                                answer: 1
+                            },
+                            {
+                                question: 'Which property is used to change the background color?',
+                                options: ['color', 'bgcolor', 'background-color', 'background'],
+                                answer: 2
+                            },
+                            {
+                                question: 'Which CSS property controls the text size?',
+                                options: ['font-size', 'text-size', 'font-style', 'text-style'],
+                                answer: 0
+                            },
+                            {
+                                question: 'Which CSS property is used to control the spacing between elements?',
+                                options: ['spacing', 'margin', 'padding', 'border'],
+                                answer: 1
+                            },
+                            {
+                                question: 'Which value of the display property makes an element not displayed at all?',
+                                options: ['invisible', 'hidden', 'none', 'block'],
+                                answer: 2
+                            }
+                        ]
+                    }
+                ];
+
+                // Initialize the app
+                this.init();
+            }
+
+            init() {
+                this.renderView();
+            }
+
+            renderView() {
+                switch (this.currentView) {
+                    case 'categories':
+                        this.renderCategoriesView();
+                        break;
+                    case 'quiz':
+                        this.renderQuizView();
+                        break;
+                    case 'result':
+                        this.renderResultView();
+                        break;
+                }
+            }
+
+            renderCategoriesView() {
+                const html = `
+                    <div class="quiz-header">
+                        <h2 class="quiz-title">Choose a Quiz Category</h2>
+                        <p>Select a category to start the quiz</p>
+                    </div>
+
+                    <div class="quiz-categories">
+                        ${this.quizCategories.map(category => `
+                            <div class="category-card" data-category="${category.id}">
+                                <div class="category-icon">${category.icon}</div>
+                                <h3 class="category-title">${category.title}</h3>
+                                <p class="category-description">${category.description}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                this.quizContainer.innerHTML = html;
+
+                // Add event listeners to category cards
+                document.querySelectorAll('.category-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        this.startQuiz(card.dataset.category);
+                    });
+                });
+            }
+
+            startQuiz(categoryId) {
+                this.selectedCategory = this.quizCategories.find(category => category.id === categoryId);
+                this.questions = [...this.selectedCategory.questions];
+                this.shuffleQuestions();
+                this.currentQuestionIndex = 0;
+                this.score = 0;
+                this.currentView = 'quiz';
+                this.renderView();
+            }
+
+            shuffleQuestions() {
+                // Shuffle questions
+                for (let i = this.questions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+                }
+
+                // Shuffle options for each question
+                this.questions.forEach(question => {
+                    const correctAnswer = question.options[question.answer];
+                    const options = [...question.options];
+
+                    // Shuffle options
+                    for (let i = options.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [options[i], options[j]] = [options[j], options[i]];
+                    }
+
+                    // Update question with shuffled options
+                    question.options = options;
+                    question.answer = options.indexOf(correctAnswer);
+                });
+            }
+
+            renderQuizView() {
+                const question = this.questions[this.currentQuestionIndex];
+                const progress = ((this.currentQuestionIndex + 1) / this.questions.length) * 100;
+
+                const html = `
+                    <div class="quiz-header">
+                        <h2 class="quiz-title">${this.selectedCategory.title} Quiz</h2>
+                    </div>
+
+                    <div class="quiz-info">
+                        <div class="quiz-info-item">
+                            <p class="info-label">Question</p>
+                            <p class="info-value">${this.currentQuestionIndex + 1}/${this.questions.length}</p>
+                        </div>
+                        <div class="quiz-info-item">
+                            <p class="info-label">Score</p>
+                            <p class="info-value">${this.score}</p>
+                        </div>
+                        <div class="quiz-info-item">
+                            <p class="info-label">Time Left</p>
+                            <p class="info-value timer" id="timer">30</p>
+                        </div>
+                    </div>
+
+                    <div class="quiz-progress">
+                        <div class="progress-bar" style="width: ${progress}%"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p class="question-number">Question ${this.currentQuestionIndex + 1}</p>
+                        <p class="question-text">${question.question}</p>
+
+                        <div class="quiz-options">
+                            ${question.options.map((option, index) => `
+                                <div class="option" data-index="${index}">
+                                    ${option}
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="feedback" id="feedback" style="display: none;"></div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button class="quiz-button secondary" id="quitButton">Quit Quiz</button>
+                        <button class="quiz-button" id="nextButton" disabled>Next Question</button>
+                    </div>
+                `;
+
+                this.quizContainer.innerHTML = html;
+
+                // Add event listeners
+                document.querySelectorAll('.option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        this.selectOption(parseInt(option.dataset.index));
+                    });
+                });
+
+                document.getElementById('nextButton').addEventListener('click', () => {
+                    this.nextQuestion();
+                });
+
+                document.getElementById('quitButton').addEventListener('click', () => {
+                    this.quitQuiz();
+                });
+
+                // Start timer
+                this.startTimer();
+            }
+
+            startTimer() {
+                this.timeLeft = 30;
+                const timerElement = document.getElementById('timer');
+
+                clearInterval(this.timer);
+                this.timer = setInterval(() => {
+                    this.timeLeft--;
+                    timerElement.textContent = this.timeLeft;
+
+                    if (this.timeLeft <= 10) {
+                        timerElement.style.color = '#f44336';
+                    }
+
+                    if (this.timeLeft <= 0) {
+                        clearInterval(this.timer);
+                        this.timeOut();
+                    }
+                }, 1000);
+            }
+
+            timeOut() {
+                const feedback = document.getElementById('feedback');
+                if (feedback) {
+                    feedback.textContent = 'Times up! The correct answer is: ' + this.questions[this.currentQuestionIndex].options[this.questions[this.currentQuestionIndex].answer];
+                    feedback.className = 'feedback incorrect';
+                    feedback.style.display = 'block';
+                }
+
+                // Highlight correct answer
+                document.querySelectorAll('.option').forEach((option, index) => {
+                    if (index === this.questions[this.currentQuestionIndex].answer) {
+                        option.classList.add('correct');
+                    } else {
+                        option.classList.add('incorrect');
+                    }
+                });
+
+                // Enable next button
+                document.getElementById('nextButton').disabled = false;
+
+                // Disable options
+                document.querySelectorAll('.option').forEach(option => {
+                    option.style.pointerEvents = 'none';
+                });
+            }
+
+            selectOption(index) {
+                // Clear previous selection
+                document.querySelectorAll('.option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+
+                // Select current option
+                document.querySelectorAll('.option')[index].classList.add('selected');
+                this.selectedOption = index;
+
+                // Check answer
+                this.checkAnswer();
+            }
+
+            checkAnswer() {
+                clearInterval(this.timer);
+
+                const question = this.questions[this.currentQuestionIndex];
+                const isCorrect = this.selectedOption === question.answer;
+                const feedback = document.getElementById('feedback');
+
+                if (isCorrect) {
+                    this.score++;
+                    feedback.textContent = 'Correct! Well done!';
+                    feedback.className = 'feedback correct';
+                } else {
+                    feedback.textContent = 'Incorrect! The correct answer is: ' + question.options[question.answer];
+                    feedback.className = 'feedback incorrect';
+                }
+
+                feedback.style.display = 'block';
+
+                // Highlight correct and incorrect answers
+                document.querySelectorAll('.option').forEach((option, index) => {
+                    if (index === question.answer) {
+                        option.classList.add('correct');
+                    } else if (index === this.selectedOption) {
+                        option.classList.add('incorrect');
+                    }
+
+                    // Disable options
+                    option.style.pointerEvents = 'none';
+                });
+
+                // Update score
+                document.querySelectorAll('.quiz-info-item')[1].querySelector('.info-value').textContent = this.score;
+
+                // Enable next button
+                document.getElementById('nextButton').disabled = false;
+            }
+
+            nextQuestion() {
+                this.currentQuestionIndex++;
+
+                if (this.currentQuestionIndex < this.questions.length) {
+                    this.renderQuizView();
+                } else {
+                    this.endQuiz();
+                }
+            }
+
+            endQuiz() {
+                this.currentView = 'result';
+                this.renderView();
+            }
+
+            quitQuiz() {
+                clearInterval(this.timer);
+                this.currentView = 'categories';
+                this.renderView();
+            }
+
+            renderResultView() {
+                const percentage = Math.round((this.score / this.questions.length) * 100);
+                let message = '';
+
+                if (percentage >= 80) {
+                    message = 'Excellent! Youre a master of ' + this.selectedCategory.title + '!';
+                } else if (percentage >= 60) {
+                    message = 'Good job! You have a solid understanding of ' + this.selectedCategory.title + '.';
+                } else if (percentage >= 40) {
+                    message = 'Not bad! But you might want to study ' + this.selectedCategory.title + ' a bit more.';
+                } else {
+                    message = 'Keep practicing! ' + this.selectedCategory.title + ' takes time to master.';
+                }
+
+                const html = `
+                    <div class="quiz-result">
+                        <h2 class="result-title">Quiz Completed!</h2>
+                        <p class="result-score">${this.score}/${this.questions.length}</p>
+                        <p class="result-message">${message}</p>
+
+                        <div class="result-actions">
+                            <button class="quiz-button" id="retryButton">Retry Quiz</button>
+                            <button class="quiz-button secondary" id="homeButton">Back to Categories</button>
+                        </div>
+                    </div>
+                `;
+
+                this.quizContainer.innerHTML = html;
+
+                // Add event listeners
+                document.getElementById('retryButton').addEventListener('click', () => {
+                    this.startQuiz(this.selectedCategory.id);
+                });
+
+                document.getElementById('homeButton').addEventListener('click', () => {
+                    this.currentView = 'categories';
+                    this.renderView();
+                });
+            }
+        }
+
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizApp = new QuizApp();
+            // Automatically start the JavaScript quiz after a short delay
+            setTimeout(() => {
+                quizApp.startQuiz('javascript');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+

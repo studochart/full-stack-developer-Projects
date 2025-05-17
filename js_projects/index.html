@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Projects - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h2 {
+            color: #5592f5;
+            margin-top: 0;
+        }
+
+        .project-card p {
+            color: #181c27;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #5592f5;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .project-card a:hover {
+            background-color: #09cc09;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Projects - StudoChart</h1>
+        <p>A collection of JavaScript projects to help you master web programming</p>
+    </header>
+
+    <div class="intro">
+        <h2>Learn JavaScript Through Practice</h2>
+        <p>These projects will help you understand JavaScript concepts through hands-on examples.</p>
+        <p>Each project focuses on specific JavaScript techniques and builds upon your HTML and CSS knowledge.</p>
+    </div>
+
+    <div class="projects-container">
+        <div class="project-card">
+            <h2><span class="emoji">📝</span>JavaScript Basics</h2>
+            <p>Learn the fundamentals of JavaScript including variables, data types, and operators.</p>
+            <a href="project1.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔄</span>Control Flow</h2>
+            <p>Master conditional statements, loops, and logical operations in JavaScript.</p>
+            <a href="project2.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🧩</span>Functions</h2>
+            <p>Learn how to create and use functions, parameters, and return values.</p>
+            <a href="project3.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📦</span>Arrays and Objects</h2>
+            <p>Work with complex data structures like arrays and objects in JavaScript.</p>
+            <a href="project4.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎯</span>DOM Manipulation</h2>
+            <p>Learn to interact with HTML elements using the Document Object Model (DOM).</p>
+            <a href="project5.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">👂</span>Events</h2>
+            <p>Handle user interactions with event listeners and event objects.</p>
+            <a href="project6.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">⏱️</span>Timing Functions</h2>
+            <p>Use setTimeout and setInterval to control when code executes.</p>
+            <a href="project7.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔍</span>Form Validation</h2>
+            <p>Create client-side form validation to improve user experience.</p>
+            <a href="project8.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🌐</span>Fetch API</h2>
+            <p>Make HTTP requests and work with external data using the Fetch API.</p>
+            <a href="project9.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">⚙️</span>Async JavaScript</h2>
+            <p>Master asynchronous programming with Promises and async/await.</p>
+            <a href="project10.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🧮</span>Calculator App</h2>
+            <p>Build a functional calculator application with JavaScript.</p>
+            <a href="project11.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📝</span>Todo List App</h2>
+            <p>Create a todo list application with CRUD functionality.</p>
+            <a href="project12.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎮</span>Simple Game</h2>
+            <p>Build a simple browser-based game using JavaScript.</p>
+            <a href="project13.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📊</span>Data Visualization</h2>
+            <p>Create interactive charts and graphs to visualize data.</p>
+            <a href="project14.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎨</span>Canvas Drawing</h2>
+            <p>Learn to draw and animate graphics with the HTML5 Canvas API.</p>
+            <a href="project15.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🌦️</span>Weather App</h2>
+            <p>Create a responsive navigation menu for mobile and desktop.</p>
+            <a href="project16.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🧠</span>Quiz App</h2>
+            <p>Store and retrieve data in the browser using localStorage.</p>
+            <a href="project17.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎵</span>Music Player</h2>
+            <p>Learn common JavaScript design patterns and best practices.</p>
+            <a href="project18.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">💬</span>Chat App</h2>
+            <p>Explore modern JavaScript features like arrow functions, destructuring, and modules.</p>
+            <a href="project19.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🛒</span>Shopping Cart</h2>
+            <p>Build a complete web application applying multiple JavaScript concepts together.</p>
+            <a href="project20.html" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="../index.html" class="back-link">← Back to Main Projects Page</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - JavaScript Projects. All rights reserved.</p>
+        <p>These projects are designed for educational purposes to help students learn JavaScript.</p>
+    </footer>
+</body>
+</html>
+

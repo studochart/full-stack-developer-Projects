@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Projects - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-card h2 {
+            color: #5592f5;
+            margin-top: 0;
+        }
+        
+        .project-card p {
+            color: #555;
+        }
+        
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #5592f5;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .project-card a:hover {
+            background-color: #09cc09;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Projects - StudoChart</h1>
+        <p>A collection of CSS projects to help you master web styling</p>
+    </header>
+    
+    <div class="intro">
+        <h2>Learn CSS Through Practice</h2>
+        <p>These projects will help you understand CSS concepts through hands-on examples.</p>
+        <p>Each project focuses on specific CSS techniques and builds upon your HTML knowledge.</p>
+    </div>
+    
+    <div class="projects-container">
+        <div class="project-card">
+            <h2><span class="emoji">🎨</span>CSS Basics</h2>
+            <p>Learn the fundamentals of CSS including selectors, properties, and values.</p>
+            <a href="project1.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📏</span>CSS Box Model</h2>
+            <p>Understand the CSS box model with margins, borders, padding, and content.</p>
+            <a href="project2.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🌈</span>CSS Colors and Backgrounds</h2>
+            <p>Explore different ways to add colors and backgrounds to your web pages.</p>
+            <a href="project3.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🔤</span>CSS Typography</h2>
+            <p>Style text with various font properties, sizes, weights, and more.</p>
+            <a href="project4.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📐</span>CSS Layout Techniques</h2>
+            <p>Learn different layout methods including floats, positioning, and flexbox.</p>
+            <a href="project5.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📱</span>CSS Responsive Design</h2>
+            <p>Create responsive layouts that work well on different screen sizes.</p>
+            <a href="project6.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🔄</span>CSS Transitions</h2>
+            <p>Add smooth transitions and animations to your web elements.</p>
+            <a href="project7.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🧩</span>CSS Grid Layout</h2>
+            <p>Master the powerful CSS Grid system for complex layouts.</p>
+            <a href="project8.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🔍</span>CSS Selectors Advanced</h2>
+            <p>Learn advanced CSS selectors for precise targeting of elements.</p>
+            <a href="project9.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🎭</span>CSS Pseudo-classes</h2>
+            <p>Use pseudo-classes to style elements based on their state or position.</p>
+            <a href="project10.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">✨</span>CSS Effects</h2>
+            <p>Create shadows, gradients, filters, and other visual effects.</p>
+            <a href="project11.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📋</span>CSS Forms Styling</h2>
+            <p>Style form elements to create beautiful and user-friendly forms.</p>
+            <a href="project12.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📊</span>CSS Tables Styling</h2>
+            <p>Transform plain HTML tables into attractive and readable data displays.</p>
+            <a href="project13.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">📱</span>CSS Media Queries</h2>
+            <p>Create responsive designs with media queries for different devices.</p>
+            <a href="project14.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🧮</span>CSS Variables</h2>
+            <p>Use CSS custom properties (variables) for more maintainable stylesheets.</p>
+            <a href="project15.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🎬</span>CSS Animations</h2>
+            <p>Create keyframe animations to bring your web pages to life.</p>
+            <a href="project16.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🧠</span>CSS Best Practices</h2>
+            <p>Learn organization techniques and best practices for writing efficient CSS.</p>
+            <a href="project17.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🌗</span>CSS Dark Mode</h2>
+            <p>Implement a dark mode theme switch using CSS variables and JavaScript.</p>
+            <a href="project18.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🧪</span>CSS Preprocessors</h2>
+            <p>Introduction to CSS preprocessors like SASS with variables and nesting.</p>
+            <a href="project19.html" target="_blank">View Project</a>
+        </div>
+        
+        <div class="project-card">
+            <h2><span class="emoji">🏗️</span>Complete CSS Website</h2>
+            <p>Build a complete website applying multiple CSS concepts together.</p>
+            <a href="project20.html" target="_blank">View Project</a>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="../index.html" class="back-link">← Back to Main Projects Page</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Projects. All rights reserved.</p>
+        <p>These projects are designed for educational purposes to help students learn CSS.</p>
+    </footer>
+</body>
+</html>
+

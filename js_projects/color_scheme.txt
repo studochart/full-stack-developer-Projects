@@ -1,0 +1,10 @@
+StudoChart Brand Theme:
+
+Header Background: #091330 (dark blue)
+Headings Color: #5592f5 (blue)
+Button Background: #5592f5 (blue)
+Button Hover: #09cc09 (green)
+Example Background: #f0f5ff (light blue)
+Example Border: #5592f5 (blue)
+
+Replace all instances of "StudentHub" with "StudoChart"

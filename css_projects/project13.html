@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tables Styling - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Table Styles */
+        
+        /* Basic Table */
+        .basic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .basic-table th,
+        .basic-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .basic-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        /* Styled Table */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .styled-table thead {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .styled-table tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .styled-table tbody tr:nth-child(even) {
+            background-color: #f9f0ff;
+        }
+        
+        .styled-table tbody tr:last-child {
+            border-bottom: 2px solid #9c27b0;
+        }
+        
+        .styled-table tbody tr:hover {
+            background-color: #e1bee7;
+            color: #333;
+        }
+        
+        /* Responsive Table */
+        .responsive-table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px; /* Ensures table doesn't get too squished */
+        }
+        
+        .responsive-table th,
+        .responsive-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .responsive-table thead {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .responsive-table tbody tr:hover {
+            background-color: #f9f0ff;
+        }
+        
+        /* Mobile-friendly Table */
+        .mobile-friendly-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-friendly-table th,
+        .mobile-friendly-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .mobile-friendly-table thead {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .mobile-friendly-table thead {
+                display: none;
+            }
+            
+            .mobile-friendly-table, 
+            .mobile-friendly-table tbody, 
+            .mobile-friendly-table tr, 
+            .mobile-friendly-table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .mobile-friendly-table tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .mobile-friendly-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-friendly-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-left: 15px;
+                font-weight: bold;
+                text-align: left;
+                color: #6a1b9a;
+            }
+            
+            .mobile-friendly-table td:last-child {
+                border-bottom: 0;
+            }
+        }
+        
+        /* Fancy Table */
+        .fancy-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fancy-table thead {
+            background: linear-gradient(to right, #9c27b0, #ba68c8);
+            color: white;
+        }
+        
+        .fancy-table th,
+        .fancy-table td {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .fancy-table th {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .fancy-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        .fancy-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        .fancy-table tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        .fancy-table tbody tr:nth-child(even) {
+            background-color: #f9f0ff;
+        }
+        
+        .fancy-table tbody tr:hover {
+            background-color: #e1bee7;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .fancy-table td {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .fancy-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .fancy-table .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .fancy-table .status-active {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+        
+        .fancy-table .status-pending {
+            background-color: #fff8e1;
+            color: #ff9800;
+        }
+        
+        .fancy-table .status-inactive {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Tables Styling</h1>
+        <p>Transform plain HTML tables into attractive and readable data displays</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Table Styling</h2>
+        <p>Tables are used to display data in rows and columns. While they should primarily be used for tabular data (not for layout), styling tables properly can greatly improve the readability and appearance of your data.</p>
+        <p>In this project, we'll explore various techniques for styling HTML tables to make them more attractive and user-friendly.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Basic Table Styling</h2>
+        <p>Let's start with some basic styling for tables:</p>
+        
+        <div class="code">
+            /* Basic table styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+            
+            th {
+                background-color: #f0f0f0;
+                font-weight: bold;
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Basic Table Example</h3>
+            <table class="basic-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Developer</td>
+                        <td>Engineering</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Designer</td>
+                        <td>Creative</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Manager</td>
+                        <td>Operations</td>
+                    </tr>
+                    <tr>
+                        <td>Alice Williams</td>
+                        <td>alice@example.com</td>
+                        <td>Analyst</td>
+                        <td>Finance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Styled Table</h2>
+        <p>Now let's create a more visually appealing table with better styling:</p>
+        
+        <div class="code">
+            /* Styled table */
+            .styled-table {
+                width: 100%;
+                border-collapse: collapse;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .styled-table thead {
+                background-color: #9c27b0;
+                color: white;
+            }
+            
+            .styled-table th, .styled-table td {
+                padding: 12px 15px;
+                text-align: left;
+            }
+            
+            .styled-table tbody tr {
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .styled-table tbody tr:nth-child(even) {
+                background-color: #f9f0ff;
+            }
+            
+            .styled-table tbody tr:hover {
+                background-color: #e1bee7;
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Styled Table Example</h3>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Developer</td>
+                        <td>Engineering</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Designer</td>
+                        <td>Creative</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Manager</td>
+                        <td>Operations</td>
+                    </tr>
+                    <tr>
+                        <td>Alice Williams</td>
+                        <td>alice@example.com</td>
+                        <td>Analyst</td>
+                        <td>Finance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Tables Styling Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS table styling.</p>
+    </footer>
+</body>
+</html>
+

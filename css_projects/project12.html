@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Forms Styling - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Basic Form Styling */
+        .basic-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+        
+        .basic-form input[type="text"],
+        .basic-form input[type="email"],
+        .basic-form input[type="password"],
+        .basic-form textarea,
+        .basic-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        .basic-form button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .basic-form button:hover {
+            background-color: #09cc09;
+        }
+        
+        /* Modern Form Styling */
+        .modern-form .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .modern-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #6a1b9a;
+        }
+        
+        .modern-form input[type="text"],
+        .modern-form input[type="email"],
+        .modern-form input[type="password"],
+        .modern-form textarea,
+        .modern-form select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1bee7;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .modern-form input:focus,
+        .modern-form textarea:focus,
+        .modern-form select:focus {
+            border-color: #9c27b0;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.2);
+        }
+        
+        .modern-form .input-icon {
+            position: relative;
+        }
+        
+        .modern-form .input-icon i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 12px;
+            color: #9c27b0;
+        }
+        
+        .modern-form .input-icon input {
+            padding-left: 40px;
+        }
+        
+        .modern-form .checkbox-group,
+        .modern-form .radio-group {
+            margin-bottom: 15px;
+        }
+        
+        .modern-form .checkbox-label,
+        .modern-form .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        
+        .modern-form .checkbox-input,
+        .modern-form .radio-input {
+            margin-right: 10px;
+        }
+        
+        .modern-form .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modern-form .btn {
+            background-color: #9c27b0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .modern-form .btn:hover {
+            background-color: #7b1fa2;
+            transform: translateY(-2px);
+        }
+        
+        .modern-form .btn-secondary {
+            background-color: transparent;
+            color: #9c27b0;
+            border: 2px solid #9c27b0;
+        }
+        
+        .modern-form .btn-secondary:hover {
+            background-color: #f9f0ff;
+        }
+        
+        /* Custom Checkbox and Radio */
+        .custom-control {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .custom-control input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .radio-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .custom-control:hover input ~ .checkmark,
+        .custom-control:hover input ~ .radio-mark {
+            background-color: #e1bee7;
+        }
+        
+        .custom-control input:checked ~ .checkmark,
+        .custom-control input:checked ~ .radio-mark {
+            background-color: #9c27b0;
+        }
+        
+        .checkmark:after,
+        .radio-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .custom-control input:checked ~ .checkmark:after,
+        .custom-control input:checked ~ .radio-mark:after {
+            display: block;
+        }
+        
+        .custom-control .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .custom-control .radio-mark:after {
+            top: 6px;
+            left: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+        
+        /* Form Validation Styling */
+        .validation-form input:required {
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .validation-form input:valid {
+            border-color: #4caf50;
+        }
+        
+        .validation-form input:invalid:not(:placeholder-shown) {
+            border-color: #f44336;
+        }
+        
+        .validation-form .error-message {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .validation-form input:invalid:not(:placeholder-shown) + .error-message {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Forms Styling</h1>
+        <p>Style form elements to create beautiful and user-friendly forms</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Form Styling</h2>
+        <p>Forms are essential components of web applications, allowing users to input data and interact with your site. Styling forms not only improves their appearance but also enhances usability and accessibility.</p>
+        <p>In this project, we'll explore various techniques for styling form elements to create attractive and user-friendly forms.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Basic Form Styling</h2>
+        <p>Let's start with some basic styling for form elements:</p>
+        
+        <div class="code">
+            /* Basic form styling */
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            textarea,
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            
+            button {
+                background-color: #5592f5;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Basic Form Example</h3>
+            <div class="form-container">
+                <form class="basic-form">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option value="">Select your country</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="au">Australia</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Forms Styling Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS form styling.</p>
+    </footer>
+</body>
+</html>
+

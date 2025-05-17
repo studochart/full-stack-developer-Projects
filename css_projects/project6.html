@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Responsive Design - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Responsive Design Examples */
+        .responsive-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .responsive-box {
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        /* Fluid Layout Example */
+        .fluid-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .fluid-column {
+            flex: 1;
+            min-width: 200px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        /* Responsive Grid Example */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .grid-item {
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        /* Responsive Images Example */
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #9c27b0;
+            border-radius: 5px;
+        }
+        
+        /* Responsive Text Example */
+        .responsive-text {
+            font-size: calc(1rem + 1vw);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        /* Responsive Navigation Example */
+        .nav-container {
+            background-color: #9c27b0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .responsive-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .responsive-nav li {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .responsive-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+        }
+        
+        .responsive-nav a:hover {
+            background-color: #7b1fa2;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background-color: #9c27b0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .responsive-nav {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .responsive-nav.show {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .fluid-column {
+                min-width: 100%;
+            }
+        }
+        
+        /* Viewport Units Example */
+        .viewport-demo {
+            height: 50vh;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .vw-text {
+            font-size: 5vw;
+            text-align: center;
+        }
+        
+        /* Responsive Table Example */
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .responsive-table th, .responsive-table td {
+            border: 1px solid #9c27b0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .responsive-table th {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .responsive-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+    <script>
+        // Simple JavaScript for the responsive navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.responsive-nav');
+            
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CSS Responsive Design</h1>
+        <p>Create websites that look great on all devices</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Responsive Design</h2>
+        <p>Responsive web design is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes. It's essential in today's multi-device world.</p>
+        <p>In this project, we'll explore various techniques for creating responsive layouts that adapt to different screen sizes.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Responsive Design Principles</h2>
+        <p>Responsive design is built on three main principles:</p>
+        <ol>
+            <li><strong>Fluid Layouts</strong> - Using relative units instead of fixed pixels</li>
+            <li><strong>Flexible Images</strong> - Images that scale with the layout</li>
+            <li><strong>Media Queries</strong> - CSS rules that apply based on device characteristics</li>
+        </ol>
+    </div>
+    
+    <div class="container">
+        <h2>Media Queries</h2>
+        <p>Media queries allow you to apply CSS styles based on device characteristics like width, height, or orientation.</p>
+        
+        <div class="code">
+            /* Basic media query syntax */
+            @media (max-width: 768px) {
+                /* CSS rules for screens 768px wide or less */
+            }
+            
+            @media (min-width: 769px) and (max-width: 1024px) {
+                /* CSS rules for screens between 769px and 1024px */
+            }
+            
+            @media (min-width: 1025px) {
+                /* CSS rules for screens 1025px or wider */
+            }
+            
+            /* Orientation-based media query */
+            @media (orientation: landscape) {
+                /* CSS rules for landscape orientation */
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Responsive Navigation Example</h3>
+            <p>Resize your browser window to see how this navigation changes:</p>
+            
+            <div class="nav-container">
+                <button class="menu-toggle">☰ Menu</button>
+                <ul class="responsive-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Fluid Layouts</h2>
+        <p>Fluid layouts use relative units (percentages, em, rem) instead of fixed pixels to allow content to adapt to different screen sizes.</p>
+        
+        <div class="example">
+            <h3>Fluid Layout Example</h3>
+            <div class="fluid-layout">
+                <div class="fluid-column">
+                    <h4>Column 1</h4>
+                    <p>This column will resize based on available space.</p>
+                </div>
+                <div class="fluid-column">
+                    <h4>Column 2</h4>
+                    <p>These columns will stack on smaller screens.</p>
+                </div>
+                <div class="fluid-column">
+                    <h4>Column 3</h4>
+                    <p>Try resizing your browser window to see the effect.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Responsive Design Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn responsive web design.</p>
+    </footer>
+</body>
+</html>
+

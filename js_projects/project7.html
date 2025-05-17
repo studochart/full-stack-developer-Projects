@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Functions - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        /* Specific styles for timing examples */
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #9c27b0;
+            border-radius: 8px;
+            margin: 20px auto;
+            position: relative;
+            left: 0;
+            transition: left 0.5s ease-out;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #9c27b0;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .countdown-display {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            color: #9c27b0;
+            margin: 20px 0;
+        }
+        
+        .slideshow {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide:nth-child(1) {
+            background-color: #9c27b0;
+        }
+        
+        .slide:nth-child(2) {
+            background-color: #2196f3;
+        }
+        
+        .slide:nth-child(3) {
+            background-color: #4caf50;
+        }
+        
+        .slide:nth-child(4) {
+            background-color: #ff9800;
+        }
+        
+        .typing-effect {
+            font-size: 24px;
+            min-height: 30px;
+            margin: 20px 0;
+        }
+        
+        .clock {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Timing Functions</h1>
+        <p>Use setTimeout and setInterval to control when code executes</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Timing Functions</h2>
+        <p>JavaScript provides timing functions that allow you to execute code at specified time intervals. These functions are essential for creating animations, updating content periodically, implementing countdowns, and more.</p>
+        <p>In this project, we'll explore the two main timing functions in JavaScript: <code>setTimeout</code> and <code>setInterval</code>, and see how they can be used to create various timing-based effects.</p>
+    </div>
+    
+    <div class="container">
+        <h2>setTimeout</h2>
+        <p>The <code>setTimeout</code> function executes a specified function once after a specified delay (in milliseconds).</p>
+        
+        <div class="code">
+            // Basic syntax
+            setTimeout(function, delay, param1, param2, ...);
+            
+            // Example: Execute a function after 2 seconds
+            setTimeout(function() {
+                console.log("This message appears after 2 seconds");
+            }, 2000);
+            
+            // With parameters
+            setTimeout(function(name) {
+                console.log("Hello, " + name);
+            }, 2000, "John");
+            
+            // Using a named function
+            function greet(name) {
+                console.log("Hello, " + name);
+            }
+            
+            setTimeout(greet, 2000, "John");
+            
+            // Storing the timeout ID
+            const timeoutId = setTimeout(function() {
+                console.log("This may never run");
+            }, 5000);
+            
+            // Canceling the timeout
+            clearTimeout(timeoutId);
+        </div>
+        
+        <div class="example">
+            <h3>setTimeout Example</h3>
+            <div class="interactive">
+                <h3>Delayed Message</h3>
+                <div class="form-group">
+                    <input type="text" id="messageInput" placeholder="Enter a message" value="Hello, world!">
+                    <input type="number" id="delayInput" placeholder="Delay (ms)" value="2000" min="100" max="10000">
+                    <button id="startTimeoutButton">Show Message</button>
+                    <button id="cancelTimeoutButton">Cancel</button>
+                </div>
+                <div id="timeoutResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>setInterval</h2>
+        <p>The <code>setInterval</code> function repeatedly executes a specified function at specified time intervals (in milliseconds).</p>
+        
+        <div class="code">
+            // Basic syntax
+            setInterval(function, interval, param1, param2, ...);
+            
+            // Example: Execute a function every 1 second
+            setInterval(function() {
+                console.log("This message appears every second");
+            }, 1000);
+            
+            // With parameters
+            setInterval(function(count) {
+                console.log("Count: " + count);
+            }, 1000, 42);
+            
+            // Using a named function
+            function updateClock() {
+                const now = new Date();
+                console.log(now.toLocaleTimeString());
+            }
+            
+            setInterval(updateClock, 1000);
+            
+            // Storing the interval ID
+            const intervalId = setInterval(function() {
+                console.log("Tick");
+            }, 1000);
+            
+            // Canceling the interval
+            clearInterval(intervalId);
+        </div>
+        
+        <div class="example">
+            <h3>setInterval Example</h3>
+            <div class="interactive">
+                <h3>Digital Clock</h3>
+                <div class="clock" id="digitalClock">00:00:00</div>
+                <div class="form-group">
+                    <button id="startClockButton">Start Clock</button>
+                    <button id="stopClockButton">Stop Clock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Practical Examples</h2>
+        
+        <div class="example">
+            <h3>Countdown Timer</h3>
+            <div class="interactive">
+                <h3>Countdown</h3>
+                <div class="form-group">
+                    <input type="number" id="countdownInput" placeholder="Seconds" value="10" min="1" max="60">
+                    <button id="startCountdownButton">Start Countdown</button>
+                    <button id="resetCountdownButton">Reset</button>
+                </div>
+                <div class="countdown-display" id="countdownDisplay">10</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="countdownProgress"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>Simple Animation</h3>
+            <div class="interactive">
+                <h3>Moving Box</h3>
+                <div class="animation-box" id="animationBox"></div>
+                <div class="form-group">
+                    <button id="startAnimationButton">Start Animation</button>
+                    <button id="stopAnimationButton">Stop Animation</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>Slideshow</h3>
+            <div class="interactive">
+                <h3>Auto Slideshow</h3>
+                <div class="slideshow" id="slideshow">
+                    <div class="slide active">Slide 1</div>
+                    <div class="slide">Slide 2</div>
+                    <div class="slide">Slide 3</div>
+                    <div class="slide">Slide 4</div>
+                </div>
+                <div class="form-group">
+                    <button id="startSlideshowButton">Start Slideshow</button>
+                    <button id="stopSlideshowButton">Stop Slideshow</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h3>Typing Effect</h3>
+            <div class="interactive">
+                <h3>Text Typing Animation</h3>
+                <div class="form-group">
+                    <input type="text" id="typingInput" placeholder="Enter text to type" value="Welcome to JavaScript Timing Functions!">
+                    <button id="startTypingButton">Start Typing</button>
+                    <button id="stopTypingButton">Stop</button>
+                </div>
+                <div class="typing-effect" id="typingEffect"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - JavaScript Timing Functions Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript timing functions.</p>
+    </footer>
+    
+    <script>
+        // setTimeout Example
+        let timeoutId;
+        
+        document.getElementById('startTimeoutButton').addEventListener('click', function() {
+            const message = document.getElementById('messageInput').value;
+            const delay = parseInt(document.getElementById('delayInput').value);
+            const resultElement = document.getElementById('timeoutResult');
+            
+            if (isNaN(delay) || delay < 100 || delay > 10000) {
+                resultElement.textContent = "Please enter a valid delay between 100 and 10000 ms.";
+                return;
+            }
+            
+            resultElement.textContent = `Message will appear in ${delay/1000} seconds...`;
+            
+            // Clear any existing timeout
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            
+            // Set a new timeout
+            timeoutId = setTimeout(function() {
+                resultElement.textContent = message;
+                timeoutId = null;
+            }, delay);
+        });
+        
+        document.getElementById('cancelTimeoutButton').addEventListener('click', function() {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
+                document.getElementById('timeoutResult').textContent = "Timeout canceled.";
+            } else {
+                document.getElementById('timeoutResult').textContent = "No active timeout to cancel.";
+            }
+        });
+        
+        // setInterval Example - Digital Clock
+        let clockIntervalId;
+        
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('digitalClock').textContent = now.toLocaleTimeString();
+        }
+        
+        // Initialize the clock
+        updateClock();
+        
+        document.getElementById('startClockButton').addEventListener('click', function() {
+            if (!clockIntervalId) {
+                updateClock(); // Update immediately
+                clockIntervalId = setInterval(updateClock, 1000);
+                this.disabled = true;
+                document.getElementById('stopClockButton').disabled = false;
+            }
+        });
+        
+        document.getElementById('stopClockButton').addEventListener('click', function() {
+            if (clockIntervalId) {
+                clearInterval(clockIntervalId);
+                clockIntervalId = null;
+                this.disabled = true;
+                document.getElementById('startClockButton').disabled = false;
+            }
+        });
+        
+        // Countdown Timer Example
+        let countdownIntervalId;
+        let countdownSeconds;
+        let totalSeconds;
+        
+        function updateCountdown() {
+            const countdownDisplay = document.getElementById('countdownDisplay');
+            const countdownProgress = document.getElementById('countdownProgress');
+            
+            countdownSeconds--;
+            countdownDisplay.textContent = countdownSeconds;
+            
+            // Update progress bar
+            const progressPercentage = ((totalSeconds - countdownSeconds) / totalSeconds) * 100;
+            countdownProgress.style.width = `${progressPercentage}%`;
+            
+            if (countdownSeconds <= 0) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+                countdownDisplay.textContent = "Time's up!";
+                document.getElementById('startCountdownButton').disabled = false;
+            }
+        }
+        
+        document.getElementById('startCountdownButton').addEventListener('click', function() {
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+            }
+            
+            totalSeconds = parseInt(document.getElementById('countdownInput').value);
+            
+            if (isNaN(totalSeconds) || totalSeconds < 1 || totalSeconds > 60) {
+                document.getElementById('countdownDisplay').textContent = "Enter a valid number (1-60)";
+                return;
+            }
+            
+            countdownSeconds = totalSeconds;
+            document.getElementById('countdownDisplay').textContent = countdownSeconds;
+            document.getElementById('countdownProgress').style.width = '0%';
+            
+            this.disabled = true;
+            countdownIntervalId = setInterval(updateCountdown, 1000);
+        });
+        
+        document.getElementById('resetCountdownButton').addEventListener('click', function() {
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+            }
+            
+            const defaultValue = document.getElementById('countdownInput').value;
+            document.getElementById('countdownDisplay').textContent = defaultValue;
+            document.getElementById('countdownProgress').style.width = '0%';
+            document.getElementById('startCountdownButton').disabled = false;
+        });
+        
+        // Simple Animation Example
+        let animationIntervalId;
+        let animationDirection = 1; // 1 for right, -1 for left
+        let animationPosition = 0;
+        
+        function updateAnimation() {
+            const box = document.getElementById('animationBox');
+            const container = box.parentElement;
+            const maxPosition = container.clientWidth - box.clientWidth;
+            
+            animationPosition += 5 * animationDirection;
+            
+            // Change direction if we hit the edges
+            if (animationPosition >= maxPosition) {
+                animationPosition = maxPosition;
+                animationDirection = -1;
+            } else if (animationPosition <= 0) {
+                animationPosition = 0;
+                animationDirection = 1;
+            }
+            
+            box.style.left = animationPosition + 'px';
+        }
+        
+        document.getElementById('startAnimationButton').addEventListener('click', function() {
+            if (!animationIntervalId) {
+                animationIntervalId = setInterval(updateAnimation, 50);
+                this.disabled = true;
+                document.getElementById('stopAnimationButton').disabled = false;
+            }
+        });
+        
+        document.getElementById('stopAnimationButton').addEventListener('click', function() {
+            if (animationIntervalId) {
+                clearInterval(animationIntervalId);
+                animationIntervalId = null;
+                this.disabled = true;
+                document.getElementById('startAnimationButton').disabled = false;
+            }
+        });
+        
+        // Slideshow Example
+        let slideshowIntervalId;
+        let currentSlide = 0;
+        
+        function updateSlideshow() {
+            const slides = document.querySelectorAll('#slideshow .slide');
+            
+            // Remove active class from all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Move to the next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Add active class to the current slide
+            slides[currentSlide].classList.add('active');
+        }
+        
+        document.getElementById('startSlideshowButton').addEventListener('click', function() {
+            if (!slideshowIntervalId) {
+                slideshowIntervalId = setInterval(updateSlideshow, 2000);
+                this.disabled = true;
+                document.getElementById('stopSlideshowButton').disabled = false;
+            }
+        });
+        
+        document.getElementById('stopSlideshowButton').addEventListener('click', function() {
+            if (slideshowIntervalId) {
+                clearInterval(slideshowIntervalId);
+                slideshowIntervalId = null;
+                this.disabled = true;
+                document.getElementById('startSlideshowButton').disabled = false;
+            }
+        });
+        
+        // Typing Effect Example
+        let typingIntervalId;
+        let typingIndex = 0;
+        let typingText = '';
+        
+        function updateTyping() {
+            const typingEffect = document.getElementById('typingEffect');
+            
+            if (typingIndex <= typingText.length) {
+                typingEffect.textContent = typingText.substring(0, typingIndex);
+                typingIndex++;
+            } else {
+                clearInterval(typingIntervalId);
+                typingIntervalId = null;
+                document.getElementById('startTypingButton').disabled = false;
+                document.getElementById('stopTypingButton').disabled = true;
+            }
+        }
+        
+        document.getElementById('startTypingButton').addEventListener('click', function() {
+            if (typingIntervalId) {
+                clearInterval(typingIntervalId);
+            }
+            
+            typingText = document.getElementById('typingInput').value;
+            typingIndex = 0;
+            document.getElementById('typingEffect').textContent = '';
+            
+            this.disabled = true;
+            document.getElementById('stopTypingButton').disabled = false;
+            
+            typingIntervalId = setInterval(updateTyping, 100);
+        });
+        
+        document.getElementById('stopTypingButton').addEventListener('click', function() {
+            if (typingIntervalId) {
+                clearInterval(typingIntervalId);
+                typingIntervalId = null;
+                this.disabled = true;
+                document.getElementById('startTypingButton').disabled = false;
+            }
+        });
+        
+        // Initialize button states
+        document.getElementById('stopClockButton').disabled = true;
+        document.getElementById('stopAnimationButton').disabled = true;
+        document.getElementById('stopSlideshowButton').disabled = true;
+        document.getElementById('stopTypingButton').disabled = true;
+    </script>
+</body>
+</html>
+

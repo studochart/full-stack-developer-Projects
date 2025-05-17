@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layout Techniques - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Layout Examples */
+        .box {
+            padding: 20px;
+            margin: 10px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        /* Display Property Examples */
+        .display-example div {
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            margin: 5px;
+            padding: 10px;
+        }
+        
+        .display-block { display: block; }
+        .display-inline { display: inline; }
+        .display-inline-block { display: inline-block; width: 150px; }
+        .display-none { display: none; }
+        
+        /* Float Examples */
+        .float-example {
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow: auto; /* Clearfix */
+        }
+        
+        .float-left {
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin-right: 15px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            text-align: center;
+            line-height: 150px;
+        }
+        
+        .float-right {
+            float: right;
+            width: 150px;
+            height: 150px;
+            margin-left: 15px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            text-align: center;
+            line-height: 150px;
+        }
+        
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* Position Examples */
+        .position-example {
+            position: relative;
+            height: 200px;
+            border: 2px solid #9c27b0;
+            margin-bottom: 20px;
+            background-color: #f9f0ff;
+        }
+        
+        .position-static {
+            position: static;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            width: 150px;
+        }
+        
+        .position-relative {
+            position: relative;
+            top: 20px;
+            left: 20px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            width: 150px;
+        }
+        
+        .position-absolute {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            width: 150px;
+        }
+        
+        .position-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #9c27b0;
+            color: white;
+            border: 2px solid #6a1b9a;
+            padding: 10px;
+            width: 150px;
+            z-index: 100;
+            text-align: center;
+        }
+        
+        /* Flexbox Examples */
+        .flexbox-container {
+            display: flex;
+            border: 2px solid #9c27b0;
+            margin-bottom: 20px;
+        }
+        
+        .flex-direction-row { flex-direction: row; }
+        .flex-direction-column { flex-direction: column; }
+        .flex-wrap { flex-wrap: wrap; }
+        .flex-nowrap { flex-wrap: nowrap; }
+        
+        .justify-content-start { justify-content: flex-start; }
+        .justify-content-center { justify-content: center; }
+        .justify-content-end { justify-content: flex-end; }
+        .justify-content-between { justify-content: space-between; }
+        .justify-content-around { justify-content: space-around; }
+        
+        .align-items-start { align-items: flex-start; }
+        .align-items-center { align-items: center; }
+        .align-items-end { align-items: flex-end; }
+        .align-items-stretch { align-items: stretch; }
+        
+        .flex-item {
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            min-width: 70px;
+        }
+        
+        .flex-grow-1 { flex-grow: 1; }
+        .flex-grow-2 { flex-grow: 2; }
+        .flex-grow-3 { flex-grow: 3; }
+        
+        .flex-basis-100 { flex-basis: 100px; }
+        .flex-basis-200 { flex-basis: 200px; }
+        
+        .flex-order-1 { order: 1; }
+        .flex-order-2 { order: 2; }
+        .flex-order-3 { order: 3; }
+        
+        /* Grid Examples */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .grid-container-areas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+                "header header header header"
+                "sidebar main main main"
+                "footer footer footer footer";
+            grid-gap: 10px;
+            border: 2px solid #9c27b0;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .grid-item {
+            background-color: #e1bee7;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .grid-header { grid-area: header; }
+        .grid-sidebar { grid-area: sidebar; }
+        .grid-main { grid-area: main; }
+        .grid-footer { grid-area: footer; }
+        
+        .grid-column-span-2 { grid-column: span 2; }
+        .grid-row-span-2 { grid-row: span 2; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Layout Techniques</h1>
+        <p>Master different methods for arranging elements on a web page</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to CSS Layout</h2>
+        <p>CSS layout is about arranging elements on a web page. There are several techniques for creating layouts, from traditional methods like floats and positioning to modern approaches like Flexbox and Grid.</p>
+        <p>In this project, we'll explore these different layout methods and understand when to use each one.</p>
+    </div>
+    
+    <div class="container">
+        <h2>The Display Property</h2>
+        <p>The <code>display</code> property specifies how an element is displayed and affects the layout flow.</p>
+        
+        <div class="code">
+            display: block;
+            display: inline;
+            display: inline-block;
+            display: flex;
+            display: grid;
+            display: none;
+        </div>
+        
+        <div class="example">
+            <h3>Display Property Examples</h3>
+            <div class="display-example">
+                <div class="display-block">display: block (takes full width)</div>
+                <div class="display-inline">display: inline (only takes necessary width)</div>
+                <div class="display-inline">another inline element next to the previous one</div>
+                <div class="display-inline-block">display: inline-block</div>
+                <div class="display-inline-block">another inline-block element</div>
+                <div class="display-none">This element has display: none (not visible)</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Float Layout</h2>
+        <p>The <code>float</code> property was one of the earliest methods for creating layouts. It allows elements to float to the left or right of their container.</p>
+        
+        <div class="code">
+            float: left;
+            float: right;
+            float: none;
+            clear: both; /* Clears floats */
+        </div>
+        
+        <div class="example">
+            <h3>Float Examples</h3>
+            <div class="float-example">
+                <div class="float-left">Float Left</div>
+                <p>This text wraps around the floated element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+            </div>
+            
+            <div class="float-example">
+                <div class="float-right">Float Right</div>
+                <p>This text wraps around the floated element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+            </div>
+            
+            <div class="float-example clearfix">
+                <div class="float-left">Float Left</div>
+                <div class="float-right">Float Right</div>
+                <p>This text is between two floated elements. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Layout Techniques Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS layout methods.</p>
+    </footer>
+</body>
+</html>
+

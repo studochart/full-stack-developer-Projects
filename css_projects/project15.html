@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables - StudoChart</title>
+    <style>
+        /* CSS Variables (Custom Properties) */
+        :root {
+            /* Colors */
+            --primary-color: #9c27b0;
+            --primary-dark: #6a1b9a;
+            --primary-light: #e1bee7;
+            --primary-very-light: #f9f0ff;
+            --text-color: #333;
+            --text-light: #666;
+            --background-color: #f5f5f5;
+            --white: #fff;
+            
+            /* Spacing */
+            --spacing-small: 10px;
+            --spacing-medium: 20px;
+            --spacing-large: 30px;
+            
+            /* Typography */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-small: 0.875rem;
+            --font-size-normal: 1rem;
+            --font-size-medium: 1.25rem;
+            --font-size-large: 1.5rem;
+            --font-size-xlarge: 2rem;
+            --font-size-xxlarge: 3rem;
+            
+            /* Border Radius */
+            --border-radius-small: 4px;
+            --border-radius-medium: 8px;
+            --border-radius-large: 16px;
+            
+            /* Box Shadow */
+            --shadow-small: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-medium: 0 4px 8px rgba(0,0,0,0.1);
+            --shadow-large: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        /* Dark Theme Variables */
+        .dark-theme {
+            --primary-color: #ce93d8;
+            --primary-dark: #9c27b0;
+            --primary-light: #4a148c;
+            --primary-very-light: #3a1078;
+            --text-color: #f5f5f5;
+            --text-light: #ddd;
+            --background-color: #121212;
+            --white: #1e1e1e;
+        }
+        
+        /* Base Styles Using Variables */
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-medium);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-medium);
+            text-align: center;
+            border-radius: var(--border-radius-medium);
+            margin-bottom: var(--spacing-large);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-dark);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: var(--white);
+            margin-top: 0;
+            font-size: var(--font-size-xxlarge);
+        }
+        
+        h2 {
+            font-size: var(--font-size-xlarge);
+        }
+        
+        h3 {
+            font-size: var(--font-size-large);
+        }
+        
+        .container {
+            background-color: var(--white);
+            padding: var(--spacing-large);
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: var(--spacing-large);
+        }
+        
+        .example {
+            background-color: var(--primary-very-light);
+            border-left: 4px solid var(--primary-color);
+            padding: var(--spacing-medium);
+            margin: var(--spacing-medium) 0;
+            border-radius: 0 var(--border-radius-medium) var(--border-radius-medium) 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: var(--spacing-medium);
+            border-radius: var(--border-radius-medium);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: var(--spacing-medium) 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: var(--spacing-large);
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: var(--spacing-small) var(--spacing-medium);
+            text-decoration: none;
+            border-radius: var(--border-radius-small);
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: var(--primary-color);
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--text-light);
+            border-top: 1px solid #ddd;
+            padding-top: var(--spacing-medium);
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-small) var(--spacing-medium);
+            border-radius: var(--border-radius-small);
+            cursor: pointer;
+            font-size: var(--font-size-normal);
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Variable Examples */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .color-box {
+            height: 100px;
+            border-radius: var(--border-radius-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            box-shadow: var(--shadow-small);
+        }
+        
+        .primary-color {
+            background-color: var(--primary-color);
+        }
+        
+        .primary-dark {
+            background-color: var(--primary-dark);
+        }
+        
+        .primary-light {
+            background-color: var(--primary-light);
+        }
+        
+        .primary-very-light {
+            background-color: var(--primary-very-light);
+            color: var(--text-color);
+        }
+        
+        .spacing-example {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .spacing-box {
+            background-color: var(--primary-light);
+            border-radius: var(--border-radius-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .spacing-small {
+            padding: var(--spacing-small);
+        }
+        
+        .spacing-medium {
+            padding: var(--spacing-medium);
+        }
+        
+        .spacing-large {
+            padding: var(--spacing-large);
+        }
+        
+        .typography-example {
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .font-small {
+            font-size: var(--font-size-small);
+        }
+        
+        .font-normal {
+            font-size: var(--font-size-normal);
+        }
+        
+        .font-medium {
+            font-size: var(--font-size-medium);
+        }
+        
+        .font-large {
+            font-size: var(--font-size-large);
+        }
+        
+        .font-xlarge {
+            font-size: var(--font-size-xlarge);
+        }
+        
+        .radius-example {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .radius-box {
+            background-color: var(--primary-light);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .radius-small {
+            border-radius: var(--border-radius-small);
+        }
+        
+        .radius-medium {
+            border-radius: var(--border-radius-medium);
+        }
+        
+        .radius-large {
+            border-radius: var(--border-radius-large);
+        }
+        
+        .shadow-example {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-medium);
+        }
+        
+        .shadow-box {
+            background-color: var(--white);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: var(--border-radius-small);
+        }
+        
+        .shadow-small {
+            box-shadow: var(--shadow-small);
+        }
+        
+        .shadow-medium {
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .shadow-large {
+            box-shadow: var(--shadow-large);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Variables</h1>
+        <p>Use CSS custom properties (variables) for more maintainable stylesheets</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to CSS Variables</h2>
+        <p>CSS variables, also known as custom properties, allow you to store specific values to be reused throughout your stylesheet. They help make your CSS more maintainable, flexible, and consistent.</p>
+        <p>With CSS variables, you can define values once and use them multiple times, making it easier to update your styles globally by changing just one value.</p>
+        
+        <button class="theme-toggle" onclick="document.body.classList.toggle('dark-theme')">Toggle Dark/Light Theme</button>
+    </div>
+    
+    <div class="container">
+        <h2>Defining and Using CSS Variables</h2>
+        <p>CSS variables are defined using the <code>--variable-name</code> syntax and are accessed using the <code>var(--variable-name)</code> function:</p>
+        
+        <div class="code">
+            /* Defining variables in the :root selector (global scope) */
+            :root {
+                --primary-color: #9c27b0;
+                --spacing-medium: 20px;
+                --font-size-large: 1.5rem;
+            }
+            
+            /* Using variables */
+            .element {
+                color: var(--primary-color);
+                padding: var(--spacing-medium);
+                font-size: var(--font-size-large);
+            }
+            
+            /* Using variables with fallback values */
+            .another-element {
+                margin: var(--spacing-small, 10px);
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Color Variables Example</h3>
+            <p>These color boxes use the color variables defined in our CSS:</p>
+            
+            <div class="color-palette">
+                <div class="color-box primary-color">Primary</div>
+                <div class="color-box primary-dark">Primary Dark</div>
+                <div class="color-box primary-light">Primary Light</div>
+                <div class="color-box primary-very-light">Primary Very Light</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Variables Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS variables.</p>
+    </footer>
+    
+    <script>
+        // Simple script for the theme toggle button
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+        });
+    </script>
+</body>
+</html>
+

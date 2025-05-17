@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Colors and Backgrounds - StudoChart</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        h1, h2, h3 {
+            color: #5592f5;
+        }
+        
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+        
+        a {
+            color: #9c27b0;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+            text-decoration: none;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .example-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .color-box {
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        /* Color examples */
+        .color-name-red { background-color: red; }
+        .color-name-blue { background-color: blue; }
+        .color-name-green { background-color: green; }
+        .color-name-yellow { background-color: yellow; color: black; }
+        .color-name-purple { background-color: purple; }
+        
+        .color-hex-1 { background-color: #FF0000; }
+        .color-hex-2 { background-color: #00FF00; color: black; }
+        .color-hex-3 { background-color: #0000FF; }
+        .color-hex-4 { background-color: #9C27B0; }
+        .color-hex-5 { background-color: #FF9800; color: black; }
+        
+        .color-rgb-1 { background-color: rgb(255, 0, 0); }
+        .color-rgb-2 { background-color: rgb(0, 255, 0); color: black; }
+        .color-rgb-3 { background-color: rgb(0, 0, 255); }
+        .color-rgb-4 { background-color: rgb(156, 39, 176); }
+        .color-rgb-5 { background-color: rgb(255, 152, 0); color: black; }
+        
+        .color-rgba-1 { background-color: rgba(255, 0, 0, 1); }
+        .color-rgba-2 { background-color: rgba(255, 0, 0, 0.8); }
+        .color-rgba-3 { background-color: rgba(255, 0, 0, 0.6); }
+        .color-rgba-4 { background-color: rgba(255, 0, 0, 0.4); color: black; }
+        .color-rgba-5 { background-color: rgba(255, 0, 0, 0.2); color: black; }
+        
+        .color-hsl-1 { background-color: hsl(0, 100%, 50%); }
+        .color-hsl-2 { background-color: hsl(120, 100%, 50%); color: black; }
+        .color-hsl-3 { background-color: hsl(240, 100%, 50%); }
+        .color-hsl-4 { background-color: hsl(300, 100%, 50%); }
+        .color-hsl-5 { background-color: hsl(39, 100%, 50%); color: black; }
+        
+        /* Background examples */
+        .bg-color {
+            background-color: #e1bee7;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-image {
+            background-image: url('https://via.placeholder.com/500');
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-repeat {
+            background-image: url('https://via.placeholder.com/100');
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-repeat-x {
+            background-image: url('https://via.placeholder.com/100');
+            background-repeat: repeat-x;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-repeat-y {
+            background-image: url('https://via.placeholder.com/100');
+            background-repeat: repeat-y;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-no-repeat {
+            background-image: url('https://via.placeholder.com/100');
+            background-repeat: no-repeat;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-position {
+            background-image: url('https://via.placeholder.com/100');
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-size-cover {
+            background-image: url('https://via.placeholder.com/500');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-size-contain {
+            background-image: url('https://via.placeholder.com/500');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .bg-attachment-fixed {
+            background-image: url('https://via.placeholder.com/500');
+            background-attachment: fixed;
+            background-size: cover;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+        
+        /* Gradient examples */
+        .gradient-linear-1 {
+            background: linear-gradient(to right, red, yellow);
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        
+        .gradient-linear-2 {
+            background: linear-gradient(45deg, blue, purple);
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        
+        .gradient-linear-3 {
+            background: linear-gradient(to bottom, #9c27b0, #e1bee7);
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        
+        .gradient-radial {
+            background: radial-gradient(circle, yellow, red);
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        
+        .gradient-multi {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        
+        /* Multiple backgrounds */
+        .multiple-bg {
+            background: 
+                url('https://via.placeholder.com/50') no-repeat top left,
+                url('https://via.placeholder.com/50') no-repeat top right,
+                url('https://via.placeholder.com/50') no-repeat bottom left,
+                url('https://via.placeholder.com/50') no-repeat bottom right,
+                linear-gradient(to right, rgba(156, 39, 176, 0.3), rgba(156, 39, 176, 0.3));
+            height: 200px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Colors and Backgrounds</h1>
+            <p>Learn how to add colors and backgrounds to your web pages</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#color-formats">Color Formats</a></li>
+                <li><a href="#text-colors">Text Colors</a></li>
+                <li><a href="#background-colors">Background Colors</a></li>
+                <li><a href="#background-images">Background Images</a></li>
+                <li><a href="#gradients">Gradients</a></li>
+                <li><a href="#multiple-backgrounds">Multiple Backgrounds</a></li>
+                <li><a href="#practice">Practice Exercise</a></li>
+            </ul>
+        </nav>
+        
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Colors and backgrounds are essential for creating visually appealing web pages. CSS provides various ways to specify colors and apply backgrounds to elements.</p>
+            
+            <p>In this tutorial, you'll learn:</p>
+            <ul>
+                <li>Different formats for specifying colors in CSS</li>
+                <li>How to apply colors to text and backgrounds</li>
+                <li>How to work with background images</li>
+                <li>How to create gradient backgrounds</li>
+                <li>How to use multiple backgrounds</li>
+            </ul>
+        </section>
+        
+        <section id="color-formats">
+            <h2>Color Formats</h2>
+            <p>CSS supports several formats for specifying colors:</p>
+            
+            <h3>1. Color Names</h3>
+            <p>CSS provides 140 named colors like <code>red</code>, <code>blue</code>, <code>green</code>, etc.</p>
+            
+            <div class="example-box">
+                <h4>Color Name Examples:</h4>
+                <div class="color-grid">
+                    <div class="color-box color-name-red">red</div>
+                    <div class="color-box color-name-blue">blue</div>
+                    <div class="color-box color-name-green">green</div>
+                    <div class="color-box color-name-yellow">yellow</div>
+                    <div class="color-box color-name-purple">purple</div>
+                </div>
+                
+                <pre>
+.element-1 { color: red; }
+.element-2 { background-color: blue; }
+                </pre>
+            </div>
+            
+            <h3>2. Hexadecimal Colors</h3>
+            <p>Hexadecimal color codes start with a hash (#) followed by six hexadecimal digits representing RGB values.</p>
+            
+            <div class="example-box">
+                <h4>Hexadecimal Color Examples:</h4>
+                <div class="color-grid">
+                    <div class="color-box color-hex-1">#FF0000<br>Red</div>
+                    <div class="color-box color-hex-2">#00FF00<br>Green</div>
+                    <div class="color-box color-hex-3">#0000FF<br>Blue</div>
+                    <div class="color-box color-hex-4">#9C27B0<br>Purple</div>
+                    <div class="color-box color-hex-5">#FF9800<br>Orange</div>
+                </div>
+                
+                <pre>
+.element-1 { color: #FF0000; } /* Red */
+.element-2 { background-color: #00FF00; } /* Green */
+                </pre>
+                
+                <p>Shorthand hex: If all six digits are made up of three repeated pairs, you can use a shorthand with just three digits.</p>
+                <pre>
+#FF0000 can be written as #F00
+#00FF00 can be written as #0F0
+#0000FF can be written as #00F
+                </pre>
+            </div>
+            
+            <h3>3. RGB Colors</h3>
+            <p>RGB colors are specified using the <code>rgb()</code> function with values for red, green, and blue (0-255).</p>
+            
+            <div class="example-box">
+                <h4>RGB Color Examples:</h4>
+                <div class="color-grid">
+                    <div class="color-box color-rgb-1">rgb(255, 0, 0)<br>Red</div>
+                    <div class="color-box color-rgb-2">rgb(0, 255, 0)<br>Green</div>
+                    <div class="color-box color-rgb-3">rgb(0, 0, 255)<br>Blue</div>
+                    <div class="color-box color-rgb-4">rgb(156, 39, 176)<br>Purple</div>
+                    <div class="color-box color-rgb-5">rgb(255, 152, 0)<br>Orange</div>
+                </div>
+                
+                <pre>
+.element-1 { color: rgb(255, 0, 0); } /* Red */
+.element-2 { background-color: rgb(0, 255, 0); } /* Green */
+                </pre>
+            </div>
+            
+            <h3>4. RGBA Colors</h3>
+            <p>RGBA colors are similar to RGB but include an alpha channel for transparency (0-1).</p>
+            
+            <div class="example-box">
+                <h4>RGBA Color Examples (Red with different opacity levels):</h4>
+                <div class="color-grid">
+                    <div class="color-box color-rgba-1">rgba(255, 0, 0, 1)<br>100%</div>
+                    <div class="color-box color-rgba-2">rgba(255, 0, 0, 0.8)<br>80%</div>
+                    <div class="color-box color-rgba-3">rgba(255, 0, 0, 0.6)<br>60%</div>
+                    <div class="color-box color-rgba-4">rgba(255, 0, 0, 0.4)<br>40%</div>
+                    <div class="color-box color-rgba-5">rgba(255, 0, 0, 0.2)<br>20%</div>
+                </div>
+                
+                <pre>
+.element-1 { color: rgba(255, 0, 0, 1); } /* Fully opaque red */
+.element-2 { background-color: rgba(0, 0, 255, 0.5); } /* Semi-transparent blue */
+                </pre>
+            </div>
+            
+            <h3>5. HSL Colors</h3>
+            <p>HSL colors are specified using the <code>hsl()</code> function with values for hue (0-360), saturation (0-100%), and lightness (0-100%).</p>
+            
+            <div class="example-box">
+                <h4>HSL Color Examples:</h4>
+                <div class="color-grid">
+                    <div class="color-box color-hsl-1">hsl(0, 100%, 50%)<br>Red</div>
+                    <div class="color-box color-hsl-2">hsl(120, 100%, 50%)<br>Green</div>
+                    <div class="color-box color-hsl-3">hsl(240, 100%, 50%)<br>Blue</div>
+                    <div class="color-box color-hsl-4">hsl(300, 100%, 50%)<br>Magenta</div>
+                    <div class="color-box color-hsl-5">hsl(39, 100%, 50%)<br>Orange</div>
+                </div>
+                
+                <pre>
+.element-1 { color: hsl(0, 100%, 50%); } /* Red */
+.element-2 { background-color: hsl(120, 100%, 50%); } /* Green */
+                </pre>
+                
+                <p>HSL also has an HSLA variant that includes an alpha channel for transparency.</p>
+                <pre>
+.element { background-color: hsla(240, 100%, 50%, 0.5); } /* Semi-transparent blue */
+                </pre>
+            </div>
+        </section>
+        
+        <section id="text-colors">
+            <h2>Text Colors</h2>
+            <p>You can set the color of text using the <code>color</code> property.</p>
+            
+            <div class="example-box">
+                <h4>Text Color Examples:</h4>
+                <p style="color: red;">This text is red.</p>
+                <p style="color: #0000FF;">This text is blue (hex).</p>
+                <p style="color: rgb(0, 128, 0);">This text is green (RGB).</p>
+                <p style="color: rgba(128, 0, 128, 0.7);">This text is semi-transparent purple (RGBA).</p>
+                <p style="color: hsl(39, 100%, 50%);">This text is orange (HSL).</p>
+                
+                <pre>
+p { color: red; }
+h1 { color: #5592f5; }
+.highlight { color: rgb(255, 255, 0); }
+.subtle { color: rgba(0, 0, 0, 0.6); }
+.accent { color: hsl(120, 100%, 25%); }
+                </pre>
+            </div>
+        </section>
+        
+        <section id="background-colors">
+            <h2>Background Colors</h2>
+            <p>You can set the background color of elements using the <code>background-color</code> property.</p>
+            
+            <div class="example-box">
+                <h4>Background Color Example:</h4>
+                <div class="bg-color">
+                    <p>This element has a light purple background color.</p>
+                </div>
+                
+                <pre>
+.bg-color {
+    background-color: #e1bee7;
+    padding: 20px;
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="background-images">
+            <h2>Background Images</h2>
+            <p>You can add background images to elements using the <code>background-image</code> property.</p>
+            
+            <div class="example-box">
+                <h4>Basic Background Image:</h4>
+                <div class="bg-image"></div>
+                
+                <pre>
+.bg-image {
+    background-image: url('image.jpg');
+    height: 200px;
+}
+                </pre>
+                
+                <h4>Background Repeat:</h4>
+                <p>By default, background images repeat both horizontally and vertically. You can control this with the <code>background-repeat</code> property.</p>
+                
+                <h5>Default (repeat):</h5>
+                <div class="bg-repeat"></div>
+                
+                <h5>repeat-x:</h5>
+                <div class="bg-repeat-x"></div>
+                
+                <h5>repeat-y:</h5>
+                <div class="bg-repeat-y"></div>
+                
+                <h5>no-repeat:</h5>
+                <div class="bg-no-repeat"></div>
+                
+                <pre>
+.bg-repeat { background-image: url('image.jpg'); } /* Default: repeat */
+.bg-repeat-x { background-image: url('image.jpg'); background-repeat: repeat-x; }
+.bg-repeat-y { background-image: url('image.jpg'); background-repeat: repeat-y; }
+.bg-no-repeat { background-image: url('image.jpg'); background-repeat: no-repeat; }
+                </pre>
+                
+                <h4>Background Position:</h4>
+                <p>You can control the position of a background image using the <code>background-position</code> property.</p>
+                
+                <div class="bg-position"></div>
+                
+                <pre>
+.bg-position {
+    background-image: url('image.jpg');
+    background-repeat: no-repeat;
+    background-position: center; /* Can also use: top, bottom, left, right, or specific values like "20px 30px" */
+}
+                </pre>
+                
+                <h4>Background Size:</h4>
+                <p>You can control the size of a background image using the <code>background-size</code> property.</p>
+                
+                <h5>cover:</h5>
+                <div class="bg-size-cover"></div>
+                
+                <h5>contain:</h5>
+                <div class="bg-size-contain"></div>
+                
+                <pre>
+.bg-size-cover {
+    background-image: url('image.jpg');
+    background-size: cover; /* Scales the image to cover the entire element */
+    background-position: center;
+}
+
+.bg-size-contain {
+    background-image: url('image.jpg');
+    background-size: contain; /* Scales the image to fit inside the element */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+                </pre>
+                
+                <h4>Background Attachment:</h4>
+                <p>You can control how a background image scrolls with the content using the <code>background-attachment</code> property.</p>
+                
+                <div class="bg-attachment-fixed"></div>
+                
+                <pre>
+.bg-attachment-fixed {
+    background-image: url('image.jpg');
+    background-attachment: fixed; /* Image stays fixed when scrolling */
+    background-size: cover;
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="gradients">
+            <h2>Gradients</h2>
+            <p>CSS gradients let you display smooth transitions between two or more colors.</p>
+            
+            <div class="example-box">
+                <h4>Linear Gradients:</h4>
+                <p>Linear gradients transition colors along a straight line.</p>
+                
+                <div class="gradient-linear-1"></div>
+                <div class="gradient-linear-2"></div>
+                <div class="gradient-linear-3"></div>
+                
+                <pre>
+.gradient-linear-1 {
+    background: linear-gradient(to right, red, yellow);
+}
+
+.gradient-linear-2 {
+    background: linear-gradient(45deg, blue, purple);
+}
+
+.gradient-linear-3 {
+    background: linear-gradient(to bottom, #9c27b0, #e1bee7);
+}
+                </pre>
+                
+                <h4>Radial Gradients:</h4>
+                <p>Radial gradients transition colors from a central point outward.</p>
+                
+                <div class="gradient-radial"></div>
+                
+                <pre>
+.gradient-radial {
+    background: radial-gradient(circle, yellow, red);
+}
+                </pre>
+                
+                <h4>Multiple Color Stops:</h4>
+                <p>Gradients can have multiple color stops.</p>
+                
+                <div class="gradient-multi"></div>
+                
+                <pre>
+.gradient-multi {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="multiple-backgrounds">
+            <h2>Multiple Backgrounds</h2>
+            <p>CSS allows you to apply multiple backgrounds to a single element. They are stacked with the first background on top.</p>
+            
+            <div class="example-box">
+                <div class="multiple-bg"></div>
+                
+                <pre>
+.multiple-bg {
+    background: 
+        url('image1.jpg') no-repeat top left,
+        url('image2.jpg') no-repeat top right,
+        url('image3.jpg') no-repeat bottom left,
+        url('image4.jpg') no-repeat bottom right,
+        linear-gradient(to right, rgba(156, 39, 176, 0.3), rgba(156, 39, 176, 0.3));
+}
+                </pre>
+            </div>
+        </section>
+        
+        <section id="practice">
+            <h2>Practice Exercise</h2>
+            <p>Create a card with the following specifications:</p>
+            
+            <ol>
+                <li>Create a card with a width of 300px and some padding</li>
+                <li>Give the card a gradient background that transitions from a dark color to a lighter color</li>
+                <li>Add a header section with white text</li>
+                <li>Add a content section with a solid white background</li>
+                <li>Include an image in the content section</li>
+                <li>Add some text with custom colors</li>
+                <li>Add a footer with a semi-transparent background color</li>
+            </ol>
+            
+            <p>This exercise will help you practice using colors and backgrounds together in a real-world example.</p>
+        </section>
+        
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+</body>
+</html>
+

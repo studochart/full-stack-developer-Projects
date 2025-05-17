@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #09cc09;
+        }
+
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Basics - StudoChart</h1>
+        <p>Learn the fundamentals of JavaScript including variables, data types, and operators</p>
+    </header>
+
+    <div class="container">
+        <h2>Introduction to JavaScript</h2>
+        <p>JavaScript is a programming language that allows you to implement complex features on web pages. It's an essential technology for web development, enabling interactive web pages and is an essential part of web applications.</p>
+        <p>In this project, we'll explore the basic concepts of JavaScript, including variables, data types, and operators.</p>
+    </div>
+
+    <div class="container">
+        <h2>Variables</h2>
+        <p>Variables are containers for storing data values. In JavaScript, you can declare variables using <code>var</code>, <code>let</code>, or <code>const</code>.</p>
+
+        <div class="code">
+            // Using var (older way, function-scoped)
+            var name = "John";
+
+            // Using let (block-scoped, can be reassigned)
+            let age = 25;
+
+            // Using const (block-scoped, cannot be reassigned)
+            const PI = 3.14159;
+        </div>
+
+        <div class="example">
+            <h3>Variable Declaration Example</h3>
+            <div class="interactive">
+                <button id="varButton">Run var Example</button>
+                <button id="letButton">Run let Example</button>
+                <button id="constButton">Run const Example</button>
+                <div id="variableResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Data Types</h2>
+        <p>JavaScript has several built-in data types:</p>
+        <ul>
+            <li><strong>String</strong>: Text values, enclosed in quotes</li>
+            <li><strong>Number</strong>: Numeric values</li>
+            <li><strong>Boolean</strong>: true or false</li>
+            <li><strong>Undefined</strong>: A variable without a value</li>
+            <li><strong>Null</strong>: An intentional absence of any object value</li>
+            <li><strong>Object</strong>: Collections of related data</li>
+            <li><strong>Symbol</strong>: Unique and immutable primitive values</li>
+            <li><strong>BigInt</strong>: Integers with arbitrary precision</li>
+        </ul>
+
+        <div class="code">
+            // String
+            let name = "John";
+
+            // Number
+            let age = 25;
+            let price = 19.99;
+
+            // Boolean
+            let isActive = true;
+
+            // Undefined
+            let car;
+
+            // Null
+            let empty = null;
+
+            // Object
+            let person = {
+                firstName: "John",
+                lastName: "Doe",
+                age: 30
+            };
+
+            // Array (type of object)
+            let colors = ["red", "green", "blue"];
+
+            // Symbol
+            let id = Symbol("id");
+
+            // BigInt
+            let bigNumber = 1234567890123456789012345n;
+        </div>
+
+        <div class="example">
+            <h3>Data Types Example</h3>
+            <div class="interactive">
+                <select id="dataTypeSelect">
+                    <option value="string">String</option>
+                    <option value="number">Number</option>
+                    <option value="boolean">Boolean</option>
+                    <option value="undefined">Undefined</option>
+                    <option value="null">Null</option>
+                    <option value="object">Object</option>
+                    <option value="array">Array</option>
+                </select>
+                <button id="checkTypeButton">Check Type</button>
+                <div id="typeResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Operators</h2>
+        <p>JavaScript has various types of operators:</p>
+
+        <h3>Arithmetic Operators</h3>
+        <div class="code">
+            // Addition
+            let sum = 5 + 3;  // 8
+
+            // Subtraction
+            let difference = 10 - 4;  // 6
+
+            // Multiplication
+            let product = 6 * 7;  // 42
+
+            // Division
+            let quotient = 20 / 5;  // 4
+
+            // Modulus (remainder)
+            let remainder = 10 % 3;  // 1
+
+            // Increment
+            let x = 5;
+            x++;  // x is now 6
+
+            // Decrement
+            let y = 8;
+            y--;  // y is now 7
+
+            // Exponentiation
+            let power = 2 ** 3;  // 8 (2 raised to the power of 3)
+        </div>
+
+        <h3>Assignment Operators</h3>
+        <div class="code">
+            let x = 10;
+
+            x += 5;  // Same as x = x + 5
+            x -= 3;  // Same as x = x - 3
+            x *= 2;  // Same as x = x * 2
+            x /= 4;  // Same as x = x / 4
+            x %= 3;  // Same as x = x % 3
+        </div>
+
+        <h3>Comparison Operators</h3>
+        <div class="code">
+            // Equal to (value only)
+            5 == "5"  // true
+
+            // Equal to (value and type)
+            5 === "5"  // false
+
+            // Not equal to (value only)
+            5 != "6"  // true
+
+            // Not equal to (value and type)
+            5 !== "5"  // true
+
+            // Greater than
+            10 > 5  // true
+
+            // Less than
+            5 < 10  // true
+
+            // Greater than or equal to
+            10 >= 10  // true
+
+            // Less than or equal to
+            5 <= 10  // true
+        </div>
+
+        <h3>Logical Operators</h3>
+        <div class="code">
+            // AND (&&)
+            true && true  // true
+            true && false  // false
+
+            // OR (||)
+            true || false  // true
+            false || false  // false
+
+            // NOT (!)
+            !true  // false
+            !false  // true
+        </div>
+
+        <div class="example">
+            <h3>Operators Example</h3>
+            <div class="interactive">
+                <input type="number" id="num1" placeholder="Number 1" value="10">
+                <select id="operatorSelect">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                    <option value="%">%</option>
+                    <option value="**">**</option>
+                </select>
+                <input type="number" id="num2" placeholder="Number 2" value="5">
+                <button id="calculateButton">Calculate</button>
+                <div id="operatorResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to StudoChart JavaScript Projects</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 StudoChart - JavaScript Basics Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript basics.</p>
+    </footer>
+
+    <script>
+        // Variables Example
+        document.getElementById('varButton').addEventListener('click', function() {
+            var x = 10;
+            {
+                var x = 20;  // Same variable due to function scope
+            }
+            document.getElementById('variableResult').textContent = "var example: x = " + x;  // Will show 20
+        });
+
+        document.getElementById('letButton').addEventListener('click', function() {
+            let x = 10;
+            {
+                let x = 20;  // Different variable due to block scope
+            }
+            document.getElementById('variableResult').textContent = "let example: x = " + x;  // Will show 10
+        });
+
+        document.getElementById('constButton').addEventListener('click', function() {
+            try {
+                const PI = 3.14159;
+                // PI = 3.14;  // This would cause an error
+                document.getElementById('variableResult').textContent = "const example: PI = " + PI;
+            } catch (error) {
+                document.getElementById('variableResult').textContent = "Error: " + error.message;
+            }
+        });
+
+        // Data Types Example
+        document.getElementById('checkTypeButton').addEventListener('click', function() {
+            const type = document.getElementById('dataTypeSelect').value;
+            let value;
+            let result = "";
+
+            switch(type) {
+                case 'string':
+                    value = "Hello, World!";
+                    result = `Value: "${value}"\nType: ${typeof value}`;
+                    break;
+                case 'number':
+                    value = 42.5;
+                    result = `Value: ${value}\nType: ${typeof value}`;
+                    break;
+                case 'boolean':
+                    value = true;
+                    result = `Value: ${value}\nType: ${typeof value}`;
+                    break;
+                case 'undefined':
+                    let undefinedVar;
+                    result = `Value: ${undefinedVar}\nType: ${typeof undefinedVar}`;
+                    break;
+                case 'null':
+                    value = null;
+                    result = `Value: ${value}\nType: ${typeof value} (Note: null is technically an object in JavaScript)`;
+                    break;
+                case 'object':
+                    value = { name: "John", age: 30 };
+                    result = `Value: ${JSON.stringify(value)}\nType: ${typeof value}`;
+                    break;
+                case 'array':
+                    value = [1, 2, 3, 4, 5];
+                    result = `Value: ${JSON.stringify(value)}\nType: ${typeof value} (Note: arrays are objects in JavaScript)`;
+                    break;
+            }
+
+            document.getElementById('typeResult').textContent = result;
+        });
+
+        // Operators Example
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operator = document.getElementById('operatorSelect').value;
+
+            let result;
+
+            switch(operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                case '%':
+                    result = num1 % num2;
+                    break;
+                case '**':
+                    result = num1 ** num2;
+                    break;
+            }
+
+            document.getElementById('operatorResult').textContent = `${num1} ${operator} ${num2} = ${result}`;
+        });
+    </script>
+</body>
+</html>
+

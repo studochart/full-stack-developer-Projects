@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Best Practices - StudoChart</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        /* Best Practices Examples */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .bad-practice, .good-practice {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .bad-practice {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .good-practice {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .practice-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .bad-practice .practice-title {
+            color: #d32f2f;
+        }
+        
+        .good-practice .practice-title {
+            color: #388e3c;
+        }
+        
+        /* CSS Organization Example */
+        .organization-example {
+            margin-bottom: 20px;
+        }
+        
+        /* Specificity Example */
+        .specificity-example {
+            margin-bottom: 20px;
+        }
+        
+        .specificity-low {
+            color: #9c27b0;
+        }
+        
+        .specificity-medium {
+            color: #2196f3 !important; /* Avoid !important when possible */
+        }
+        
+        #specificity-high {
+            color: #f44336;
+        }
+        
+        /* Performance Example */
+        .performance-example {
+            margin-bottom: 20px;
+        }
+        
+        /* Maintainability Example */
+        .maintainability-example {
+            margin-bottom: 20px;
+        }
+        
+        /* Accessibility Example */
+        .accessibility-example {
+            margin-bottom: 20px;
+        }
+        
+        .low-contrast {
+            color: #cccccc;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        
+        .high-contrast {
+            color: #333333;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Best Practices</h1>
+        <p>Learn organization techniques and best practices for writing efficient CSS</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to CSS Best Practices</h2>
+        <p>Writing clean, maintainable, and efficient CSS is essential for creating websites that are easy to develop, update, and optimize. Following best practices helps you avoid common pitfalls and ensures your stylesheets remain manageable as your projects grow.</p>
+        <p>In this project, we'll explore various best practices for organizing, writing, and optimizing your CSS code.</p>
+    </div>
+    
+    <div class="container">
+        <h2>CSS Organization</h2>
+        <p>Organizing your CSS in a logical and consistent manner makes it easier to maintain and understand.</p>
+        
+        <div class="example organization-example">
+            <h3>CSS Organization Best Practices</h3>
+            
+            <div class="comparison">
+                <div class="bad-practice">
+                    <div class="practice-title">❌ Unorganized CSS</div>
+                    <div class="code">
+                        /* Random order of styles */
+                        .footer { ... }
+                        h1 { ... }
+                        .header { ... }
+                        p { ... }
+                        .sidebar { ... }
+                    </div>
+                </div>
+                
+                <div class="good-practice">
+                    <div class="practice-title">✅ Organized CSS</div>
+                    <div class="code">
+                        /* Table of Contents */
+                        /* 1. Reset/Normalize
+                           2. Base Styles
+                           3. Layout
+                           4. Components
+                           5. Utilities */
+                        
+                        /* 1. Reset/Normalize */
+                        /* ... */
+                        
+                        /* 2. Base Styles */
+                        h1, h2, h3 { ... }
+                        p, ul, ol { ... }
+                        
+                        /* 3. Layout */
+                        .header { ... }
+                        .main { ... }
+                        .sidebar { ... }
+                        .footer { ... }
+                        
+                        /* 4. Components */
+                        .button { ... }
+                        .card { ... }
+                        .nav { ... }
+                        
+                        /* 5. Utilities */
+                        .text-center { ... }
+                        .hidden { ... }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Naming Conventions</h2>
+        <p>Using consistent naming conventions makes your CSS more predictable and easier to understand.</p>
+        
+        <div class="example">
+            <h3>Naming Convention Best Practices</h3>
+            
+            <div class="comparison">
+                <div class="bad-practice">
+                    <div class="practice-title">❌ Inconsistent Naming</div>
+                    <div class="code">
+                        .redButton { ... }
+                        .blue_button { ... }
+                        .GREEN-BUTTON { ... }
+                        .btnYellow { ... }
+                    </div>
+                </div>
+                
+                <div class="good-practice">
+                    <div class="practice-title">✅ Consistent Naming (BEM Example)</div>
+                    <div class="code">
+                        /* Block Element Modifier (BEM) */
+                        .button { ... }
+                        .button--primary { ... }
+                        .button--secondary { ... }
+                        .button--success { ... }
+                        .button--danger { ... }
+                        .button__icon { ... }
+                        .button__text { ... }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Selector Specificity</h2>
+        <p>Understanding and managing selector specificity helps prevent unexpected style overrides and makes your CSS more predictable.</p>
+        
+        <div class="example specificity-example">
+            <h3>Specificity Best Practices</h3>
+            
+            <div class="comparison">
+                <div class="bad-practice">
+                    <div class="practice-title">❌ High Specificity</div>
+                    <div class="code">
+                        #header .navigation ul li a.active { ... }
+                        .sidebar div.user-profile a.link:hover { ... }
+                        button.btn-primary[type="submit"] { ... }
+                    </div>
+                </div>
+                
+                <div class="good-practice">
+                    <div class="practice-title">✅ Lower Specificity</div>
+                    <div class="code">
+                        .nav-link.active { ... }
+                        .sidebar-link:hover { ... }
+                        .btn-primary { ... }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Best Practices Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS best practices.</p>
+    </footer>
+</body>
+</html>
+

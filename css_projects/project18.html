@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Dark Mode - StudoChart</title>
+    <style>
+        /* CSS Variables for Theme Colors */
+        :root {
+            /* Light Theme (Default) */
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --text-secondary: #666;
+            --primary-color: #9c27b0;
+            --primary-dark: #6a1b9a;
+            --primary-light: #e1bee7;
+            --primary-very-light: #f9f0ff;
+            --card-bg: #fff;
+            --border-color: #ddd;
+            --code-bg: #f0f0f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #f5f5f5;
+            --text-secondary: #aaa;
+            --primary-color: #ce93d8;
+            --primary-dark: #9c27b0;
+            --primary-light: #4a148c;
+            --primary-very-light: #3a1078;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+            --code-bg: #2d2d2d;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Base Styles Using Variables */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-dark);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: var(--primary-very-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: var(--primary-color);
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        
+        /* Theme Toggle Styles */
+        .theme-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-label {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        /* Dark Mode Examples */
+        .demo-section {
+            margin-bottom: 30px;
+        }
+        
+        .demo-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+        
+        .demo-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .demo-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .demo-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .demo-table th,
+        .demo-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .demo-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .demo-table tr:nth-child(even) {
+            background-color: var(--primary-very-light);
+        }
+        
+        /* System Preference Detection */
+        @media (prefers-color-scheme: dark) {
+            .system-preference-demo {
+                background-color: #1e1e1e;
+                color: #f5f5f5;
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 20px;
+            }
+        }
+        
+        @media (prefers-color-scheme: light) {
+            .system-preference-demo {
+                background-color: #f5f5f5;
+                color: #333;
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Dark Mode</h1>
+        <p>Implement a dark mode theme switch using CSS variables and JavaScript</p>
+    </header>
+    
+    <div class="theme-toggle-container">
+        <span class="toggle-label">☀️ Light</span>
+        <label class="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="toggle-label">🌙 Dark</span>
+    </div>
+    
+    <div class="container">
+        <h2>Introduction to Dark Mode</h2>
+        <p>Dark mode is a color scheme that uses light-colored text and UI elements on a dark background. It's become increasingly popular for several reasons:</p>
+        <ul>
+            <li>Reduces eye strain in low-light conditions</li>
+            <li>Can save battery life on OLED/AMOLED screens</li>
+            <li>Provides an alternative aesthetic that many users prefer</li>
+            <li>Improves accessibility for some users with visual sensitivities</li>
+        </ul>
+        <p>In this project, we'll explore how to implement a dark mode toggle using CSS variables and JavaScript.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Implementing Dark Mode with CSS Variables</h2>
+        <p>CSS variables (custom properties) make implementing theme switching straightforward. By defining color variables in the root scope and then overriding them for dark mode, we can easily switch between themes.</p>
+        
+        <div class="code">
+            /* Define variables for light theme (default) */
+            :root {
+                --background-color: #f5f5f5;
+                --text-color: #333;
+                --primary-color: #9c27b0;
+                /* More variables... */
+            }
+            
+            /* Override variables for dark theme */
+            [data-theme="dark"] {
+                --background-color: #121212;
+                --text-color: #f5f5f5;
+                --primary-color: #ce93d8;
+                /* More variables... */
+            }
+            
+            /* Use variables in your styles */
+            body {
+                background-color: var(--background-color);
+                color: var(--text-color);
+            }
+            
+            .button {
+                background-color: var(--primary-color);
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Dark Mode Toggle Example</h3>
+            <p>Try toggling the dark mode switch at the top of this page to see how the entire page changes.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Dark Mode Demo</h2>
+        <div class="demo-section">
+            <h3>UI Components in Dark Mode</h3>
+            
+            <div class="demo-card">
+                <h4>Card Component</h4>
+                <p>This is a card component that adapts to the current theme. Notice how the background, text color, and shadows change when you toggle dark mode.</p>
+                <button class="demo-button">Demo Button</button>
+            </div>
+            
+            <div class="demo-card">
+                <h4>Form Elements</h4>
+                <input type="text" class="demo-input" placeholder="Text input">
+                <textarea class="demo-input" rows="3" placeholder="Textarea"></textarea>
+            </div>
+            
+            <div class="demo-card">
+                <h4>Table Example</h4>
+                <table class="demo-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>john@example.com</td>
+                            <td>Developer</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td>Designer</td>
+                        </tr>
+                        <tr>
+                            <td>Bob Johnson</td>
+                            <td>bob@example.com</td>
+                            <td>Manager</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to CSS Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - CSS Dark Mode Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn CSS dark mode implementation.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeToggle.checked = savedTheme === 'dark';
+        } else {
+            // Check system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            }
+        }
+        
+        // Toggle theme when switch is clicked
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
+

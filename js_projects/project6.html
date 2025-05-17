@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events - StudoChart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #5592f5;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .example {
+            background-color: #f0f5ff;
+            border-left: 4px solid #5592f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .interactive {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .interactive h3 {
+            margin-top: 0;
+            color: #5592f5;
+        }
+        
+        button {
+            background-color: #5592f5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #09cc09;
+        }
+        
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        /* Specific styles for event examples */
+        #mouseArea {
+            width: 100%;
+            height: 200px;
+            background-color: #f9f0ff;
+            border: 2px solid #9c27b0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #keyboardInput {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        .draggable {
+            width: 100px;
+            height: 100px;
+            background-color: #9c27b0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: move;
+            border-radius: 8px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            user-select: none;
+        }
+        
+        #dropZone {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px dashed #9c27b0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        #dropZone.highlight {
+            background-color: #e1bee7;
+        }
+        
+        .form-validation {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-validation input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .form-validation input:invalid {
+            border-color: #f44336;
+        }
+        
+        .form-validation .error {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        
+        .form-validation button {
+            width: 100%;
+        }
+        
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 0;
+        }
+        
+        .gallery img {
+            height: 150px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Events</h1>
+        <p>Handle user interactions with event listeners and event objects</p>
+    </header>
+    
+    <div class="container">
+        <h2>Introduction to Events</h2>
+        <p>Events are actions or occurrences that happen in the browser, such as a user clicking a button, pressing a key, or a page finishing loading. JavaScript can "listen" for these events and execute code in response to them.</p>
+        <p>In this project, we'll explore different types of events and how to handle them using JavaScript event listeners.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Event Listeners</h2>
+        <p>Event listeners are methods that attach a function (event handler) to an event. When the event occurs, the function is executed.</p>
+        
+        <div class="code">
+            // Adding an event listener
+            element.addEventListener('event', function(event) {
+                // Code to run when the event occurs
+            });
+            
+            // Example: Click event
+            const button = document.getElementById('myButton');
+            button.addEventListener('click', function(event) {
+                console.log('Button clicked!');
+            });
+            
+            // Using a named function
+            function handleClick(event) {
+                console.log('Button clicked!');
+            }
+            
+            button.addEventListener('click', handleClick);
+            
+            // Removing an event listener
+            button.removeEventListener('click', handleClick);
+        </div>
+        
+        <div class="example">
+            <h3>Event Listener Example</h3>
+            <div class="interactive">
+                <h3>Click Counter</h3>
+                <button id="clickButton">Click Me</button>
+                <button id="resetButton">Reset Counter</button>
+                <p>Click count: <span id="clickCount">0</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>The Event Object</h2>
+        <p>When an event occurs, the browser creates an event object that contains information about the event. This object is automatically passed to the event handler function.</p>
+        
+        <div class="code">
+            element.addEventListener('click', function(event) {
+                // The event object contains information about the event
+                console.log(event.type);  // "click"
+                console.log(event.target);  // The element that triggered the event
+                console.log(event.currentTarget);  // The element the listener is attached to
+                console.log(event.clientX, event.clientY);  // Mouse coordinates
+                
+                // Prevent the default action
+                event.preventDefault();
+                
+                // Stop the event from bubbling up
+                event.stopPropagation();
+            });
+        </div>
+        
+        <div class="example">
+            <h3>Event Object Example</h3>
+            <div class="interactive">
+                <h3>Event Information</h3>
+                <button id="eventInfoButton">Click for Event Info</button>
+                <div id="eventInfo" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Mouse Events</h2>
+        <p>Mouse events are triggered by user interactions with a pointing device, such as a mouse.</p>
+        
+        <div class="code">
+            // Common mouse events
+            element.addEventListener('click', handler);  // When the element is clicked
+            element.addEventListener('dblclick', handler);  // When the element is double-clicked
+            element.addEventListener('mousedown', handler);  // When a mouse button is pressed down
+            element.addEventListener('mouseup', handler);  // When a mouse button is released
+            element.addEventListener('mousemove', handler);  // When the mouse is moved
+            element.addEventListener('mouseover', handler);  // When the mouse enters an element
+            element.addEventListener('mouseout', handler);  // When the mouse leaves an element
+            element.addEventListener('mouseenter', handler);  // When the mouse enters an element (doesn't bubble)
+            element.addEventListener('mouseleave', handler);  // When the mouse leaves an element (doesn't bubble)
+        </div>
+        
+        <div class="example">
+            <h3>Mouse Events Example</h3>
+            <div class="interactive">
+                <h3>Mouse Interaction Area</h3>
+                <div id="mouseArea">
+                    <p>Interact with this area</p>
+                    <div id="draggable" class="draggable">Drag Me</div>
+                </div>
+                <div id="mouseEvents" class="result"></div>
+                <button id="clearMouseEvents">Clear Events</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Keyboard Events</h2>
+        <p>Keyboard events are triggered by user interactions with the keyboard.</p>
+        
+        <div class="code">
+            // Common keyboard events
+            element.addEventListener('keydown', handler);  // When a key is pressed down
+            element.addEventListener('keyup', handler);  // When a key is released
+            element.addEventListener('keypress', handler);  // When a key is pressed (character keys only)
+            
+            // Keyboard event properties
+            function handleKeyDown(event) {
+                console.log(event.key);  // The key value
+                console.log(event.code);  // The physical key code
+                console.log(event.keyCode);  // The key code (deprecated)
+                console.log(event.ctrlKey);  // Whether Ctrl key was pressed
+                console.log(event.shiftKey);  // Whether Shift key was pressed
+                console.log(event.altKey);  // Whether Alt key was pressed
+            }
+        </div>
+        
+        <div class="example">
+            <h3>Keyboard Events Example</h3>
+            <div class="interactive">
+                <h3>Keyboard Input</h3>
+                <p>Click in the input field below and press keys:</p>
+                <input type="text" id="keyboardInput" placeholder="Type here...">
+                <div id="keyboardEvents" class="result"></div>
+                <button id="clearKeyboardEvents">Clear Events</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Form Events</h2>
+        <p>Form events are triggered by interactions with form elements.</p>
+        
+        <div class="code">
+            // Common form events
+            element.addEventListener('submit', handler);  // When a form is submitted
+            element.addEventListener('reset', handler);  // When a form is reset
+            element.addEventListener('focus', handler);  // When an element receives focus
+            element.addEventListener('blur', handler);  // When an element loses focus
+            element.addEventListener('change', handler);  // When an input's value changes
+            element.addEventListener('input', handler);  // When an input's value changes (immediate)
+        </div>
+        
+        <div class="example">
+            <h3>Form Events Example</h3>
+            <div class="interactive">
+                <h3>Form Validation</h3>
+                <form id="validationForm" class="form-validation">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required minlength="3" maxlength="20">
+                        <div class="error" id="usernameError">Username must be between 3 and 20 characters.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                        <div class="error" id="emailError">Please enter a valid email address.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required minlength="8">
+                        <div class="error" id="passwordError">Password must be at least 8 characters long.</div>
+                    </div>
+                    
+                    <button type="submit">Submit</button>
+                </form>
+                <div id="formResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="back-link">← Back to JavaScript Projects</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 StudoChart - JavaScript Events Project. All rights reserved.</p>
+        <p>This project is designed for educational purposes to help students learn JavaScript events.</p>
+    </footer>
+    
+    <script>
+        // Click Counter Example
+        let clickCount = 0;
+        const clickCountElement = document.getElementById('clickCount');
+        
+        document.getElementById('clickButton').addEventListener('click', function() {
+            clickCount++;
+            clickCountElement.textContent = clickCount;
+        });
+        
+        document.getElementById('resetButton').addEventListener('click', function() {
+            clickCount = 0;
+            clickCountElement.textContent = clickCount;
+        });
+        
+        // Event Object Example
+        document.getElementById('eventInfoButton').addEventListener('click', function(event) {
+            const eventInfo = document.getElementById('eventInfo');
+            
+            const info = `
+                Event Type: ${event.type}
+                Target Element: ${event.target.tagName}
+                Current Target: ${event.currentTarget.tagName}
+                Mouse Position: X=${event.clientX}, Y=${event.clientY}
+                Alt Key Pressed: ${event.altKey}
+                Ctrl Key Pressed: ${event.ctrlKey}
+                Shift Key Pressed: ${event.shiftKey}
+                Time Stamp: ${event.timeStamp}
+            `;
+            
+            eventInfo.textContent = info;
+        });
+        
+        // Mouse Events Example
+        const mouseArea = document.getElementById('mouseArea');
+        const mouseEvents = document.getElementById('mouseEvents');
+        const draggable = document.getElementById('draggable');
+        let isDragging = false;
+        let offsetX, offsetY;
+        
+        function logMouseEvent(event) {
+            const eventInfo = document.createElement('div');
+            eventInfo.textContent = `${event.type}: X=${event.clientX}, Y=${event.clientY}`;
+            mouseEvents.prepend(eventInfo);
+            
+            // Limit the number of logged events
+            if (mouseEvents.children.length > 10) {
+                mouseEvents.removeChild(mouseEvents.lastChild);
+            }
+        }
+        
+        mouseArea.addEventListener('click', logMouseEvent);
+        mouseArea.addEventListener('dblclick', logMouseEvent);
+        mouseArea.addEventListener('mouseover', logMouseEvent);
+        mouseArea.addEventListener('mouseout', logMouseEvent);
+        
+        // Draggable element
+        draggable.addEventListener('mousedown', function(event) {
+            isDragging = true;
+            
+            // Calculate the offset of the mouse pointer from the element's top-left corner
+            const rect = draggable.getBoundingClientRect();
+            offsetX = event.clientX - rect.left;
+            offsetY = event.clientY - rect.top;
+            
+            // Prevent text selection during drag
+            event.preventDefault();
+            
+            logMouseEvent(event);
+        });
+        
+        document.addEventListener('mousemove', function(event) {
+            if (isDragging) {
+                // Calculate new position
+                const mouseAreaRect = mouseArea.getBoundingClientRect();
+                let newX = event.clientX - mouseAreaRect.left - offsetX;
+                let newY = event.clientY - mouseAreaRect.top - offsetY;
+                
+                // Constrain to the boundaries of the container
+                newX = Math.max(0, Math.min(newX, mouseAreaRect.width - draggable.offsetWidth));
+                newY = Math.max(0, Math.min(newY, mouseAreaRect.height - draggable.offsetHeight));
+                
+                // Update position
+                draggable.style.left = newX + 'px';
+                draggable.style.top = newY + 'px';
+            }
+        });
+        
+        document.addEventListener('mouseup', function(event) {
+            if (isDragging) {
+                isDragging = false;
+                logMouseEvent(event);
+            }
+        });
+        
+        document.getElementById('clearMouseEvents').addEventListener('click', function() {
+            mouseEvents.innerHTML = '';
+        });
+        
+        // Keyboard Events Example
+        const keyboardInput = document.getElementById('keyboardInput');
+        const keyboardEvents = document.getElementById('keyboardEvents');
+        
+        function logKeyboardEvent(event) {
+            const eventInfo = document.createElement('div');
+            eventInfo.textContent = `${event.type}: Key=${event.key}, Code=${event.code}, Ctrl=${event.ctrlKey}, Shift=${event.shiftKey}, Alt=${event.altKey}`;
+            keyboardEvents.prepend(eventInfo);
+            
+            // Limit the number of logged events
+            if (keyboardEvents.children.length > 10) {
+                keyboardEvents.removeChild(keyboardEvents.lastChild);
+            }
+        }
+        
+        keyboardInput.addEventListener('keydown', logKeyboardEvent);
+        keyboardInput.addEventListener('keyup', logKeyboardEvent);
+        
+        document.getElementById('clearKeyboardEvents').addEventListener('click', function() {
+            keyboardEvents.innerHTML = '';
+        });
+        
+        // Form Events Example
+        const validationForm = document.getElementById('validationForm');
+        const formResult = document.getElementById('formResult');
+        
+        // Input validation
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        
+        const usernameError = document.getElementById('usernameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        
+        username.addEventListener('input', function() {
+            if (username.validity.valid) {
+                usernameError.style.display = 'none';
+            } else {
+                usernameError.style.display = 'block';
+            }
+        });
+        
+        email.addEventListener('input', function() {
+            if (email.validity.valid) {
+                emailError.style.display = 'none';
+            } else {
+                emailError.style.display = 'block';
+            }
+        });
+        
+        password.addEventListener('input', function() {
+            if (password.validity.valid) {
+                passwordError.style.display = 'none';
+            } else {
+                passwordError.style.display = 'block';
+            }
+        });
+        
+        validationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Check if the form is valid
+            if (validationForm.checkValidity()) {
+                formResult.textContent = `Form submitted successfully!\nUsername: ${username.value}\nEmail: ${email.value}\nPassword: ${'*'.repeat(password.value.length)}`;
+                validationForm.reset();
+            } else {
+                formResult.textContent = 'Please fix the errors in the form.';
+            }
+        });
+    </script>
+</body>
+</html>
+
