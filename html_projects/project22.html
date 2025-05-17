@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Comments</title>
+</head>
+<body>
+    <h1>HTML Comments</h1>
+    
+    <p>HTML comments are notes that are visible in the HTML source code but not displayed on the webpage. They help developers document their code, temporarily disable content, and organize complex HTML structures.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-comments">Basic HTML Comments</a></li>
+        <li><a href="#comment-uses">Common Uses for Comments</a></li>
+        <li><a href="#conditional-comments">Conditional Comments</a></li>
+        <li><a href="#comment-limitations">Comment Limitations</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#examples">Practical Examples</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-comments">Basic HTML Comments</h2>
+    
+    <p>HTML comments begin with <code>&lt;!--</code> and end with <code>--&gt;</code>. Anything between these markers is ignored by the browser when rendering the page.</p>
+    
+    <p>Basic syntax:</p>
+    <pre>&lt;!-- This is a comment --&gt;</pre>
+    
+    <p>Multi-line comments:</p>
+    <pre>&lt;!-- 
+    This is a multi-line comment.
+    It can span multiple lines.
+    The browser will ignore all of this text.
+--&gt;</pre>
+    
+    <p>Comments can be placed almost anywhere in your HTML document:</p>
+    <pre>&lt;!-- Comment before an element --&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;p&gt;This is another paragraph.&lt;/p&gt;&lt;!-- Comment after an element --&gt;
+
+&lt;p&gt;This paragraph has &lt;!-- an inline comment --&gt; within it.&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="comment-uses">Common Uses for Comments</h2>
+    
+    <h3>1. Documentation</h3>
+    <p>Comments are useful for documenting your code, explaining complex sections, or leaving notes for yourself or other developers:</p>
+    
+    <pre>&lt;!-- Navigation Section --&gt;
+&lt;nav&gt;
+    &lt;!-- Main site navigation links --&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+    
+    <h3>2. Temporarily Disabling Content</h3>
+    <p>Comments can be used to temporarily disable or "comment out" sections of HTML without deleting them:</p>
+    
+    <pre>&lt;div class="container"&gt;
+    &lt;p&gt;This paragraph is visible.&lt;/p&gt;
+    
+    &lt;!--
+    &lt;p&gt;This paragraph is commented out and won't be displayed.&lt;/p&gt;
+    &lt;p&gt;Neither will this one.&lt;/p&gt;
+    --&gt;
+    
+    &lt;p&gt;This paragraph is visible again.&lt;/p&gt;
+&lt;/div&gt;</pre>
+    
+    <h3>3. Organizing Code</h3>
+    <p>Comments can help organize large HTML documents by marking the beginning and end of sections:</p>
+    
+    <pre>&lt;!-- Header Section Start --&gt;
+&lt;header&gt;
+    &lt;h1&gt;Website Title&lt;/h1&gt;
+    &lt;p&gt;Website tagline or description&lt;/p&gt;
+&lt;/header&gt;
+&lt;!-- Header Section End --&gt;
+
+&lt;!-- Main Content Start --&gt;
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Article Title&lt;/h2&gt;
+        &lt;p&gt;Article content...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+&lt;!-- Main Content End --&gt;</pre>
+    
+    <h3>4. Debugging</h3>
+    <p>Comments can be used to isolate problems in your HTML by commenting out sections to see if they're causing issues:</p>
+    
+    <pre>&lt;div class="container"&gt;
+    &lt;!-- Does the problem happen with this section? --&gt;
+    &lt;section class="section-1"&gt;
+        &lt;!-- Content here --&gt;
+    &lt;/section&gt;
+    
+    &lt;!-- Or is it this section causing the issue?
+    &lt;section class="section-2"&gt;
+        Content here
+    &lt;/section&gt;
+    --&gt;
+&lt;/div&gt;</pre>
+    
+    <h3>5. TODO Notes</h3>
+    <p>Comments can mark areas that need future attention:</p>
+    
+    <pre>&lt;!-- TODO: Add social media links here --&gt;
+&lt;div class="social-links"&gt;
+    &lt;!-- Links will go here --&gt;
+&lt;/div&gt;
+
+&lt;!-- FIXME: Layout breaks on mobile devices --&gt;
+&lt;div class="responsive-section"&gt;
+    &lt;!-- Content here --&gt;
+&lt;/div&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="conditional-comments">Conditional Comments</h2>
+    
+    <p>Conditional comments were a feature specific to Internet Explorer (IE) that allowed you to target specific versions of IE. They are no longer supported in modern browsers but are worth knowing about for legacy code:</p>
+    
+    <pre>&lt;!--[if IE]&gt;
+    &lt;p&gt;You are using Internet Explorer.&lt;/p&gt;
+&lt;![endif]--&gt;
+
+&lt;!--[if IE 8]&gt;
+    &lt;p&gt;You are using Internet Explorer 8.&lt;/p&gt;
+&lt;![endif]--&gt;
+
+&lt;!--[if lt IE 9]&gt;
+    &lt;p&gt;You are using a version of Internet Explorer older than IE9.&lt;/p&gt;
+&lt;![endif]--&gt;
+
+&lt;!--[if !IE]&gt;&lt;!--&gt;
+    &lt;p&gt;You are not using Internet Explorer.&lt;/p&gt;
+&lt;!--&lt;![endif]--&gt;</pre>
+    
+    <p>Modern approach: Instead of conditional comments, use feature detection with JavaScript libraries like Modernizr or CSS feature queries with <code>@supports</code>.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="comment-limitations">Comment Limitations</h2>
+    
+    <p>There are some important limitations to be aware of when using HTML comments:</p>
+    
+    <h3>1. Comments Are Visible in Source Code</h3>
+    <p>Remember that while comments aren't displayed on the rendered page, they are still visible to anyone who views your page source. Don't include sensitive information in comments:</p>
+    
+    <pre>&lt;!-- BAD: Don't do this! --&gt;
+&lt;!-- Database password: p@ssw0rd123 --&gt;
+&lt;!-- API key: a1b2c3d4e5f6g7h8i9j0 --&gt;</pre>
+    
+    <h3>2. Nested Comments Don't Work</h3>
+    <p>HTML doesn't support nested comments. The first <code>--&gt;</code> encountered will close the comment:</p>
+    
+    <pre>&lt;!-- This comment contains another &lt;!-- nested comment --&gt; which breaks things --&gt;</pre>
+    
+    <p>In the example above, the browser would interpret everything after the second <code>--&gt;</code> as regular HTML content, potentially causing rendering issues.</p>
+    
+    <h3>3. Special Characters in Comments</h3>
+    <p>Be careful with using double hyphens (<code>--</code>) within comments, as they can cause parsing issues:</p>
+    
+    <pre>&lt;!-- This comment has -- double hyphens in the middle --&gt;</pre>
+    
+    <h3>4. Comments Increase File Size</h3>
+    <p>Extensive commenting increases the size of your HTML files, which can affect page load times. For production sites, consider using a minification tool that removes comments.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <ul>
+        <li><strong>Be concise but clear</strong> - Write comments that are helpful but not unnecessarily verbose.</li>
+        <li><strong>Use consistent formatting</strong> - Adopt a consistent style for your comments to improve readability.</li>
+        <li><strong>Comment complex code</strong> - Focus on explaining complex or non-obvious sections rather than commenting everything.</li>
+        <li><strong>Update comments</strong> - Keep comments up-to-date when you modify code to avoid misleading information.</li>
+        <li><strong>Remove temporary comments</strong> - Don't leave "commented out" code in production; use version control instead.</li>
+        <li><strong>Don't include sensitive information</strong> - Remember that comments are visible in the source code.</li>
+        <li><strong>Consider minification</strong> - For production sites, use tools to remove comments and reduce file size.</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="examples">Practical Examples</h2>
+    
+    <h3>Example 1: Documented Navigation</h3>
+    <pre>&lt;!-- Main Navigation --&gt;
+&lt;nav class="main-nav"&gt;
+    &lt;!-- Site Logo --&gt;
+    &lt;div class="logo"&gt;
+        &lt;img src="logo.png" alt="Site Logo"&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Navigation Links --&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- Mobile Menu Toggle (only visible on small screens) --&gt;
+    &lt;button class="mobile-toggle"&gt;Menu&lt;/button&gt;
+&lt;/nav&gt;</pre>
+    
+    <h3>Example 2: Form with Validation Notes</h3>
+    <pre>&lt;form action="/submit-form" method="post"&gt;
+    &lt;!-- Name field - Required, letters only --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Email field - Required, must be valid email format --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 
+        Phone field - Optional, but if provided must be in format:
+        XXX-XXX-XXXX where X is a digit
+    --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="phone"&gt;Phone:&lt;/label&gt;
+        &lt;input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Submit button --&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+    
+    <h3>Example 3: Structured Content with Section Comments</h3>
+    <pre>&lt;!-- HEADER SECTION ------------------------------------------------------ --&gt;
+&lt;header&gt;
+    &lt;h1&gt;Company Name&lt;/h1&gt;
+    &lt;p&gt;Company tagline or slogan&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;!-- HERO SECTION --------------------------------------------------------- --&gt;
+&lt;section class="hero"&gt;
+    &lt;h2&gt;Welcome to Our Website&lt;/h2&gt;
+    &lt;p&gt;Learn about our amazing products and services.&lt;/p&gt;
+    &lt;a href="#contact" class="btn"&gt;Get Started&lt;/a&gt;
+&lt;/section&gt;
+
+&lt;!-- FEATURES SECTION ----------------------------------------------------- --&gt;
+&lt;section class="features"&gt;
+    &lt;h2&gt;Our Features&lt;/h2&gt;
+    
+    &lt;!-- Feature 1 --&gt;
+    &lt;div class="feature"&gt;
+        &lt;h3&gt;Feature 1&lt;/h3&gt;
+        &lt;p&gt;Description of feature 1.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Feature 2 --&gt;
+    &lt;div class="feature"&gt;
+        &lt;h3&gt;Feature 2&lt;/h3&gt;
+        &lt;p&gt;Description of feature 2.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Feature 3 --&gt;
+    &lt;div class="feature"&gt;
+        &lt;h3&gt;Feature 3&lt;/h3&gt;
+        &lt;p&gt;Description of feature 3.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- FOOTER SECTION ------------------------------------------------------- --&gt;
+&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2023 Company Name. All rights reserved.&lt;/p&gt;
+&lt;/footer&gt;</pre>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+    
+    <!-- This is a comment at the end of the page that demonstrates what comments look like in HTML. You can see this text in the source code, but not on the rendered page. -->
+</body>
+</html>
+

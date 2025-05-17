@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Beginner Projects</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #091330;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #5592f5;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4a4a4a;
+            padding-bottom: 10px;
+        }
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-card h2 {
+            color: #5592f5;
+            margin-top: 0;
+        }
+        .project-card p {
+            color: #555;
+        }
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #5592f5;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .project-card a:hover {
+            background-color: #09cc09;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML Projects - StudoChart</h1>
+        <p>A collection of HTML projects to help you master web programming</p>
+    </header>
+
+    <div style="margin-bottom: 30px; text-align: center;">
+        <h2>Featured Projects</h2>
+        <p>These projects combine HTML with CSS and JavaScript for more interactive experiences</p>
+    </div>
+
+    <div class="projects-container">
+        <div class="project-card">
+            <h2><span class="emoji">💼</span>Personal Portfolio Page</h2>
+            <p>Create a page with your name, photo, bio, contact link, and more.</p>
+            <a href="project1.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📅</span>Simple Timetable Page</h2>
+            <p>Make your school weekly timetable using tables and colors.</p>
+            <a href="project2.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📝</span>Feedback Form</h2>
+            <p>Build a form to collect feedback using input fields, checkboxes, and submit buttons.</p>
+            <a href="project3.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎥</span>Video Showcase</h2>
+            <p>Embed your favorite videos using HTML5 or YouTube embeds.</p>
+            <a href="project4.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🍲</span>Recipe Page</h2>
+            <p>Create a page showcasing your favorite recipe with ingredients and steps.</p>
+            <a href="project5.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🖼️</span>Photo Gallery</h2>
+            <p>Build a simple photo gallery with image thumbnails and descriptions.</p>
+            <a href="project6.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">❓</span>Simple Quiz</h2>
+            <p>Create an interactive quiz with multiple-choice questions and answers.</p>
+            <a href="project7.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🛍️</span>Product Landing Page</h2>
+            <p>Design a landing page for a fictional product with features and pricing.</p>
+            <a href="project8.html" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <div style="margin: 50px 0 30px; text-align: center;">
+        <h2>HTML-Only Projects</h2>
+        <p>These projects focus on core HTML concepts without complex CSS or JavaScript</p>
+    </div>
+
+    <div class="projects-container">
+        <div class="project-card">
+            <h2><span class="emoji">📄</span>Basic HTML Structure</h2>
+            <p>Learn the fundamental structure of an HTML document with proper elements.</p>
+            <a href="project9.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔤</span>Text Formatting Elements</h2>
+            <p>Explore various HTML text formatting tags like bold, italic, underline, and more.</p>
+            <a href="project10.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📋</span>HTML Lists</h2>
+            <p>Create ordered, unordered, and description lists with proper HTML markup.</p>
+            <a href="project11.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔗</span>HTML Links</h2>
+            <p>Learn to create various types of hyperlinks including internal, external, and anchor links.</p>
+            <a href="project12.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🖼️</span>HTML Images</h2>
+            <p>Add and format images with proper attributes like alt text, width, and height.</p>
+            <a href="project13.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔲</span>HTML Tables</h2>
+            <p>Create structured data tables with rows, columns, headers, and spanning cells.</p>
+            <a href="project14.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📝</span>HTML Forms Basics</h2>
+            <p>Build simple forms with various input types, labels, and submit buttons.</p>
+            <a href="project15.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🏷️</span>HTML Semantic Elements</h2>
+            <p>Use semantic HTML5 elements like header, footer, article, and section.</p>
+            <a href="project16.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔣</span>HTML Entities & Characters</h2>
+            <p>Display special characters and symbols using HTML entities.</p>
+            <a href="project17.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🖥️</span>HTML Iframes</h2>
+            <p>Embed external content and other web pages using iframes.</p>
+            <a href="project18.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🔊</span>HTML Audio</h2>
+            <p>Add audio content to your web page with proper controls.</p>
+            <a href="project19.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📹</span>HTML Video</h2>
+            <p>Embed video content with controls and proper attributes.</p>
+            <a href="project20.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📊</span>HTML Meta Tags</h2>
+            <p>Learn about metadata and how to use meta tags for SEO and display.</p>
+            <a href="project21.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">💬</span>HTML Comments</h2>
+            <p>Use comments to document your code and temporarily disable content.</p>
+            <a href="project22.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">💭</span>HTML Quotations</h2>
+            <p>Format quotations and citations with proper HTML elements.</p>
+            <a href="project23.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎨</span>HTML Colors</h2>
+            <p>Apply colors to text and backgrounds using HTML attributes.</p>
+            <a href="project24.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">⚙️</span>HTML Attributes</h2>
+            <p>Learn about HTML attributes and how they modify elements.</p>
+            <a href="project25.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📑</span>Headings & Paragraphs</h2>
+            <p>Structure content with proper heading levels and paragraph elements.</p>
+            <a href="project26.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">📦</span>HTML Div and Span</h2>
+            <p>Use container elements to group and organize content.</p>
+            <a href="project27.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🗂️</span>HTML File Paths</h2>
+            <p>Learn about relative and absolute file paths for linking resources.</p>
+            <a href="project28.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🌐</span>Complete HTML Website</h2>
+            <p>A comprehensive example combining multiple HTML concepts into a complete webpage.</p>
+            <a href="project29.html" target="_blank">View Project</a>
+        </div>
+
+        <div class="project-card">
+            <h2><span class="emoji">🎨</span>CSS Projects</h2>
+            <p>Explore our collection of CSS projects to learn web styling techniques.</p>
+            <a href="css_projects/index.html" target="_blank">View CSS Projects</a>
+        </div>
+    </div>
+</body>
+</html>
+

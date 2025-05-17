@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quotations</title>
+</head>
+<body>
+    <h1>HTML Quotations and Citations</h1>
+    
+    <p>HTML provides several elements for marking up quotations, citations, and other referenced content. These elements add semantic meaning to your content and can be styled differently from regular text.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#blockquote">Blockquote Element</a></li>
+        <li><a href="#q">Q Element (Inline Quotes)</a></li>
+        <li><a href="#cite">Cite Element</a></li>
+        <li><a href="#cite-attribute">Cite Attribute</a></li>
+        <li><a href="#abbreviations">Abbreviations</a></li>
+        <li><a href="#address">Address Element</a></li>
+        <li><a href="#bdo">BDO Element (Bi-Directional Override)</a></li>
+        <li><a href="#examples">Practical Examples</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="blockquote">Blockquote Element</h2>
+    
+    <p>The <code>&lt;blockquote&gt;</code> element is used for extended quotations that are typically displayed as indented blocks of text. It's ideal for longer quotes that stand apart from the main text.</p>
+    
+    <h3>Basic Blockquote</h3>
+    <blockquote>
+        <p>The greatest glory in living lies not in never falling, but in rising every time we fall.</p>
+    </blockquote>
+    
+    <p>HTML code:</p>
+    <pre>&lt;blockquote&gt;
+    &lt;p&gt;The greatest glory in living lies not in never falling, but in rising every time we fall.&lt;/p&gt;
+&lt;/blockquote&gt;</pre>
+    
+    <h3>Blockquote with Citation</h3>
+    <blockquote cite="https://www.brainyquote.com/quotes/nelson_mandela_378967">
+        <p>The greatest glory in living lies not in never falling, but in rising every time we fall.</p>
+        <footer>— <cite>Nelson Mandela</cite></footer>
+    </blockquote>
+    
+    <p>HTML code:</p>
+    <pre>&lt;blockquote cite="https://www.brainyquote.com/quotes/nelson_mandela_378967"&gt;
+    &lt;p&gt;The greatest glory in living lies not in never falling, but in rising every time we fall.&lt;/p&gt;
+    &lt;footer&gt;— &lt;cite&gt;Nelson Mandela&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="q">Q Element (Inline Quotes)</h2>
+    
+    <p>The <code>&lt;q&gt;</code> element is used for shorter, inline quotations. Browsers typically add quotation marks around the content of a <code>&lt;q&gt;</code> element.</p>
+    
+    <h3>Basic Q Element</h3>
+    <p>According to Einstein, <q>Imagination is more important than knowledge.</q></p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;According to Einstein, &lt;q&gt;Imagination is more important than knowledge.&lt;/q&gt;&lt;/p&gt;</pre>
+    
+    <h3>Q Element with Citation</h3>
+    <p>Shakespeare wrote, <q cite="http://www.shakespeare.org.uk">To be or not to be, that is the question.</q></p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;Shakespeare wrote, &lt;q cite="http://www.shakespeare.org.uk"&gt;To be or not to be, that is the question.&lt;/q&gt;&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="cite">Cite Element</h2>
+    
+    <p>The <code>&lt;cite&gt;</code> element is used to reference a creative work, such as a book, movie, play, poem, song, or website. The content of the <code>&lt;cite&gt;</code> element is typically rendered in italics.</p>
+    
+    <h3>Basic Cite Element</h3>
+    <p>My favorite book is <cite>The Lord of the Rings</cite> by J.R.R. Tolkien.</p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;My favorite book is &lt;cite&gt;The Lord of the Rings&lt;/cite&gt; by J.R.R. Tolkien.&lt;/p&gt;</pre>
+    
+    <h3>Cite with Other Elements</h3>
+    <p>The movie <cite>The Shawshank Redemption</cite> contains the famous quote: <q>Get busy living, or get busy dying.</q></p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;The movie &lt;cite&gt;The Shawshank Redemption&lt;/cite&gt; contains the famous quote: &lt;q&gt;Get busy living, or get busy dying.&lt;/q&gt;&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="cite-attribute">Cite Attribute</h2>
+    
+    <p>The <code>cite</code> attribute (not to be confused with the <code>&lt;cite&gt;</code> element) can be used with <code>&lt;blockquote&gt;</code> and <code>&lt;q&gt;</code> elements to specify the source URL of a quotation.</p>
+    
+    <p>The <code>cite</code> attribute is not visible to the user, but it provides a way to link to the source of the quotation. It's useful for search engines and other applications that can make use of this metadata.</p>
+    
+    <h3>Example with Blockquote</h3>
+    <blockquote cite="https://www.goodreads.com/quotes/1173-be-yourself-everyone-else-is-already-taken">
+        <p>Be yourself; everyone else is already taken.</p>
+        <footer>— <cite>Oscar Wilde</cite></footer>
+    </blockquote>
+    
+    <p>HTML code:</p>
+    <pre>&lt;blockquote cite="https://www.goodreads.com/quotes/1173-be-yourself-everyone-else-is-already-taken"&gt;
+    &lt;p&gt;Be yourself; everyone else is already taken.&lt;/p&gt;
+    &lt;footer&gt;— &lt;cite&gt;Oscar Wilde&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="abbreviations">Abbreviations</h2>
+    
+    <p>The <code>&lt;abbr&gt;</code> element is used to mark up abbreviations and acronyms. It can include a <code>title</code> attribute to provide the full expansion of the term.</p>
+    
+    <h3>Basic Abbreviation</h3>
+    <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;</pre>
+    
+    <h3>Abbreviations in Text</h3>
+    <p>I need to finish this project <abbr title="As Soon As Possible">ASAP</abbr>. The deadline is <abbr title="End Of Day">EOD</abbr> Friday.</p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;I need to finish this project &lt;abbr title="As Soon As Possible"&gt;ASAP&lt;/abbr&gt;. The deadline is &lt;abbr title="End Of Day"&gt;EOD&lt;/abbr&gt; Friday.&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="address">Address Element</h2>
+    
+    <p>The <code>&lt;address&gt;</code> element is used to provide contact information for the author or owner of a document or article. It's typically rendered in italics.</p>
+    
+    <h3>Basic Address</h3>
+    <address>
+        Written by John Doe.<br>
+        Visit us at:<br>
+        Example.com<br>
+        Box 564, Disneyland<br>
+        USA
+    </address>
+    
+    <p>HTML code:</p>
+    <pre>&lt;address&gt;
+    Written by John Doe.&lt;br&gt;
+    Visit us at:&lt;br&gt;
+    Example.com&lt;br&gt;
+    Box 564, Disneyland&lt;br&gt;
+    USA
+&lt;/address&gt;</pre>
+    
+    <h3>Address with Links</h3>
+    <address>
+        Article by <a href="mailto:john@example.com">John Doe</a>.<br>
+        Follow me on <a href="https://twitter.com/johndoe">Twitter</a>.
+    </address>
+    
+    <p>HTML code:</p>
+    <pre>&lt;address&gt;
+    Article by &lt;a href="mailto:john@example.com"&gt;John Doe&lt;/a&gt;.&lt;br&gt;
+    Follow me on &lt;a href="https://twitter.com/johndoe"&gt;Twitter&lt;/a&gt;.
+&lt;/address&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="bdo">BDO Element (Bi-Directional Override)</h2>
+    
+    <p>The <code>&lt;bdo&gt;</code> element is used to override the current text direction. This is useful when including text in languages that are written right-to-left, such as Arabic or Hebrew.</p>
+    
+    <h3>Left-to-Right Text</h3>
+    <p><bdo dir="ltr">This text will go from left to right.</bdo></p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;&lt;bdo dir="ltr"&gt;This text will go from left to right.&lt;/bdo&gt;&lt;/p&gt;</pre>
+    
+    <h3>Right-to-Left Text</h3>
+    <p><bdo dir="rtl">This text will go from right to left.</bdo></p>
+    
+    <p>HTML code:</p>
+    <pre>&lt;p&gt;&lt;bdo dir="rtl"&gt;This text will go from right to left.&lt;/bdo&gt;&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="examples">Practical Examples</h2>
+    
+    <h3>Example 1: Academic Citation</h3>
+    <article>
+        <h3>The Impact of Climate Change</h3>
+        <p>Climate change is one of the most pressing issues of our time. According to recent research:</p>
+        
+        <blockquote cite="https://www.ipcc.ch/report/ar6/wg1/">
+            <p>It is unequivocal that human influence has warmed the atmosphere, ocean and land. Widespread and rapid changes in the atmosphere, ocean, cryosphere and biosphere have occurred.</p>
+            <footer>— <cite>IPCC Sixth Assessment Report, 2021</cite></footer>
+        </blockquote>
+        
+        <p>This finding underscores the urgency of taking action to reduce greenhouse gas emissions.</p>
+    </article>
+    
+    <h3>Example 2: Literary Analysis</h3>
+    <article>
+        <h3>Symbolism in <cite>The Great Gatsby</cite></h3>
+        <p>F. Scott Fitzgerald's <cite>The Great Gatsby</cite> is rich with symbolism. One of the most famous passages describes the green light at the end of Daisy's dock:</p>
+        
+        <blockquote cite="https://www.gutenberg.org/files/64317/64317-h/64317-h.htm">
+            <p>Gatsby believed in the green light, the orgastic future that year by year recedes before us. It eluded us then, but that's no matter—tomorrow we will run faster, stretch out our arms farther...</p>
+            <footer>— <cite>F. Scott Fitzgerald, The Great Gatsby</cite></footer>
+        </blockquote>
+        
+        <p>The green light symbolizes Gatsby's hopes and dreams, particularly his hope for a future with Daisy.</p>
+    </article>
+    
+    <h3>Example 3: Testimonial Section</h3>
+    <section class="testimonials">
+        <h3>What Our Customers Say</h3>
+        
+        <blockquote>
+            <p>This product has completely transformed my workflow. I can't imagine going back to my old system!</p>
+            <footer>— <cite>Jane Smith, CEO of Example Inc.</cite></footer>
+        </blockquote>
+        
+        <blockquote>
+            <p>The customer service team went above and beyond to help me solve my issue. Highly recommended!</p>
+            <footer>— <cite>John Doe, Freelance Designer</cite></footer>
+        </blockquote>
+    </section>
+    
+    <h3>Example 4: Contact Information</h3>
+    <footer>
+        <h3>Contact Us</h3>
+        <address>
+            Example Company<br>
+            123 Main Street<br>
+            Anytown, AN 12345<br>
+            <a href="tel:+15555555555">(555) 555-5555</a><br>
+            <a href="mailto:info@example.com">info@example.com</a>
+        </address>
+    </footer>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lists</title>
+</head>
+<body>
+    <h1>HTML Lists</h1>
+    
+    <p>HTML provides three types of lists to organize and structure content:</p>
+    <ul>
+        <li>Unordered Lists (ul)</li>
+        <li>Ordered Lists (ol)</li>
+        <li>Description Lists (dl)</li>
+    </ul>
+    
+    <h2>Unordered Lists</h2>
+    
+    <p>Unordered lists are used when the order of items doesn't matter. Each item starts with a bullet point by default.</p>
+    
+    <h3>Basic Unordered List</h3>
+    <p>Here's a simple shopping list:</p>
+    <ul>
+        <li>Milk</li>
+        <li>Bread</li>
+        <li>Eggs</li>
+        <li>Cheese</li>
+        <li>Vegetables</li>
+    </ul>
+    
+    <h3>Nested Unordered Lists</h3>
+    <p>You can nest lists inside other lists:</p>
+    <ul>
+        <li>Fruits
+            <ul>
+                <li>Apples</li>
+                <li>Bananas</li>
+                <li>Oranges</li>
+            </ul>
+        </li>
+        <li>Vegetables
+            <ul>
+                <li>Carrots</li>
+                <li>Broccoli</li>
+                <li>Spinach</li>
+            </ul>
+        </li>
+        <li>Dairy
+            <ul>
+                <li>Milk</li>
+                <li>Cheese</li>
+                <li>Yogurt</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h2>Ordered Lists</h2>
+    
+    <p>Ordered lists are used when the sequence of items matters. Each item is numbered by default.</p>
+    
+    <h3>Basic Ordered List</h3>
+    <p>Steps to make a sandwich:</p>
+    <ol>
+        <li>Get two slices of bread</li>
+        <li>Spread butter or mayonnaise on one side of each slice</li>
+        <li>Add your favorite fillings</li>
+        <li>Put the slices together</li>
+        <li>Cut the sandwich in half (optional)</li>
+    </ol>
+    
+    <h3>Ordered List with Different Numbering</h3>
+    <p>You can change the numbering style using the <code>type</code> attribute:</p>
+    
+    <h4>Type "A" - Uppercase Letters</h4>
+    <ol type="A">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+    
+    <h4>Type "a" - Lowercase Letters</h4>
+    <ol type="a">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+    
+    <h4>Type "I" - Uppercase Roman Numerals</h4>
+    <ol type="I">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+    
+    <h4>Type "i" - Lowercase Roman Numerals</h4>
+    <ol type="i">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+    
+    <h3>Starting with a Different Number</h3>
+    <p>You can start the list with a different number using the <code>start</code> attribute:</p>
+    <ol start="5">
+        <li>This is item #5</li>
+        <li>This is item #6</li>
+        <li>This is item #7</li>
+    </ol>
+    
+    <h3>Nested Ordered Lists</h3>
+    <p>You can also nest ordered lists:</p>
+    <ol>
+        <li>Main Chapter
+            <ol>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+            </ol>
+        </li>
+        <li>Second Chapter
+            <ol>
+                <li>Section 1</li>
+                <li>Section 2</li>
+            </ol>
+        </li>
+    </ol>
+    
+    <h2>Description Lists</h2>
+    
+    <p>Description lists are used to display name-value pairs, like terms and their definitions.</p>
+    
+    <h3>Basic Description List</h3>
+    <dl>
+        <dt>HTML</dt>
+        <dd>HyperText Markup Language - the standard language for creating web pages.</dd>
+        
+        <dt>CSS</dt>
+        <dd>Cascading Style Sheets - used to style and layout web pages.</dd>
+        
+        <dt>JavaScript</dt>
+        <dd>A programming language that enables interactive web pages.</dd>
+    </dl>
+    
+    <h3>Description List with Multiple Terms</h3>
+    <dl>
+        <dt>Frontend</dt>
+        <dt>Client-side</dt>
+        <dd>The part of a website or application that users interact with directly.</dd>
+        
+        <dt>Backend</dt>
+        <dt>Server-side</dt>
+        <dd>The part of a website or application that runs on the server and handles data processing.</dd>
+    </dl>
+    
+    <h3>Description List with Multiple Descriptions</h3>
+    <dl>
+        <dt>Web Browser</dt>
+        <dd>Software application for accessing information on the World Wide Web.</dd>
+        <dd>Examples include Chrome, Firefox, Safari, and Edge.</dd>
+        
+        <dt>Web Server</dt>
+        <dd>Computer software and hardware that stores, processes, and delivers web pages to clients.</dd>
+        <dd>Examples include Apache, Nginx, and Microsoft IIS.</dd>
+    </dl>
+    
+    <h2>Combining Different List Types</h2>
+    
+    <p>You can combine different types of lists for more complex structures:</p>
+    
+    <h3>Web Development Learning Path</h3>
+    <ol>
+        <li>HTML Basics
+            <ul>
+                <li>Document structure</li>
+                <li>Text formatting</li>
+                <li>Links and images</li>
+                <li>Tables and forms</li>
+            </ul>
+        </li>
+        <li>CSS Fundamentals
+            <ul>
+                <li>Selectors</li>
+                <li>Box model</li>
+                <li>Layout techniques</li>
+                <li>Responsive design</li>
+            </ul>
+        </li>
+        <li>JavaScript Essentials
+            <dl>
+                <dt>Variables and Data Types</dt>
+                <dd>Learn about strings, numbers, booleans, arrays, and objects.</dd>
+                
+                <dt>Functions and Control Flow</dt>
+                <dd>Master conditional statements, loops, and function declarations.</dd>
+                
+                <dt>DOM Manipulation</dt>
+                <dd>Learn to interact with HTML elements using JavaScript.</dd>
+            </dl>
+        </li>
+    </ol>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

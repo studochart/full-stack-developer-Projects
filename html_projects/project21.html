@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about HTML meta tags and how they help with SEO, social media sharing, and browser behavior.">
+    <meta name="keywords" content="HTML, meta tags, SEO, Open Graph, Twitter Cards">
+    <meta name="author" content="HTML Projects">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph meta tags for social media sharing -->
+    <meta property="og:title" content="HTML Meta Tags">
+    <meta property="og:description" content="Learn about HTML meta tags and how they help with SEO, social media sharing, and browser behavior.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="https://example.com/project21.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTML Meta Tags">
+    <meta name="twitter:description" content="Learn about HTML meta tags and how they help with SEO, social media sharing, and browser behavior.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630">
+    
+    <title>HTML Meta Tags</title>
+</head>
+<body>
+    <h1>HTML Meta Tags</h1>
+    
+    <p>Meta tags provide metadata about an HTML document. They don't appear on the page itself but are used by browsers, search engines, and other web services. This page explains the most important meta tags and how to use them.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-meta">Basic Meta Tags</a></li>
+        <li><a href="#seo-meta">SEO Meta Tags</a></li>
+        <li><a href="#viewport-meta">Viewport Meta Tag</a></li>
+        <li><a href="#social-meta">Social Media Meta Tags</a></li>
+        <li><a href="#http-equiv">HTTP-Equiv Meta Tags</a></li>
+        <li><a href="#other-meta">Other Meta Tags</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-meta">Basic Meta Tags</h2>
+    
+    <p>These are the fundamental meta tags that should be included in most HTML documents:</p>
+    
+    <h3>Character Encoding</h3>
+    <pre>&lt;meta charset="UTF-8"&gt;</pre>
+    <p>This specifies the character encoding for the HTML document. UTF-8 is the recommended encoding as it can handle any character.</p>
+    
+    <h3>Viewport</h3>
+    <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre>
+    <p>This controls how the page is displayed on mobile devices. It's essential for responsive web design.</p>
+    
+    <h3>Description</h3>
+    <pre>&lt;meta name="description" content="A brief description of the page content."&gt;</pre>
+    <p>This provides a short description of the page, which may be used by search engines in search results.</p>
+    
+    <h3>Author</h3>
+    <pre>&lt;meta name="author" content="Author Name"&gt;</pre>
+    <p>This specifies the name of the page's author.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="seo-meta">SEO Meta Tags</h2>
+    
+    <p>These meta tags can help improve your page's search engine optimization (SEO):</p>
+    
+    <h3>Keywords</h3>
+    <pre>&lt;meta name="keywords" content="keyword1, keyword2, keyword3"&gt;</pre>
+    <p>This lists keywords relevant to the page content. Note that many search engines, including Google, no longer give this much weight.</p>
+    
+    <h3>Robots</h3>
+    <pre>&lt;meta name="robots" content="index, follow"&gt;</pre>
+    <p>This tells search engines whether to index the page and follow its links. Options include:</p>
+    <ul>
+        <li><code>index</code> - Allow the page to be indexed</li>
+        <li><code>noindex</code> - Prevent the page from being indexed</li>
+        <li><code>follow</code> - Follow links on the page</li>
+        <li><code>nofollow</code> - Don't follow links on the page</li>
+        <li><code>noarchive</code> - Don't show a cached link in search results</li>
+        <li><code>nosnippet</code> - Don't show a snippet in search results</li>
+    </ul>
+    
+    <h3>Canonical URL</h3>
+    <pre>&lt;link rel="canonical" href="https://example.com/original-page"&gt;</pre>
+    <p>This isn't a meta tag but serves a similar purpose. It tells search engines which URL is the "canonical" or preferred version of a page, which helps prevent duplicate content issues.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="viewport-meta">Viewport Meta Tag</h2>
+    
+    <p>The viewport meta tag is crucial for responsive web design. Let's explore it in more detail:</p>
+    
+    <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre>
+    
+    <p>The content attribute can include several values:</p>
+    <ul>
+        <li><code>width=device-width</code> - Sets the width of the viewport to the width of the device</li>
+        <li><code>initial-scale=1.0</code> - Sets the initial zoom level when the page is first loaded</li>
+        <li><code>minimum-scale=1.0</code> - Sets the minimum zoom level</li>
+        <li><code>maximum-scale=1.0</code> - Sets the maximum zoom level</li>
+        <li><code>user-scalable=no</code> - Prevents the user from zooming in or out (not recommended for accessibility reasons)</li>
+    </ul>
+    
+    <p>Example with additional values:</p>
+    <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0"&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="social-meta">Social Media Meta Tags</h2>
+    
+    <p>These meta tags control how your page appears when shared on social media platforms:</p>
+    
+    <h3>Open Graph (Facebook, LinkedIn, etc.)</h3>
+    <pre>&lt;meta property="og:title" content="Page Title"&gt;
+&lt;meta property="og:description" content="Page description"&gt;
+&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;</pre>
+    
+    <p>Open Graph meta tags control how your page appears when shared on Facebook and many other platforms. The <code>og:image</code> should be at least 1200×630 pixels for best results.</p>
+    
+    <h3>Twitter Cards</h3>
+    <pre>&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Page Title"&gt;
+&lt;meta name="twitter:description" content="Page description"&gt;
+&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</pre>
+    
+    <p>Twitter Card meta tags control how your page appears when shared on Twitter. The <code>twitter:card</code> can be <code>summary</code>, <code>summary_large_image</code>, <code>app</code>, or <code>player</code>.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="http-equiv">HTTP-Equiv Meta Tags</h2>
+    
+    <p>These meta tags provide HTTP header information:</p>
+    
+    <h3>Refresh</h3>
+    <pre>&lt;meta http-equiv="refresh" content="5;url=https://example.com"&gt;</pre>
+    <p>This redirects the page to a new URL after a specified number of seconds (5 in this example).</p>
+    
+    <h3>X-UA-Compatible</h3>
+    <pre>&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;</pre>
+    <p>This tells Internet Explorer to use the latest rendering engine. It's less important now but was crucial for older versions of IE.</p>
+    
+    <h3>Content-Type</h3>
+    <pre>&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</pre>
+    <p>This specifies the document's MIME type and character encoding. The <code>&lt;meta charset="UTF-8"&gt;</code> tag is the modern, shorter equivalent.</p>
+    
+    <h3>Content Security Policy</h3>
+    <pre>&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'"&gt;</pre>
+    <p>This helps prevent cross-site scripting (XSS) attacks by specifying which content sources are allowed.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="other-meta">Other Meta Tags</h2>
+    
+    <h3>Theme Color</h3>
+    <pre>&lt;meta name="theme-color" content="#4285f4"&gt;</pre>
+    <p>This sets the color of the browser UI when the page is displayed as a Progressive Web App or in mobile browsers that support it.</p>
+    
+    <h3>App Links</h3>
+    <pre>&lt;meta property="al:ios:app_name" content="App Name"&gt;
+&lt;meta property="al:ios:app_store_id" content="123456789"&gt;
+&lt;meta property="al:android:package" content="com.example.app"&gt;</pre>
+    <p>These meta tags help link your website to your mobile app.</p>
+    
+    <h3>Verification Tags</h3>
+    <pre>&lt;meta name="google-site-verification" content="verification_token"&gt;</pre>
+    <p>These are used to verify ownership of your site with various services like Google Search Console, Bing Webmaster Tools, etc.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <ul>
+        <li><strong>Always include the basic meta tags</strong> (charset, viewport, description) in every HTML document.</li>
+        <li><strong>Keep your description meta tag concise</strong> (around 150-160 characters) and relevant to the page content.</li>
+        <li><strong>Use Open Graph and Twitter Card meta tags</strong> if your content is likely to be shared on social media.</li>
+        <li><strong>Avoid using the refresh meta tag</strong> for redirects when possible; use server-side redirects instead.</li>
+        <li><strong>Don't block zooming</strong> with <code>user-scalable=no</code> as it creates accessibility issues.</li>
+        <li><strong>Use the canonical link</strong> to prevent duplicate content issues.</li>
+        <li><strong>Keep meta tags in the <code>&lt;head&gt;</code> section</strong> of your HTML document.</li>
+        <li><strong>Test your meta tags</strong> using tools like the Facebook Sharing Debugger, Twitter Card Validator, and Google's Rich Results Test.</li>
+    </ul>
+    
+    <h3>Example of a Well-Structured Head Section</h3>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;meta name="description" content="A concise description of the page content."&gt;
+    &lt;meta name="author" content="Author Name"&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+    
+    &lt;!-- Open Graph / Facebook --&gt;
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:url" content="https://example.com/page"&gt;
+    &lt;meta property="og:title" content="Page Title"&gt;
+    &lt;meta property="og:description" content="A concise description of the page content."&gt;
+    &lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+    
+    &lt;!-- Twitter --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="Page Title"&gt;
+    &lt;meta name="twitter:description" content="A concise description of the page content."&gt;
+    &lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;
+    
+    &lt;link rel="canonical" href="https://example.com/page"&gt;
+    &lt;link rel="icon" href="/favicon.ico"&gt;
+    &lt;link rel="stylesheet" href="/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Page content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

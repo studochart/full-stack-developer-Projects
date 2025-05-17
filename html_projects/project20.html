@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Video</title>
+</head>
+<body>
+    <h1>HTML Video</h1>
+    
+    <p>HTML5 introduced the <code>&lt;video&gt;</code> element, which allows you to embed video content in your web pages without requiring plugins like Flash. This page demonstrates how to use the video element and its various attributes.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-video">Basic Video Element</a></li>
+        <li><a href="#video-attributes">Video Attributes</a></li>
+        <li><a href="#multiple-sources">Multiple Sources</a></li>
+        <li><a href="#fallback">Fallback Content</a></li>
+        <li><a href="#video-formats">Video Formats</a></li>
+        <li><a href="#poster">Video Poster</a></li>
+        <li><a href="#responsive">Responsive Videos</a></li>
+        <li><a href="#javascript-control">JavaScript Video Control</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-video">Basic Video Element</h2>
+    
+    <p>The basic syntax for the video element is:</p>
+    <pre>&lt;video src="video-file.mp4" controls&gt;&lt;/video&gt;</pre>
+    
+    <p>Here's a simple example:</p>
+    
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <p>The code for this video player is:</p>
+    <pre>&lt;video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="400"&gt;
+    Your browser does not support the video element.
+&lt;/video&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="video-attributes">Video Attributes</h2>
+    
+    <p>The video element supports several attributes that control its behavior:</p>
+    
+    <h3>controls</h3>
+    <p>The <code>controls</code> attribute adds video controls, like play, pause, volume, and fullscreen.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <h3>autoplay</h3>
+    <p>The <code>autoplay</code> attribute makes the video start playing as soon as it's ready. Note that many browsers block autoplay unless the user has interacted with the page or the video is muted.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls autoplay muted width="400">
+        Your browser does not support the video element.
+    </video>
+    <p><em>Note: This example includes <code>muted</code> to allow autoplay in most browsers.</em></p>
+    
+    <h3>loop</h3>
+    <p>The <code>loop</code> attribute makes the video play again every time it finishes.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls loop width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <h3>muted</h3>
+    <p>The <code>muted</code> attribute specifies that the video output should be muted by default.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls muted width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <h3>preload</h3>
+    <p>The <code>preload</code> attribute specifies if and how the video should be loaded when the page loads.</p>
+    <ul>
+        <li><code>auto</code> - Load the entire video file</li>
+        <li><code>metadata</code> - Load only metadata</li>
+        <li><code>none</code> - Don't preload anything</li>
+    </ul>
+    
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls preload="metadata" width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <h3>width and height</h3>
+    <p>These attributes specify the dimensions of the video player in pixels.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="320" height="240">
+        Your browser does not support the video element.
+    </video>
+    
+    <h3>playsinline</h3>
+    <p>The <code>playsinline</code> attribute is especially important for iOS devices, as it allows the video to play inline rather than automatically entering fullscreen mode.</p>
+    <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls playsinline width="400">
+        Your browser does not support the video element.
+    </video>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="multiple-sources">Multiple Sources</h2>
+    
+    <p>You can specify multiple video sources using the <code>&lt;source&gt;</code> element inside the video element. The browser will use the first recognized format.</p>
+    
+    <video controls width="400">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+        Your browser does not support the video element.
+    </video>
+    
+    <p>The code for this video player is:</p>
+    <pre>&lt;video controls width="400"&gt;
+    &lt;source src="mov_bbb.mp4" type="video/mp4"&gt;
+    &lt;source src="mov_bbb.ogg" type="video/ogg"&gt;
+    Your browser does not support the video element.
+&lt;/video&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="fallback">Fallback Content</h2>
+    
+    <p>You can include fallback content between the opening and closing video tags for browsers that don't support the video element:</p>
+    
+    <video controls width="400">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+        <p>Your browser does not support HTML5 video. Here is a <a href="https://www.w3schools.com/html/mov_bbb.mp4">link to the video</a> instead.</p>
+    </video>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="video-formats">Video Formats</h2>
+    
+    <p>Different browsers support different video formats. The most common formats are:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Format</th>
+            <th style="padding: 8px;">MIME Type</th>
+            <th style="padding: 8px;">Browser Support</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">MP4 (H.264)</td>
+            <td style="padding: 8px;">video/mp4</td>
+            <td style="padding: 8px;">All modern browsers</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">WebM</td>
+            <td style="padding: 8px;">video/webm</td>
+            <td style="padding: 8px;">Chrome, Firefox, Opera</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">OGG</td>
+            <td style="padding: 8px;">video/ogg</td>
+            <td style="padding: 8px;">Chrome, Firefox, Opera</td>
+        </tr>
+    </table>
+    
+    <p>To ensure maximum compatibility, it's best to provide at least MP4 and WebM formats.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="poster">Video Poster</h2>
+    
+    <p>The <code>poster</code> attribute specifies an image to be shown while the video is downloading, or until the user hits the play button:</p>
+    
+    <video controls width="400" poster="https://via.placeholder.com/400x225.png?text=Video+Preview">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+    
+    <p>The code for this video player is:</p>
+    <pre>&lt;video controls width="400" poster="video-poster.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    Your browser does not support the video element.
+&lt;/video&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="responsive">Responsive Videos</h2>
+    
+    <p>To make videos responsive (adapt to different screen sizes), you can use CSS:</p>
+    
+    <div style="max-width: 100%;">
+        <video controls style="width: 100%; height: auto;">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+    </div>
+    
+    <p>For maintaining aspect ratio, you can use a container with padding-based technique:</p>
+    
+    <div style="position: relative; padding-bottom: 56.25%; /* 16:9 aspect ratio */ height: 0; overflow: hidden; max-width: 100%;">
+        <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="javascript-control">JavaScript Video Control</h2>
+    
+    <p>You can control video playback using JavaScript:</p>
+    
+    <video id="myVideo" width="400" src="https://www.w3schools.com/html/mov_bbb.mp4">
+        Your browser does not support the video element.
+    </video>
+    
+    <div style="margin-top: 10px;">
+        <button onclick="playVideo()">Play</button>
+        <button onclick="pauseVideo()">Pause</button>
+        <button onclick="stopVideo()">Stop</button>
+        <button onclick="skipAhead()">Skip 10s</button>
+        <button onclick="changeVolume(0.2)">Volume 20%</button>
+        <button onclick="changeVolume(1)">Volume 100%</button>
+        <button onclick="muteVideo()">Mute/Unmute</button>
+        <button onclick="fullScreen()">Fullscreen</button>
+    </div>
+    
+    <script>
+        var video = document.getElementById("myVideo");
+        
+        function playVideo() {
+            video.play();
+        }
+        
+        function pauseVideo() {
+            video.pause();
+        }
+        
+        function stopVideo() {
+            video.pause();
+            video.currentTime = 0;
+        }
+        
+        function skipAhead() {
+            video.currentTime += 10;
+        }
+        
+        function changeVolume(value) {
+            video.volume = value;
+        }
+        
+        function muteVideo() {
+            video.muted = !video.muted;
+        }
+        
+        function fullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE11 */
+                video.msRequestFullscreen();
+            }
+        }
+    </script>
+    
+    <p>You can also listen for video events:</p>
+    
+    <video id="eventVideo" width="400" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+    
+    <div id="videoStatus">Video status: Ready</div>
+    
+    <script>
+        var eventVideo = document.getElementById("eventVideo");
+        var statusDiv = document.getElementById("videoStatus");
+        
+        eventVideo.addEventListener("play", function() {
+            statusDiv.textContent = "Video status: Playing";
+        });
+        
+        eventVideo.addEventListener("pause", function() {
+            statusDiv.textContent = "Video status: Paused";
+        });
+        
+        eventVideo.addEventListener("ended", function() {
+            statusDiv.textContent = "Video status: Ended";
+        });
+        
+        eventVideo.addEventListener("timeupdate", function() {
+            statusDiv.textContent = "Video status: Playing - " + Math.floor(eventVideo.currentTime) + " seconds";
+        });
+    </script>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <ul>
+        <li><strong>Always provide controls</strong> unless there's a specific reason not to.</li>
+        <li><strong>Avoid autoplay</strong> for videos with sound, as it can be annoying and may be blocked by browsers.</li>
+        <li><strong>Provide multiple formats</strong> for maximum browser compatibility.</li>
+        <li><strong>Include fallback content</strong> for browsers that don't support the video element.</li>
+        <li><strong>Specify the type attribute</strong> in source elements to help browsers choose the right format.</li>
+        <li><strong>Add a poster image</strong> to give users a preview before they play the video.</li>
+        <li><strong>Make videos responsive</strong> to ensure they work well on all devices.</li>
+        <li><strong>Consider preloading options</strong> to balance performance and data usage.</li>
+        <li><strong>Optimize video files</strong> for web use to reduce file size.</li>
+        <li><strong>Add the playsinline attribute</strong> for better behavior on mobile devices.</li>
+        <li><strong>Include captions or subtitles</strong> for accessibility.</li>
+    </ul>
+    
+    <h3>Accessibility Considerations</h3>
+    <ul>
+        <li>Provide captions or subtitles using the <code>&lt;track&gt;</code> element</li>
+        <li>Ensure keyboard accessibility for all video controls</li>
+        <li>Use ARIA attributes when creating custom video controls</li>
+        <li>Provide transcripts for important video content</li>
+        <li>Consider users who may have video disabled or unavailable</li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

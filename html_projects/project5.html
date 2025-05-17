@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #5592f5;
+            margin-bottom: 10px;
+        }
+        .recipe-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .recipe-meta div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .recipe-meta i {
+            font-size: 1.2em;
+        }
+        .recipe-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .recipe-intro {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+        }
+        .recipe-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .ingredients, .equipment {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        h2 {
+            color: #5592f5;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .instructions {
+            margin-bottom: 30px;
+        }
+        .instruction-step {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+        .step-number {
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .nutrition {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .nutrition-item {
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .nutrition-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .nutrition-name {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .tips {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        @media (max-width: 768px) {
+            .recipe-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Classic Chocolate Chip Cookies</h1>
+            <div class="recipe-meta">
+                <div><span>⏱️</span> Prep: 15 mins</div>
+                <div><span>🍳</span> Cook: 10 mins</div>
+                <div><span>🍪</span> Yield: 24 cookies</div>
+                <div><span>⭐</span> Rating: 4.9/5</div>
+            </div>
+        </header>
+        
+        <img src="https://via.placeholder.com/900x400?text=Chocolate+Chip+Cookies" alt="Chocolate Chip Cookies" class="recipe-image">
+        
+        <p class="recipe-intro">These classic chocolate chip cookies are the perfect combination of soft and chewy in the middle with crispy edges. They're easy to make and always a crowd-pleaser. This recipe has been in my family for generations and never fails to impress!</p>
+        
+        <div class="recipe-sections">
+            <div class="ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    <li>1 cup (2 sticks) unsalted butter, softened</li>
+                    <li>3/4 cup granulated sugar</li>
+                    <li>3/4 cup packed brown sugar</li>
+                    <li>2 large eggs</li>
+                    <li>2 teaspoons vanilla extract</li>
+                    <li>2 1/4 cups all-purpose flour</li>
+                    <li>1 teaspoon baking soda</li>
+                    <li>1/2 teaspoon salt</li>
+                    <li>2 cups semi-sweet chocolate chips</li>
+                    <li>1 cup chopped walnuts (optional)</li>
+                </ul>
+            </div>
+            
+            <div class="equipment">
+                <h2>Equipment Needed</h2>
+                <ul>
+                    <li>Large mixing bowl</li>
+                    <li>Electric mixer or stand mixer</li>
+                    <li>Measuring cups and spoons</li>
+                    <li>Baking sheets</li>
+                    <li>Parchment paper</li>
+                    <li>Cooling rack</li>
+                    <li>Cookie scoop (optional)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>Instructions</h2>
+            
+            <div class="instruction-step">
+                <div class="step-number">1</div>
+                <div>Preheat your oven to 375°F (190°C). Line baking sheets with parchment paper.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">2</div>
+                <div>In a large bowl, cream together the butter, granulated sugar, and brown sugar until light and fluffy, about 2-3 minutes.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">3</div>
+                <div>Beat in the eggs one at a time, then stir in the vanilla extract.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">4</div>
+                <div>In a separate bowl, combine the flour, baking soda, and salt. Gradually add to the butter mixture and mix until just combined.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">5</div>
+                <div>Fold in the chocolate chips and walnuts (if using).</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">6</div>
+                <div>Drop rounded tablespoons of dough onto the prepared baking sheets, spacing them about 2 inches apart.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">7</div>
+                <div>Bake for 9-11 minutes or until the edges are golden brown but the centers still look slightly soft.</div>
+            </div>
+            
+            <div class="instruction-step">
+                <div class="step-number">8</div>
+                <div>Allow cookies to cool on the baking sheet for 5 minutes before transferring to a wire rack to cool completely.</div>
+            </div>
+        </div>
+        
+        <div class="nutrition">
+            <h2>Nutrition Information (per cookie)</h2>
+            <div class="nutrition-grid">
+                <div class="nutrition-item">
+                    <div class="nutrition-value">210</div>
+                    <div class="nutrition-name">Calories</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value">11g</div>
+                    <div class="nutrition-name">Fat</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value">27g</div>
+                    <div class="nutrition-name">Carbs</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value">2g</div>
+                    <div class="nutrition-name">Protein</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value">17g</div>
+                    <div class="nutrition-name">Sugar</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value">125mg</div>
+                    <div class="nutrition-name">Sodium</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h2>Tips for Perfect Cookies</h2>
+            <ul>
+                <li><strong>Chill the dough:</strong> For thicker cookies, chill the dough for at least 30 minutes before baking.</li>
+                <li><strong>Room temperature ingredients:</strong> Make sure your butter and eggs are at room temperature for the best texture.</li>
+                <li><strong>Don't overmix:</strong> Mix the flour just until combined to avoid tough cookies.</li>
+                <li><strong>Storage:</strong> Store in an airtight container at room temperature for up to 5 days.</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="back-link">← Back to Projects</a>
+    </div>
+</body>
+</html>
+

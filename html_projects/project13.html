@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Images</title>
+</head>
+<body>
+    <h1>HTML Images</h1>
+    
+    <p>Images are an essential part of web pages. This page demonstrates how to add and format images using HTML.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-images">Basic Image Syntax</a></li>
+        <li><a href="#alt-text">Alt Text</a></li>
+        <li><a href="#size">Image Size</a></li>
+        <li><a href="#alignment">Image Alignment</a></li>
+        <li><a href="#borders">Image Borders</a></li>
+        <li><a href="#maps">Image Maps</a></li>
+        <li><a href="#figure">Figure and Figcaption</a></li>
+        <li><a href="#background">Background Images</a></li>
+        <li><a href="#formats">Image Formats</a></li>
+        <li><a href="#responsive">Responsive Images</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-images">Basic Image Syntax</h2>
+    
+    <p>The basic syntax for adding an image is:</p>
+    <pre>&lt;img src="image-url.jpg" alt="Description of image"&gt;</pre>
+    
+    <p>Here's a simple example:</p>
+    <img src="https://via.placeholder.com/300x200" alt="A placeholder image">
+    
+    <p>The <code>src</code> attribute specifies the path to the image, and the <code>alt</code> attribute provides alternative text for the image.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="alt-text">Alt Text</h2>
+    
+    <p>The <code>alt</code> attribute is required for accessibility and SEO. It should:</p>
+    <ul>
+        <li>Describe the content of the image</li>
+        <li>Be useful for screen readers</li>
+        <li>Provide context if the image fails to load</li>
+    </ul>
+    
+    <p>Example with meaningful alt text:</p>
+    <img src="https://via.placeholder.com/300x200?text=Mountain+Landscape" alt="Mountain landscape with snow-capped peaks and a clear blue sky">
+    
+    <p>If an image is purely decorative and adds no content value, you can use an empty alt attribute:</p>
+    <img src="https://via.placeholder.com/300x50?text=Decorative+Divider" alt="">
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="size">Image Size</h2>
+    
+    <p>You can control the size of an image using the <code>width</code> and <code>height</code> attributes:</p>
+    
+    <h3>Original Size</h3>
+    <img src="https://via.placeholder.com/300x200" alt="Original size image">
+    
+    <h3>Width and Height Specified</h3>
+    <img src="https://via.placeholder.com/300x200" alt="Resized image" width="150" height="100">
+    
+    <h3>Only Width Specified (maintains aspect ratio)</h3>
+    <img src="https://via.placeholder.com/300x200" alt="Width only specified" width="150">
+    
+    <p>It's good practice to specify both width and height to help the browser allocate space for the image before it loads, reducing layout shifts.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="alignment">Image Alignment</h2>
+    
+    <p>In HTML5, image alignment is typically handled with CSS, but for demonstration purposes, we can use the <code>style</code> attribute:</p>
+    
+    <h3>Left Alignment</h3>
+    <img src="https://via.placeholder.com/150x100" alt="Left aligned image" style="float: left; margin-right: 10px;">
+    <p>This text will wrap around the image that is aligned to the left. The image takes up space on the left side, and the text flows around it on the right side. This demonstrates how content can interact with images when they are aligned to one side of the container.</p>
+    <div style="clear: both;"></div>
+    
+    <h3>Right Alignment</h3>
+    <img src="https://via.placeholder.com/150x100" alt="Right aligned image" style="float: right; margin-left: 10px;">
+    <p>This text will wrap around the image that is aligned to the right. The image takes up space on the right side, and the text flows around it on the left side. This is often used in articles where you want to have images alongside paragraphs of text.</p>
+    <div style="clear: both;"></div>
+    
+    <h3>Center Alignment</h3>
+    <div style="text-align: center;">
+        <img src="https://via.placeholder.com/150x100" alt="Center aligned image">
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="borders">Image Borders</h2>
+    
+    <p>In HTML5, borders are typically added with CSS, but for demonstration:</p>
+    
+    <img src="https://via.placeholder.com/150x100" alt="Image with border" style="border: 2px solid black;">
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="maps">Image Maps</h2>
+    
+    <p>Image maps allow you to create clickable areas on an image:</p>
+    
+    <img src="https://via.placeholder.com/400x300?text=Image+Map+Example" alt="Image map example" usemap="#example-map">
+    
+    <map name="example-map">
+        <area shape="rect" coords="0,0,200,150" alt="Top left rectangle" href="#" title="You clicked the top left!">
+        <area shape="rect" coords="200,0,400,150" alt="Top right rectangle" href="#" title="You clicked the top right!">
+        <area shape="rect" coords="0,150,200,300" alt="Bottom left rectangle" href="#" title="You clicked the bottom left!">
+        <area shape="rect" coords="200,150,400,300" alt="Bottom right rectangle" href="#" title="You clicked the bottom right!">
+    </map>
+    
+    <p>This image has been divided into four clickable regions. Hover over each quadrant to see the title, or click to activate the link.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="figure">Figure and Figcaption</h2>
+    
+    <p>The <code>figure</code> and <code>figcaption</code> elements provide a semantic way to associate captions with images:</p>
+    
+    <figure>
+        <img src="https://via.placeholder.com/300x200?text=Mountain+Scene" alt="Mountain landscape">
+        <figcaption>Fig.1 - A beautiful mountain landscape with snow-capped peaks.</figcaption>
+    </figure>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="background">Background Images</h2>
+    
+    <p>Background images are typically added with CSS, but for demonstration:</p>
+    
+    <div style="background-image: url('https://via.placeholder.com/100x100'); padding: 20px; background-repeat: repeat; height: 200px; color: white; text-shadow: 1px 1px 2px black;">
+        <p>This div has a background image that repeats.</p>
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="formats">Image Formats</h2>
+    
+    <p>Common web image formats include:</p>
+    
+    <ul>
+        <li><strong>JPEG/JPG</strong> - Best for photographs and complex images with many colors</li>
+        <li><strong>PNG</strong> - Best for images that need transparency or have text/sharp edges</li>
+        <li><strong>GIF</strong> - Supports animation, limited to 256 colors</li>
+        <li><strong>SVG</strong> - Vector format, scalable without quality loss, ideal for logos and icons</li>
+        <li><strong>WebP</strong> - Modern format with better compression and quality than JPEG and PNG</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="responsive">Responsive Images</h2>
+    
+    <p>Making images responsive ensures they look good on all devices:</p>
+    
+    <h3>Basic Responsive Image</h3>
+    <img src="https://via.placeholder.com/800x400" alt="Responsive image" style="max-width: 100%; height: auto;">
+    <p>This image will scale down on smaller screens because of the <code>max-width: 100%</code> style.</p>
+    
+    <h3>Using the picture Element</h3>
+    <p>The <code>picture</code> element allows you to specify different images for different screen sizes:</p>
+    
+    <picture>
+        <source media="(min-width: 650px)" srcset="https://via.placeholder.com/600x300?text=Large+Image">
+        <source media="(min-width: 465px)" srcset="https://via.placeholder.com/400x200?text=Medium+Image">
+        <img src="https://via.placeholder.com/200x100?text=Small+Image" alt="Responsive image using picture element" style="max-width: 100%; height: auto;">
+    </picture>
+    
+    <p>Resize your browser window to see the image change based on the viewport width.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2>Best Practices for Images</h2>
+    
+    <ul>
+        <li>Always include the <code>alt</code> attribute for accessibility</li>
+        <li>Specify width and height to prevent layout shifts</li>
+        <li>Optimize images for web to reduce file size</li>
+        <li>Use appropriate image formats for different types of images</li>
+        <li>Make images responsive for different screen sizes</li>
+        <li>Consider lazy loading for images below the fold</li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

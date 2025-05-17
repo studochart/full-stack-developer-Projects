@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Iframes</title>
+</head>
+<body>
+    <h1>HTML Iframes</h1>
+    
+    <p>An iframe (Inline Frame) is an HTML element that allows you to embed another HTML document within the current document. This page demonstrates how to use iframes and their various attributes.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-iframe">Basic Iframe</a></li>
+        <li><a href="#iframe-attributes">Iframe Attributes</a></li>
+        <li><a href="#iframe-styling">Styling Iframes</a></li>
+        <li><a href="#iframe-security">Security Considerations</a></li>
+        <li><a href="#iframe-communication">Communication Between Frames</a></li>
+        <li><a href="#iframe-uses">Common Uses for Iframes</a></li>
+        <li><a href="#iframe-limitations">Limitations and Alternatives</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-iframe">Basic Iframe</h2>
+    
+    <p>The basic syntax for an iframe is:</p>
+    <pre>&lt;iframe src="URL" title="description"&gt;&lt;/iframe&gt;</pre>
+    
+    <p>Here's a simple example embedding a Wikipedia page:</p>
+    
+    <iframe src="https://en.wikipedia.org/wiki/HTML" width="100%" height="300" title="Wikipedia page about HTML"></iframe>
+    
+    <p>The code for this iframe is:</p>
+    <pre>&lt;iframe src="https://en.wikipedia.org/wiki/HTML" width="100%" height="300" title="Wikipedia page about HTML"&gt;&lt;/iframe&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-attributes">Iframe Attributes</h2>
+    
+    <p>Iframes support several attributes that control their behavior and appearance:</p>
+    
+    <h3>src</h3>
+    <p>The <code>src</code> attribute specifies the URL of the document to embed.</p>
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik" width="100%" height="200" title="OpenStreetMap"></iframe>
+    
+    <h3>width and height</h3>
+    <p>These attributes specify the dimensions of the iframe in pixels or percentages.</p>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" width="560" height="315" title="YouTube video"></iframe>
+    
+    <h3>title</h3>
+    <p>The <code>title</code> attribute provides a description of the iframe content for accessibility purposes.</p>
+    
+    <h3>name</h3>
+    <p>The <code>name</code> attribute specifies a name for the iframe, which can be used as the target for links.</p>
+    <iframe src="about:blank" name="iframe_example" width="100%" height="200" title="Named iframe example"></iframe>
+    <p><a href="https://example.com" target="iframe_example">Click to load example.com in the iframe above</a></p>
+    
+    <h3>sandbox</h3>
+    <p>The <code>sandbox</code> attribute enables extra restrictions on the content in the iframe.</p>
+    <iframe src="https://example.com" sandbox width="100%" height="200" title="Sandboxed iframe"></iframe>
+    <p>This iframe has all sandbox restrictions enabled, which prevents scripts, forms, popups, etc.</p>
+    
+    <h3>allow</h3>
+    <p>The <code>allow</code> attribute specifies which features are allowed in the iframe (camera, microphone, etc.).</p>
+    <iframe src="https://example.com" allow="camera; microphone" width="100%" height="200" title="Iframe with permissions"></iframe>
+    
+    <h3>loading</h3>
+    <p>The <code>loading</code> attribute specifies whether the iframe should be loaded immediately or when it becomes visible.</p>
+    <iframe src="https://example.com" loading="lazy" width="100%" height="200" title="Lazy-loaded iframe"></iframe>
+    <p>This iframe uses lazy loading, which means it won't load until it's near the viewport.</p>
+    
+    <h3>srcdoc</h3>
+    <p>The <code>srcdoc</code> attribute specifies the HTML content of the page to show in the iframe.</p>
+    <iframe srcdoc="<h2 style='color:blue;'>Hello from srcdoc!</h2><p>This content is directly embedded in the iframe.</p>" width="100%" height="100" title="Iframe with srcdoc content"></iframe>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-styling">Styling Iframes</h2>
+    
+    <p>Iframes can be styled using CSS, just like other HTML elements:</p>
+    
+    <h3>Basic Styling</h3>
+    <iframe src="https://example.com" width="100%" height="200" style="border: 2px solid blue; border-radius: 10px; box-shadow: 5px 5px 10px #888888;" title="Styled iframe"></iframe>
+    
+    <h3>Removing Borders</h3>
+    <iframe src="https://example.com" width="100%" height="200" style="border: none;" title="Borderless iframe"></iframe>
+    
+    <h3>Responsive Iframe</h3>
+    <div style="position: relative; overflow: hidden; padding-top: 56.25%;">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="Responsive YouTube video"></iframe>
+    </div>
+    <p>This iframe maintains a 16:9 aspect ratio regardless of screen size.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-security">Security Considerations</h2>
+    
+    <p>Iframes can pose security risks if not used carefully:</p>
+    
+    <h3>The sandbox Attribute</h3>
+    <p>The <code>sandbox</code> attribute restricts the capabilities of an iframe to prevent malicious actions:</p>
+    
+    <pre>&lt;iframe src="https://example.com" sandbox="allow-scripts allow-forms" title="Partially sandboxed iframe"&gt;&lt;/iframe&gt;</pre>
+    
+    <p>Common sandbox values include:</p>
+    <ul>
+        <li><code>allow-scripts</code> - Allows JavaScript execution</li>
+        <li><code>allow-forms</code> - Allows form submission</li>
+        <li><code>allow-same-origin</code> - Allows the iframe to be treated as same-origin</li>
+        <li><code>allow-popups</code> - Allows popups</li>
+        <li><code>allow-top-navigation</code> - Allows the iframe to navigate its top-level browsing context</li>
+    </ul>
+    
+    <h3>Content Security Policy</h3>
+    <p>You can use Content Security Policy headers to control which sources can be embedded in iframes on your site.</p>
+    
+    <h3>X-Frame-Options</h3>
+    <p>The X-Frame-Options HTTP header can be used to prevent your site from being embedded in iframes on other sites, protecting against clickjacking attacks.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-communication">Communication Between Frames</h2>
+    
+    <p>Iframes and their parent pages can communicate using the <code>postMessage</code> API:</p>
+    
+    <h3>Parent to Iframe</h3>
+    <iframe id="receiver" src="about:blank" width="100%" height="100" title="Message receiver"></iframe>
+    <button onclick="sendMessage()">Send Message to Iframe</button>
+    
+    <script>
+        function sendMessage() {
+            const iframe = document.getElementById('receiver');
+            iframe.srcdoc = '<html><body><div id="message">Waiting for message...</div><script>window.addEventListener("message", function(event) { document.getElementById("message").textContent = "Received: " + event.data; });<\/script></body></html>';
+            
+            // Wait for iframe to load
+            iframe.onload = function() {
+                iframe.contentWindow.postMessage("Hello from parent page!", "*");
+            };
+        }
+    </script>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-uses">Common Uses for Iframes</h2>
+    
+    <h3>Embedding Maps</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.2922926156740373!3d48.858370079287475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sEiffel%20Tower!5e0!3m2!1sen!2sus!4v1647359022271!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" title="Google Maps - Eiffel Tower"></iframe>
+    
+    <h3>Embedding Videos</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
+    <h3>Embedding Social Media Content</h3>
+    <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2Fposts%2F10153982791998553&width=500" width="500" height="181" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Facebook post"></iframe>
+    
+    <h3>Embedding PDF Documents</h3>
+    <iframe src="https://mozilla.github.io/pdf.js/web/viewer.html" width="100%" height="500" title="PDF Viewer"></iframe>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="iframe-limitations">Limitations and Alternatives</h2>
+    
+    <h3>Limitations</h3>
+    <ul>
+        <li>Security restrictions may prevent certain content from being embedded</li>
+        <li>Some websites use X-Frame-Options to prevent being embedded in iframes</li>
+        <li>Mobile devices may handle iframes differently than desktop browsers</li>
+        <li>Search engines may not index content within iframes</li>
+        <li>Accessibility issues if not implemented properly</li>
+    </ul>
+    
+    <h3>Alternatives</h3>
+    <ul>
+        <li><strong>Object Element:</strong> <code>&lt;object data="page.html" type="text/html"&gt;&lt;/object&gt;</code></li>
+        <li><strong>Embed Element:</strong> <code>&lt;embed src="page.html" type="text/html"&gt;</code></li>
+        <li><strong>AJAX:</strong> Load content dynamically using JavaScript</li>
+        <li><strong>Server-Side Includes:</strong> Include content on the server side</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2>Best Practices</h2>
+    
+    <ul>
+        <li>Always include a <code>title</code> attribute for accessibility</li>
+        <li>Use the <code>sandbox</code> attribute when embedding untrusted content</li>
+        <li>Specify both <code>width</code> and <code>height</code> to prevent layout shifts</li>
+        <li>Consider using <code>loading="lazy"</code> for iframes below the fold</li>
+        <li>Make iframes responsive for different screen sizes</li>
+        <li>Provide fallback content between the opening and closing tags for browsers that don't support iframes</li>
+        <li>Be aware of same-origin policy limitations when trying to interact with iframe content</li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

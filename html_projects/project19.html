@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Audio</title>
+</head>
+<body>
+    <h1>HTML Audio</h1>
+    
+    <p>HTML5 introduced the <code>&lt;audio&gt;</code> element, which allows you to embed audio content in your web pages without requiring plugins like Flash. This page demonstrates how to use the audio element and its various attributes.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-audio">Basic Audio Element</a></li>
+        <li><a href="#audio-attributes">Audio Attributes</a></li>
+        <li><a href="#multiple-sources">Multiple Sources</a></li>
+        <li><a href="#fallback">Fallback Content</a></li>
+        <li><a href="#audio-formats">Audio Formats</a></li>
+        <li><a href="#javascript-control">JavaScript Audio Control</a></li>
+        <li><a href="#audio-api">Web Audio API</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-audio">Basic Audio Element</h2>
+    
+    <p>The basic syntax for the audio element is:</p>
+    <pre>&lt;audio src="audio-file.mp3" controls&gt;&lt;/audio&gt;</pre>
+    
+    <p>Here's a simple example:</p>
+    
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls>
+        Your browser does not support the audio element.
+    </audio>
+    
+    <p>The code for this audio player is:</p>
+    <pre>&lt;audio src="https://www.w3schools.com/html/horse.mp3" controls&gt;
+    Your browser does not support the audio element.
+&lt;/audio&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="audio-attributes">Audio Attributes</h2>
+    
+    <p>The audio element supports several attributes that control its behavior:</p>
+    
+    <h3>controls</h3>
+    <p>The <code>controls</code> attribute adds audio controls, like play, pause, and volume.</p>
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls>
+        Your browser does not support the audio element.
+    </audio>
+    
+    <h3>autoplay</h3>
+    <p>The <code>autoplay</code> attribute makes the audio start playing as soon as it's ready. Note that many browsers block autoplay unless the user has interacted with the page or the audio is muted.</p>
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls autoplay muted>
+        Your browser does not support the audio element.
+    </audio>
+    <p><em>Note: This example includes <code>muted</code> to allow autoplay in most browsers.</em></p>
+    
+    <h3>loop</h3>
+    <p>The <code>loop</code> attribute makes the audio play again every time it finishes.</p>
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls loop>
+        Your browser does not support the audio element.
+    </audio>
+    
+    <h3>muted</h3>
+    <p>The <code>muted</code> attribute specifies that the audio output should be muted by default.</p>
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls muted>
+        Your browser does not support the audio element.
+    </audio>
+    
+    <h3>preload</h3>
+    <p>The <code>preload</code> attribute specifies if and how the audio should be loaded when the page loads.</p>
+    <ul>
+        <li><code>auto</code> - Load the entire audio file</li>
+        <li><code>metadata</code> - Load only metadata</li>
+        <li><code>none</code> - Don't preload anything</li>
+    </ul>
+    
+    <audio src="https://www.w3schools.com/html/horse.mp3" controls preload="metadata">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="multiple-sources">Multiple Sources</h2>
+    
+    <p>You can specify multiple audio sources using the <code>&lt;source&gt;</code> element inside the audio element. The browser will use the first recognized format.</p>
+    
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <p>The code for this audio player is:</p>
+    <pre>&lt;audio controls&gt;
+    &lt;source src="horse.ogg" type="audio/ogg"&gt;
+    &lt;source src="horse.mp3" type="audio/mpeg"&gt;
+    Your browser does not support the audio element.
+&lt;/audio&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="fallback">Fallback Content</h2>
+    
+    <p>You can include fallback content between the opening and closing audio tags for browsers that don't support the audio element:</p>
+    
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        <p>Your browser does not support HTML5 audio. Here is a <a href="https://www.w3schools.com/html/horse.mp3">link to the audio</a> instead.</p>
+    </audio>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="audio-formats">Audio Formats</h2>
+    
+    <p>Different browsers support different audio formats. The most common formats are:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Format</th>
+            <th style="padding: 8px;">MIME Type</th>
+            <th style="padding: 8px;">Browser Support</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">MP3</td>
+            <td style="padding: 8px;">audio/mpeg</td>
+            <td style="padding: 8px;">All modern browsers</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">OGG</td>
+            <td style="padding: 8px;">audio/ogg</td>
+            <td style="padding: 8px;">Chrome, Firefox, Opera</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">WAV</td>
+            <td style="padding: 8px;">audio/wav</td>
+            <td style="padding: 8px;">Chrome, Firefox, Safari, Opera</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">AAC</td>
+            <td style="padding: 8px;">audio/aac</td>
+            <td style="padding: 8px;">Chrome, Safari</td>
+        </tr>
+    </table>
+    
+    <p>To ensure maximum compatibility, it's best to provide at least MP3 and OGG formats.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="javascript-control">JavaScript Audio Control</h2>
+    
+    <p>You can control audio playback using JavaScript:</p>
+    
+    <audio id="myAudio" src="https://www.w3schools.com/html/horse.mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div style="margin-top: 10px;">
+        <button onclick="playAudio()">Play</button>
+        <button onclick="pauseAudio()">Pause</button>
+        <button onclick="stopAudio()">Stop</button>
+        <button onclick="changeVolume(0.2)">Volume 20%</button>
+        <button onclick="changeVolume(1)">Volume 100%</button>
+        <button onclick="muteAudio()">Mute/Unmute</button>
+    </div>
+    
+    <script>
+        var audio = document.getElementById("myAudio");
+        
+        function playAudio() {
+            audio.play();
+        }
+        
+        function pauseAudio() {
+            audio.pause();
+        }
+        
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+        
+        function changeVolume(value) {
+            audio.volume = value;
+        }
+        
+        function muteAudio() {
+            audio.muted = !audio.muted;
+        }
+    </script>
+    
+    <p>You can also create an audio element entirely with JavaScript:</p>
+    
+    <button onclick="createAudio()">Create Audio Element</button>
+    <div id="audioContainer"></div>
+    
+    <script>
+        function createAudio() {
+            var container = document.getElementById("audioContainer");
+            var newAudio = document.createElement("audio");
+            newAudio.src = "https://www.w3schools.com/html/horse.mp3";
+            newAudio.controls = true;
+            container.innerHTML = "";
+            container.appendChild(newAudio);
+        }
+    </script>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="audio-api">Web Audio API</h2>
+    
+    <p>For more advanced audio manipulation, you can use the Web Audio API. Here's a simple example that creates a tone:</p>
+    
+    <button onclick="playTone()">Play Tone</button>
+    <button onclick="stopTone()">Stop Tone</button>
+    
+    <script>
+        var audioContext;
+        var oscillator;
+        
+        function playTone() {
+            // Create audio context if it doesn't exist
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            // Create oscillator
+            oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
+            oscillator.connect(audioContext.destination);
+            oscillator.start();
+        }
+        
+        function stopTone() {
+            if (oscillator) {
+                oscillator.stop();
+                oscillator = null;
+            }
+        }
+    </script>
+    
+    <p>The Web Audio API allows for complex audio processing, including:</p>
+    <ul>
+        <li>Creating and manipulating audio sources</li>
+        <li>Applying audio effects</li>
+        <li>Analyzing audio data</li>
+        <li>Spatial audio positioning</li>
+        <li>Creating visualizations</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <ul>
+        <li><strong>Always provide controls</strong> unless there's a specific reason not to (like background music with a separate control interface).</li>
+        <li><strong>Avoid autoplay</strong> for audio with sound, as it can be annoying and may be blocked by browsers.</li>
+        <li><strong>Provide multiple formats</strong> for maximum browser compatibility.</li>
+        <li><strong>Include fallback content</strong> for browsers that don't support the audio element.</li>
+        <li><strong>Specify the type attribute</strong> in source elements to help browsers choose the right format.</li>
+        <li><strong>Consider preloading options</strong> to balance performance and data usage.</li>
+        <li><strong>Optimize audio files</strong> for web use to reduce file size.</li>
+        <li><strong>Provide accessible controls</strong> for users who rely on keyboard navigation or screen readers.</li>
+    </ul>
+    
+    <h3>Accessibility Considerations</h3>
+    <ul>
+        <li>Provide transcripts for important audio content</li>
+        <li>Use ARIA attributes when creating custom audio controls</li>
+        <li>Ensure keyboard accessibility for all audio controls</li>
+        <li>Consider users who may have audio disabled or unavailable</li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #5592f5;
+            margin-bottom: 15px;
+        }
+        .description {
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background-color: #ecf0f1;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            padding: 15px;
+            background-color: white;
+        }
+        .image-title {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+        .image-description {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+        .overlay-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .overlay-text {
+            font-size: 0.9em;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border: 3px solid white;
+        }
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nature Photography Gallery</h1>
+            <p class="description">A collection of stunning nature photographs from around the world. Click on any image to view it in full size.</p>
+        </header>
+        
+        <div class="gallery-filters">
+            <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+            <button class="filter-btn" onclick="filterGallery('mountains')">Mountains</button>
+            <button class="filter-btn" onclick="filterGallery('ocean')">Ocean</button>
+            <button class="filter-btn" onclick="filterGallery('forest')">Forest</button>
+            <button class="filter-btn" onclick="filterGallery('wildlife')">Wildlife</button>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item" data-category="mountains">
+                <img src="https://via.placeholder.com/400x300?text=Mountain+Landscape" alt="Mountain Landscape">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Mountain Peaks</h3>
+                    <p class="image-description">Majestic mountain range at sunrise in the Alps.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="ocean">
+                <img src="https://via.placeholder.com/400x300?text=Ocean+View" alt="Ocean View">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Tranquil Waters</h3>
+                    <p class="image-description">Calm ocean waters at sunset with vibrant colors.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="forest">
+                <img src="https://via.placeholder.com/400x300?text=Forest+Path" alt="Forest Path">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Mystical Forest</h3>
+                    <p class="image-description">Sunlight filtering through ancient trees in a misty forest.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="wildlife">
+                <img src="https://via.placeholder.com/400x300?text=Eagle" alt="Eagle">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Soaring Eagle</h3>
+                    <p class="image-description">Majestic eagle in flight against a clear blue sky.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="mountains">
+                <img src="https://via.placeholder.com/400x300?text=Snowy+Mountains" alt="Snowy Mountains">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Winter Wonderland</h3>
+                    <p class="image-description">Snow-covered mountain peaks in winter.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="ocean">
+                <img src="https://via.placeholder.com/400x300?text=Coral+Reef" alt="Coral Reef">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Vibrant Reef</h3>
+                    <p class="image-description">Colorful coral reef teeming with marine life.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="forest">
+                <img src="https://via.placeholder.com/400x300?text=Autumn+Forest" alt="Autumn Forest">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Autumn Colors</h3>
+                    <p class="image-description">Forest ablaze with vibrant autumn foliage.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="wildlife">
+                <img src="https://via.placeholder.com/400x300?text=Deer" alt="Deer">
+                <div class="image-overlay">
+                    <div class="overlay-icon">🔍</div>
+                    <div class="overlay-text">Click to enlarge</div>
+                </div>
+                <div class="gallery-caption">
+                    <h3 class="image-title">Forest Dweller</h3>
+                    <p class="image-description">Gentle deer grazing in a peaceful meadow at dawn.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <div class="lightbox-content">
+                <span class="close-lightbox">&times;</span>
+                <img id="lightbox-image" class="lightbox-image" src="" alt="">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-link">← Back to Projects</a>
+    </div>
+    
+    <script>
+        // Initialize gallery items to be clickable
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                const imgTitle = this.querySelector('.image-title').textContent;
+                const imgDesc = this.querySelector('.image-description').textContent;
+                
+                document.getElementById('lightbox-image').src = imgSrc;
+                document.getElementById('lightbox-caption').innerHTML = `<h3>${imgTitle}</h3><p>${imgDesc}</p>`;
+                document.getElementById('lightbox').style.display = 'flex';
+            });
+        });
+        
+        // Close lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+        
+        // Filter gallery
+        function filterGallery(category) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter items
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

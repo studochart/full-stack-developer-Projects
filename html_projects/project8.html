@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBottle - Sustainable Water Bottle</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #3498db;
+        }
+        
+        .logo-icon {
+            font-size: 1.8em;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        .cta-button {
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #09cc09;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #5592f5;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .primary-button {
+            background-color: #5592f5;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .primary-button:hover {
+            background-color: #09cc09;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: #3498db;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: #09cc09;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2em;
+            color: #5592f5;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4em;
+            color: #5592f5;
+            margin-bottom: 15px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-header {
+            padding: 30px;
+            background-color: #091330;
+            color: white;
+            text-align: center;
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.6em;
+            margin: 0 0 10px;
+        }
+        
+        .price {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .pricing-features {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonial-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            margin: 0 0 5px;
+            color: #5592f5;
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        /* Call to Action */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1em;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #5592f5;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9em;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 20px 0;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🌊</span>
+                <span class="logo-text">EcoBottle</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#" class="cta-button">Buy Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>The Sustainable Water Bottle for Everyday Adventures</h1>
+            <p>EcoBottle is designed to keep your drinks at the perfect temperature while reducing plastic waste. Made from eco-friendly materials that are built to last.</p>
+            
+            <div class="hero-buttons">
+                <a href="#pricing" class="primary-button">Shop Now</a>
+                <a href="#features" class="secondary-button">Learn More</a>
+            </div>
+            
+            <img src="https://via.placeholder.com/800x400?text=EcoBottle+Product+Image" alt="EcoBottle Product" class="hero-image">
+        </div>
+    </section>
+    
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose EcoBottle?</h2>
+                <p>Our bottles are designed with both you and the planet in mind. Here's what makes EcoBottle special:</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>Eco-Friendly Materials</h3>
+                    <p>Made from sustainable materials that are 100% recyclable and BPA-free.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">❄️</div>
+                    <h3>Temperature Control</h3>
+                    <p>Keeps cold drinks cold for 24 hours and hot drinks hot for 12 hours.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Leak-Proof Design</h3>
+                    <p>Our secure lid ensures no spills in your bag or on your adventures.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌈</div>
+                    <h3>Stylish Colors</h3>
+                    <p>Available in a range of beautiful colors to match your personal style.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>One Bottle, One Tree</h3>
+                    <p>For every bottle sold, we plant a tree to help restore forests worldwide.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Lifetime Warranty</h3>
+                    <p>We stand behind our product with a lifetime warranty against manufacturing defects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your EcoBottle</h2>
+                <p>Select the perfect size and style for your hydration needs.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Standard</h3>
+                        <div class="price">$29.99</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>500ml capacity</li>
+                            <li>5 color options</li>
+                            <li>24h cold / 12h hot</li>
+                            <li>Leak-proof lid</li>
+                            <li>1-year warranty</li>
+                        </ul>
+                        <a href="#" class="primary-button">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header" style="background-color: #2ecc71;">
+                        <h3>Premium</h3>
+                        <div class="price">$39.99</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>750ml capacity</li>
+                            <li>10 color options</li>
+                            <li>36h cold / 18h hot</li>
+                            <li>Leak-proof lid</li>
+                            <li>5-year warranty</li>
+                            <li>Free personalization</li>
+                        </ul>
+                        <a href="#" class="primary-button" style="background-color: #2ecc71;">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header" style="background-color: #9b59b6;">
+                        <h3>Ultimate</h3>
+                        <div class="price">$49.99</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>1000ml capacity</li>
+                            <li>15 color options</li>
+                            <li>48h cold / 24h hot</li>
+                            <li>Smart temperature display</li>
+                            <li>Lifetime warranty</li>
+                            <li>Free personalization</li>
+                            <li>Extra sport cap included</li>
+                        </ul>
+                        <a href="#" class="primary-button" style="background-color: #9b59b6;">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Join the EcoBottle Movement</h2>
+            <p>Make a difference with every sip. Reduce plastic waste and stay hydrated in style.</p>
+            <a href="#pricing" class="primary-button" style="background-color: white; color: #3498db;">Shop Now</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>EcoBottle</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Water Bottles</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                        <li><a href="#">Limited Editions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 EcoBottle. All rights reserved.</p>
+                <a href="index.html" class="back-link">← Back to Projects</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

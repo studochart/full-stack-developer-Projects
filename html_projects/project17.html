@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entities and Special Characters</title>
+</head>
+<body>
+    <h1>HTML Entities and Special Characters</h1>
+    
+    <p>HTML entities are special codes used to display reserved characters and symbols that might otherwise be interpreted as HTML code. This page demonstrates various HTML entities and special characters.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#why-use">Why Use HTML Entities?</a></li>
+        <li><a href="#reserved-chars">Reserved Characters</a></li>
+        <li><a href="#common-symbols">Common Symbols</a></li>
+        <li><a href="#math-symbols">Mathematical Symbols</a></li>
+        <li><a href="#currency-symbols">Currency Symbols</a></li>
+        <li><a href="#arrows">Arrows</a></li>
+        <li><a href="#emojis">Emojis</a></li>
+        <li><a href="#entity-formats">Entity Formats</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="why-use">Why Use HTML Entities?</h2>
+    
+    <p>There are three main reasons to use HTML entities:</p>
+    
+    <ol>
+        <li><strong>Reserved Characters:</strong> Some characters are reserved in HTML and must be replaced with entities to display correctly.</li>
+        <li><strong>Invisible Characters:</strong> Some characters are not visible or might not be available on the keyboard.</li>
+        <li><strong>Special Symbols:</strong> Many symbols don't have dedicated keys on standard keyboards.</li>
+    </ol>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="reserved-chars">Reserved Characters</h2>
+    
+    <p>These characters have special meaning in HTML and must be represented as entities to display them as text:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Character</th>
+            <th style="padding: 8px;">Entity Name</th>
+            <th style="padding: 8px;">Entity Number</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&lt;</td>
+            <td style="padding: 8px;">&amp;lt;</td>
+            <td style="padding: 8px;">&amp;#60;</td>
+            <td style="padding: 8px;">Less than sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&gt;</td>
+            <td style="padding: 8px;">&amp;gt;</td>
+            <td style="padding: 8px;">&amp;#62;</td>
+            <td style="padding: 8px;">Greater than sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&amp;</td>
+            <td style="padding: 8px;">&amp;amp;</td>
+            <td style="padding: 8px;">&amp;#38;</td>
+            <td style="padding: 8px;">Ampersand</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&quot;</td>
+            <td style="padding: 8px;">&amp;quot;</td>
+            <td style="padding: 8px;">&amp;#34;</td>
+            <td style="padding: 8px;">Double quotation mark</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&apos;</td>
+            <td style="padding: 8px;">&amp;apos;</td>
+            <td style="padding: 8px;">&amp;#39;</td>
+            <td style="padding: 8px;">Single quotation mark (apostrophe)</td>
+        </tr>
+    </table>
+    
+    <h3>Example Usage</h3>
+    
+    <p>To display HTML code as text, you need to use entities:</p>
+    
+    <pre>
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+    </pre>
+    
+    <p>The above is displayed using entities like this:</p>
+    
+    <pre>
+&amp;lt;p&amp;gt;This is a paragraph.&amp;lt;/p&amp;gt;
+    </pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="common-symbols">Common Symbols</h2>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Symbol</th>
+            <th style="padding: 8px;">Entity Name</th>
+            <th style="padding: 8px;">Entity Number</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&copy;</td>
+            <td style="padding: 8px;">&amp;copy;</td>
+            <td style="padding: 8px;">&amp;#169;</td>
+            <td style="padding: 8px;">Copyright symbol</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&reg;</td>
+            <td style="padding: 8px;">&amp;reg;</td>
+            <td style="padding: 8px;">&amp;#174;</td>
+            <td style="padding: 8px;">Registered trademark</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&trade;</td>
+            <td style="padding: 8px;">&amp;trade;</td>
+            <td style="padding: 8px;">&amp;#8482;</td>
+            <td style="padding: 8px;">Trademark symbol</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&nbsp;</td>
+            <td style="padding: 8px;">&amp;nbsp;</td>
+            <td style="padding: 8px;">&amp;#160;</td>
+            <td style="padding: 8px;">Non-breaking space</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&bull;</td>
+            <td style="padding: 8px;">&amp;bull;</td>
+            <td style="padding: 8px;">&amp;#8226;</td>
+            <td style="padding: 8px;">Bullet point</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&hellip;</td>
+            <td style="padding: 8px;">&amp;hellip;</td>
+            <td style="padding: 8px;">&amp;#8230;</td>
+            <td style="padding: 8px;">Horizontal ellipsis</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&sect;</td>
+            <td style="padding: 8px;">&amp;sect;</td>
+            <td style="padding: 8px;">&amp;#167;</td>
+            <td style="padding: 8px;">Section symbol</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&para;</td>
+            <td style="padding: 8px;">&amp;para;</td>
+            <td style="padding: 8px;">&amp;#182;</td>
+            <td style="padding: 8px;">Paragraph symbol</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&dagger;</td>
+            <td style="padding: 8px;">&amp;dagger;</td>
+            <td style="padding: 8px;">&amp;#8224;</td>
+            <td style="padding: 8px;">Dagger</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&Dagger;</td>
+            <td style="padding: 8px;">&amp;Dagger;</td>
+            <td style="padding: 8px;">&amp;#8225;</td>
+            <td style="padding: 8px;">Double dagger</td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="math-symbols">Mathematical Symbols</h2>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Symbol</th>
+            <th style="padding: 8px;">Entity Name</th>
+            <th style="padding: 8px;">Entity Number</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&plus;</td>
+            <td style="padding: 8px;">&amp;plus;</td>
+            <td style="padding: 8px;">&amp;#43;</td>
+            <td style="padding: 8px;">Plus sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&minus;</td>
+            <td style="padding: 8px;">&amp;minus;</td>
+            <td style="padding: 8px;">&amp;#8722;</td>
+            <td style="padding: 8px;">Minus sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&times;</td>
+            <td style="padding: 8px;">&amp;times;</td>
+            <td style="padding: 8px;">&amp;#215;</td>
+            <td style="padding: 8px;">Multiplication sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&divide;</td>
+            <td style="padding: 8px;">&amp;divide;</td>
+            <td style="padding: 8px;">&amp;#247;</td>
+            <td style="padding: 8px;">Division sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&plusmn;</td>
+            <td style="padding: 8px;">&amp;plusmn;</td>
+            <td style="padding: 8px;">&amp;#177;</td>
+            <td style="padding: 8px;">Plus-minus sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&ne;</td>
+            <td style="padding: 8px;">&amp;ne;</td>
+            <td style="padding: 8px;">&amp;#8800;</td>
+            <td style="padding: 8px;">Not equal to</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&le;</td>
+            <td style="padding: 8px;">&amp;le;</td>
+            <td style="padding: 8px;">&amp;#8804;</td>
+            <td style="padding: 8px;">Less than or equal to</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&ge;</td>
+            <td style="padding: 8px;">&amp;ge;</td>
+            <td style="padding: 8px;">&amp;#8805;</td>
+            <td style="padding: 8px;">Greater than or equal to</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&frac12;</td>
+            <td style="padding: 8px;">&amp;frac12;</td>
+            <td style="padding: 8px;">&amp;#189;</td>
+            <td style="padding: 8px;">Fraction one-half</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&frac14;</td>
+            <td style="padding: 8px;">&amp;frac14;</td>
+            <td style="padding: 8px;">&amp;#188;</td>
+            <td style="padding: 8px;">Fraction one-quarter</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&frac34;</td>
+            <td style="padding: 8px;">&amp;frac34;</td>
+            <td style="padding: 8px;">&amp;#190;</td>
+            <td style="padding: 8px;">Fraction three-quarters</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&radic;</td>
+            <td style="padding: 8px;">&amp;radic;</td>
+            <td style="padding: 8px;">&amp;#8730;</td>
+            <td style="padding: 8px;">Square root</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&infin;</td>
+            <td style="padding: 8px;">&amp;infin;</td>
+            <td style="padding: 8px;">&amp;#8734;</td>
+            <td style="padding: 8px;">Infinity</td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="currency-symbols">Currency Symbols</h2>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Symbol</th>
+            <th style="padding: 8px;">Entity Name</th>
+            <th style="padding: 8px;">Entity Number</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">$</td>
+            <td style="padding: 8px;">N/A</td>
+            <td style="padding: 8px;">&amp;#36;</td>
+            <td style="padding: 8px;">Dollar sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&cent;</td>
+            <td style="padding: 8px;">&amp;cent;</td>
+            <td style="padding: 8px;">&amp;#162;</td>
+            <td style="padding: 8px;">Cent sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&pound;</td>
+            <td style="padding: 8px;">&amp;pound;</td>
+            <td style="padding: 8px;">&amp;#163;</td>
+            <td style="padding: 8px;">Pound sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&euro;</td>
+            <td style="padding: 8px;">&amp;euro;</td>
+            <td style="padding: 8px;">&amp;#8364;</td>
+            <td style="padding: 8px;">Euro sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&yen;</td>
+            <td style="padding: 8px;">&amp;yen;</td>
+            <td style="padding: 8px;">&amp;#165;</td>
+            <td style="padding: 8px;">Yen sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#8377;</td>
+            <td style="padding: 8px;">N/A</td>
+            <td style="padding: 8px;">&amp;#8377;</td>
+            <td style="padding: 8px;">Indian Rupee sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#8369;</td>
+            <td style="padding: 8px;">N/A</td>
+            <td style="padding: 8px;">&amp;#8369;</td>
+            <td style="padding: 8px;">Peso sign</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#8372;</td>
+            <td style="padding: 8px;">N/A</td>
+            <td style="padding: 8px;">&amp;#8372;</td>
+            <td style="padding: 8px;">Hryvnia sign</td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="arrows">Arrows</h2>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Symbol</th>
+            <th style="padding: 8px;">Entity Name</th>
+            <th style="padding: 8px;">Entity Number</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&larr;</td>
+            <td style="padding: 8px;">&amp;larr;</td>
+            <td style="padding: 8px;">&amp;#8592;</td>
+            <td style="padding: 8px;">Left arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&uarr;</td>
+            <td style="padding: 8px;">&amp;uarr;</td>
+            <td style="padding: 8px;">&amp;#8593;</td>
+            <td style="padding: 8px;">Up arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&rarr;</td>
+            <td style="padding: 8px;">&amp;rarr;</td>
+            <td style="padding: 8px;">&amp;#8594;</td>
+            <td style="padding: 8px;">Right arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&darr;</td>
+            <td style="padding: 8px;">&amp;darr;</td>
+            <td style="padding: 8px;">&amp;#8595;</td>
+            <td style="padding: 8px;">Down arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&harr;</td>
+            <td style="padding: 8px;">&amp;harr;</td>
+            <td style="padding: 8px;">&amp;#8596;</td>
+            <td style="padding: 8px;">Left-right arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&lArr;</td>
+            <td style="padding: 8px;">&amp;lArr;</td>
+            <td style="padding: 8px;">&amp;#8656;</td>
+            <td style="padding: 8px;">Double left arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&rArr;</td>
+            <td style="padding: 8px;">&amp;rArr;</td>
+            <td style="padding: 8px;">&amp;#8658;</td>
+            <td style="padding: 8px;">Double right arrow</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&hArr;</td>
+            <td style="padding: 8px;">&amp;hArr;</td>
+            <td style="padding: 8px;">&amp;#8660;</td>
+            <td style="padding: 8px;">Double left-right arrow</td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="emojis">Emojis</h2>
+    
+    <p>Emojis can be displayed using decimal or hexadecimal references:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Emoji</th>
+            <th style="padding: 8px;">Decimal</th>
+            <th style="padding: 8px;">Hexadecimal</th>
+            <th style="padding: 8px;">Description</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128512;</td>
+            <td style="padding: 8px;">&amp;#128512;</td>
+            <td style="padding: 8px;">&amp;#x1F600;</td>
+            <td style="padding: 8px;">Grinning face</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128513;</td>
+            <td style="padding: 8px;">&amp;#128513;</td>
+            <td style="padding: 8px;">&amp;#x1F601;</td>
+            <td style="padding: 8px;">Grinning face with smiling eyes</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128514;</td>
+            <td style="padding: 8px;">&amp;#128514;</td>
+            <td style="padding: 8px;">&amp;#x1F602;</td>
+            <td style="padding: 8px;">Face with tears of joy</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128515;</td>
+            <td style="padding: 8px;">&amp;#128515;</td>
+            <td style="padding: 8px;">&amp;#x1F603;</td>
+            <td style="padding: 8px;">Smiling face with open mouth</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128516;</td>
+            <td style="padding: 8px;">&amp;#128516;</td>
+            <td style="padding: 8px;">&amp;#x1F604;</td>
+            <td style="padding: 8px;">Smiling face with open mouth and smiling eyes</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128517;</td>
+            <td style="padding: 8px;">&amp;#128517;</td>
+            <td style="padding: 8px;">&amp;#x1F605;</td>
+            <td style="padding: 8px;">Smiling face with open mouth and cold sweat</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128518;</td>
+            <td style="padding: 8px;">&amp;#128518;</td>
+            <td style="padding: 8px;">&amp;#x1F606;</td>
+            <td style="padding: 8px;">Smiling face with open mouth and tightly-closed eyes</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">&#128519;</td>
+            <td style="padding: 8px;">&amp;#128519;</td>
+            <td style="padding: 8px;">&amp;#x1F607;</td>
+            <td style="padding: 8px;">Smiling face with halo</td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="entity-formats">Entity Formats</h2>
+    
+    <p>HTML entities can be represented in several formats:</p>
+    
+    <h3>Named Entities</h3>
+    <p>Named entities start with an ampersand (&amp;), followed by a name, and end with a semicolon (;).</p>
+    <p>Example: <code>&amp;copy;</code> displays as &copy;</p>
+    
+    <h3>Numeric Entities (Decimal)</h3>
+    <p>Decimal entities start with an ampersand (&amp;), followed by a hash (#), then a decimal number, and end with a semicolon (;).</p>
+    <p>Example: <code>&amp;#169;</code> displays as &#169;</p>
+    
+    <h3>Numeric Entities (Hexadecimal)</h3>
+    <p>Hexadecimal entities start with an ampersand (&amp;), followed by a hash and an x (#x), then a hexadecimal number, and end with a semicolon (;).</p>
+    <p>Example: <code>&amp;#xA9;</code> displays as &#xA9;</p>
+    
+    <h3>Which Format to Use?</h3>
+    <ul>
+        <li>Named entities are easier to remember but are not available for all characters.</li>
+        <li>Decimal entities are widely supported and work in all browsers.</li>
+        <li>Hexadecimal entities are useful when working with character codes from specifications.</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2>Practical Examples</h2>
+    
+    <h3>Copyright Notice</h3>
+    <p>&copy; 2023 Example Company. All rights reserved.</p>
+    <p>Code: <code>&amp;copy; 2023 Example Company. All rights reserved.</code></p>
+    
+    <h3>Mathematical Expression</h3>
+    <p>The area of a circle is &pi;r&sup2;, where r is the radius.</p>
+    <p>Code: <code>The area of a circle is &amp;pi;r&amp;sup2;, where r is the radius.</code></p>
+    
+    <h3>Temperature Range</h3>
+    <p>The temperature will be between 20&deg;C and 25&deg;C.</p>
+    <p>Code: <code>The temperature will be between 20&amp;deg;C and 25&amp;deg;C.</code></p>
+    
+    <h3>Non-breaking Space</h3>
+    <p>Mr.&nbsp;Smith (keeps "Mr." and "Smith" together on the same line)</p>
+    <p>Code: <code>Mr.&amp;nbsp;Smith</code></p>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

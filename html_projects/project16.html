@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Semantic Elements</title>
+</head>
+<body>
+    <header>
+        <h1>HTML Semantic Elements</h1>
+        <p>Understanding and using semantic HTML elements for better structure and accessibility.</p>
+    </header>
+    
+    <nav>
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#semantic-vs-non">Semantic vs. Non-Semantic Elements</a></li>
+            <li><a href="#common-elements">Common Semantic Elements</a></li>
+            <li><a href="#page-structure">Page Structure Example</a></li>
+            <li><a href="#benefits">Benefits of Semantic HTML</a></li>
+            <li><a href="#best-practices">Best Practices</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="introduction">
+            <h2>Introduction to Semantic HTML</h2>
+            <p>Semantic HTML elements clearly describe their meaning to both the browser and the developer. They provide information about the content they contain, rather than just how to display it.</p>
+            <p>HTML5 introduced many semantic elements to help structure web pages in a more meaningful way, making them more accessible and easier to maintain.</p>
+        </section>
+        
+        <section id="semantic-vs-non">
+            <h2>Semantic vs. Non-Semantic Elements</h2>
+            
+            <article>
+                <h3>Non-Semantic Elements</h3>
+                <p>Non-semantic elements don't tell anything about their content. Examples include:</p>
+                <ul>
+                    <li><code>&lt;div&gt;</code> - Defines a division or section</li>
+                    <li><code>&lt;span&gt;</code> - Defines an inline section</li>
+                </ul>
+                <p>Example of non-semantic markup:</p>
+                <pre>
+&lt;div class="header"&gt;
+    &lt;div class="title"&gt;My Website&lt;/div&gt;
+    &lt;div class="nav"&gt;
+        &lt;div class="nav-item"&gt;Home&lt;/div&gt;
+        &lt;div class="nav-item"&gt;About&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="main-content"&gt;
+    &lt;div class="article"&gt;
+        &lt;div class="article-title"&gt;Article Title&lt;/div&gt;
+        &lt;div class="article-content"&gt;Content goes here...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;Copyright 2023&lt;/div&gt;
+                </pre>
+            </article>
+            
+            <article>
+                <h3>Semantic Elements</h3>
+                <p>Semantic elements clearly define their content. Examples include:</p>
+                <ul>
+                    <li><code>&lt;header&gt;</code> - Defines a header section</li>
+                    <li><code>&lt;nav&gt;</code> - Defines navigation links</li>
+                    <li><code>&lt;main&gt;</code> - Defines the main content</li>
+                    <li><code>&lt;article&gt;</code> - Defines an independent, self-contained content</li>
+                    <li><code>&lt;section&gt;</code> - Defines a section of content</li>
+                    <li><code>&lt;footer&gt;</code> - Defines a footer section</li>
+                </ul>
+                <p>Example of semantic markup:</p>
+                <pre>
+&lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Article Title&lt;/h2&gt;
+        &lt;p&gt;Content goes here...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;Copyright 2023&lt;/footer&gt;
+                </pre>
+            </article>
+        </section>
+        
+        <section id="common-elements">
+            <h2>Common Semantic Elements</h2>
+            
+            <article>
+                <h3>&lt;header&gt;</h3>
+                <p>The <code>&lt;header&gt;</code> element represents introductory content, typically a group of introductory or navigational aids. It may contain heading elements, a logo, a search form, an author name, and other elements.</p>
+                <header style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h4>This is a header</h4>
+                    <p>Contains introductory content for a section or page</p>
+                </header>
+            </article>
+            
+            <article>
+                <h3>&lt;nav&gt;</h3>
+                <p>The <code>&lt;nav&gt;</code> element represents a section of a page that contains navigation links, either within the current document or to other documents.</p>
+                <nav style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </article>
+            
+            <article>
+                <h3>&lt;main&gt;</h3>
+                <p>The <code>&lt;main&gt;</code> element represents the dominant content of the body of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document.</p>
+                <p>There should be only one <code>&lt;main&gt;</code> element in a document, and it should not be a descendant of <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;header&gt;</code>, or <code>&lt;nav&gt;</code>.</p>
+            </article>
+            
+            <article>
+                <h3>&lt;article&gt;</h3>
+                <p>The <code>&lt;article&gt;</code> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable.</p>
+                <article style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h4>Article Title</h4>
+                    <p>This is an article content. It represents a self-contained piece of content that could be distributed independently.</p>
+                    <p>Examples include: a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment, etc.</p>
+                </article>
+            </article>
+            
+            <article>
+                <h3>&lt;section&gt;</h3>
+                <p>The <code>&lt;section&gt;</code> element represents a standalone section of content that doesn't have a more specific semantic element to represent it.</p>
+                <section style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h4>Section Title</h4>
+                    <p>This is a section of content. Sections usually have a heading.</p>
+                    <p>A section could be a chapter, a tabbed content area, or a numbered section of a thesis.</p>
+                </section>
+            </article>
+            
+            <article>
+                <h3>&lt;aside&gt;</h3>
+                <p>The <code>&lt;aside&gt;</code> element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes.</p>
+                <div style="display: flex; margin-bottom: 10px;">
+                    <div style="flex: 3; padding-right: 20px;">
+                        <p>This is the main content area where the primary content would go. The aside element would typically appear alongside this content.</p>
+                    </div>
+                    <aside style="flex: 1; border: 1px solid #ccc; padding: 10px;">
+                        <h4>Related Info</h4>
+                        <p>This is an aside with content tangentially related to the main content.</p>
+                    </aside>
+                </div>
+            </article>
+            
+            <article>
+                <h3>&lt;footer&gt;</h3>
+                <p>The <code>&lt;footer&gt;</code> element represents a footer for its nearest sectioning content or sectioning root element. A footer typically contains information about the author of the section, copyright data, or links to related documents.</p>
+                <footer style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <p>&copy; 2023 Example Company. All rights reserved.</p>
+                    <p>Contact: <a href="mailto:info@example.com">info@example.com</a></p>
+                </footer>
+            </article>
+            
+            <article>
+                <h3>Other Semantic Elements</h3>
+                <ul>
+                    <li><code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> - For images, diagrams, etc., with a caption</li>
+                    <li><code>&lt;time&gt;</code> - For dates and times</li>
+                    <li><code>&lt;mark&gt;</code> - For highlighted text</li>
+                    <li><code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> - For additional details that can be shown or hidden</li>
+                    <li><code>&lt;address&gt;</code> - For contact information</li>
+                </ul>
+                
+                <figure style="border: 1px solid #ccc; padding: 10px; text-align: center; margin-bottom: 10px;">
+                    <img src="https://via.placeholder.com/300x200" alt="Placeholder image">
+                    <figcaption>Fig.1 - A sample image with a caption using figure and figcaption elements.</figcaption>
+                </figure>
+                
+                <p>The event will take place on <time datetime="2023-12-25">December 25, 2023</time>.</p>
+                
+                <p>The most important part of this sentence is <mark>highlighted with the mark element</mark>.</p>
+                
+                <details style="margin-bottom: 10px;">
+                    <summary>Click to show more information</summary>
+                    <p>This additional content is shown when the user clicks on the summary. It's hidden by default.</p>
+                </details>
+                
+                <address style="font-style: italic; margin-bottom: 10px;">
+                    Written by John Doe.<br>
+                    Visit us at:<br>
+                    Example.com<br>
+                    123 Example St<br>
+                    Example City, EX 12345<br>
+                    USA
+                </address>
+            </article>
+        </section>
+        
+        <section id="page-structure">
+            <h2>Page Structure Example</h2>
+            <p>Here's how semantic elements can be used to structure a complete web page:</p>
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Semantic HTML Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Website Title&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Welcome Section&lt;/h2&gt;
+            &lt;p&gt;Introduction to the website.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Latest Articles&lt;/h2&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Article Title 1&lt;/h3&gt;
+                &lt;p&gt;Article content goes here...&lt;/p&gt;
+                &lt;time datetime="2023-07-15"&gt;July 15, 2023&lt;/time&gt;
+            &lt;/article&gt;
+            
+            &lt;article&gt;
+                &lt;h3&gt;Article Title 2&lt;/h3&gt;
+                &lt;p&gt;Article content goes here...&lt;/p&gt;
+                &lt;time datetime="2023-07-10"&gt;July 10, 2023&lt;/time&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside&gt;
+            &lt;h2&gt;Related Information&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Related Link 1&lt;/li&gt;
+                &lt;li&gt;Related Link 2&lt;/li&gt;
+                &lt;li&gt;Related Link 3&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2023 Example Website. All rights reserved.&lt;/p&gt;
+        &lt;address&gt;
+            Contact: &lt;a href="mailto:info@example.com"&gt;info@example.com&lt;/a&gt;
+        &lt;/address&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+        </section>
+        
+        <section id="benefits">
+            <h2>Benefits of Semantic HTML</h2>
+            <ul>
+                <li><strong>Accessibility</strong> - Screen readers and other assistive technologies can better understand the content structure.</li>
+                <li><strong>SEO</strong> - Search engines give more weight to important content when it's properly marked up.</li>
+                <li><strong>Maintainability</strong> - Code is easier to read and maintain when it clearly describes its purpose.</li>
+                <li><strong>Reusability</strong> - Semantic elements make it easier to identify and reuse specific parts of the page.</li>
+                <li><strong>Mobile Friendliness</strong> - Many semantic elements have built-in responsive behavior.</li>
+                <li><strong>Future Compatibility</strong> - Semantic markup is more likely to remain compatible with future web technologies.</li>
+            </ul>
+        </section>
+        
+        <section id="best-practices">
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Use semantic elements whenever possible instead of generic <code>div</code> or <code>span</code> elements.</li>
+                <li>Use heading elements (<code>h1</code> through <code>h6</code>) to create a logical document outline.</li>
+                <li>Use <code>article</code> for content that can stand alone, and <code>section</code> for grouping related content.</li>
+                <li>Use <code>nav</code> for major navigation blocks, not for all groups of links.</li>
+                <li>Use <code>header</code> and <code>footer</code> within sections or articles when appropriate, not just for the page.</li>
+                <li>Use <code>main</code> only once per page to identify the primary content area.</li>
+                <li>Use <code>aside</code> for content that is tangentially related to the main content.</li>
+                <li>Use <code>figure</code> and <code>figcaption</code> for images, diagrams, or code snippets that are referenced in the main content.</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p><a href="index.html">← Back to Projects</a></p>
+        <p>&copy; 2023 HTML Projects. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

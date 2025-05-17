@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatting Elements</title>
+</head>
+<body>
+    <h1>HTML Text Formatting Elements</h1>
+    
+    <p>HTML provides several elements for formatting text. These elements add semantic meaning to your content and can also affect how the text is displayed.</p>
+    
+    <h2>Basic Text Formatting</h2>
+    
+    <h3>Bold and Strong Text</h3>
+    <p>The <code>&lt;b&gt;</code> element defines <b>bold text</b>, without any extra importance.</p>
+    <p>The <code>&lt;strong&gt;</code> element defines <strong>text with strong importance</strong>. The content inside is typically displayed in bold.</p>
+    
+    <h3>Italic and Emphasized Text</h3>
+    <p>The <code>&lt;i&gt;</code> element defines <i>text in an alternate voice or mood</i>. The content inside is typically displayed in italic.</p>
+    <p>The <code>&lt;em&gt;</code> element defines <em>emphasized text</em>. The content inside is typically displayed in italic.</p>
+    
+    <h3>Underlined Text</h3>
+    <p>The <code>&lt;u&gt;</code> element defines <u>text that should be stylistically different from normal text</u>, such as misspelled words or proper names in Chinese.</p>
+    
+    <h3>Strikethrough Text</h3>
+    <p>The <code>&lt;s&gt;</code> element defines <s>text that is no longer correct, accurate or relevant</s>.</p>
+    <p>The <code>&lt;del&gt;</code> element defines <del>text that has been deleted from a document</del>. Often used to show document revisions.</p>
+    
+    <h3>Inserted Text</h3>
+    <p>The <code>&lt;ins&gt;</code> element defines <ins>text that has been inserted into a document</ins>. Often used to show document revisions.</p>
+    
+    <h3>Subscript and Superscript</h3>
+    <p>The <code>&lt;sub&gt;</code> element defines subscript text: H<sub>2</sub>O is the chemical formula for water.</p>
+    <p>The <code>&lt;sup&gt;</code> element defines superscript text: 2<sup>3</sup> equals 8.</p>
+    
+    <h3>Marked/Highlighted Text</h3>
+    <p>The <code>&lt;mark&gt;</code> element defines <mark>text that should be marked or highlighted</mark>.</p>
+    
+    <h2>Semantic Text Elements</h2>
+    
+    <h3>Abbreviations</h3>
+    <p>The <code>&lt;abbr&gt;</code> element defines an abbreviation or acronym:</p>
+    <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+    <p>Hover over the abbreviation to see the full title.</p>
+    
+    <h3>Address</h3>
+    <p>The <code>&lt;address&gt;</code> element defines contact information for the author/owner of a document:</p>
+    <address>
+        Written by John Doe.<br>
+        Visit us at:<br>
+        Example.com<br>
+        Box 564, Disneyland<br>
+        USA
+    </address>
+    
+    <h3>Blockquote</h3>
+    <p>The <code>&lt;blockquote&gt;</code> element defines a section that is quoted from another source:</p>
+    <blockquote cite="https://www.worldwildlife.org/who/index.html">
+        For 60 years, WWF has worked to help people and nature thrive. As the world's leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.
+    </blockquote>
+    
+    <h3>Inline Quote</h3>
+    <p>The <code>&lt;q&gt;</code> element defines a short inline quotation:</p>
+    <p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+    
+    <h3>Code</h3>
+    <p>The <code>&lt;code&gt;</code> element defines a piece of computer code:</p>
+    <p>The HTML <code>&lt;button&gt;</code> tag defines a clickable button.</p>
+    
+    <h3>Keyboard Input</h3>
+    <p>The <code>&lt;kbd&gt;</code> element defines keyboard input:</p>
+    <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text.</p>
+    
+    <h3>Sample Output</h3>
+    <p>The <code>&lt;samp&gt;</code> element defines sample output from a computer program:</p>
+    <p><samp>File not found.<br>Press F1 to continue</samp></p>
+    
+    <h3>Variable</h3>
+    <p>The <code>&lt;var&gt;</code> element defines a variable in programming or in a mathematical expression:</p>
+    <p>The area of a triangle is: 1/2 × <var>b</var> × <var>h</var>, where <var>b</var> is the base, and <var>h</var> is the height.</p>
+    
+    <h3>Definition</h3>
+    <p>The <code>&lt;dfn&gt;</code> element defines a definition term:</p>
+    <p><dfn>HTML</dfn> is the standard markup language for creating web pages.</p>
+    
+    <h2>Combining Text Formatting</h2>
+    
+    <p>You can combine multiple text formatting elements:</p>
+    <p>This is <strong><em>strongly emphasized</em></strong> text.</p>
+    <p>H<sub>2</sub>O is the <strong>chemical formula</strong> for water.</p>
+    <p>This is <mark><del>marked and deleted</del></mark> text.</p>
+    
+    <h2>Practical Example</h2>
+    
+    <article>
+        <h3>The Evolution of Web Development</h3>
+        <p>Web development has changed dramatically since the early days of the internet. What started with <strong>simple HTML pages</strong> has evolved into complex applications using frameworks like <abbr title="React JavaScript Library">React</abbr> and <abbr title="Angular JavaScript Framework">Angular</abbr>.</p>
+        
+        <p>As <cite>The History of Web Design</cite> notes:</p>
+        <blockquote>
+            The first websites were <em>text-only</em> with simple layouts. The introduction of <mark>CSS in 1996</mark> revolutionized how designers approached web design, allowing for separation of content and presentation.
+        </blockquote>
+        
+        <p>To create a basic HTML page, you would write something like:</p>
+        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        
+        <p>The <del>old approach</del> <ins>modern approach</ins> to web development emphasizes responsive design and accessibility.</p>
+    </article>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #5592f5;
+            margin-bottom: 10px;
+        }
+        .quiz-intro {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .quiz-container {
+            margin-bottom: 30px;
+        }
+        .question-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+        }
+        .question {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option:hover {
+            background-color: #ecf0f1;
+        }
+        .option.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .option.correct {
+            background-color: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+        .option.incorrect {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .feedback.correct {
+            background-color: #d5f5e3;
+            color: #27ae60;
+        }
+        .feedback.incorrect {
+            background-color: #fadbd8;
+            color: #c0392b;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-next {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-next:hover {
+            background-color: #2980b9;
+        }
+        .btn-submit {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .btn-submit:hover {
+            background-color: #27ae60;
+        }
+        .btn-restart {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .btn-restart:hover {
+            background-color: #c0392b;
+        }
+        .results {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: none;
+        }
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #3498db;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HTML & Web Development Quiz</h1>
+            <p class="quiz-intro">Test your knowledge of HTML and web development basics with this 5-question quiz. Select the best answer for each question and see your results at the end!</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        
+        <div id="quiz-container" class="quiz-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="controls">
+            <button id="prev-btn" class="btn btn-next" style="visibility: hidden;">Previous</button>
+            <button id="next-btn" class="btn btn-next">Next Question</button>
+            <button id="submit-btn" class="btn btn-submit" style="display: none;">Submit Quiz</button>
+        </div>
+        
+        <div id="results" class="results">
+            <h2>Quiz Results</h2>
+            <div id="score" class="score">0/5</div>
+            <div id="message" class="message">Thank you for taking the quiz!</div>
+            <button id="restart-btn" class="btn btn-restart">Restart Quiz</button>
+        </div>
+        
+        <a href="index.html" class="back-link">← Back to Projects</a>
+    </div>
+    
+    <script>
+        // Quiz questions
+        const questions = [
+            {
+                question: "What does HTML stand for?",
+                options: [
+                    "Hyper Text Markup Language",
+                    "High Tech Modern Language",
+                    "Hyper Transfer Markup Language",
+                    "Home Tool Markup Language"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which HTML tag is used to create a hyperlink?",
+                options: [
+                    "<link>",
+                    "<a>",
+                    "<href>",
+                    "<url>"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a valid HTML5 semantic element?",
+                options: [
+                    "<article>",
+                    "<section>",
+                    "<container>",
+                    "<header>"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which attribute is used to specify an alternate text for an image?",
+                options: [
+                    "title",
+                    "src",
+                    "alt",
+                    "description"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which HTML element is used to define the title of a document?",
+                options: [
+                    "<meta>",
+                    "<head>",
+                    "<header>",
+                    "<title>"
+                ],
+                answer: 3
+            }
+        ];
+        
+        // Variables
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = Array(questions.length).fill(null);
+        
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results');
+        const scoreElement = document.getElementById('score');
+        const messageElement = document.getElementById('message');
+        const restartBtn = document.getElementById('restart-btn');
+        const progressBar = document.getElementById('progress');
+        
+        // Initialize quiz
+        function initQuiz() {
+            showQuestion(currentQuestion);
+            updateProgressBar();
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextQuestion);
+            prevBtn.addEventListener('click', prevQuestion);
+            submitBtn.addEventListener('click', showResults);
+            restartBtn.addEventListener('click', restartQuiz);
+        }
+        
+        // Show current question
+        function showQuestion(index) {
+            quizContainer.innerHTML = '';
+            
+            const questionContainer = document.createElement('div');
+            questionContainer.className = 'question-container';
+            
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question';
+            questionElement.textContent = `${index + 1}. ${questions[index].question}`;
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options';
+            
+            questions[index].options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[index] === i) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(i));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            questionContainer.appendChild(questionElement);
+            questionContainer.appendChild(optionsContainer);
+            quizContainer.appendChild(questionContainer);
+            
+            // Update buttons
+            if (index === 0) {
+                prevBtn.style.visibility = 'hidden';
+            } else {
+                prevBtn.style.visibility = 'visible';
+            }
+            
+            if (index === questions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+        
+        // Select an option
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestion] = optionIndex;
+            
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === optionIndex) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+        
+        // Next question
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateProgressBar();
+            }
+        }
+        
+        // Previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateProgressBar();
+            }
+        }
+        
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Show results
+        function showResults() {
+            // Calculate score
+            score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === questions[index].answer) {
+                    score++;
+                }
+            });
+            
+            // Update UI
+            scoreElement.textContent = `${score}/${questions.length}`;
+            
+            // Set message based on score
+            if (score === questions.length) {
+                messageElement.textContent = "Perfect! You're an HTML expert!";
+            } else if (score >= questions.length * 0.7) {
+                messageElement.textContent = "Great job! You know your HTML well!";
+            } else if (score >= questions.length * 0.5) {
+                messageElement.textContent = "Good effort! Keep learning HTML!";
+            } else {
+                messageElement.textContent = "Keep studying HTML basics and try again!";
+            }
+            
+            // Show results
+            quizContainer.style.display = 'none';
+            document.querySelector('.controls').style.display = 'none';
+            resultsContainer.style.display = 'block';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = Array(questions.length).fill(null);
+            
+            quizContainer.style.display = 'block';
+            document.querySelector('.controls').style.display = 'flex';
+            resultsContainer.style.display = 'none';
+            
+            showQuestion(currentQuestion);
+            updateProgressBar();
+        }
+        
+        // Initialize quiz when page loads
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
+

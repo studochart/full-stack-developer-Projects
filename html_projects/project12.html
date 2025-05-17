@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Links</title>
+</head>
+<body>
+    <h1>HTML Links</h1>
+    
+    <p>Links are one of the most important elements in HTML. They allow users to navigate between web pages. This page demonstrates different types of links and their attributes.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#basic-links">Basic Links</a></li>
+        <li><a href="#link-attributes">Link Attributes</a></li>
+        <li><a href="#internal-links">Internal Page Links</a></li>
+        <li><a href="#email-links">Email Links</a></li>
+        <li><a href="#phone-links">Phone Links</a></li>
+        <li><a href="#download-links">Download Links</a></li>
+        <li><a href="#image-links">Image Links</a></li>
+        <li><a href="#button-links">Button-like Links</a></li>
+        <li><a href="#link-states">Link States</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="basic-links">Basic Links</h2>
+    
+    <h3>External Links</h3>
+    <p>External links point to pages on other websites:</p>
+    <p><a href="https://www.example.com">Visit Example.com</a></p>
+    <p><a href="https://www.wikipedia.org">Visit Wikipedia</a></p>
+    
+    <h3>Relative Links</h3>
+    <p>Relative links point to pages within your own website:</p>
+    <p><a href="index.html">Back to Projects Page</a></p>
+    <p><a href="project11.html">View HTML Lists Project</a></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="link-attributes">Link Attributes</h2>
+    
+    <h3>The target Attribute</h3>
+    <p>The <code>target</code> attribute specifies where to open the linked document:</p>
+    <ul>
+        <li><a href="https://www.example.com" target="_blank">Open in new tab (_blank)</a></li>
+        <li><a href="https://www.example.com" target="_self">Open in same frame (_self - default)</a></li>
+        <li><a href="https://www.example.com" target="_parent">Open in parent frame (_parent)</a></li>
+        <li><a href="https://www.example.com" target="_top">Open in full body of window (_top)</a></li>
+    </ul>
+    
+    <h3>The title Attribute</h3>
+    <p>The <code>title</code> attribute provides additional information about the link. Hover over the link to see it:</p>
+    <p><a href="https://www.example.com" title="This is an example website used for demonstrations">Example.com with title</a></p>
+    
+    <h3>The rel Attribute</h3>
+    <p>The <code>rel</code> attribute specifies the relationship between the current document and the linked document:</p>
+    <ul>
+        <li><a href="https://www.example.com" rel="nofollow">Example.com (nofollow)</a> - Tells search engines not to follow this link</li>
+        <li><a href="https://www.example.com" rel="noopener">Example.com (noopener)</a> - Prevents the new page from accessing the window.opener property</li>
+        <li><a href="https://www.example.com" rel="noreferrer">Example.com (noreferrer)</a> - Prevents passing the referrer information to the linked website</li>
+        <li><a href="https://www.example.com" rel="noopener noreferrer">Example.com (noopener noreferrer)</a> - Combination of both</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="internal-links">Internal Page Links (Anchor Links)</h2>
+    
+    <p>Internal links (also called anchor links) point to specific sections within the same page:</p>
+    
+    <p>The links in the Contents section at the top of this page are examples of internal links. They use the <code>id</code> attribute of elements as their targets.</p>
+    
+    <p>To create an internal link:</p>
+    <ol>
+        <li>Add an <code>id</code> attribute to the element you want to link to: <code>&lt;h2 id="section-name"&gt;Section Title&lt;/h2&gt;</code></li>
+        <li>Create a link with a hash (#) followed by the id: <code>&lt;a href="#section-name"&gt;Go to Section&lt;/a&gt;</code></li>
+    </ol>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="email-links">Email Links</h2>
+    
+    <p>Email links open the user's default email client with a pre-addressed email:</p>
+    
+    <p><a href="mailto:example@example.com">Send email to example@example.com</a></p>
+    
+    <p>You can also add subject, cc, bcc, and body parameters:</p>
+    
+    <p><a href="mailto:example@example.com?subject=Question%20about%20HTML&cc=another@example.com&body=Hello%2C%0A%0AI%20have%20a%20question%20about%20HTML%20links.">Send email with subject, cc, and body</a></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="phone-links">Phone Links</h2>
+    
+    <p>Phone links are useful for mobile devices and can initiate a call:</p>
+    
+    <p><a href="tel:+1234567890">Call +1 (234) 567-890</a></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="download-links">Download Links</h2>
+    
+    <p>The <code>download</code> attribute specifies that the target will be downloaded when a user clicks on the link:</p>
+    
+    <p><a href="https://www.example.com/files/sample.pdf" download>Download PDF</a></p>
+    
+    <p>You can also suggest a different filename:</p>
+    
+    <p><a href="https://www.example.com/files/sample.pdf" download="my-document.pdf">Download PDF as "my-document.pdf"</a></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="image-links">Image Links</h2>
+    
+    <p>You can use images as links by placing an <code>&lt;img&gt;</code> tag inside an <code>&lt;a&gt;</code> tag:</p>
+    
+    <a href="https://www.example.com">
+        <img src="https://via.placeholder.com/200x100" alt="Placeholder Image">
+    </a>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="button-links">Button-like Links</h2>
+    
+    <p>Links can be styled to look like buttons (though we're not using CSS in this example):</p>
+    
+    <p>
+        <a href="https://www.example.com" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">
+            Button-like Link
+        </a>
+    </p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="link-states">Link States</h2>
+    
+    <p>Links can have different states:</p>
+    
+    <ul>
+        <li><a href="#link-states">Unvisited Link</a> - A link you haven't clicked yet (typically blue)</li>
+        <li><a href="index.html">Visited Link</a> - A link you have clicked (typically purple)</li>
+        <li><a href="#" style="color: red;">Active Link</a> - A link at the moment it is clicked</li>
+    </ul>
+    
+    <p>Note: The appearance of these states depends on the browser's default styles or CSS styling.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2>Best Practices for Links</h2>
+    
+    <ul>
+        <li>Use descriptive link text that clearly indicates where the link will take the user</li>
+        <li>Avoid generic phrases like "click here" or "read more"</li>
+        <li>Use the <code>title</code> attribute to provide additional information when needed</li>
+        <li>Use <code>target="_blank"</code> with <code>rel="noopener noreferrer"</code> for security when opening links in new tabs</li>
+        <li>Ensure links are accessible by making them distinguishable from regular text</li>
+        <li>Check that all links work correctly and point to the intended destinations</li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

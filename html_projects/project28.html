@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML File Paths</title>
+</head>
+<body>
+    <h1>HTML File Paths</h1>
+    
+    <p>File paths are used to specify the location of files such as images, stylesheets, scripts, and other resources in HTML. Understanding how file paths work is essential for creating functional websites. This page explains different types of file paths and how to use them effectively.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#file-path-types">Types of File Paths</a></li>
+        <li><a href="#absolute-paths">Absolute Paths</a></li>
+        <li><a href="#relative-paths">Relative Paths</a></li>
+        <li><a href="#root-relative">Root-Relative Paths</a></li>
+        <li><a href="#path-examples">Path Examples</a></li>
+        <li><a href="#common-mistakes">Common Mistakes</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#folder-structure">Folder Structure Examples</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="file-path-types">Types of File Paths</h2>
+    
+    <p>There are three main types of file paths used in HTML:</p>
+    
+    <ol>
+        <li><strong>Absolute Paths</strong>: Complete URLs that include the domain name</li>
+        <li><strong>Relative Paths</strong>: Paths relative to the current HTML file</li>
+        <li><strong>Root-Relative Paths</strong>: Paths relative to the root directory of the website</li>
+    </ol>
+    
+    <p>Each type has its own use cases, advantages, and disadvantages.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="absolute-paths">Absolute Paths</h2>
+    
+    <p>Absolute paths provide the complete URL to a file, including the protocol (http:// or https://), domain name, and the full path to the file.</p>
+    
+    <h3>Syntax</h3>
+    <pre>https://www.example.com/folder/file.jpg</pre>
+    
+    <h3>Examples</h3>
+    <ul>
+        <li><code>&lt;img src="https://www.example.com/images/logo.png" alt="Logo"&gt;</code></li>
+        <li><code>&lt;link rel="stylesheet" href="https://www.example.com/css/styles.css"&gt;</code></li>
+        <li><code>&lt;script src="https://www.example.com/js/script.js"&gt;&lt;/script&gt;</code></li>
+        <li><code>&lt;a href="https://www.example.com/about.html"&gt;About Us&lt;/a&gt;</code></li>
+    </ul>
+    
+    <h3>Advantages</h3>
+    <ul>
+        <li>Works from any location, regardless of where the HTML file is located</li>
+        <li>Useful for linking to external resources on other websites</li>
+        <li>No broken links if the HTML file is moved to a different location</li>
+    </ul>
+    
+    <h3>Disadvantages</h3>
+    <ul>
+        <li>If the domain name changes, all absolute paths need to be updated</li>
+        <li>Longer to type and more prone to typos</li>
+        <li>Not suitable for local development or testing without internet access</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="relative-paths">Relative Paths</h2>
+    
+    <p>Relative paths specify the location of a file relative to the current HTML file. They don't include the domain name or protocol.</p>
+    
+    <h3>Common Relative Path Notations</h3>
+    <ul>
+        <li><code>file.jpg</code> - File in the same directory as the current HTML file</li>
+        <li><code>folder/file.jpg</code> - File in a subdirectory of the current directory</li>
+        <li><code>../file.jpg</code> - File in the parent directory of the current directory</li>
+        <li><code>../../file.jpg</code> - File in the parent's parent directory</li>
+    </ul>
+    
+    <h3>Examples</h3>
+    <ul>
+        <li><code>&lt;img src="logo.png" alt="Logo"&gt;</code> - Image in the same directory</li>
+        <li><code>&lt;link rel="stylesheet" href="css/styles.css"&gt;</code> - CSS file in a subdirectory</li>
+        <li><code>&lt;script src="../js/script.js"&gt;&lt;/script&gt;</code> - JavaScript file in the parent directory</li>
+        <li><code>&lt;a href="pages/about.html"&gt;About Us&lt;/a&gt;</code> - HTML file in a subdirectory</li>
+    </ul>
+    
+    <h3>Advantages</h3>
+    <ul>
+        <li>Shorter and easier to read than absolute paths</li>
+        <li>Works well for local development and testing</li>
+        <li>The entire website can be moved to a different domain without breaking links</li>
+    </ul>
+    
+    <h3>Disadvantages</h3>
+    <ul>
+        <li>If the HTML file is moved to a different location within the site, relative paths may break</li>
+        <li>Can become complex with deeply nested directories</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="root-relative">Root-Relative Paths</h2>
+    
+    <p>Root-relative paths (also called site-root-relative paths) specify the location of a file relative to the root directory of the website. They start with a forward slash (/).</p>
+    
+    <h3>Syntax</h3>
+    <pre>/folder/file.jpg</pre>
+    
+    <h3>Examples</h3>
+    <ul>
+        <li><code>&lt;img src="/images/logo.png" alt="Logo"&gt;</code></li>
+        <li><code>&lt;link rel="stylesheet" href="/css/styles.css"&gt;</code></li>
+        <li><code>&lt;script src="/js/script.js"&gt;&lt;/script&gt;</code></li>
+        <li><code>&lt;a href="/about.html"&gt;About Us&lt;/a&gt;</code></li>
+    </ul>
+    
+    <h3>Advantages</h3>
+    <ul>
+        <li>Works from any location within the website</li>
+        <li>HTML files can be moved around without breaking links</li>
+        <li>Clearer and more consistent than complex relative paths</li>
+    </ul>
+    
+    <h3>Disadvantages</h3>
+    <ul>
+        <li>May not work correctly in local development unless the server is properly configured</li>
+        <li>If the site is moved to a subdirectory, all root-relative paths need to be updated</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="path-examples">Path Examples</h2>
+    
+    <p>Let's consider a website with the following structure:</p>
+    
+    <pre>
+website/
+├── index.html
+├── about.html
+├── images/
+│   ├── logo.png
+│   └── banner.jpg
+├── css/
+│   └── styles.css
+├── js/
+│   └── script.js
+└── pages/
+    ├── products.html
+    └── contact.html
+    </pre>
+    
+    <h3>From index.html to other files</h3>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Target File</th>
+            <th style="padding: 8px;">Relative Path</th>
+            <th style="padding: 8px;">Root-Relative Path</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">about.html</td>
+            <td style="padding: 8px;"><code>about.html</code></td>
+            <td style="padding: 8px;"><code>/about.html</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">logo.png</td>
+            <td style="padding: 8px;"><code>images/logo.png</code></td>
+            <td style="padding: 8px;"><code>/images/logo.png</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">styles.css</td>
+            <td style="padding: 8px;"><code>css/styles.css</code></td>
+            <td style="padding: 8px;"><code>/css/styles.css</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">script.js</td>
+            <td style="padding: 8px;"><code>js/script.js</code></td>
+            <td style="padding: 8px;"><code>/js/script.js</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">products.html</td>
+            <td style="padding: 8px;"><code>pages/products.html</code></td>
+            <td style="padding: 8px;"><code>/pages/products.html</code></td>
+        </tr>
+    </table>
+    
+    <h3>From pages/products.html to other files</h3>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Target File</th>
+            <th style="padding: 8px;">Relative Path</th>
+            <th style="padding: 8px;">Root-Relative Path</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">index.html</td>
+            <td style="padding: 8px;"><code>../index.html</code></td>
+            <td style="padding: 8px;"><code>/index.html</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">about.html</td>
+            <td style="padding: 8px;"><code>../about.html</code></td>
+            <td style="padding: 8px;"><code>/about.html</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">logo.png</td>
+            <td style="padding: 8px;"><code>../images/logo.png</code></td>
+            <td style="padding: 8px;"><code>/images/logo.png</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">styles.css</td>
+            <td style="padding: 8px;"><code>../css/styles.css</code></td>
+            <td style="padding: 8px;"><code>/css/styles.css</code></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">contact.html</td>
+            <td style="padding: 8px;"><code>contact.html</code></td>
+            <td style="padding: 8px;"><code>/pages/contact.html</code></td>
+        </tr>
+    </table>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="common-mistakes">Common Mistakes</h2>
+    
+    <h3>1. Mixing Forward and Backward Slashes</h3>
+    <p>Always use forward slashes (/) in URLs and file paths, even on Windows systems.</p>
+    
+    <p>Incorrect: <code>&lt;img src="images\logo.png" alt="Logo"&gt;</code></p>
+    <p>Correct: <code>&lt;img src="images/logo.png" alt="Logo"&gt;</code></p>
+    
+    <h3>2. Incorrect Parent Directory References</h3>
+    <p>Make sure you're using the correct number of <code>../</code> sequences to navigate up the directory tree.</p>
+    
+    <p>Incorrect: <code>&lt;img src="../images/logo.png" alt="Logo"&gt;</code> (when images is in the same directory as the HTML file)</p>
+    <p>Correct: <code>&lt;img src="images/logo.png" alt="Logo"&gt;</code></p>
+    
+    <h3>3. Case Sensitivity</h3>
+    <p>File paths are case-sensitive on many servers (especially Linux-based ones). Make sure the case matches exactly.</p>
+    
+    <p>Incorrect: <code>&lt;img src="Images/Logo.png" alt="Logo"&gt;</code> (if the actual path is "images/logo.png")</p>
+    <p>Correct: <code>&lt;img src="images/logo.png" alt="Logo"&gt;</code></p>
+    
+    <h3>4. Missing File Extensions</h3>
+    <p>Always include the file extension in your file paths.</p>
+    
+    <p>Incorrect: <code>&lt;img src="images/logo" alt="Logo"&gt;</code></p>
+    <p>Correct: <code>&lt;img src="images/logo.png" alt="Logo"&gt;</code></p>
+    
+    <h3>5. Spaces in File Paths</h3>
+    <p>Avoid spaces in file paths. Use hyphens or underscores instead, or encode spaces as %20.</p>
+    
+    <p>Problematic: <code>&lt;img src="images/company logo.png" alt="Logo"&gt;</code></p>
+    <p>Better: <code>&lt;img src="images/company-logo.png" alt="Logo"&gt;</code> or <code>&lt;img src="images/company_logo.png" alt="Logo"&gt;</code></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <ol>
+        <li><strong>Be consistent</strong> - Choose one approach (relative or root-relative) and stick with it throughout your site</li>
+        <li><strong>Use root-relative paths</strong> for larger sites with complex directory structures</li>
+        <li><strong>Use relative paths</strong> for smaller sites or when the site might be moved to a subdirectory</li>
+        <li><strong>Use absolute paths</strong> only for external resources</li>
+        <li><strong>Organize files logically</strong> in appropriate directories (images, css, js, etc.)</li>
+        <li><strong>Use lowercase filenames</strong> to avoid case sensitivity issues</li>
+        <li><strong>Avoid spaces and special characters</strong> in filenames and directory names</li>
+        <li><strong>Use descriptive filenames</strong> that indicate the content of the file</li>
+        <li><strong>Test your links</strong> thoroughly, especially after moving files</li>
+    </ol>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="folder-structure">Folder Structure Examples</h2>
+    
+    <h3>Simple Website Structure</h3>
+    
+    <pre>
+website/
+├── index.html
+├── about.html
+├── contact.html
+├── images/
+│   ├── logo.png
+│   └── banner.jpg
+├── css/
+│   └── styles.css
+└── js/
+    └── script.js
+    </pre>
+    
+    <h3>More Complex Website Structure</h3>
+    
+    <pre>
+website/
+├── index.html
+├── about.html
+├── contact.html
+├── assets/
+│   ├── images/
+│   │   ├── logo.png
+│   │   ├── banner.jpg
+│   │   └── products/
+│   │       ├── product1.jpg
+│   │       └── product2.jpg
+│   ├── css/
+│   │   ├── main.css
+│   │   └── responsive.css
+│   └── js/
+│       ├── main.js
+│       └── plugins.js
+├── products/
+│   ├── index.html
+│   ├── product1.html
+│   └── product2.html
+└── blog/
+    ├── index.html
+    ├── post1.html
+    └── post2.html
+    </pre>
+    
+    <h3>Example Paths in Complex Structure</h3>
+    
+    <p>From <code>index.html</code> (root) to:</p>
+    <ul>
+        <li>Logo: <code>assets/images/logo.png</code> or <code>/assets/images/logo.png</code></li>
+        <li>Main CSS: <code>assets/css/main.css</code> or <code>/assets/css/main.css</code></li>
+        <li>Products page: <code>products/index.html</code> or <code>/products/index.html</code></li>
+    </ul>
+    
+    <p>From <code>products/product1.html</code> to:</p>
+    <ul>
+        <li>Logo: <code>../assets/images/logo.png</code> or <code>/assets/images/logo.png</code></li>
+        <li>Main CSS: <code>../assets/css/main.css</code> or <code>/assets/css/main.css</code></li>
+        <li>Product image: <code>../assets/images/products/product1.jpg</code> or <code>/assets/images/products/product1.jpg</code></li>
+        <li>Home page: <code>../index.html</code> or <code>/index.html</code></li>
+    </ul>
+    
+    <p>From <code>blog/post1.html</code> to:</p>
+    <ul>
+        <li>Logo: <code>../assets/images/logo.png</code> or <code>/assets/images/logo.png</code></li>
+        <li>Product page: <code>../products/product1.html</code> or <code>/products/product1.html</code></li>
+        <li>Blog index: <code>index.html</code> or <code>/blog/index.html</code></li>
+    </ul>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

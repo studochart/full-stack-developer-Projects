@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Structure</title>
+</head>
+<body>
+    <h1>Basic HTML Document Structure</h1>
+    
+    <p>This page demonstrates the fundamental structure of an HTML document. Every HTML document should have these basic elements:</p>
+    
+    <ul>
+        <li><strong>&lt;!DOCTYPE html&gt;</strong> - Declares the document type and HTML version</li>
+        <li><strong>&lt;html&gt;</strong> - The root element that contains all other HTML elements</li>
+        <li><strong>&lt;head&gt;</strong> - Contains meta information, title, links to stylesheets, etc.</li>
+        <li><strong>&lt;title&gt;</strong> - Sets the title of the page (shown in browser tab)</li>
+        <li><strong>&lt;body&gt;</strong> - Contains the visible content of the page</li>
+    </ul>
+    
+    <h2>The HTML Document Structure</h2>
+    
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;This is a Heading&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+    
+    <h2>Explanation of Each Element</h2>
+    
+    <h3>The DOCTYPE Declaration</h3>
+    <p>The <code>&lt;!DOCTYPE html&gt;</code> declaration is not an HTML tag; it is an instruction to the web browser about what version of HTML the page is written in. It must be the very first thing in your HTML document, before the &lt;html&gt; tag.</p>
+    
+    <h3>The HTML Element</h3>
+    <p>The <code>&lt;html&gt;</code> element is the root element of an HTML page. The <code>lang</code> attribute specifies the language of the document, which helps with accessibility and search engines.</p>
+    
+    <h3>The Head Element</h3>
+    <p>The <code>&lt;head&gt;</code> element contains meta information about the document that isn't displayed on the page itself. It typically includes:</p>
+    <ul>
+        <li>The document title (<code>&lt;title&gt;</code>)</li>
+        <li>Character encoding (<code>&lt;meta charset="UTF-8"&gt;</code>)</li>
+        <li>Viewport settings for responsive design</li>
+        <li>Links to CSS files</li>
+        <li>JavaScript scripts</li>
+    </ul>
+    
+    <h3>The Title Element</h3>
+    <p>The <code>&lt;title&gt;</code> element specifies a title for the HTML page (shown in the browser's title bar or tab).</p>
+    
+    <h3>The Body Element</h3>
+    <p>The <code>&lt;body&gt;</code> element contains all the contents of an HTML document, such as text, hyperlinks, images, tables, lists, etc.</p>
+    
+    <h2>Common Elements Inside the Body</h2>
+    
+    <h3>Headings</h3>
+    <p>HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important).</p>
+    
+    <h1>This is an H1 heading</h1>
+    <h2>This is an H2 heading</h2>
+    <h3>This is an H3 heading</h3>
+    <h4>This is an H4 heading</h4>
+    <h5>This is an H5 heading</h5>
+    <h6>This is an H6 heading</h6>
+    
+    <h3>Paragraphs</h3>
+    <p>The <code>&lt;p&gt;</code> element defines a paragraph of text.</p>
+    <p>This is a paragraph. It can contain text, links, images, and other inline elements.</p>
+    <p>This is another paragraph. HTML automatically adds space before and after paragraphs.</p>
+    
+    <h3>Links</h3>
+    <p>The <code>&lt;a&gt;</code> element defines a hyperlink:</p>
+    <p><a href="index.html">Back to Projects</a></p>
+    
+    <h3>Images</h3>
+    <p>The <code>&lt;img&gt;</code> element is used to embed images:</p>
+    <img src="https://via.placeholder.com/300x150" alt="Placeholder Image">
+    
+    <hr>
+    
+    <h2>View the Source Code</h2>
+    <p>To see the HTML structure of this page, you can right-click on this page and select "View Page Source" or press Ctrl+U in most browsers.</p>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

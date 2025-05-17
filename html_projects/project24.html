@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Colors</title>
+</head>
+<body>
+    <h1 style="color: #0066cc;">HTML Colors</h1>
+    
+    <p>Colors play a crucial role in web design. HTML allows you to specify colors in various ways to style elements like text, backgrounds, borders, and more. This page demonstrates different color formats and how to apply them in HTML.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#color-formats">Color Formats</a></li>
+        <li><a href="#color-names">Color Names</a></li>
+        <li><a href="#hex-colors">Hexadecimal Colors</a></li>
+        <li><a href="#rgb-colors">RGB Colors</a></li>
+        <li><a href="#rgba-colors">RGBA Colors (with Transparency)</a></li>
+        <li><a href="#hsl-colors">HSL Colors</a></li>
+        <li><a href="#hsla-colors">HSLA Colors (with Transparency)</a></li>
+        <li><a href="#applying-colors">Applying Colors in HTML</a></li>
+        <li><a href="#color-schemes">Color Schemes and Accessibility</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="color-formats">Color Formats</h2>
+    
+    <p>HTML and CSS support several different formats for specifying colors:</p>
+    
+    <ul>
+        <li><strong>Color Names</strong>: Predefined color names like "red", "blue", "green", etc.</li>
+        <li><strong>Hexadecimal</strong>: Six-digit codes preceded by a hash (#) like #FF0000 for red</li>
+        <li><strong>RGB</strong>: Red, Green, Blue values specified using rgb(r, g, b)</li>
+        <li><strong>RGBA</strong>: RGB with an Alpha (transparency) channel using rgba(r, g, b, a)</li>
+        <li><strong>HSL</strong>: Hue, Saturation, Lightness values using hsl(h, s%, l%)</li>
+        <li><strong>HSLA</strong>: HSL with an Alpha channel using hsla(h, s%, l%, a)</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="color-names">Color Names</h2>
+    
+    <p>HTML supports 140 standard color names. Here are some common ones:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color Name</th>
+            <th style="padding: 8px;">Example</th>
+            <th style="padding: 8px;">Hex Value</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">red</td>
+            <td style="padding: 8px; background-color: red;"></td>
+            <td style="padding: 8px;">#FF0000</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">green</td>
+            <td style="padding: 8px; background-color: green;"></td>
+            <td style="padding: 8px;">#008000</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">blue</td>
+            <td style="padding: 8px; background-color: blue;"></td>
+            <td style="padding: 8px;">#0000FF</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">yellow</td>
+            <td style="padding: 8px; background-color: yellow;"></td>
+            <td style="padding: 8px;">#FFFF00</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">cyan</td>
+            <td style="padding: 8px; background-color: cyan;"></td>
+            <td style="padding: 8px;">#00FFFF</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">magenta</td>
+            <td style="padding: 8px; background-color: magenta;"></td>
+            <td style="padding: 8px;">#FF00FF</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">black</td>
+            <td style="padding: 8px; background-color: black;"></td>
+            <td style="padding: 8px;">#000000</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">white</td>
+            <td style="padding: 8px; background-color: white;"></td>
+            <td style="padding: 8px;">#FFFFFF</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">gray</td>
+            <td style="padding: 8px; background-color: gray;"></td>
+            <td style="padding: 8px;">#808080</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">purple</td>
+            <td style="padding: 8px; background-color: purple;"></td>
+            <td style="padding: 8px;">#800080</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">orange</td>
+            <td style="padding: 8px; background-color: orange;"></td>
+            <td style="padding: 8px;">#FFA500</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">pink</td>
+            <td style="padding: 8px; background-color: pink;"></td>
+            <td style="padding: 8px;">#FFC0CB</td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;p style="color: blue;"&gt;This text is blue.&lt;/p&gt;
+&lt;div style="background-color: yellow;"&gt;This div has a yellow background.&lt;/div&gt;</pre>
+    
+    <p style="color: blue;">This text is blue.</p>
+    <div style="background-color: yellow; padding: 10px;">This div has a yellow background.</div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="hex-colors">Hexadecimal Colors</h2>
+    
+    <p>Hexadecimal color codes start with a hash (#) followed by six hexadecimal digits. The first two digits represent red, the middle two represent green, and the last two represent blue.</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color</th>
+            <th style="padding: 8px;">Hex Code</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Red</td>
+            <td style="padding: 8px;">#FF0000</td>
+            <td style="padding: 8px; background-color: #FF0000;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Green</td>
+            <td style="padding: 8px;">#00FF00</td>
+            <td style="padding: 8px; background-color: #00FF00;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Blue</td>
+            <td style="padding: 8px;">#0000FF</td>
+            <td style="padding: 8px; background-color: #0000FF;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Yellow</td>
+            <td style="padding: 8px;">#FFFF00</td>
+            <td style="padding: 8px; background-color: #FFFF00;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Cyan</td>
+            <td style="padding: 8px;">#00FFFF</td>
+            <td style="padding: 8px; background-color: #00FFFF;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Magenta</td>
+            <td style="padding: 8px;">#FF00FF</td>
+            <td style="padding: 8px; background-color: #FF00FF;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Black</td>
+            <td style="padding: 8px;">#000000</td>
+            <td style="padding: 8px; background-color: #000000;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">White</td>
+            <td style="padding: 8px;">#FFFFFF</td>
+            <td style="padding: 8px; background-color: #FFFFFF;"></td>
+        </tr>
+    </table>
+    
+    <h3>Shorthand Hex</h3>
+    <p>If all six digits are made up of three repeated pairs, you can use a shorthand notation with just three digits:</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Full Hex</th>
+            <th style="padding: 8px;">Shorthand</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">#FF0000</td>
+            <td style="padding: 8px;">#F00</td>
+            <td style="padding: 8px; background-color: #F00;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">#00FF00</td>
+            <td style="padding: 8px;">#0F0</td>
+            <td style="padding: 8px; background-color: #0F0;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">#0000FF</td>
+            <td style="padding: 8px;">#00F</td>
+            <td style="padding: 8px; background-color: #00F;"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">#FFFF00</td>
+            <td style="padding: 8px;">#FF0</td>
+            <td style="padding: 8px; background-color: #FF0;"></td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;p style="color: #FF0000;"&gt;This text is red using a full hex code.&lt;/p&gt;
+&lt;p style="color: #F00;"&gt;This text is also red using shorthand hex.&lt;/p&gt;</pre>
+    
+    <p style="color: #FF0000;">This text is red using a full hex code.</p>
+    <p style="color: #F00;">This text is also red using shorthand hex.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="rgb-colors">RGB Colors</h2>
+    
+    <p>RGB colors are specified using the rgb() function, which takes three parameters for red, green, and blue. Each parameter can range from 0 to 255.</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color</th>
+            <th style="padding: 8px;">RGB Value</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Red</td>
+            <td style="padding: 8px;">rgb(255, 0, 0)</td>
+            <td style="padding: 8px; background-color: rgb(255, 0, 0);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Green</td>
+            <td style="padding: 8px;">rgb(0, 255, 0)</td>
+            <td style="padding: 8px; background-color: rgb(0, 255, 0);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Blue</td>
+            <td style="padding: 8px;">rgb(0, 0, 255)</td>
+            <td style="padding: 8px; background-color: rgb(0, 0, 255);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Yellow</td>
+            <td style="padding: 8px;">rgb(255, 255, 0)</td>
+            <td style="padding: 8px; background-color: rgb(255, 255, 0);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Purple</td>
+            <td style="padding: 8px;">rgb(128, 0, 128)</td>
+            <td style="padding: 8px; background-color: rgb(128, 0, 128);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Teal</td>
+            <td style="padding: 8px;">rgb(0, 128, 128)</td>
+            <td style="padding: 8px; background-color: rgb(0, 128, 128);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Gray</td>
+            <td style="padding: 8px;">rgb(128, 128, 128)</td>
+            <td style="padding: 8px; background-color: rgb(128, 128, 128);"></td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;p style="color: rgb(0, 0, 255);"&gt;This text is blue using RGB.&lt;/p&gt;
+&lt;div style="background-color: rgb(255, 165, 0);"&gt;This div has an orange background using RGB.&lt;/div&gt;</pre>
+    
+    <p style="color: rgb(0, 0, 255);">This text is blue using RGB.</p>
+    <div style="background-color: rgb(255, 165, 0); padding: 10px;">This div has an orange background using RGB.</div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="rgba-colors">RGBA Colors (with Transparency)</h2>
+    
+    <p>RGBA colors are similar to RGB but include an alpha channel for transparency. The alpha value ranges from 0 (completely transparent) to 1 (completely opaque).</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color</th>
+            <th style="padding: 8px;">RGBA Value</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Red (50% transparent)</td>
+            <td style="padding: 8px;">rgba(255, 0, 0, 0.5)</td>
+            <td style="padding: 8px; background-color: rgba(255, 0, 0, 0.5);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Green (70% transparent)</td>
+            <td style="padding: 8px;">rgba(0, 255, 0, 0.3)</td>
+            <td style="padding: 8px; background-color: rgba(0, 255, 0, 0.3);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Blue (20% transparent)</td>
+            <td style="padding: 8px;">rgba(0, 0, 255, 0.8)</td>
+            <td style="padding: 8px; background-color: rgba(0, 0, 255, 0.8);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Black (90% transparent)</td>
+            <td style="padding: 8px;">rgba(0, 0, 0, 0.1)</td>
+            <td style="padding: 8px; background-color: rgba(0, 0, 0, 0.1);"></td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;div style="background-color: rgba(255, 0, 0, 0.5); padding: 10px;"&gt;
+    This div has a semi-transparent red background.
+&lt;/div&gt;</pre>
+    
+    <div style="background-color: rgba(255, 0, 0, 0.5); padding: 10px;">
+        This div has a semi-transparent red background.
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="hsl-colors">HSL Colors</h2>
+    
+    <p>HSL stands for Hue, Saturation, and Lightness. It's an alternative way to specify colors that can be more intuitive for some design tasks.</p>
+    
+    <ul>
+        <li><strong>Hue</strong> is a degree on the color wheel (0 to 360), where 0 is red, 120 is green, and 240 is blue.</li>
+        <li><strong>Saturation</strong> is a percentage value, where 0% is a shade of gray and 100% is the full color.</li>
+        <li><strong>Lightness</strong> is also a percentage, where 0% is black and 100% is white. 50% is the "normal" color.</li>
+    </ul>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color</th>
+            <th style="padding: 8px;">HSL Value</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Red</td>
+            <td style="padding: 8px;">hsl(0, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(0, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Green</td>
+            <td style="padding: 8px;">hsl(120, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(120, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Blue</td>
+            <td style="padding: 8px;">hsl(240, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(240, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Yellow</td>
+            <td style="padding: 8px;">hsl(60, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(60, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Purple</td>
+            <td style="padding: 8px;">hsl(270, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(270, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Light Blue</td>
+            <td style="padding: 8px;">hsl(195, 100%, 50%)</td>
+            <td style="padding: 8px; background-color: hsl(195, 100%, 50%);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Pink</td>
+            <td style="padding: 8px;">hsl(330, 100%, 80%)</td>
+            <td style="padding: 8px; background-color: hsl(330, 100%, 80%);"></td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;p style="color: hsl(240, 100%, 50%);"&gt;This text is blue using HSL.&lt;/p&gt;</pre>
+    
+    <p style="color: hsl(240, 100%, 50%);">This text is blue using HSL.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="hsla-colors">HSLA Colors (with Transparency)</h2>
+    
+    <p>HSLA colors are similar to HSL but include an alpha channel for transparency, just like RGBA.</p>
+    
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 8px;">Color</th>
+            <th style="padding: 8px;">HSLA Value</th>
+            <th style="padding: 8px;">Example</th>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Red (50% transparent)</td>
+            <td style="padding: 8px;">hsla(0, 100%, 50%, 0.5)</td>
+            <td style="padding: 8px; background-color: hsla(0, 100%, 50%, 0.5);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Green (70% transparent)</td>
+            <td style="padding: 8px;">hsla(120, 100%, 50%, 0.3)</td>
+            <td style="padding: 8px; background-color: hsla(120, 100%, 50%, 0.3);"></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Blue (20% transparent)</td>
+            <td style="padding: 8px;">hsla(240, 100%, 50%, 0.8)</td>
+            <td style="padding: 8px; background-color: hsla(240, 100%, 50%, 0.8);"></td>
+        </tr>
+    </table>
+    
+    <p>Example usage:</p>
+    <pre>&lt;div style="background-color: hsla(120, 100%, 50%, 0.3); padding: 10px;"&gt;
+    This div has a semi-transparent green background.
+&lt;/div&gt;</pre>
+    
+    <div style="background-color: hsla(120, 100%, 50%, 0.3); padding: 10px;">
+        This div has a semi-transparent green background.
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="applying-colors">Applying Colors in HTML</h2>
+    
+    <p>There are several ways to apply colors in HTML:</p>
+    
+    <h3>1. Using the style Attribute</h3>
+    <p>You can apply colors directly to HTML elements using the style attribute:</p>
+    
+    <pre>&lt;p style="color: blue;"&gt;Blue text&lt;/p&gt;
+&lt;p style="background-color: yellow;"&gt;Text with yellow background&lt;/p&gt;
+&lt;p style="color: white; background-color: black;"&gt;White text on black background&lt;/p&gt;</pre>
+    
+    <p style="color: blue;">Blue text</p>
+    <p style="background-color: yellow;">Text with yellow background</p>
+    <p style="color: white; background-color: black;">White text on black background</p>
+    
+    <h3>2. Using HTML Color Attributes (Deprecated)</h3>
+    <p>Some HTML elements used to support color attributes directly, but these are now deprecated in favor of CSS:</p>
+    
+    <pre>&lt;font color="red"&gt;Red text&lt;/font&gt; &lt;!-- Deprecated --&gt;
+&lt;body bgcolor="lightblue"&gt; &lt;!-- Deprecated --&gt;</pre>
+    
+    <p>Instead of using deprecated attributes, use CSS for all color styling.</p>
+    
+    <h3>3. Using CSS (Recommended)</h3>
+    <p>The best practice is to use CSS for styling, either in a separate stylesheet or in a style tag in the head section:</p>
+    
+    <pre>&lt;style&gt;
+    p {
+        color: blue;
+    }
+    .highlight {
+        background-color: yellow;
+    }
+    #special {
+        color: white;
+        background-color: black;
+    }
+&lt;/style&gt;
+
+&lt;p&gt;Blue text&lt;/p&gt;
+&lt;p class="highlight"&gt;Text with yellow background&lt;/p&gt;
+&lt;p id="special"&gt;White text on black background&lt;/p&gt;</pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="color-schemes">Color Schemes and Accessibility</h2>
+    
+    <h3>Color Contrast</h3>
+    <p>When choosing colors, it's important to ensure sufficient contrast between text and background for readability. The Web Content Accessibility Guidelines (WCAG) recommend a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.</p>
+    
+    <div style="padding: 10px; margin-bottom: 10px; background-color: #000000;">
+        <p style="color: #FFFFFF;">Good contrast: White text on black background</p>
+    </div>
+    
+    <div style="padding: 10px; margin-bottom: 10px; background-color: #FFFF00;">
+        <p style="color: #000000;">Good contrast: Black text on yellow background</p>
+    </div>
+    
+    <div style="padding: 10px; margin-bottom: 10px; background-color: #FF0000;">
+        <p style="color: #FFFF00;">Good contrast: Yellow text on red background</p>
+    </div>
+    
+    <div style="padding: 10px; margin-bottom: 10px; background-color: #FF0000;">
+        <p style="color: #00FF00;">Poor contrast: Green text on red background</p>
+    </div>
+    
+    <h3>Color Blindness Considerations</h3>
+    <p>About 8% of men and 0.5% of women have some form of color blindness. When designing with color:</p>
+    <ul>
+        <li>Don't rely solely on color to convey information</li>
+        <li>Use patterns or labels in addition to colors</li>
+        <li>Avoid problematic color combinations (red/green, blue/purple, etc.)</li>
+    </ul>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

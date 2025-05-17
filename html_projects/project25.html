@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Attributes</title>
+</head>
+<body>
+    <h1>HTML Attributes</h1>
+    
+    <p>HTML attributes provide additional information about HTML elements. They are always specified in the start tag and usually come in name/value pairs like: <code>name="value"</code>. This page demonstrates various HTML attributes and how they modify elements.</p>
+    
+    <h2 id="contents">Contents</h2>
+    <ul>
+        <li><a href="#attribute-basics">Attribute Basics</a></li>
+        <li><a href="#global-attributes">Global Attributes</a></li>
+        <li><a href="#element-specific">Element-Specific Attributes</a></li>
+        <li><a href="#boolean-attributes">Boolean Attributes</a></li>
+        <li><a href="#event-attributes">Event Attributes</a></li>
+        <li><a href="#custom-attributes">Custom Data Attributes</a></li>
+        <li><a href="#attribute-examples">Practical Examples</a></li>
+    </ul>
+    
+    <hr>
+    
+    <h2 id="attribute-basics">Attribute Basics</h2>
+    
+    <p>HTML attributes have the following characteristics:</p>
+    
+    <ul>
+        <li>Attributes provide additional information about an element</li>
+        <li>They are always specified in the start tag</li>
+        <li>They usually come in name/value pairs like: <code>name="value"</code></li>
+        <li>Attribute values should always be enclosed in quotes (single or double)</li>
+        <li>Some attributes can be minimized (boolean attributes)</li>
+    </ul>
+    
+    <p>Basic syntax:</p>
+    <pre>&lt;element attribute="value"&gt;Content&lt;/element&gt;</pre>
+    
+    <p>Example:</p>
+    <pre>&lt;a href="https://www.example.com" target="_blank"&gt;Visit Example.com&lt;/a&gt;</pre>
+    
+    <p>In this example, <code>href</code> and <code>target</code> are attributes of the <code>&lt;a&gt;</code> element.</p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="global-attributes">Global Attributes</h2>
+    
+    <p>Global attributes are attributes that can be used with any HTML element. Here are some of the most common ones:</p>
+    
+    <h3>id</h3>
+    <p>The <code>id</code> attribute specifies a unique id for an element. The value must be unique within the HTML document.</p>
+    <pre>&lt;div id="header"&gt;This is the header&lt;/div&gt;</pre>
+    <div id="header-example" style="background-color: #f0f0f0; padding: 10px;">This element has an id of "header-example"</div>
+    
+    <h3>class</h3>
+    <p>The <code>class</code> attribute specifies one or more class names for an element. Multiple classes can be specified by separating them with spaces.</p>
+    <pre>&lt;p class="important highlight"&gt;This is an important paragraph.&lt;/p&gt;</pre>
+    <p class="important highlight" style="background-color: yellow; font-weight: bold;">This paragraph has classes "important" and "highlight"</p>
+    
+    <h3>style</h3>
+    <p>The <code>style</code> attribute specifies inline CSS styles for an element.</p>
+    <pre>&lt;p style="color: blue; font-size: 18px;"&gt;This is a styled paragraph.&lt;/p&gt;</pre>
+    <p style="color: blue; font-size: 18px;">This is a styled paragraph.</p>
+    
+    <h3>title</h3>
+    <p>The <code>title</code> attribute specifies extra information about an element, shown as a tooltip when the mouse hovers over the element.</p>
+    <pre>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</pre>
+    <p>The <abbr title="HyperText Markup Language">HTML</abbr> language is used to create web pages. (Hover over "HTML" to see the title)</p>
+    
+    <h3>lang</h3>
+    <p>The <code>lang</code> attribute specifies the language of the element's content.</p>
+    <pre>&lt;p lang="fr"&gt;Bonjour le monde&lt;/p&gt;</pre>
+    <p lang="fr">Bonjour le monde</p>
+    
+    <h3>dir</h3>
+    <p>The <code>dir</code> attribute specifies the text direction of the element's content.</p>
+    <pre>&lt;p dir="rtl"&gt;This text will be displayed right-to-left.&lt;/p&gt;</pre>
+    <p dir="rtl">This text will be displayed right-to-left.</p>
+    
+    <h3>hidden</h3>
+    <p>The <code>hidden</code> attribute specifies that an element is not yet, or is no longer, relevant.</p>
+    <pre>&lt;p hidden&gt;This paragraph is hidden.&lt;/p&gt;</pre>
+    <p hidden>This paragraph is hidden.</p>
+    
+    <h3>tabindex</h3>
+    <p>The <code>tabindex</code> attribute specifies the tab order of an element.</p>
+    <pre>&lt;input type="text" tabindex="1"&gt;
+&lt;input type="text" tabindex="2"&gt;</pre>
+    <p>First field: <input type="text" tabindex="1" placeholder="Tabindex 1"></p>
+    <p>Second field: <input type="text" tabindex="2" placeholder="Tabindex 2"></p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="element-specific">Element-Specific Attributes</h2>
+    
+    <p>Many HTML elements have specific attributes that only apply to them. Here are some examples:</p>
+    
+    <h3>a element</h3>
+    <ul>
+        <li><code>href</code> - Specifies the URL of the page the link goes to</li>
+        <li><code>target</code> - Specifies where to open the linked document</li>
+        <li><code>rel</code> - Specifies the relationship between the current document and the linked document</li>
+    </ul>
+    <pre>&lt;a href="https://www.example.com" target="_blank" rel="noopener"&gt;Visit Example.com&lt;/a&gt;</pre>
+    <p><a href="https://www.example.com" target="_blank" rel="noopener">Visit Example.com</a></p>
+    
+    <h3>img element</h3>
+    <ul>
+        <li><code>src</code> - Specifies the path to the image</li>
+        <li><code>alt</code> - Specifies an alternate text for the image</li>
+        <li><code>width</code> and <code>height</code> - Specify the width and height of the image</li>
+    </ul>
+    <pre>&lt;img src="image.jpg" alt="Description of image" width="300" height="200"&gt;</pre>
+    <img src="https://via.placeholder.com/300x200" alt="Placeholder image" width="300" height="200">
+    
+    <h3>input element</h3>
+    <ul>
+        <li><code>type</code> - Specifies the type of input</li>
+        <li><code>name</code> - Specifies the name of the input</li>
+        <li><code>value</code> - Specifies the initial value of the input</li>
+        <li><code>placeholder</code> - Specifies a hint that describes the expected value</li>
+        <li><code>required</code> - Specifies that the input field must be filled out</li>
+    </ul>
+    <pre>&lt;input type="text" name="username" placeholder="Enter your username" required&gt;</pre>
+    <p><input type="text" name="username" placeholder="Enter your username" required></p>
+    
+    <h3>button element</h3>
+    <ul>
+        <li><code>type</code> - Specifies the type of button</li>
+        <li><code>disabled</code> - Specifies that the button should be disabled</li>
+    </ul>
+    <pre>&lt;button type="button"&gt;Click Me&lt;/button&gt;
+&lt;button type="button" disabled&gt;Disabled Button&lt;/button&gt;</pre>
+    <p>
+        <button type="button">Click Me</button>
+        <button type="button" disabled>Disabled Button</button>
+    </p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="boolean-attributes">Boolean Attributes</h2>
+    
+    <p>Boolean attributes are attributes that don't require a value. The presence of the attribute implies a "true" value, and the absence implies a "false" value.</p>
+    
+    <p>Examples of boolean attributes:</p>
+    <ul>
+        <li><code>disabled</code> - Disables an input element</li>
+        <li><code>checked</code> - Pre-selects a checkbox or radio button</li>
+        <li><code>readonly</code> - Makes an input field read-only</li>
+        <li><code>required</code> - Makes an input field required</li>
+        <li><code>hidden</code> - Hides an element</li>
+        <li><code>selected</code> - Pre-selects an option in a dropdown</li>
+    </ul>
+    
+    <p>Boolean attributes can be written in several ways:</p>
+    <pre>&lt;input type="checkbox" checked&gt;
+&lt;input type="checkbox" checked="checked"&gt;
+&lt;input type="checkbox" checked=""&gt;</pre>
+    
+    <p>All three examples above are equivalent and represent a checked checkbox:</p>
+    <p><input type="checkbox" checked> Checked checkbox</p>
+    
+    <p>More examples:</p>
+    <pre>&lt;input type="text" readonly&gt;
+&lt;button disabled&gt;Disabled Button&lt;/button&gt;
+&lt;select&gt;
+    &lt;option selected&gt;Selected Option&lt;/option&gt;
+    &lt;option&gt;Another Option&lt;/option&gt;
+&lt;/select&gt;</pre>
+    
+    <p><input type="text" value="Read-only field" readonly></p>
+    <p><button disabled>Disabled Button</button></p>
+    <p>
+        <select>
+            <option selected>Selected Option</option>
+            <option>Another Option</option>
+        </select>
+    </p>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="event-attributes">Event Attributes</h2>
+    
+    <p>Event attributes allow you to run JavaScript when certain events occur. They start with "on" followed by the event name.</p>
+    
+    <p>Common event attributes:</p>
+    <ul>
+        <li><code>onclick</code> - Triggered when the element is clicked</li>
+        <li><code>onmouseover</code> - Triggered when the mouse pointer moves over the element</li>
+        <li><code>onmouseout</code> - Triggered when the mouse pointer moves out of the element</li>
+        <li><code>onkeydown</code> - Triggered when a key is pressed down</li>
+        <li><code>onload</code> - Triggered when the element has finished loading</li>
+        <li><code>onsubmit</code> - Triggered when a form is submitted</li>
+    </ul>
+    
+    <p>Examples:</p>
+    <pre>&lt;button onclick="alert('Button clicked!')"&gt;Click Me&lt;/button&gt;
+&lt;div onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'"&gt;
+    Hover over me
+&lt;/div&gt;</pre>
+    
+    <p><button onclick="alert('Button clicked!')">Click Me</button></p>
+    <div onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="padding: 10px; border: 1px solid #ccc;">
+        Hover over me
+    </div>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="custom-attributes">Custom Data Attributes</h2>
+    
+    <p>HTML5 allows you to create custom attributes using the <code>data-*</code> prefix. These attributes can store extra information that doesn't have a visual representation.</p>
+    
+    <p>Custom data attributes:</p>
+    <ul>
+        <li>Must start with <code>data-</code></li>
+        <li>Can contain only lowercase letters, numbers, hyphens, dots, colons, and underscores</li>
+        <li>Can be accessed via JavaScript using the <code>dataset</code> property</li>
+    </ul>
+    
+    <p>Example:</p>
+    <pre>&lt;div id="user" data-id="123" data-user="john" data-role="admin"&gt;John Doe&lt;/div&gt;</pre>
+    
+    <div id="user-example" data-id="123" data-user="john" data-role="admin" style="padding: 10px; background-color: #f0f0f0;">
+        John Doe (This div has custom data attributes: data-id="123", data-user="john", data-role="admin")
+    </div>
+    
+    <p>Accessing custom data attributes with JavaScript:</p>
+    <pre>
+// HTML: &lt;div id="user" data-id="123" data-user="john" data-role="admin"&gt;John Doe&lt;/div&gt;
+
+// JavaScript:
+const user = document.getElementById('user');
+console.log(user.dataset.id); // "123"
+console.log(user.dataset.user); // "john"
+console.log(user.dataset.role); // "admin"
+    </pre>
+    
+    <p><a href="#contents">Back to Contents</a></p>
+    
+    <hr>
+    
+    <h2 id="attribute-examples">Practical Examples</h2>
+    
+    <h3>Example 1: Link with Multiple Attributes</h3>
+    <pre>&lt;a href="https://www.example.com" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   title="Visit Example.com in a new tab"
+   class="external-link"
+   id="example-link"&gt;
+   Visit Example.com
+&lt;/a&gt;</pre>
+    
+    <p>
+        <a href="https://www.example.com" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           title="Visit Example.com in a new tab"
+           class="external-link"
+           id="example-link"
+           style="color: blue; text-decoration: underline;">
+           Visit Example.com
+        </a>
+    </p>
+    
+    <h3>Example 2: Form with Various Input Attributes</h3>
+    <pre>&lt;form action="/submit" method="post" id="contact-form"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" placeholder="Enter your name" required&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="Enter your email" required&gt;
+    
+    &lt;label for="message"&gt;Message:&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message"&gt;&lt;/textarea&gt;
+    
+    &lt;input type="checkbox" id="subscribe" name="subscribe" checked&gt;
+    &lt;label for="subscribe"&gt;Subscribe to newsletter&lt;/label&gt;
+    
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+    
+    <form action="#" method="get" id="contact-form-example" style="background-color: #f9f9f9; padding: 15px; border-radius: 5px;">
+        <div style="margin-bottom: 10px;">
+            <label for="name-example">Name:</label><br>
+            <input type="text" id="name-example" name="name" placeholder="Enter your name" required>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <label for="email-example">Email:</label><br>
+            <input type="email" id="email-example" name="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <label for="message-example">Message:</label><br>
+            <textarea id="message-example" name="message" rows="4" cols="50" placeholder="Enter your message"></textarea>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <input type="checkbox" id="subscribe-example" name="subscribe" checked>
+            <label for="subscribe-example">Subscribe to newsletter</label>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h3>Example 3: Image with Attributes</h3>
+    <pre>&lt;img src="image.jpg" 
+     alt="A beautiful landscape" 
+     width="300" 
+     height="200" 
+     title="Mountain landscape at sunset"
+     loading="lazy"
+     id="landscape-image"
+     class="responsive-image"&gt;</pre>
+    
+    <img src="https://via.placeholder.com/300x200" 
+         alt="A placeholder image" 
+         width="300" 
+         height="200" 
+         title="Placeholder image (hover to see this title)"
+         loading="lazy"
+         id="placeholder-image"
+         class="responsive-image">
+    
+    <hr>
+    
+    <p><a href="index.html">← Back to Projects</a></p>
+</body>
+</html>
+

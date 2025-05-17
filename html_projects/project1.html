@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #091330;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .tagline {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #5592f5;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            border: 1px solid #ecf0f1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .project-info {
+            padding: 15px;
+        }
+        .project-title {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-icon {
+            font-size: 1.5em;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #5592f5;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background-color: #09cc09;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-img">
+        <h1>John Doe</h1>
+        <p class="tagline">Web Developer & Designer</p>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I'm John, a passionate web developer with a keen eye for design and a love for creating user-friendly websites. I have 3 years of experience in front-end development and am constantly learning new technologies.</p>
+            <p>When I'm not coding, you can find me hiking in the mountains, reading science fiction, or experimenting with new recipes in the kitchen.</p>
+        </section>
+
+        <section id="skills">
+            <h2>My Skills</h2>
+            <div class="skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Responsive Design</span>
+                <span class="skill-tag">Git</span>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x180?text=E-commerce+Website" alt="E-commerce Website">
+                    <div class="project-info">
+                        <h3 class="project-title">E-commerce Website</h3>
+                        <p>A fully responsive online store with product catalog, shopping cart, and checkout functionality.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x180?text=Weather+App" alt="Weather App">
+                    <div class="project-info">
+                        <h3 class="project-title">Weather App</h3>
+                        <p>A weather application that provides real-time weather information based on user location.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x180?text=Portfolio+Website" alt="Portfolio Website">
+                    <div class="project-info">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p>A personal portfolio website showcasing my skills, projects, and professional experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <a href="mailto:john.doe@example.com">john.doe@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>(123) 456-7890</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🐙</span>
+                    <a href="https://github.com" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-link">← Back to Projects</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 John Doe. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
